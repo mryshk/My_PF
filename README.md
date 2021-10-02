@@ -41,7 +41,8 @@
 ### 主な利用シーン
 　日常の空き時間・音楽を聞く際（音楽リスナー） / 新しい楽曲をリリースした際（音楽クリエイター）
 
-## 設計書
+## ER図
+https://app.diagrams.net/#G1uGJZjChS0OeGnZXeJuZ8YXO1FEiAvOd4
 
 
 ## チャレンジ要素一覧
