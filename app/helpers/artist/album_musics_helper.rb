@@ -1,0 +1,2 @@
+module Artist::AlbumMusicsHelper
+end
