@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_080057) do
+ActiveRecord::Schema.define(version: 2021_10_05_080756) do
 
   create_table "album_musics", force: :cascade do |t|
     t.integer "creater_id"
@@ -84,6 +84,11 @@ ActiveRecord::Schema.define(version: 2021_10_05_080057) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "caption"
+    t.string "profile_image_id"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_listeners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_listeners_on_reset_password_token", unique: true
   end
