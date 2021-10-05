@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   root to: 'homes#top' #ルートパス
   get 'about' => 'homes#about', as: 'about' #ログアウト後に開くアプリ紹介ページに使用
-  
+
   devise_for :listeners #リスナー側のDevise登録
   resources :listeners, only: [:show,:edit,:update]do #マイページ用に使用
     resource :relationships, only:[:create,:destroy] #フォロー機能
     get 'followings' => 'relationships#followings', as: 'followings' #フォロー・フォロワー表示
     get 'followers' => 'relationships#followers',as: 'followers'
   end
-  
+
   resources :posts do #投稿用
     collection do
       get :order #並び替え時に使用
@@ -18,18 +18,18 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:index,:create,:edit,:update,:destroy] #投稿コメント
     resource :post_favorites, only: [:index,:create,:destroy] #投稿いいね
   end
-  
+
   resources :groups do #グループ機能CRUD全部
     collection do
       get :search #グループ検索
     end
     resources :group_listeners, only: [:create, :index, :destroy] #グループメンバー参加・一覧
   end
-  
+
   resources :chats, only: [:create,:show,:index] #チャット機能
-  
+
   get 'notification' => 'notifications#index',as: 'notifications' #通知機能
-  
+
   resources :albums, only: [:index,:show]do #楽曲アルバム一覧・詳細
     collection do
       get :search #アルバム検索
@@ -39,10 +39,10 @@ Rails.application.routes.draw do
       resources :music_favorites, only: [:index,:create,:destroy] #楽曲いいね
     end
   end
-  
+
   resources :inquiries, only: [:new,:create,:finish] #お問い合わせ機能
-  
-  
+
+
   namespace :artist do #アーティスト（クリエイター側）
    devise_for :creaters #クリエイター側のDevise登録
    resources :creaters, only: [:show,:edit,:update] #
@@ -54,8 +54,8 @@ Rails.application.routes.draw do
  end
 
 end
-  
-  
-  
- 
+
+
+
+
 
