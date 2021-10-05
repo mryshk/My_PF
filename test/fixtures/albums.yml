@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creater_id: 1
+  name: MyString
+  caption: MyText
+  image_id: MyString
+  genre: 1
+  album_url: MyString
+
+two:
+  creater_id: 1
+  name: MyString
+  caption: MyText
+  image_id: MyString
+  genre: 1
+  album_url: MyString

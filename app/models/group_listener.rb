@@ -1,0 +1,2 @@
+class GroupListener < ApplicationRecord
+end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creater_id: 1
+  album_id: 1
+  album_music_id: 1
+  comment: MyText
+  rate: 1.5
+
+two:
+  creater_id: 1
+  album_id: 1
+  album_music_id: 1
+  comment: MyText
+  rate: 1.5
