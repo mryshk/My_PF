@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_081530) do
+ActiveRecord::Schema.define(version: 2021_10_05_082604) do
 
   create_table "album_musics", force: :cascade do |t|
     t.integer "creater_id"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_081530) do
     t.integer "passive_id"
     t.integer "post_comment_id"
     t.string "action"
-    t.boolean "checked"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
