@@ -6,17 +6,17 @@
       <div>
         <div class="mb-2 mt-3"><strong>投稿</strong></div>
         <%= f.text_area :post_tweet,rows:"5",class: "form-control"  %>
-        <small class="form-text text-muted">Please input your artist name</small>
+        <small class="form-text text-muted">感じたことなんでも投稿してください。</small>
       </div>
       <div>
         <div class="mb-2 mt-3"><strong>楽曲URL</strong></div>
         <%= f.text_field :post_url,class: "form-control" %>
-        <small class="form-text text-muted">Please input your music name</small>
+        <small class="form-text text-muted">URLを入力してください。</small>
       </div>
       <div>
         <div class="mb-2 mt-3" ><strong>画像</strong></div>
         <%= f.attachment_field :picture ,class: "form-control-file"  %>
-        <small class="form-text text-muted">Please input your music image</small>
+        <small class="form-text text-muted">画像入力</small>
         <button class="btn btn-info mt-3"><i class="fas fa-plus">&nbsp;投稿</i>
           <% f.submit %>
         </button>
