@@ -23,7 +23,7 @@
           .mb-2.mt-3
             strong
               | 投稿画像
-          = f.attachment_field :picture ,class: "form-control-file"
+          = f.attachment_field, :picture, class: "form-control-file"
           small.form-text.text-muted
             | 関連画像があれば投稿してください。（自分で撮った写真のみ）
           button.btn.btn-info.mt-3
