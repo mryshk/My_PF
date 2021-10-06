@@ -1,0 +1,62 @@
+.container
+  h2.mt-3
+    i.fas.fa-plus
+      | New Music
+  .row
+    .col-7.offset-2.mt-4
+      = form_with model: @music, local: true do |f|
+        div
+          .mb-2.mt-3
+            strong
+              | Musician's Name
+          = f.text_field :artist_name, class: "form-control"
+          small.form-text.text-muted
+            | Please input your artist name
+        div
+          .mb-2.mt-3
+            strong
+              | Music's Name
+          = f.text_field :music_name,class: "form-control"
+          small.form-text.text-muted
+            | Please input your music name
+        div
+          .mb-2.mt-3
+            strong
+              | Musician’s Caption
+          = f.text_area :music_caption,rows:"5",class: "form-control"
+          small.form-text.text-muted
+            | Please input your music caption
+        div
+          .mb-2.mt-3
+            strong
+              | Musician's Musicvideo
+          = f.text_field :music_url,class: "form-control"
+          small.form-text.text-muted
+            | Please input your music URL
+        div
+          .mb-2.mt-3
+            strong
+              | Musician's Genre
+          = f.radio_button :music_genre, :Rock
+          | Rock
+          = f.radio_button :music_genre, :POP
+          | POP
+          = f.radio_button :music_genre, :Pank
+          | Pank
+          = f.radio_button :music_genre, :Idle
+          | Idle
+          = f.radio_button :music_genre, :EDM
+          | EDM
+          small.form-text.text-muted.mt-2
+            | Please check your music genre
+        div
+          .mb-2.mt-3
+            strong
+              | Musician’s image
+          = f.attachment_field :musicimage,class: "form-control-file"
+          small.form-text.text-muted
+            | Please input your music image
+          button.btn.btn-info.mt-3
+            i.fas.fa-plus
+              |  Post
+            - f.submit
