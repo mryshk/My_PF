@@ -11,7 +11,7 @@
           <p class="card-text text-center" style="margin-top:50px;"><%= @post.post_url  %></p>
           <%# ファボ・コメント　 %>
           <div class="mt-3 text-center">
-            <div class="d-inline " style="margin-right:20px;" id="post_favorite_<%= @post.id  %>">
+            <div class="d-inline " style="margin-right:20px;" id="post_post_favorite_<%= @post.id  %>">
               <%= render 'public/post_favorites/favorite', post: @post %>
             </div>
             <div class="d-inline ml-2">
