@@ -1,14 +1,14 @@
 class Public::PostFavoritesController < ApplicationController
-  
+
     def create
-        @music = Music.find(params[:music_id])
-        @favorite = current_user.favorites.new(music_id: @music.id)
+        @post = Post.find(params[:post_id])
+        @favorite = current_listener.favorites.new(post_id: @post.id)
         @favorite.save
     end
 
     def destroy
-        @music = Music.find(params[:music_id])
-        @favorite = current_user.favorites.find_by(music_id: @music.id)
+        @post = Post.find(params[:post_id])
+        @favorite = current_listener.favorites.find_by(post_id: @post.id)
         @favorite.destroy
     end
 end
