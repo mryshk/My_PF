@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  attachment :post_image
+  attachment :picture
   belongs_to :listener
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
