@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+
+ #以下リスナー側ルート
+ #コントローラー指定にpublicを追加。URLはpublic記述なし。(module)
+ scope module: :public do
+
   root to: 'homes#top' #ルートパス
-  get 'about' => 'homes#about', as: 'about' #ログアウト後に開くアプリ紹介ページに使用
+  get 'about' => 'public/homes#about', as: 'about' #ログアウト後に開くアプリ紹介ページに使用
 
   devise_for :listeners #リスナー側のDevise登録
   resources :listeners, only: [:show,:edit,:update]do #マイページ用に使用
@@ -39,11 +44,13 @@ Rails.application.routes.draw do
       resources :music_favorites, only: [:index,:create,:destroy] #楽曲いいね
     end
   end
-
   resources :inquiries, only: [:new,:create,:finish] #お問い合わせ機能
 
+ end #リスナー側moduleのエンドポイント
 
-  namespace :artist do #アーティスト（クリエイター側）
+ #以下クリエイター側ルート
+ #URL・コントローラー指定共にartist記述あり。（namespace）
+ namespace :artist do #アーティスト（クリエイター側）
    devise_for :creaters #クリエイター側のDevise登録
    resources :creaters, only: [:show,:edit,:update] #
    resources :albums do #アルバム投稿（クリエイター側のみ可）
