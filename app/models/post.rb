@@ -14,4 +14,5 @@ class Post < ApplicationRecord
   def self.search(keyword)
     where(["post_tweet like?","%#{keyword}%"])
   end
+
 end

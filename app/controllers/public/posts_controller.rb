@@ -5,19 +5,21 @@ class Public::PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
-        @poat.user_id = current_listener.id
+        @poat.listener_id = current_listener.id
         @post.save
-        redirect_to post_path(@post)
+
     end
 
     def show
         @post = Post.find(params[:id])
         @post_comment_n = PostComment.new
         @comments = @post.post_comments
+        @post_tags = @post.tags
     end
 
     def index
         @posts = Post.page(params[:page]).reverse_order
+        @tag_list = Tag.all
     end
 
     def edit
@@ -42,9 +44,9 @@ class Public::PostsController < ApplicationController
         @keyword = params[:keyword]
         render "search"
     end
-    
+
    private
-   def music_params
-       params.require(:music).permit(:musicimage,:music_name,:artist_name,:music_caption,:music_url,:music_genre)
+   def post_params
+       params.require(:post).permit(:post_image,:post_tweet,:post_url)
    end
 end
