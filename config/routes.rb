@@ -52,6 +52,7 @@ Rails.application.routes.draw do
  #URL・コントローラー指定共にartist記述あり。（namespace）
  namespace :artist do #アーティスト（クリエイター側）
    devise_for :creaters #クリエイター側のDevise登録
+   root to: "creaters#show"
    resources :creaters, only: [:show,:edit,:update] #
    resources :albums do #アルバム投稿（クリエイター側のみ可）
      resources :album_musics do #楽曲投稿（クリエイター側のみ可）

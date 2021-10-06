@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if listener_signed_in?
-      public_root_url
+      public_root_path
     else
-      admin_root_url
+      artist_root_path
     end
   end
 
