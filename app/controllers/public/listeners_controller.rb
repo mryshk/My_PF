@@ -1,24 +1,24 @@
 class Public::ListenersController < ApplicationController
-  
-  
+
+
   def show
-    @user = User.find(params[:id])
-    @musics = @user.musics.page(params[:page])
+    @listener = Listener.find(params[:id])
+    @posts = @listener.posts.page(params[:page])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @listener = Listener.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    @listener = Listener.find(params[:id])
+    @listener.update(listener_params)
+    redirect_to listener_path(@listener)
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name,:introduction,:profile_image)
+  def lisntener_params
+    params.require(:listener).permit(:name,:caption,:profile_image)
 
   end
 
