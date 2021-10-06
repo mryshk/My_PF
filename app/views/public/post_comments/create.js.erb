@@ -1,1 +1,1 @@
-$("#music_favorite_<%= @music.id  %>").html("<%= j(render 'favorites/favorite', music: @music )%>");
+$("#comment").html("<%= j(render 'public/post_comments/comments', comments: @comments,post: @post, post_comment_n: @post_comment_n )%>");
