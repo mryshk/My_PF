@@ -5,14 +5,21 @@ Rails.application.routes.draw do
  scope module: :public do
 
   root to: 'homes#top' #ルートパス
-  get 'about' => 'public/homes#about', as: 'about' #ログアウト後に開くアプリ紹介ページに使用
+  get 'about' => 'homes#about', as: 'about' #ログアウト後に開くアプリ紹介ページに使用
 
-  devise_for :listeners #リスナー側のDevise登録
+  devise_for :listeners, controllers: {
+    sessions: "public/listeners/sessions",
+    registrations: "public/listeners/registrations",
+    passwords: "public/listeners/passwords",
+    omniauth_callbacks: 'public/listeners/omniauth_callbacks'
+  }
   resources :listeners, only: [:show,:edit,:update]do #マイページ用に使用
     resource :relationships, only:[:create,:destroy] #フォロー機能
     get 'followings' => 'relationships#followings', as: 'followings' #フォロー・フォロワー表示
     get 'followers' => 'relationships#followers',as: 'followers'
   end
+
+  #リスナー側のDevise登録
 
   resources :posts do #投稿用
     collection do

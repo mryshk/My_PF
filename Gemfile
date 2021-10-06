@@ -86,3 +86,4 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'dotenv-rails'
 gem 'impressionist', '~>1.6.1'
+gem "omniauth-rails_csrf_protection"
