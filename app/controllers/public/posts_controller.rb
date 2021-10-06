@@ -5,21 +5,19 @@ class Public::PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
-        @poat.listener_id = current_listener.id
+        @post.listener_id = current_listener.id
         @post.save
-
+        redirect_to posts_path
     end
 
     def show
         @post = Post.find(params[:id])
         @post_comment_n = PostComment.new
         @comments = @post.post_comments
-        @post_tags = @post.tags
     end
 
     def index
         @posts = Post.page(params[:page]).reverse_order
-        @tag_list = Tag.all
     end
 
     def edit
@@ -47,6 +45,6 @@ class Public::PostsController < ApplicationController
 
    private
    def post_params
-       params.require(:post).permit(:post_image,:post_tweet,:post_url)
+       params.require(:post).permit(:post_image_id,:post_tweet,:post_url)
    end
 end

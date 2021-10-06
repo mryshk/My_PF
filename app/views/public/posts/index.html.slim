@@ -1,0 +1,76 @@
+.row.mt-5
+  - musics.each do |music|
+    .col-lg-5.offset-lg-1.col-8.offset-2[style="margin-top: 150px; "]
+      .card.mt-4.shadow-lg.h-100
+        div
+          = link_to music_path(music) do
+            = attachment_image_tag music, :musicimage,:fill,300,300,size: "300x300", class: "card-img-top"
+        .card-body
+          - # 曲名とアーティスト名
+          h4.card-title.text-center
+            | 「
+            strong
+              = music.music_name
+            | 」 
+            = music.artist_name
+          - # 説明
+          p.card-text.text-center
+            = music.music_caption
+          - # YOUTUBE
+          .youtube[style="margin-bottom:20px;"]
+            |  <iframe width="300" height="200" src="https://www.youtube.com/embed/
+            = music.music_url.last(11)
+            | " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          - # ジャンル
+          .text-info.text-center[style="margin-top:20px;"]
+            = link_to search_genre_path(:music_genre => music.music_genre )do
+              i.card-text.text-info
+                = music.music_genre
+          - # 平均ランク 部分　
+          - @average_rate = music.music_comments.average(:post_rate)
+          - unless @average_rate.nil?
+            h6.text-center.mt-3
+              i
+                = @average_rate.round(2)
+          - else
+            h6.text-center.mt-3
+              i
+                | 0
+          |  <div id="music_rate_
+          = music.id
+          | " data-score="
+          = @average_rate
+          | " class="text-center " style="margin-top:10px;">
+        script
+          |  $('#music_rate_<ruby code="= music.id"></ruby>').empty(); $('#music_rate_<ruby code="= music.id"></ruby>').raty({ readOnly: true, starOn: "<ruby code="= asset_path('star-on.png')"></ruby>", starOff: "<ruby code="= asset_path('star-off.png')"></ruby>", starHalf: "<ruby code="= asset_path('star-half.png')"></ruby>", score: function() { return $(this).attr('data-score') } }); 
+        - # ファボ
+        .mt-4.text-center
+          |  <div class="d-inline mt-4" style="margin-right:20px;" id="music_favorite_
+          = music.id
+          | "> 
+          = render 'favorites/favorite', music: music
+        - # コメント数
+        .d-inline.ml-2.mt-4
+          i.fas.fa-comments.text-info.fa-lg
+            = music.music_comments.count
+      - # 音楽詳細画面へ
+      .mt-4.text-center
+        button.btn[type="button"]
+          = link_to music_path(music), class: "text-info" do
+            i.far.fa-eye.fa-lg
+              |  Detail
+      - # 名前と画像
+      .card-text.text-right
+        = link_to user_path(music.user),class: "text-dark" do
+          div
+            = attachment_image_tag music.user,:profile_image ,size:"50x50", fallback: "no_image.jpg",class: "mt-3 rounded-circle"
+          div
+            = music.user.name
+      - # 投稿日
+      .text-right.mt-3
+        = time_ago_in_words(music.created_at)
+.mt-5
+  div
+    = link_to "New date", index_new_date_path
+  div
+    = link_to "Rate", index_rate_desc_path
