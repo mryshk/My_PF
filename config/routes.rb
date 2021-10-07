@@ -11,8 +11,9 @@ Rails.application.routes.draw do
     sessions: "public/listeners/sessions",
     registrations: "public/listeners/registrations",
     passwords: "public/listeners/passwords",
-    omniauth_callbacks: 'public/listeners/omniauth_callbacks'
+    omniauth_callbacks: 'public/listeners/omniauth_callbacks',
   }
+
   resources :listeners, only: [:show,:edit,:update]do #マイページ用に使用
     resource :relationships, only:[:create,:destroy] #フォロー機能
     get 'followings' => 'relationships#followings', as: 'followings' #フォロー・フォロワー表示

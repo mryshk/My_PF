@@ -3,19 +3,10 @@
 class Public::Listeners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
-  def google_oauth2
-    callback_for(:google)
-  end
-
-  def twitter
-    callback_for(:twitter)
-  end
-
-  def facebook
-    callback_for(:facebook)
-  end
 
 
+
+private
 
   def callback_for(provider)
 
