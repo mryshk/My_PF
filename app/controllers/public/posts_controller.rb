@@ -26,7 +26,7 @@ class Public::PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id])
-        @post.listenr_id = current_listener.id
+        @post.listener_id = current_listener.id
         @post.update(post_params)
         redirect_to post_path(@post)
     end
