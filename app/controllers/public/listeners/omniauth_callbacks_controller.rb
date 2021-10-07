@@ -2,7 +2,6 @@
 
 class Public::Listeners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  protect_from_forgery #ActionController::InvalidAuthenticityTokenエラー対策
 
   def google_oauth2
     callback_for(:google)
