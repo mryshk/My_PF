@@ -4,7 +4,7 @@ class Group < ApplicationRecord
   has_many :listeners, through: :group_listeners
   validates :name, presence: true
 
-  def joined_by?
+  def joined_by?(listener_id)
     group_listeners.where(listener_id: listener.id).exists?
   end
 

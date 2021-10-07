@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h2>Follow listeners</h2>
+  <div class="row">
+    <% if @listeners.exists?  %>
+    <div class="col-8 offset-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>Follow</th>
+          <th>Follower</th>
+          <th>Chat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @listeners.each do |listener|  %>
+        <tr>
+          <td>
+            <%= link_to listener_path(listener.id)do %>
+            <div>
+              <%= attachment_image_tag listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
+            </div>
+            <div>
+              <i class="text-dark ml-2"><%= listener.name %></i>
+            </div>
+            <% end %>
+          </td>
+            </div>
+          <td><%= link_to listener_followings_path(listener),class:"text-dark"  do %><i class="fas fa-listener-check fa-lg mt-3"><%= listener.followings.count %></i><% end %></td>
+          <td><%= link_to listener_followers_path(listener),class:"text-dark"  do %><i class="fas fa-listener-friends fa-lg mt-3"><%= listener.followers.count %></i><% end %></td>
+          <td>
+            <% if (current_listener.followers.include? listener)  && (listener.followers.include? current_listener )%>
+              <%= link_to chat_path(listener.id) do  %>
+                <div class="btn btn-info">Chat</div>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+    <% else %>
+    <div class="mx-auto">
+      <h1><i class="fas fa-listeners-slash">&nbsp;No listeners</h1></i>
+    </div>
+    <% end %>
+  </div>
+</div>
