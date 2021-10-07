@@ -1,7 +1,6 @@
 class Public::GroupsController < ApplicationController
   def new
     @group = Group.new
-
   end
 
   def create
@@ -12,7 +11,6 @@ class Public::GroupsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
@@ -40,8 +38,8 @@ class Public::GroupsController < ApplicationController
   end
 
   private
-  def group_params
-    params.require(:group).permit(:name,:introduction,:image)
-  end
 
+  def group_params
+    params.require(:group).permit(:name, :introduction, :image)
+  end
 end

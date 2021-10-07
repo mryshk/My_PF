@@ -1,6 +1,4 @@
 class Public::ListenersController < ApplicationController
-
-
   def show
     @listener = Listener.find(params[:id])
     @posts = @listener.posts.page(params[:page])
@@ -17,8 +15,8 @@ class Public::ListenersController < ApplicationController
   end
 
   private
-  def listener_params
-    params.require(:listener).permit(:name,:caption,:profile_image)
-  end
 
+  def listener_params
+    params.require(:listener).permit(:name, :caption, :profile_image)
+  end
 end

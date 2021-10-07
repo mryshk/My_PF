@@ -7,5 +7,4 @@ class Group < ApplicationRecord
   def joined_by?(listener_id)
     group_listeners.where(listener_id: listener_id).exists?
   end
-
 end

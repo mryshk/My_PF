@@ -1,5 +1,4 @@
 class Public::GroupListenersController < ApplicationController
-
   def create
     @group = Group.find(params[:group_id])
     @group_listener = GroupListener.new(group_id: @group.id)
@@ -15,10 +14,8 @@ class Public::GroupListenersController < ApplicationController
     redirect_to group_path(@group)
   end
 
-
   def index
     @group = Group.find(params[:group_id])
     @group_listeners = @group.group_listeners
   end
-
 end

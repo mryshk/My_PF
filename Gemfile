@@ -51,6 +51,7 @@ group :development do
 
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rubocop-airbnb'
 end
 
 group :test do
@@ -79,10 +80,9 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'ransack'
 gem 'jquery-rails'
-gem "kaminari",'~> 1.2.1'
+gem "kaminari", '~> 1.2.1'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
-gem 'dotenv-rails'
 gem 'impressionist', '~>1.6.1'
 gem "omniauth-rails_csrf_protection"
 gem 'omniauth-facebook'

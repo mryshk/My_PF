@@ -1,10 +1,8 @@
 class Public::PostCommentsController < ApplicationController
-
   def new
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.new
   end
-
 
   def create
     @post = Post.find(params[:post_id])
@@ -19,7 +17,7 @@ class Public::PostCommentsController < ApplicationController
   end
 
   def edit
-      @comment = PostComment.find_by(id: params[:id])
+    @comment = PostComment.find_by(id: params[:id])
   end
 
   def update
@@ -29,19 +27,18 @@ class Public::PostCommentsController < ApplicationController
     redirect_to post_path(@comment.post)
   end
 
-
   def destroy
     @post = Post.find(params[:post_id])
-    @comment = PostComment.find_by(id: params[:id],post_id: params[:post_id])
+    @comment = PostComment.find_by(id: params[:id], post_id: params[:post_id])
     @comment.destroy
     @comments = @post.post_comments
 
     @post_comment_n = PostComment.new
   end
 
-private
+  private
+
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end
-
 end

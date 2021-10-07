@@ -18,5 +18,4 @@ class Public::RelationshipsController < ApplicationController
     listener = Listener.find(params[:listener_id])
     @listeners = listener.followers
   end
-
 end

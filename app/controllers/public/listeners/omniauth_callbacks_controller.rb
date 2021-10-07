@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Public::Listeners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
-
   def google_oauth2
     callback_for(:google)
   end
@@ -15,10 +13,7 @@ class Public::Listeners::OmniauthCallbacksController < Devise::OmniauthCallbacks
     callback_for(:facebook)
   end
 
-
-
   def callback_for(provider)
-
     @listener = Listener.from_omniauth(request.env["omniauth.auth"])
     sign_in_and_redirect @listener, event: :authentication
     set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
@@ -27,5 +22,4 @@ class Public::Listeners::OmniauthCallbacksController < Devise::OmniauthCallbacks
   def failure
     redirect_to root_path
   end
-
 end
