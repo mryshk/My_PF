@@ -64,5 +64,5 @@ https://docs.google.com/spreadsheets/d/1jcPegLVuT-Q3KqS4D96l6st2mI7QgAxaKpkZgkH3
 - IDE：Cloud9
 
 ## 使用素材
-- 外部API: 「LinkpreviewAPI」  https://www.linkpreview.net, Twitter API https://developer.twitter.com/en/docs/twitter-api Google API https://console.cloud.google.com/apis/library?hl=ja , Facebook API https://developers.facebook.com/docs/facebook-login/
+- 外部API: Linkpreview API  https://www.linkpreview.net, Twitter API https://developer.twitter.com/en/docs/twitter-api Google API https://console.cloud.google.com/apis/library?hl=ja , Facebook API https://developers.facebook.com/docs/facebook-login/
 
