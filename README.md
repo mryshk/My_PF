@@ -64,5 +64,5 @@ https://docs.google.com/spreadsheets/d/1jcPegLVuT-Q3KqS4D96l6st2mI7QgAxaKpkZgkH3
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- 外部API: 「LinkpreviewAPI」  https://www.linkpreview.net, Twitter API https://developer.twitter.com/en/docs/twitter-api Google API https://console.cloud.google.com/apis/library?hl=ja , Facebook API https://developers.facebook.com/docs/facebook-login/
+
