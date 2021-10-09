@@ -55,4 +55,8 @@ class Listener < ApplicationRecord
   def followed?(listener) # フォロワーに引数のリスナーが存在するかの確認
     followers.include?(listener)
   end
+
+
+  is_impressionable counter_cache: true
+
 end

@@ -63,3 +63,23 @@
       </table>
     </div>
   </div>
+
+  <div class="row my-5">
+    <div class="mx-auto">
+      <table>
+        <thead>
+          <h4>閲覧数ランキング</h4>
+        </thead>
+        <% i = 0  %>
+        <% post_impression_rank.each do |imp_rank|  %>
+        <tr>
+          <th>
+            <% i += 1  %>
+            <%= i %>
+            </th>
+          <td><%= imp_rank.post_tweet %>  <%= imp_rank.impressions_count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
