@@ -8,5 +8,4 @@ RSpec.describe PostComment, "モデルに関するテスト", type: :model do
       expect(FactoryBot.build(:post_comment)).to be_valid
     end
   end
-
 end
