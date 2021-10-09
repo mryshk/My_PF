@@ -1,26 +1,34 @@
 <h2>Log in</h2>
 
 <%= form_with model: @listener, url:listener_session_path,local: true do |f| %>
+
+  <!--名前を登録-->
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus:true %>
+  </div>
+  <!--メールアドレスを登録-->
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-
+  <!--パスワードを登録-->
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
-
+  <!--ログイン情報を記憶しておく-->
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
   <% end %>
-
+　<!--ログイン-->
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" %>
   </div>
 <% end %>
 
+<!--新規登録や各SNSログイン先へ遷移-->
 <%= render "public/listeners/shared/links" %>
