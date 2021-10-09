@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 require 'rails_helper'
 
@@ -8,5 +8,4 @@ RSpec.describe Listener, "モデルに関するテスト", type: :model do
       expect(FactoryBot.build(:listener)).to be_valid
     end
   end
-
 end

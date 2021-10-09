@@ -3,5 +3,4 @@ FactoryBot.define do
     association :group
     association :listener
   end
-
 end
