@@ -2,17 +2,13 @@
 
 <%= form_with model: @listener, url:listener_session_path,local: true do |f| %>
 
-  <!--名前を登録-->
-  <div>
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus:true %>
-  </div>
-  <!--メールアドレスを登録-->
+
+  <!--メールアドレス入力-->
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-  <!--パスワードを登録-->
+  <!--パスワードを入力-->
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "current-password" %>
