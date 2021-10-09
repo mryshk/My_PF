@@ -5,7 +5,7 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def destroy
-    current_user.unfollow(params[:listener_id])
+    current_listener.unfollow(params[:listener_id])
     redirect_to request.referer
   end
 
