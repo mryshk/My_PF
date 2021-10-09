@@ -2,12 +2,17 @@
 
 <%= form_with model: @listener, url:listener_registration_path,local: true do |f| %>
   <%= render "public/listeners/shared/error_messages", resource: resource %>
-
+  <!--名前を登録-->
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus:true %>
+  </div>
+　<!--メールアドレスを登録-->
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-
+　<!--パスワードを登録-->
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -15,15 +20,16 @@
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
-
+　<!--パスワード確認-->
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
+　<!--登録-->
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
+<!--ログインや各SNSログイン先へ遷移-->
 <%= render "public/listeners/shared/links" %>
