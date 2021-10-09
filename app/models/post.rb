@@ -14,4 +14,19 @@ class Post < ApplicationRecord
   def self.search(keyword)
     where(["post_tweet like?", "%#{keyword}%"])
   end
+  
+  def self.sort(order)
+    case order
+    when 'new'
+      return all.order(created_at: :DESC)
+    
+    when 'old'
+      return all.order(creater_at: :ASC)
+    
+    when 'likes'
+      return find(PostFavorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
+    end 
+  end
+  
+  
 end

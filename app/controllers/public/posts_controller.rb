@@ -43,6 +43,12 @@ class Public::PostsController < ApplicationController
     render "search"
   end
 
+  def order
+    order = params[:keyword]
+    @posts = Post.sort(order)
+    render 'index'
+  end
+
   private
 
   def post_params

@@ -1,3 +1,17 @@
+<div class="row mt-5 ">
+  <div class="mx-auto">
+  <%=  form_with url: order_posts_path ,method: :get, local: true do |f| %>
+    <div>
+      <%= f.select :keyword,[ ['投稿が新しい順', 'new'], ['投稿が古い順', 'old'], ['いいねの多い順', 'likes'] ]%>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+
 <div class="row mt-5" >
   <% posts.each do |post| %>
   <div class="col-lg-5  offset-lg-1  col-8 offset-2" style="margin-top: 150px; " >
@@ -24,8 +38,6 @@
         <%# 説明 %>
         <p class="card-text text-center"><%= post.post_url %></p>
         <%= link_to "show" ,post_path(post) %>
-
-
         <%# 投稿日 %>
         <div class="text-right mt-3"><%= time_ago_in_words(post.created_at) %></div>
       </div>
