@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_134952) do
+ActiveRecord::Schema.define(version: 2021_10_09_135310) do
 
   create_table "album_musics", force: :cascade do |t|
     t.integer "creater_id"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_134952) do
     t.string "picture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "impressions_count", default: 0
   end
 
   create_table "relationships", force: :cascade do |t|
