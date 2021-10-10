@@ -9,8 +9,10 @@ class Public::PostCommentsController < ApplicationController
     @comment = PostComment.new(post_comment_params)
     @comment.listener_id = current_listener.id
     @comment.post_id = @post.id
-    @comment.save
-
+    @comment_post = @comment.post
+    if @comment.save
+      @comment_post.create_notification_comment!(current_listener, @comment.id)
+    end
     # create.js用
     @comments = @post.post_comments
     @post_comment_n = PostComment.new
