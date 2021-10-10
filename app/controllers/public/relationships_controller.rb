@@ -1,6 +1,8 @@
 class Public::RelationshipsController < ApplicationController
   def create
     current_listener.follow(params[:listener_id])
+    @listener = Listener.find(params[:listener_id])
+    @listener.create_notification_follow!(current_listener)
     redirect_back(fallback_location: root_path)
   end
 
