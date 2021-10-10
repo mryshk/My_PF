@@ -14,6 +14,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment_n = PostComment.new
     @comments = @post.post_comments
+    impressionist(@post, nil, unique: [:ip_address])
   end
 
   def index
