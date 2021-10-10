@@ -24,6 +24,9 @@
             <li class="nav-item" >
               <%= link_to "#",class: 'nav-link text-dark',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
             </li>
+            <% if unchecked_notifications.any? %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+            <% end %>
             <li class="menu-item">
               <%= link_to notifications_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Notifications</i><% end %>
             </li>
