@@ -41,7 +41,7 @@
         <!--タグ一覧-->
         <p class="card-text text-center">
           <% post.tags.each do |tag| %>
-            <%= tag.tag_name %>
+            <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) %>
           <% end %>
         </p>
         <%# 投稿日 %>
