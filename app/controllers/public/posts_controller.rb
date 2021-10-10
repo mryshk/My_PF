@@ -49,6 +49,8 @@ class Public::PostsController < ApplicationController
   def order
     order = params[:keyword]
     @posts = Post.sort(order)
+    @post_favorite_rank = Post.find(PostFavorite.group(:post_id).order('count(:post_id) desc').pluck(:post_id))
+    @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     render 'index'
   end
 
