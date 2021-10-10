@@ -56,6 +56,7 @@ class Listener < ApplicationRecord
     followers.include?(listener)
   end
 
+  # 閲覧数機能の許可
   is_impressionable counter_cache: true
 
 end
