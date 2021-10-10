@@ -6,10 +6,10 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.listener_id = current_listener.id
-    tag_list = params[:post][:name].split(nil)
+    tag_list = params[:post][:tag_name].split(nil)
     if @post.save
       @post.save_tag(tag_list)
-      redirect_back(fallback_location: root_path)
+      redirect_to posts_path
     else
     　redirect_to posts_path
     end
@@ -28,7 +28,6 @@ class Public::PostsController < ApplicationController
     @post_favorite_rank = Post.find(PostFavorite.group(:post_id).order('count(:post_id) desc').pluck(:post_id))
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
-    @post = Post.new
   end
 
   def edit
