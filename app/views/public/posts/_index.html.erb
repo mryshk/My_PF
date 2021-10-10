@@ -36,7 +36,14 @@
         <h3 class="card-text text-center"><%= post.post_tweet  %></h4>
         <%# 説明 %>
         <p class="card-text text-center"><%= post.post_url %></p>
-        <%= link_to "show" ,post_path(post) %>
+        <!--詳細ページへ-->
+        <p class="card-text text-center"><%= link_to "show" ,post_path(post) %></p>
+        <!--タグ一覧-->
+        <p class="card-text text-center">
+          <% post.tags.each do |tag| %>
+            <%= tag.tag_name %>
+          <% end %>
+        </p>
         <%# 投稿日 %>
         <div class="text-right mt-3"><%= time_ago_in_words(post.created_at) %></div>
       </div>
