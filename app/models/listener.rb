@@ -56,7 +56,6 @@ class Listener < ApplicationRecord
     followers.include?(listener)
   end
 
-
   is_impressionable counter_cache: true
 
 end
