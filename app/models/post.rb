@@ -26,7 +26,7 @@ class Post < ApplicationRecord
       return all.order(creater_at: :ASC)
     # いいねが多い順
     when 'likes'
-      return find(PostFavorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
+      return find(PostFavorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))
     end
   end
 
@@ -46,7 +46,43 @@ class Post < ApplicationRecord
       new_post_tag = Tag.find_or_create_by(tag_name: new)
       self.tags << new_post_tag
     end
-
   end
+
+  def create_notification_by(current_listener)
+    notification = current_listener.active_notifications.new(
+      post_id: id,
+      passive_id: listener_id,
+      action: "like"
+      )
+      notification.save if notification.valid?
+  end
+
+  def create_notification_comment!(current_listener, post_comment_id)
+    temp_ids = PostComment.select(:listener_id).where(post_id: id).where.not(listener_id: current_listener.id).distinct
+    temp_ids.each do |temp_id|
+      save_notification_comment!(current_listener, post_comment_id, temp_id['listener_id'] )
+    end
+    save_notification_comment!(current_listener, post_comment_id, listener_id) if temp_ids.blank?
+  end
+
+  def save_notification_comment!(current_listener, post_comment_id, passive_id)
+    notification = current_listener.active_notifications.new(
+      post_id: id,
+      post_comment_id: post_comment_id,
+      passive_id: passive_id,
+      action: 'comment'
+      )
+
+    if notification.active_id == notification.passive_id
+      notification.checked = true
+    end
+
+    notification.save if notification.valid?
+  end
+
+
+
+
+
 
 end
