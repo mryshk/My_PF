@@ -53,6 +53,15 @@ class Public::PostsController < ApplicationController
     render "search"
   end
 
+  def search_tag
+    @post_favorite_rank = Post.find(PostFavorite.group(:post_id).order('count(:post_id) desc').pluck(:post_id))
+    @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @search = @tag.posts.page(params[:page]).reverse_order
+    render 'search'
+  end
+
   def order
     order = params[:keyword]
     @posts = Post.sort(order)
