@@ -64,7 +64,13 @@ class Public::PostsController < ApplicationController
 
   def order
     order = params[:keyword]
-    @posts = Post.sort(order)
+    # KaminariのPageメソッドがオブジェクトか配列かで記述が変わるため、下記のように条件分岐をしている。
+    if order == "new" or order == "old"
+      @posts = Post.sort(order).page(params[:page])
+      # いいねの場合、いいねの多い順で配列されたpost_idを取得する形なので、配列(array)様のKaminariの記述が必要。
+    elsif order == "likes"
+      @posts = Kaminari.paginate_array(Post.sort(order)).page(params[:page])
+    end
     @post_favorite_rank = Post.find(PostFavorite.group(:post_id).order('count(:post_id) desc').pluck(:post_id))
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     render 'index'
