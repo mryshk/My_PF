@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     root to: 'homes#top' # ルートパス
     get 'about' => 'homes#about', as: 'about' # ログアウト後に開くアプリ紹介ページに使用
 
+    # リスナー側のDevise登録
     devise_for :listeners, controllers: {
       sessions: "public/listeners/sessions",
       registrations: "public/listeners/registrations",
@@ -12,56 +13,75 @@ Rails.application.routes.draw do
       omniauth_callbacks: 'public/listeners/omniauth_callbacks',
     }
 
-    resources :listeners, only: [:show, :edit, :update] do # マイページ用に使用
-      resource :relationships, only: [:create, :destroy] # フォロー機能
-      get 'followings' => 'relationships#followings', as: 'followings' # フォロー・フォロワー表示
+    # マイページ用に使用
+    resources :listeners, only: [:show, :edit, :update] do
+      # フォロー機能
+      resource :relationships, only: [:create, :destroy]
+      # フォロー・フォロワー表示
+      get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
 
-    # リスナー側のDevise登録
-
-    resources :posts do # 投稿用
+    # 投稿用
+    resources :posts do
       collection do
         get :order # 並び替え時に使用
         get :search # 投稿検索時に使用
         get :search_tag # タグ検索時に使用
       end
-      resources :post_comments, only: [:index, :create, :edit, :update, :destroy] # 投稿コメント
-      resource :post_favorites, only: [:index, :create, :destroy] # 投稿いいね
+      # 投稿コメント
+      resources :post_comments, only: [:index, :create, :edit, :update, :destroy]
+      # 投稿いいね
+      resource :post_favorites, only: [:index, :create, :destroy]
     end
 
-    resources :groups do # グループ機能CRUD全部
+    # グループ機能CRUD全部
+    resources :groups do
       collection do
         get :search # グループ検索
       end
       resources :group_listeners, only: [:create, :index, :destroy] # グループメンバー参加・一覧
     end
 
-    resources :chats, only: [:create, :show, :index] # チャット機能
+    # チャット機能
+    resources :chats, only: [:create, :show, :index]
 
-    get 'notification' => 'notifications#index', as: 'notifications' # 通知機能
+    # 通知機能
+    get 'notification' => 'notifications#index', as: 'notifications'
 
-    resources :albums, only: [:index, :show] do # 楽曲アルバム一覧・詳細
+    # お問い合わせ機能
+    resources :inquiries, only: [:new, :create, :finish]
+
+    # 楽曲アルバム一覧・詳細
+    resources :albums, only: [:index, :show] do
       collection do
         get :search # アルバム検索
       end
-      resources :album_musics, only: [:index, :show] do # アルバムの楽曲一覧・詳細
-        resources :music_comments, only: [:index, :create, :edit, :update, :destroy] # 楽曲コメント
-        resources :music_favorites, only: [:index, :create, :destroy] # 楽曲いいね
+      # アルバムの楽曲一覧・詳細
+      resources :album_musics, only: [:index, :show] do
+        # 楽曲コメント
+        resources :music_comments, only: [:index, :create, :edit, :update, :destroy]
+        # 楽曲いいね
+        resources :music_favorites, only: [:index, :create, :destroy]
       end
     end
-    resources :inquiries, only: [:new, :create, :finish] # お問い合わせ機能
+
   end # リスナー側moduleのエンドポイント
+
+
 
   # 以下クリエイター側ルート
   # URL・コントローラー指定共にartist記述あり。（namespace）
   namespace :artist do # アーティスト（クリエイター側）
     devise_for :creaters # クリエイター側のDevise登録
     root to: "creaters#show"
-    resources :creaters, only: [:show, :edit, :update] #
-    resources :albums do # アルバム投稿（クリエイター側のみ可）
-      resources :album_musics do # 楽曲投稿（クリエイター側のみ可）
-        resources :music_comments, only: [:index] # コメント一覧確認画面（クリエイター側のみ可）
+    resources :creaters, only: [:show, :edit, :update]
+    # アルバム投稿（クリエイター側のみ可）
+    resources :albums do
+      # 楽曲投稿（クリエイター側のみ可)
+      resources :album_musics do
+      # コメント一覧確認画面（クリエイター側のみ可）
+        resources :music_comments, only: [:index]
       end
     end
   end
