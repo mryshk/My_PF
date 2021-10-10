@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     resources :chats, only: [:create, :show, :index]
 
     # 通知機能
-    get 'notification' => 'notifications#index', as: 'notifications'
+    resources :notifications, only: :index
 
     # お問い合わせ機能
     resources :inquiries, only: [:new, :create, :finish]
