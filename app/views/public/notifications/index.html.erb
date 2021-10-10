@@ -1,21 +1,20 @@
-
-<div class="row mt-5" >
-  <% @posts.each do |post| %>
-  <div class="col-lg-5  offset-lg-1  col-8 offset-2" style="margin-top: 150px; " >
-    <div class="card mt-4 shadow-lg h-100" >
-      <div>
-        <%= link_to post_path(post) do %>
-          <%= attachment_image_tag post, :picture,:fill,300,300,size: "300x300", class: "card-img-top"%>
-        <% end %>
-      </div>
-      <div class="card-body">
-        <%# 曲名とアーティスト名 %>
-        <h4 class="card-title text-center"><%= post.post_tweet  %></h4>
-        <%# 説明 %>
-        <p class="card-text text-center"><%= post.post_url %></p>
-        <%# 投稿日 %>
-        <div class="text-right mt-3"><%= time_ago_in_words(post.created_at) %></div>
-      </div>
+<h4 class=" mt-5 text-center">通知</h4>
+<div class="row mt-5">
+  <% if @notifications.exists? %>
+  <div class="mx-auto">
+    <% @notifications.each do |notification| %>
+    <% active = notification.active  %>
+    <% post = notification.post  %>
+    <div>
+      <%= link_to listener_path(notification.active) do %>
+        <%= attachment_image_tag active, :profile_image, :fill,100,100, format: "jpeg", fallback: "no_image.jpg", size: "50x50", class:"profile-img-circle" %>
+      <% end %>
     </div>
+    <% end %>
+  </div>
+  <% else %>
+  <div class="mx-auto">
+    <h4>通知はありません。</h4>
   </div>
   <% end %>
+</div>
