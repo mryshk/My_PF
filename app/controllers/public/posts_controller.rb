@@ -6,8 +6,13 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.listener_id = current_listener.id
-    @post.save
-    redirect_to posts_path
+    tag_list = params[:post][:name].split(nil)
+    if @post.save
+      @post.save_tag(tag_list)
+      redirect_back(fallback_location: root_path)
+    else
+    　redirect_to posts_path
+    end
   end
 
   def show
@@ -15,12 +20,15 @@ class Public::PostsController < ApplicationController
     @post_comment_n = PostComment.new
     @comments = @post.post_comments
     impressionist(@post, nil, unique: [:ip_address])
+    @post_tags = @post.tags
   end
 
   def index
     @posts = Post.page(params[:page]).reverse_order
     @post_favorite_rank = Post.find(PostFavorite.group(:post_id).order('count(:post_id) desc').pluck(:post_id))
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
+    @tag_list = Tag.all
+    @post = Post.new
   end
 
   def edit
