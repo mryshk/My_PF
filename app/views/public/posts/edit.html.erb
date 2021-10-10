@@ -14,6 +14,11 @@
         <small class="form-text text-muted">URLを入力してください。</small>
       </div>
       <div>
+        <div class="mb-2 mt-3"><strong>タグ</strong></div>
+        <%= f.text_field :tag_name,class: "form-control" %>
+        <small class="form-text text-muted">タグを入力してください。</small>
+      </div>
+      <div>
         <div class="mb-2 mt-3" ><strong>画像</strong></div>
         <%= f.attachment_field :picture ,class: "form-control-file"  %>
         <small class="form-text text-muted">画像入力</small>
