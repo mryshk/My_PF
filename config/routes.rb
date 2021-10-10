@@ -47,7 +47,11 @@ Rails.application.routes.draw do
     resources :chats, only: [:create, :show, :index]
 
     # 通知機能
-    resources :notifications, only: [:index,:destroy_all]
+    resources :notifications, only: [:index] do
+      collection do
+        delete :destroy_all
+      end
+    end
 
     # お問い合わせ機能
     resources :inquiries, only: [:new, :create, :finish]
