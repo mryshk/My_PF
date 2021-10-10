@@ -12,7 +12,7 @@
           <!--タグ詳細-->
           <p class="card-text text-center">
             <% @post_tags.each do |tag| %>
-              <%= tag.name %>
+              <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) %>
             <% end %>
           </p>
           <%# ファボ・コメント　 %>
