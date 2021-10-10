@@ -11,11 +11,11 @@ class Post < ApplicationRecord
   def favorited_by?(listener)
     post_favorites.where(listener_id: listener.id).exists?
   end
-　# 検索機能。投稿内容のキーワードで検索。前後関係なしにどれか一致すればヒットする。
+  # 検索機能。投稿内容のキーワードで検索。前後関係なしにどれか一致すればヒットする。
   def self.search(keyword)
     where(["post_tweet like?", "%#{keyword}%"])
   end
-　# 並び替え機能。プルダウンで取得した用語で並び替え内容を場合分けしている。
+  # 並び替え機能。プルダウンで取得した用語で並び替え内容を場合分けしている。
   def self.sort(order)
     case order
     # 新しい順
