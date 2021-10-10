@@ -37,8 +37,13 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.listener_id = current_listener.id
-    @post.update(post_params)
-    redirect_to post_path(@post)
+    tag_list = params[:post][:tag_name].split(nil)
+    if @post.update(post_params)
+      @post.save_tag(tag_list)
+      redirect_to post_path(@post)
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   def destroy
