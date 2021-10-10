@@ -58,8 +58,8 @@ class Public::PostsController < ApplicationController
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @search = @tag.posts.page(params[:page]).reverse_order
-    render 'search'
+    @posts = @tag.posts.page(params[:page]).reverse_order
+    render 'index'
   end
 
   def order
