@@ -7,8 +7,7 @@ class Listener < ApplicationRecord
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |listener|
-      listener.name =
-        auth.info.name,
+        listener.name = auth.info.name
         listener.email = auth.info.email,
         listener.profile_image = auth.info.image,
         listener.password = Devise.friendly_token[0, 20]
@@ -21,8 +20,8 @@ class Listener < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
 
-  has_many :group_listeners
-  has_many :groups, through: :group_listeners
+  has_many :group_listeners, dependent: :destroy
+  has_many :groups, through: :group_listeners, dependent: :destroy
 
   has_many :chats, dependent: :destroy
   has_many :listener_rooms, dependent: :destroy
