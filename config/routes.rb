@@ -60,8 +60,8 @@ Rails.application.routes.draw do
     # お問い合わせ機能
     resources :inquiry, only: [:new] do
       collection do
-          get 'inquiry/confirm'
-          get 'inquiry/finish'
+          get :confirm
+          get :finish
       end
     end
 
