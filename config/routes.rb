@@ -56,7 +56,12 @@ Rails.application.routes.draw do
     end
 
     # お問い合わせ機能
-    resources :inquiries, only: [:new, :create, :finish]
+    resources :inquiry, only: [:new] do
+      collection do
+          get 'inquiry/confirm'
+          get 'inquiry/finish'
+      end
+    end
 
     # 楽曲アルバム一覧・詳細
     resources :albums, only: [:index, :show] do
