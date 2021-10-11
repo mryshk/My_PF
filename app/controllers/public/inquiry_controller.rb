@@ -12,10 +12,23 @@ class Public::InquiryController < ApplicationController
     end
   end
 
-  def finish
+  def back
     @inquiry = Inquiry.new(inquiry_params)
-    InquiryMailer.received_email(@inquiry).deliver
-    render 'finish'
+     render 'new'
+  end
+
+  def create
+    @inquiry = Inquiry.new(inquiry_params)
+    if @inquiry.save
+      InquiryMailer.send_mail(@inquiry).deliver_now
+      redirect_to finish_inquiry_index_path
+    else
+      render 'new'
+    end
+  end
+
+  def finish
+
   end
 
   private
