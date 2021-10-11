@@ -20,7 +20,7 @@ class Public::InquiryController < ApplicationController
   def create
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
-      InquiryMailer.send_mail(@inquiry).deliver_now
+      InquiryMailer.send_mail(@inquiry).deliver
       redirect_to finish_inquiry_index_path
     else
       render 'new'
