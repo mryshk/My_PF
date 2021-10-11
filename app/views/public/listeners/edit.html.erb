@@ -6,17 +6,23 @@
       <div>
         <div class="mb-2 mt-3"><strong>ProfileImage</strong></div>
         <%= f.attachment_field :profile_image  %>
-        <small class="form-text text-muted">Please input your image</small>
+        <small class="form-text text-muted">プロフィール画像を選択してください。</small>
       </div>
       <div>
         <div class="mb-2 mt-3" ><strong>名前</strong></div>
         <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name",class: "form-control"%>
-        <small class="form-text text-muted">Please input your name</small>
+        <small class="form-text text-muted">名前を入力してください。</small>
+      </div>
+      　<!--メールアドレスを登録-->
+      <div class="field">
+        <div class="mb-2 mt-3" ><strong>メールアドレス</strong></div>
+        <%= f.email_field :email, autocomplete: "email" %>
+        <small class="form-text text-muted">メールアドレスを入力してください。</small>
       </div>
       <div>
         <div class="mb-2 mt-3"><strong>自己紹介</strong></div>
         <%= f.text_area :caption, rows: "5",placeholder: "自己紹介",class: "form-control"%>
-        <small class="form-text text-muted">Please input your introduction</small>
+        <small class="form-text text-muted">自己紹介を入力してください。</small>
         <button class="btn btn-info mt-3">更新
           <% f.submit %>
         </button>
