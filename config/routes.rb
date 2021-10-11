@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # 以下リスナー側ルート
   # コントローラー指定にpublicを追加。URLはpublic記述なし。(module)
   scope module: :public do
