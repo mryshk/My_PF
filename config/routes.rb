@@ -58,9 +58,10 @@ Rails.application.routes.draw do
     end
 
     # お問い合わせ機能
-    resources :inquiry, only: [:new] do
+    resources :inquiry, only: [:new,:create] do
       collection do
-          get :confirm
+          post :confirm
+          post :back
           get :finish
       end
     end
