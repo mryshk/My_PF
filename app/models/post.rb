@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
 
+  enum post_genre: { ロック: 0, JPOP: 1, アイドル: 2, EDM: 3, KPOP: 4, パンク: 5, レゲエ: 6, HIPHOP: 7 }
+
   # ファボモデルに自分が存在するかどうか。していたら削除。なかったら作成。
   def favorited_by?(listener)
     post_favorites.where(listener_id: listener.id).exists?
