@@ -5,12 +5,13 @@ class Listener < ApplicationRecord
          :recoverable, :rememberable,:validatable,
          :omniauthable, omniauth_providers: [:google_oauth2, :twitter, :facebook]
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create! do |listener|
-        listener.name = auth.info.name
-        listener.email = auth.info.email,
-        listener.profile_image = auth.info.image,
-        listener.password = Devise.friendly_token[0, 20]
+  def self.find_or_create_for_oauth(auth)
+    find_or_create_by!(email: auth.info.email) do |listener|
+      listener.provider = auth.provider,
+      listener.uid = auth.uid,
+      listener.name = auth.info.name,
+      listener.email = auth.info.email,
+      listener.password = Devise.friendly_token[0, 20]
     end
   end
 
