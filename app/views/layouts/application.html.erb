@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>To-new-music</title>
+    <title>To new Music</title>
     <%= csrf_meta_tags %>
     <script src="https://kit.fontawesome.com/fe634eb8bd.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -29,6 +29,9 @@
             <% end %>
             <li class="menu-item">
               <%= link_to notifications_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Notifications</i><% end %>
+            </li>
+            <li class="menu-item">
+              <%= link_to new_inquiry_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
             </li>
             <li class="nav-item">
               <%= link_to root_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Home</i><% end %>
@@ -87,6 +90,9 @@
         </li>
         <li class="menu-item">
           <%= link_to notifications_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Notifications</i><% end %>
+        </li>
+        <li class="menu-item">
+          <%= link_to new_inquiry_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
         </li>
         <li class="menu-item">
           <%= link_to listener_path(current_listener),class: 'nav-link text-dark' do %><i class="fas fa-listener">Mypage</i><% end %>
