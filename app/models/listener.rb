@@ -17,6 +17,8 @@ class Listener < ApplicationRecord
 
   attachment :profile_image # 画像表示のため
 
+  has_one :creater
+
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
