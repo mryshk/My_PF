@@ -90,12 +90,8 @@ Rails.application.routes.draw do
     # マイページがルートパス
     root to: "creaters#show"
     # クリエイター側のDevise登録
-    devise_for :creaters, controllers: {
-      sessions: "artist/creaters/sessions",
-      registrations: "artist/creaters/registrations",
-      passwords: "artist/creaters/passwords",
-    }
-    resources :creaters, only: [:show, :edit, :update]
+
+    resources :creaters, only: [:new,:show, :edit, :update]
     # アルバム投稿（クリエイター側のみ可）
     resources :albums do
       # 楽曲投稿（クリエイター側のみ可)

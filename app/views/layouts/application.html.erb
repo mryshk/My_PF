@@ -49,13 +49,6 @@
               <%= link_to groups_path ,class: 'nav-link text-dark',id: "search" do %><i class="fas fa-listeners">Groups</i><% end %>
             </li>
             <% else %>
-             <li class="nav-item">
-              <%= link_to new_artist_creater_registration_path,class: 'nav-link text-dark' do %><i class="fas fa-listener-plus">Artist SignUp</i><% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_artist_creater_session_path,class: 'nav-link text-dark' do %><i class="fas fa-sign-in-alt">Artist Login</i><% end %>
-            </li>
-
             <li class="nav-item">
               <%= link_to new_listener_registration_path,class: 'nav-link text-dark' do %><i class="fas fa-listener-plus">SignUp</i><% end %>
             </li>
@@ -63,11 +56,11 @@
               <%= link_to new_listener_session_path,class: 'nav-link text-dark' do %><i class="fas fa-sign-in-alt">Login</i><% end %>
             </li>
             <% end %>
-            <% if creater_signed_in? %>
+
             <li class="nav-item">
               <%= link_to destroy_artist_creater_session_path, method: :delete,class: 'nav-link text-dark' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
             </li>
-            <% end %>
+
           </ul>
         </div>
         <div id="hm-icon">
