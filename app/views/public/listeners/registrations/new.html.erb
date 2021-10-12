@@ -25,6 +25,8 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  <!--リスナータイプ。default：０であるため。-->
+  <%= f.hidden_field :listener_type, :value => 0  %>
 　<!--登録-->
   <div class="actions">
     <%= f.submit "Sign up" %>
