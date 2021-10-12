@@ -1,6 +1,23 @@
 <h3>クリエイター一覧</h3>
 
-<% @creaters.each do |creater|  %>
-<%= creater.listener.name %>
-<%= creater.listener.caption %>
-<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @creaters.each do |creater|  %>
+    <tr>
+      <td>
+        <%= creater.listener.name %>
+      </td>
+      <td>
+        <%= creater.listener.caption %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
