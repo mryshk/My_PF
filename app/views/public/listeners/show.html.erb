@@ -6,7 +6,12 @@
         <img>
         <%= attachment_image_tag @listener, :profile_image, :fill, 300, 300, fallback: "no_image.jpg",size: "300x300",class: "my-3 rounded-circle" %>
         </img>
-        <div><i><strong><%= @listener.name %></strong></i></div>
+        <div>
+          <% if @listener.listener_type == 1  %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
+          <i><strong><%= @listener.name %></strong></i>
+        </div>
       </div>
       <div class="mt-3">
         <strong><%= @listener.caption %></strong>
