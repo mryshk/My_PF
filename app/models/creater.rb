@@ -2,7 +2,7 @@ class Creater < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable
 
   has_many :album, dependent: :destroy
   has_many :album_musics, dependent: :destroy

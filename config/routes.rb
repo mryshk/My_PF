@@ -87,8 +87,14 @@ Rails.application.routes.draw do
   # 以下クリエイター側ルート
   # URL・コントローラー指定共にartist記述あり。（namespace）
   namespace :artist do # アーティスト（クリエイター側）
-    devise_for :creaters # クリエイター側のDevise登録
+    # マイページがルートパス
     root to: "creaters#show"
+    # クリエイター側のDevise登録
+    devise_for :creaters, controllers: {
+      sessions: "artist/creaters/sessions",
+      registrations: "artist/creaters/registrations",
+      passwords: "artist/creaters/passwords",
+    }
     resources :creaters, only: [:show, :edit, :update]
     # アルバム投稿（クリエイター側のみ可）
     resources :albums do
