@@ -1,0 +1,46 @@
+<div class="container">
+  <h1 class="mt-3" id="area-1"><i class="fas fa-user">アルバム詳細</i></h1>
+  <div class="row" style="margin-bottom:300px;">
+    <div class="col-md-4 mx-md-auto col-8 offset-2">
+      <div class="mt-3">
+        <img>
+        <%= attachment_image_tag @album, :album_image, :fill, 300, 300, fallback: "no_image.jpg",size: "300x300",class: "my-3 rounded-circle" %>
+        </img>
+        <div>
+          <% if @album.creater.listener.listener_type == 1  %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
+          <i><strong><%= @album.name %></strong></i>
+        </div>
+      </div>
+      <div class="mt-3">
+        <strong><%= @album.caption %></strong>
+      </div>
+      <div>
+        <% if @album.creater.listener.listener_type == 1  %>
+          <i class="fa fa-circle" style="color: gold;"><%= link_to "creater", artist_creater_path(current_listener.creater)%></i>
+        <% end %>
+      </div>
+      <div class="text-right mt-3">
+        <% if @album.creater.listener_id == current_listener  %>
+        <button class="btn">
+          <%= link_to edit_artist_album_path(@album),class: "text-info" do%><i class="fas fa-user-edit">編集</i><% end %>
+        </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-center my-5" ><i class="fas fa-headphones-alt">投稿一覧</i></h1>
+  <div>
+    <%= link_to "New music in this album", new_artist_album_album_music_path(@album) %>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
