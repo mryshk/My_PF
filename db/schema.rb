@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_022803) do
+ActiveRecord::Schema.define(version: 2021_10_13_073929) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_022803) do
   end
 
   create_table "music_comments", force: :cascade do |t|
-    t.integer "creater_id"
+    t.integer "listener_id"
     t.integer "album_id"
     t.integer "album_music_id"
     t.text "comment"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 2021_10_13_022803) do
   end
 
   create_table "music_favorites", force: :cascade do |t|
-    t.integer "creater_id"
+    t.integer "listener_id"
     t.integer "album_id"
     t.integer "album_music_id"
     t.datetime "created_at", null: false
