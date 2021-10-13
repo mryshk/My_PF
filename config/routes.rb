@@ -94,7 +94,8 @@ Rails.application.routes.draw do
       # 楽曲投稿（クリエイター側のみ可)
       resources :album_musics do
       # コメント一覧確認画面（クリエイター側のみ可）
-        resources :music_comments, only: [:index]
+        resources :music_comments
+        resources :music_favorites
       end
     end
   end
