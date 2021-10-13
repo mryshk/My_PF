@@ -51,7 +51,7 @@
   </div>
   <%# コメント投稿フォーム %>
   <div >
-    <%= form_with(model:[ album, album_music, music_comment],url: artist_album_album_music_music_comments_path(album,album_music) ,local: true) do |f| %>
+    <%= form_with(model:[ album, album_music, music_comment],url: artist_album_album_music_music_comments_path(album,album_music) ,local: false) do |f| %>
     <%# コメント欄 %>
     <div>
       <%= f.text_area :comment, rows:'5',placeholder: "Comment" ,class: "form-control" %>

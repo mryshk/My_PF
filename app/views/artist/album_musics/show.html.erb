@@ -39,7 +39,9 @@
       </button>
       <% end %>
     </div>
-    <%= render "artist/music_comments/comments", album: @album, album_music: @album_music, music_comment: @music_comment, music_comments: @music_comments %>
+    <div class="row mt-4" id="comment">
+      <%= render "artist/music_comments/comments", album: @album, album_music: @album_music, music_comment: @music_comment, music_comments: @music_comments %>
+    </div>
 </div>
 
 

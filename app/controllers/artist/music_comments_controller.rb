@@ -12,7 +12,9 @@ class Artist::MusicCommentsController < ApplicationController
      @music_comment.album_id = @album.id
      @music_comment.album_music_id = @album_music.id
      @music_comment.save!
-     redirect_to artist_album_album_music_path(@album, @album_music)
+    # create.js用
+    @music_comments = @album_music.music_comments
+    @music_comment_n = MusicComment.new
   end
 
   def edit
