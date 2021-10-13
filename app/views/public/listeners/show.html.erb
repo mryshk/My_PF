@@ -39,6 +39,11 @@
           <% end %>
         <% end %>
       </div>
+      <div>
+        <% if @listener.listener_type == 1  %>
+          <i class="fa fa-circle" style="color: gold;"><%= link_to "creater", artist_creater_path(current_listener.creater)%></i>
+        <% end %>
+      </div>
       <div class="text-right mt-3">
         <% if @listener == current_listener  %>
         <button class="btn">
