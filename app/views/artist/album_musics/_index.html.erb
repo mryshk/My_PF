@@ -14,7 +14,7 @@
           <p><%= music.music_url  %></p>
         </div>
         <!--詳細ページへ-->
-        <p class="card-text text-center"><%= link_to "show" ,artist_album_album_music_path(music.album_id, music) %></p>
+        <p class="card-text text-center"><%= link_to "show" ,artist_album_album_music_path(music.album_id, music), 'data-turbolinks': false %></p>
         <%# 投稿日 %>
         <div class="text-right mt-3"><%= time_ago_in_words(music.created_at) %></div>
       </div>

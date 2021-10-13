@@ -25,7 +25,7 @@
       <tr>
         <td><%= @album_music.name %></td>
         <td><%= @album_music.caption %></td>
-        <td><%= @album_music.music_url %></td>
+        <td><a href="<%= @album_music.music_url%>" target="_blank"><%= @album_music.music_url%></a></td>
       </tr>
     </tbody>
   </table>
@@ -51,7 +51,31 @@
     <div class="row mt-4" id="comment">
       <%= render "artist/music_comments/comments", album: @album, album_music: @album_music, music_comment: @music_comment, music_comments: @music_comments %>
     </div>
+
+    <h3 id="linkpreview"></h3>
+    <a id="link" href="<%= @album_music.music_url%>" target="_blank"><%= @album_music.music_url%><img id="link_img" src=""/></a>
+    <script>
+    const data = {
+      key:'3ce2027b63ce4b30403332b3eb475fbe',
+      q: "<%= @album_music.music_url%>"
+    }
+    //プレビュー表示用の関数
+    const createIMG = json => {
+      document.querySelector('#link_img').src = json.image;
+      document.querySelector('#linkpreview').textContent = json.title;
+      document.querySelector('#link').href = json.url;
+    }
+    //LinkPreviewを利用した通信処理
+    fetch('https://api.linkpreview.net', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(data),
+    })
+    .then(data => data.json())
+    .then(json => createIMG(json));
+  </script>
 </div>
+
 
 
 
