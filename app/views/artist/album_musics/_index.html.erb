@@ -1,0 +1,29 @@
+
+<div class="row mt-5" >
+  <% album_musics.each do |music| %>
+  <div class="col-lg-5  offset-lg-1  col-8 offset-2" style="margin-top: 150px; " >
+    <div class="card mt-4 shadow-lg h-100" >
+      <div class="card-body">
+        <!--アルバム名-->
+         <h3 class="card-text text-center"><%= music.name  %></h4>
+        <%# 名前と画像 %>
+        <div class="card-text" >
+          <p><%= music.caption  %></p>
+        </div>
+        <div class="card-text" >
+          <p><%= music.music_url  %></p>
+        </div>
+        <!--詳細ページへ-->
+        <p class="card-text text-center"><%= link_to "show" ,artist_album_album_music_path(music.album_id, music) %></p>
+        <%# 投稿日 %>
+        <div class="text-right mt-3"><%= time_ago_in_words(music.created_at) %></div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div class="row mt-5">
+    <div class="">
+      <%= paginate album_musics %>
+    </div>
+</div>
