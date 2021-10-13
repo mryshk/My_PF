@@ -14,19 +14,12 @@ class Artist::CreatersController < ApplicationController
   end
 
   def show
-
+    @creater = Creater.find(params[:id])
+    # @albums = @creater.albums.page(params[:page])
   end
 
   def index
     @creaters = Creater.all
-  end
-
-  def edit
-
-  end
-
-  def update
-
   end
 
   private
