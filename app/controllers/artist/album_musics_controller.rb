@@ -16,6 +16,8 @@ class Artist::AlbumMusicsController < ApplicationController
   def show
      @album_music = AlbumMusic.find_by(id: params[:id])
      @album = Album.find_by(id: params[:album_id])
+     @music_comment = MusicComment.new
+     @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id).all
   end
 
 

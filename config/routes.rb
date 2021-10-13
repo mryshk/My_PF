@@ -73,10 +73,6 @@ Rails.application.routes.draw do
       end
       # アルバムの楽曲一覧・詳細
       resources :album_musics, only: [:index, :show] do
-        # 楽曲コメント
-        resources :music_comments, only: [:index, :create, :edit, :update, :destroy]
-        # 楽曲いいね
-        resources :music_favorites, only: [:index, :create, :destroy]
       end
     end
 
