@@ -91,7 +91,7 @@ Rails.application.routes.draw do
       resources :album_musics do
       # コメント一覧確認画面（クリエイター側のみ可）
         resources :music_comments
-        resources :music_favorites
+        resources :music_favorites, only: [:create, :destroy, :index, :show]
       end
     end
   end

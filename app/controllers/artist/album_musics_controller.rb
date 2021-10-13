@@ -18,6 +18,7 @@ class Artist::AlbumMusicsController < ApplicationController
      @album = Album.find_by(id: params[:album_id])
      @music_comment = MusicComment.new
      @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id).all
+     @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
   end
 
 
