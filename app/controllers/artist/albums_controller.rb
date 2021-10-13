@@ -20,12 +20,17 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def edit
+    @album = Album.find(params[:id])
   end
 
   def update
+    @album = Album.find(params[:id])
+    @album.update(album_params)
+    redirect_to artist_album_path(@album)
   end
 
   def destroy
+    @album = Album.find(params[:id])
   end
 
   def search
