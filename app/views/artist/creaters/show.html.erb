@@ -49,9 +49,12 @@
     </div>
   </div>
   <h1 class="text-center my-5" ><i class="fas fa-headphones-alt">アルバム一覧</i></h1>
-  
+  <%= render "artist/albums/index", albums: @albums %>
   <div>
     <%= link_to "New album", new_artist_album_path %>
+  </div>
+  <div>
+    <%= link_to "Albums", artist_albums_path %>
   </div>
 </div>
 
