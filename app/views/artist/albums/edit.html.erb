@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 class="mt-3"><i class="fas fa-plus">　アルバム編集</i></h2>
+  <div class="row">
+    <div class="col-7 offset-2 mt-4">
+      <%= form_with model: @album,url: artist_album_path(@album), method: :patch ,local: true do |f| %>
+      <div>
+        <div class="mb-2 mt-3"><strong>アルバム名</strong></div>
+        <%= f.text_field :name,rows:"5",class: "form-control"  %>
+        <small class="form-text text-muted">アルバム名を入力してください。</small>
+      </div>
+      <div>
+        <div class="mb-2 mt-3"><strong>アルバム説明</strong></div>
+        <%= f.text_area :caption ,class: "form-control" %>
+        <small class="form-text text-muted">説明を入力してください。</small>
+      </div>
+      <div>
+        <div class="mb-2 mt-3"><strong>アルバムURL</strong></div>
+        <%= f.text_field :album_url,class: "form-control" %>
+        <small class="form-text text-muted">アルバムURLを入力してください。</small>
+      </div>
+      <div>
+        <div class="mb-2 mt-3"><strong>ジャンル</strong></div>
+        <%= f.select :genre, Album.genres.keys.to_a %>
+        <small class="form-text text-muted mt-2">ジャンルを選択してください。</small>
+      </div>
+      <div>
+        <div class="mb-2 mt-3" ><strong>画像</strong></div>
+        <%= f.attachment_field :album_image ,class: "form-control-file"  %>
+        <small class="form-text text-muted">画像入力</small>
+        <button class="btn btn-info mt-3"><i class="fas fa-plus">&nbsp;投稿</i>
+          <% f.submit %>
+        </button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
