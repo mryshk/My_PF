@@ -1,0 +1,64 @@
+<div class="container">
+  <h3 class="mt-3" id="area-1"><i class="fas fa-user">クリエイターマイページ</i></h3>
+  <div class="row" style="margin-bottom:300px;">
+    <div class="col-md-4 mx-md-auto col-8 offset-2">
+      <div class="mt-3">
+        <img>
+        <%= attachment_image_tag @creater.listener, :profile_image, :fill, 300, 300, fallback: "no_image.jpg",size: "300x300",class: "my-3 rounded-circle" %>
+        </img>
+        <div>
+          <% if @creater.listener.listener_type == 1  %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
+          <i><strong><%= @creater.listener.name %></strong></i>
+        </div>
+      </div>
+      <div class="mt-3">
+        <strong><%= @creater.listener.caption %></strong>
+      </div>
+
+      <div class="my-4">
+        <%= link_to listener_followings_path(@creater.listener),class: "text-dark" do %><i class="fas fa-user-check fa-lg mr-3">Follow:&ensp;<%= @creater.listener.followings.count %><% end %></i>
+        <%= link_to listener_followers_path(@creater.listener),class: "text-dark" do %><i class="fas fa-user-friends fa-lg ">Follower:&ensp;<%= @creater.listener.followers.count %><% end %></i>
+      </div>
+      <div class="mt-3">
+      <% unless current_listener.id == @creater.listener.id  %>
+        <button class="btn btn-outline-info btn-block">
+          <% if current_listener.following?(@creater.listener) %>
+            <%= link_to listener_relationships_path(@creater.listener), method: :delete ,class: "text-info" do %><i class="fas fa-user-slash">&nbsp;Unfollow</i><% end %>
+          <% else %>
+            <%= link_to listener_relationships_path(@creater.listener), method: :post,class: "text-info"   do %><i class="fas fa-user-check">&nbsp;Follow</i><% end %>
+          <% end %>
+        </button>
+      <% end %>
+      </div>
+      <div class="mt-4">
+        <% if (current_listener.followings.exists? @creater.listener.id)  && (@creater.listener.followings.exists? current_listener.id )%>
+          <%= link_to chat_path(@creater.listener) do  %>
+            <div class="btn btn-outline-info btn-block"><i class="far fa-envelope fa-lg"> Chat</i></div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="text-right mt-3">
+        <% if @creater.listener == current_listener  %>
+        <button class="btn">
+          <%= link_to edit_listener_path(current_listener),class: "text-info" do%><i class="fas fa-user-edit">編集</i><% end %>
+        </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-center my-5" ><i class="fas fa-headphones-alt">アルバム一覧</i></h1>
+  
+  <div>
+    <%= link_to "New album", new_artist_album_path %>
+  </div>
+</div>
+
+
+
+
+
+
+
+

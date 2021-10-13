@@ -12,7 +12,7 @@
     <% @creaters.each do |creater|  %>
     <tr>
       <td>
-        <%= creater.listener.name %>
+        <%= link_to creater.listener.name, listener_path(creater.listener) %>
       </td>
       <td>
         <%= creater.listener.caption %>
