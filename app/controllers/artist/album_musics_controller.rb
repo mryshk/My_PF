@@ -5,26 +5,27 @@ class Artist::AlbumMusicsController < ApplicationController
   end
 
   def create
+     @album = Album.find_by(id: params[:album_id])
      @album_music = AlbumMusic.new(album_music_params)
+     @album_music.album_id = @album.id
+     @album_music.creater_id = current_listener.creater.id
      @album_music.save
-     redirect_to artist_album_album_music_path(@album_music)
+     redirect_to artist_album_album_music_path(@album,@album_music)
   end
 
   def show
-    @album_music = AlbumMusic.find(params[:id])
-
+     @album_music = AlbumMusic.find_by(id: params[:id])
+     @album = Album.find_by(id: params[:album_id])
   end
 
-  def index
-    @album_musics = AlbumMusic.page(params[:page])
-  end
 
   def edit
-     @album_music = AlbumMusic.new
+    @album = Album.find_by(id: params[:album_id])
+    @album_music = AlbumMusic.find(params[:id])
   end
 
   def update
-    @album_music = AlbumMusic.find(params[:id])
+    @album_music = AlbumMusic.find_by(album_id: params[:album_id], id: params[:id])
     @album_music.update(album_music_params)
     redirect_to artist_album_album_music_path(@album_music)
   end
