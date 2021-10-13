@@ -17,7 +17,7 @@
         <p><%= @album.genre %><p>
       </div>
       <div>
-        <%= link_to  artist_creater_path(current_listener.creater) do %>
+        <%= link_to  artist_creater_path(@album.creater) do %>
           <div class="d-inline-block">
             <%= attachment_image_tag @album.creater.listener,:profile_image ,size:"50x50", fallback: "no_image.jpg",class: "mt-3 rounded-circle" %>
           </div>
