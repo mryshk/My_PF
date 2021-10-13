@@ -34,6 +34,9 @@
         <button class="btn">
           <%= link_to edit_artist_album_path(@album),class: "text-info" do%><i class="fas fa-user-edit">編集</i><% end %>
         </button>
+        <button class="btn">
+          <%= link_to artist_album_path(@album),method: :delete, class: "text-danger" do%><i class="fas fa-user-edit">削除</i><% end %>
+        </button>
         <% end %>
       </div>
     </div>
