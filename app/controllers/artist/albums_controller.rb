@@ -12,7 +12,7 @@ class Artist::AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    @albums = Album.page(params[:page])
+    @album_musics = AlbumMusic.where(album_id: params[:id]).page(params[:page])
   end
 
   def index
