@@ -41,6 +41,8 @@ class Listener < ApplicationRecord
 
   has_many :followings, through: :relationships, source: :followed
 
+  has_many :music_comments, dependent: :destroy
+
   # ログイン中のリスナーを引数で取得し、そのリスナーがフォローした人としてリレーションシップに登録される。
   def follow(listener_id)
     relationships.create!(followed_id: listener_id)
