@@ -45,7 +45,7 @@
   <div>
     <%= link_to "New music in this album", new_artist_album_album_music_path(@album) %>
   </div>
-
+  <%= render "artist/album_musics/index", album_musics: @album_musics %>
 </div>
 
 
