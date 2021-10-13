@@ -22,7 +22,7 @@
         <% end %>
       </div>
       <div class="text-right mt-3">
-        <% if @album.creater.listener_id == current_listener  %>
+        <% if @album.creater.listener == current_listener  %>
         <button class="btn">
           <%= link_to edit_artist_album_path(@album),class: "text-info" do%><i class="fas fa-user-edit">編集</i><% end %>
         </button>
@@ -34,7 +34,7 @@
   <div>
     <%= link_to "New music in this album", new_artist_album_album_music_path(@album) %>
   </div>
-  
+
 </div>
 
 
