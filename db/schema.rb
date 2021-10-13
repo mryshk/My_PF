@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_055258) do
+ActiveRecord::Schema.define(version: 2021_10_13_022803) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_10_12_055258) do
     t.integer "creater_id"
     t.string "name"
     t.text "caption"
-    t.string "image_id"
+    t.string "album_image_id"
     t.integer "genre"
     t.string "album_url"
     t.datetime "created_at", null: false
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2021_10_12_055258) do
   create_table "creaters", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "lisntener_id"
     t.integer "listener_id"
   end
 
