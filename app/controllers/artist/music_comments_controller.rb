@@ -36,7 +36,10 @@ class Artist::MusicCommentsController < ApplicationController
     @album = Album.find_by(id: params[:album_id])
     @album_music = AlbumMusic.find_by(id: params[:album_music_id])
     @music_comment.destroy
-    redirect_to artist_album_album_music_path(@album, @album_music)
+
+    # destroy.js用
+    @music_comments = @album_music.music_comments
+    @music_comment_n = MusicComment.new
   end
 
   private
