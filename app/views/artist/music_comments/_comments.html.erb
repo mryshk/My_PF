@@ -14,6 +14,21 @@
         </td>
         <%# コメント %>
         <td class="pt-4"><%= music_comment.comment %></td>
+        <%# 星ランク %>
+        <td>
+          <% unless music_comment.rate.nil? %>
+          <div id="music_post_rate_<%= music_comment.id  %>" data-score="<%= music_comment.rate %>" class="text-center mt-3"></div>
+          <script>
+              $('#music_post_rate_<%= music_comment.id %>').empty();
+              $('#music_post_rate_<%= music_comment.id  %>').raty({
+                readOnly: true,
+                score: function() {
+                return $(this).attr('data-score');
+                },
+                path: '/assets/'
+             });
+          </script>
+          <% end %>
         <%# コメント編集・削除 %>
         <% if music_comment.listener == current_listener %>
         <td class="">
@@ -41,6 +56,20 @@
     <div>
       <%= f.text_area :comment, rows:'5',placeholder: "Comment" ,class: "form-control" %>
     </div>
+    <%# 星ランク %>
+    <div id="post_star" class="mb-2 mt-3">
+      <%= f.label :post_rate,'評価' %>
+      <%= f.hidden_field :rate,id: :review_star %>
+    </div>
+    <script>
+        $('#post_star').raty({
+       starOn: "<%= asset_path('star-on.png') %>",
+       starOff: "<%= asset_path('star-off.png') %>",
+       starHalf: "<%= asset_path('star-half.png') %>",
+       scoreName: 'music_comment[rate]', //登録するモデル名とカラム名を記述
+       half: true,
+       });
+    </script>
     <%# 送信ボタン %>
     <button class="btn btn-info mt-4" style="width:100px">投稿
       <%= f.hidden_field :listener_id, :value => current_listener.id %>

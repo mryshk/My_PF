@@ -1,0 +1,30 @@
+
+<div class="container" style="margin-bottom:1000px;" >
+  <h1 class="mt-5"><i class="far fa-comments">Edit Comment</i></h1>
+  <div class="row mt-5">
+    <div class="col-8 offset-2 col-md-10 offset-md-1">
+      <%= form_with(model:[ @album, @album_music, @music_comment],url: artist_album_album_music_music_comment_path(@album,@album_music) ,method: :patch,local: true) do |f| %>
+      <div>
+        <%= f.text_area :comment, rows:'5',placeholder: "Comment" ,class: "form-control" %>
+      </div>
+      <%# 星ランク %>
+      <div id="post_star" class="mb-2 mt-3">
+        <%= f.label :rate,'評価' %>
+        <%= f.hidden_field :rate,id: :review_star %>
+      </div>
+      <script>
+      $('#post_star').raty({
+       starOn: "<%= asset_path('star-on.png') %>",
+       starOff: "<%= asset_path('star-off.png') %>",
+       starHalf: "<%= asset_path('star-half.png') %>",
+       scoreName: 'music_comment[rate]', //登録するモデル名とカラム名を記述
+       half: true,
+      });
+      </script>
+      <button class="btn btn-info mt-4" style="width:100px">更新
+        <% f.submit %>
+      </button>
+      <% end %>
+    </div>
+  </div>
+</div>

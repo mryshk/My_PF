@@ -1,0 +1,16 @@
+
+<div class="container" style="margin-bottom:1000px;" >
+  <h1 class="mt-5"><i class="far fa-comments">コメント編集</i></h1>
+  <div class="row mt-5">
+    <div class="col-8 offset-2 col-md-10 offset-md-1">
+      <%= form_with(model:[@post, @comment], local: false) do |f| %>
+      <div>
+        <%= f.text_area :comment, rows:'5',placeholder: "Comment" ,class: "form-control" %>
+      </div>
+      <button class="btn btn-info mt-4" style="width:100px">更新
+        <% f.submit %>
+      </button>
+      <% end %>
+    </div>
+  </div>
+</div>
