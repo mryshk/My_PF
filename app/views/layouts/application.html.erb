@@ -18,15 +18,17 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if listener_signed_in? %>
-            <% if current_listener.listener_type == 1  %>
+            <% if current_listener.listener_type == 0  %>
             <li class="nav-item">
-              <%= link_to artist_creaters_path, method: :get ,class: 'nav-link text-dark' do %><i class="fas fa-sign-out-alt">Creaters</i><% end %>
-            </li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to new_artist_creater_path, method: :get ,class: 'nav-link text-dark' do %><i class="fas fa-sign-out-alt">NEW Creater</i><% end %>
+              <%= link_to new_artist_creater_path, method: :get ,class: 'nav-link text-dark' do %><i>NEW Creater</i><% end %>
             </li>
             <% end %>
+            <li class="nav-item">
+              <%= link_to artist_albums_path, method: :get ,class: 'nav-link text-dark' do %><i>Albums</i><% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to artist_creaters_path, method: :get ,class: 'nav-link text-dark' do %><i>Creaters</i><% end %>
+            </li>
             <li class="nav-item">
               <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link text-dark' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
             </li>
