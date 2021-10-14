@@ -26,7 +26,7 @@
           <% end %>
         </div>
         <!--詳細ページへ-->
-        <p class="card-text text-center"><%= link_to "show" ,artist_album_path(album) %></p>
+        <p class="card-text text-center"><%= link_to "show" ,artist_album_path(album), 'data-turbolinks': false %></p>
         <%# 投稿日 %>
         <div class="text-right mt-3"><%= time_ago_in_words(album.created_at) %></div>
       </div>
