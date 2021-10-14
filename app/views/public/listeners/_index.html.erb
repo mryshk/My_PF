@@ -1,0 +1,23 @@
+<h3>リスナー・クリエイター一覧</h3>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% creaters.each do |creater|  %>
+    <tr>
+      <td>
+        <%= link_to creater.name, listener_path(creater) %>
+      </td>
+      <td>
+        <%= creater.caption %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

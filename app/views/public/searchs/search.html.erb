@@ -1,0 +1,13 @@
+<div class="container mt-4 ">
+<h1 class="text-center" style="margin-top:150px;" ><i class="fab fa-searchengin">検索結果</i></h1>
+<% if @model == 'listener' %>
+  <%= render "public/listeners/index", creaters: @records %>
+
+<% elsif @model == 'post' %>
+  <%= render "public/posts/index", posts: @records %>
+
+<% elsif @model == 'album' %>
+  <%= render "artist/albums/index", albums: @records %>
+
+
+<% end %>
