@@ -12,7 +12,7 @@ class Album < ApplicationRecord
     music_favorites.where(listener_id: listener.id).exists?
   end
 
-  def self.search(keyword) # アルバムの名前とジャンルの検索・キーワードが前後関係なく含んでいたら表示
-    where(["name like? OR genre like?", "%#{keyword}%", "%#{keyword}%"])
+  def self.search(keyword)
+    where(genre: "#{keyword}")
   end
 end
