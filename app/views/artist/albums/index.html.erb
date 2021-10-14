@@ -1,3 +1,12 @@
 <h3>アルバム一覧</h3>
-
+        <div class="d-inline">
+            <%=  form_with url: search_artist_albums_path ,method: :get, local: true do |f| %>
+          <div>
+            <%= f.select :genre, Album.genres.keys.to_a %>
+          </div>
+          <div>
+            <%= f.submit %>
+          </div>
+            <% end %>
+        </div>
 <%= render "artist/albums/index", albums: @albums %>
