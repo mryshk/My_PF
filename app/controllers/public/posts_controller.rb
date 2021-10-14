@@ -19,14 +19,14 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment_n = PostComment.new
     @comments = @post.post_comments
-    impressionist(@post, nil, unique: [:ip_address])
+    impressionist(@post, nil)
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id,listener_id: current_listener.id)
   end
 
   def index
     @posts = Post.page(params[:page]).reverse_order
-    @post_favorite_rank = Post.find(PostFavorite.group(:post_id).order('count(:post_id) desc').pluck(:post_id))
+    @post_favorite_rank = Post.includes(:favo_users).sort {|a,b| b.favo_users.size <=> a.favo_users.size}
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
   end
