@@ -21,6 +21,7 @@ class Public::PostsController < ApplicationController
     @comments = @post.post_comments
     impressionist(@post, nil, unique: [:ip_address])
     @post_tags = @post.tags
+    @favorite = PostFavorite.find_by(post_id: @post.id,listener_id: current_listener.id)
   end
 
   def index
@@ -53,8 +54,8 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @search = Post.search(params[:keyword]).page(params[:page]).reverse_order
-    @keyword = params[:keyword]
+    @search = Post.search(params[:post_genre]).page(params[:page]).reverse_order
+    @keyword = params[:post_genre]
     render "search"
   end
 
@@ -85,5 +86,8 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:post_url, :post_tweet, :picture, :post_genre)
+  end
+  def genre_params
+    params.permit(:post_genre)
   end
 end
