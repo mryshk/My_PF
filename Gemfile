@@ -90,3 +90,4 @@ gem "omniauth-rails_csrf_protection"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'activeadmin'
+gem 'cancancan'
