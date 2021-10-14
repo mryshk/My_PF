@@ -2,23 +2,42 @@
 <div class="row mt-5" >
   <% album_musics.each do |music| %>
   <div class="col-lg-5  offset-lg-1  col-8 offset-2" style="margin-top: 150px; " >
-    <div class="card mt-4 shadow-lg h-100" >
-      <div class="card-body">
-        <!--アルバム名-->
-         <h3 class="card-text text-center"><%= music.name  %></h4>
-        <%# 名前と画像 %>
-        <div class="card-text" >
-          <p><%= music.caption  %></p>
+    <div class="card shadow-lg mb-3 mx-auto mt-5" style="max-width: 800px; height: 400px;">
+      <div class="row no-gutters">
+        <div class="col-md-4 my-auto">
+            <img class="card-img" id="link_img_<%= music.id %>" style="width:150px; height:100px;" src=""/>
         </div>
-        <div class="card-text" >
-          <p><%= music.music_url  %></p>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title"><%= music.name  %></h3>
+                <p><%= music.caption  %></p>
+                <a id="link_<%= music.id %>" href="<%= music.music_url%>" target="_blank"><h5 id="linkpreview_<%= music.id %>"></h5></a>
+            </div>
+            <p class="card-text text-center"><%= link_to "show" ,artist_album_album_music_path(music.album_id, music), 'data-turbolinks': false %></p>
         </div>
-        <!--詳細ページへ-->
-        <p class="card-text text-center"><%= link_to "show" ,artist_album_album_music_path(music.album_id, music), 'data-turbolinks': false %></p>
-        <%# 投稿日 %>
-        <div class="text-right mt-3"><%= time_ago_in_words(music.created_at) %></div>
       </div>
     </div>
+    <script>
+    const data_<%= music.id %> = {
+      key:'3ce2027b63ce4b30403332b3eb475fbe',
+      q: "<%= music.music_url%>"
+    }
+    //プレビュー表示用の関数
+    const createIMG_<%= music.id %> = json => {
+      document.querySelector('#link_img_<%= music.id %>').src = json.image;
+      document.querySelector('#linkpreview_<%= music.id %>').textContent = json.title;
+      // document.querySelector('#linkcaption_<%= music.id %>').textContent = json.description;
+      document.querySelector('#link_<%= music.id %>').href = json.url;
+    }
+    //LinkPreviewを利用した通信処理
+    fetch('https://api.linkpreview.net', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(data_<%= music.id %>),
+    })
+    .then(data_<%= music.id %> => data_<%= music.id %>.json())
+    .then(json => createIMG_<%= music.id %>(json));
+  </script>
   </div>
   <% end %>
 </div>
