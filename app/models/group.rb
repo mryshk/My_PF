@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
   attachment :image
   has_many :group_listeners, dependent: :destroy
+  has_many :group_chats, dependent: :destroy
   has_many :listeners, through: :group_listeners
   validates :name, presence: true
 
