@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :listener
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
+  has_many :favo_users, through: :post_favorites, source: :listener
   has_many :notifications, dependent: :destroy
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
@@ -81,10 +82,6 @@ class Post < ApplicationRecord
 
     notification.save if notification.valid?
   end
-
-
-
-
 
 
 end
