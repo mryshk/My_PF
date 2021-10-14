@@ -36,6 +36,9 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def search
+    @search = Album.search(params[:genre]).page(params[:page]).reverse_order
+    @keyword = params[:genre]
+    render "search"
   end
 
   private
