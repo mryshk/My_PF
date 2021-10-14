@@ -14,6 +14,26 @@
                 <a id="link_<%= music.id %>" href="<%= music.music_url%>" target="_blank"><h5 id="linkpreview_<%= music.id %>"></h5></a>
             </div>
             <p class="card-text text-center"><%= link_to "show" ,artist_album_album_music_path(music.album_id, music), 'data-turbolinks': false %></p>
+         　　<%# 平均ランク 部分　%>
+         　　　<% @average_rate = music.music_comments.average(:rate) %>
+          　　　<% unless @average_rate.nil? %>
+            　　<h6 class="text-center mt-3"><i><%= @average_rate.round(2) %></i></h6>
+          　　　<% else %>
+                <h6 class="text-center mt-3"><i>0</i></h6>
+              <% end %>
+            <div id="music_rate_<%= music.id  %>" data-score="<%= @average_rate %>" class="text-center " style="margin-top:10px;"></div>
+            <script>
+              $('#music_rate_<%= music.id %>').empty();
+              $('#music_rate_<%= music.id %>').raty({
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: function() {
+                return $(this).attr('data-score')
+              }
+              });
+            </script>
         </div>
       </div>
     </div>
