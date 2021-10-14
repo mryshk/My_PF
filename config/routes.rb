@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top' # ルートパス
     get 'about' => 'homes#about', as: 'about' # ログアウト後に開くアプリ紹介ページに使用
-    
+
     get '/search', to: 'searchs#search'
-    
+
     # リスナー側のDevise登録
     devise_for :listeners, controllers: {
       sessions: "public/listeners/sessions",
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       # 投稿コメント
       resources :post_comments, only: [:index, :create, :edit, :update, :destroy]
       # 投稿いいね
-      resource :post_favorites, only: [:index, :create, :destroy]
+      resources :post_favorites, only: [:index, :create, :destroy]
     end
 
     # グループ機能CRUD全部
@@ -71,9 +71,6 @@ Rails.application.routes.draw do
 
     # 楽曲アルバム一覧・詳細
     resources :albums, only: [:index, :show] do
-      collection do
-        get :search # アルバム検索
-      end
       # アルバムの楽曲一覧・詳細
       resources :album_musics, only: [:index, :show] do
       end
@@ -90,6 +87,9 @@ Rails.application.routes.draw do
     resources :creaters, only: [:new,:create, :show, :edit, :update, :index]
     # アルバム投稿（クリエイター側のみ可）
     resources :albums do
+      collection do
+        get :search # アルバム検索
+      end
       # 楽曲投稿（クリエイター側のみ可)
       resources :album_musics do
       # コメント一覧確認画面（クリエイター側のみ可）
