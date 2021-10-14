@@ -18,7 +18,7 @@
           <%# ファボ・コメント　 %>
           <div class="mt-3 text-center">
             <div class="d-inline " style="margin-right:20px;" id="post_post_favorite_<%= @post.id  %>">
-              <%= render 'public/post_favorites/favorite', post: @post %>
+              <%= render 'public/post_favorites/favorite', post: @post, favorite: @favorite %>
             </div>
             <div class="d-inline ml-2">
               <i class="fas fa-comments text-info fa-lg"><%= @comments.count %></i>

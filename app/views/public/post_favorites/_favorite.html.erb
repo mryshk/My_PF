@@ -1,5 +1,7 @@
 <% if post.favorited_by?(current_listener) %>
-  <%= link_to post_post_favorites_path(post), method: :delete, class: "text-warning",remote: true do %><i class="fas fa-star fa-lg"><%= post.post_favorites.count %></i><% end %>
+  <%= link_to post_post_favorite_path(post, favorite), method: :delete, class: "text-warning",remote: true do %><i class="fas fa-star fa-lg"></i><% end %>
+  <%= link_to post_post_favorites_path(post) do %><%= post.post_favorites.count %><% end %>
 <% else %>
-  <%= link_to post_post_favorites_path(post), method: :post, remote: true do %><i class="far fa-star fa-lg"><%= post.post_favorites.count %></i><% end %>
+  <%= link_to post_post_favorites_path(post), method: :post, remote: true do %><i class="far fa-star fa-lg"></i><% end %>
+  <%= link_to post_post_favorites_path(post) do %><%= post.post_favorites.count %><% end %>
 <% end %>
