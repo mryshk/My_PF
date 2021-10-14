@@ -25,6 +25,7 @@ class Listener < ApplicationRecord
 
   has_many :group_listeners, dependent: :destroy
   has_many :groups, through: :group_listeners, dependent: :destroy
+  has_many :group_chats, dependent: :destroy
 
   has_many :chats, dependent: :destroy
   has_many :listener_rooms, dependent: :destroy
