@@ -83,8 +83,9 @@
     <div class=" py-5 " id="search-form" >
       <div class="search-box">
         <div class="d-inline">
-          <%= form_with url: search_posts_path, method: :get,  local: true do |f|%>
+          <%= form_with url: search_path, method: :get,  local: true do |f|%>
             <%= f.text_field :keyword, value: @keyword ,placeholder: "Search",class: "form-control " ,id: "form-control"%>
+            <%= f.select 'model', options_for_select({ "リスナー・クリエイター" => "listener", "投稿" => "post", "アルバム" => "album" }) %>
         </div>
         <button class="btn">
           <i class="fas fa-search fa-lg "></i>
