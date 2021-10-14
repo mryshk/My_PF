@@ -45,6 +45,7 @@ Rails.application.routes.draw do
         get :search # グループ検索
       end
       resources :group_listeners, only: [:create, :index, :destroy] # グループメンバー参加・一覧
+      resources :group_chats, only: [:create, :index, :destroy]
     end
 
     # チャット機能
