@@ -21,7 +21,13 @@
              <div type="button" class="btn "><%= link_to group_path(@group),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%><i class="fas fa-trash-alt">Delete</i><% end %></div>
             <% end %>
           </div>
-
+          <div class="mt-4">
+             <% if @group.joined_by?(current_listener)  %>
+              <%= link_to group_group_chats_path(@group) do  %>
+                <div class="btn btn-outline-info btn-block"><i class="far fa-envelope fa-lg">Group Chat</i></div>
+              <% end %>
+           <% end %>
+          </div>
         </div>
       </div>
     </div>
