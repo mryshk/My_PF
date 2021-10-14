@@ -1,4 +1,6 @@
 class Artist::AlbumsController < ApplicationController
+  # 権限確認（cancancan）
+  authorize_resource
   def new
     @album = Album.new
   end
