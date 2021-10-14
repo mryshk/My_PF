@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top' # ルートパス
     get 'about' => 'homes#about', as: 'about' # ログアウト後に開くアプリ紹介ページに使用
-
+    
+    get '/search', to: 'searchs#search'
+    
     # リスナー側のDevise登録
     devise_for :listeners, controllers: {
       sessions: "public/listeners/sessions",
