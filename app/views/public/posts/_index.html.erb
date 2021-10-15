@@ -35,18 +35,31 @@
           </div>
           <% end %>
         </div>
-        <%# 曲名とアーティスト名 %>
+        <%# 投稿文 %>
         <h3 class="card-text text-center"><%= post.post_tweet  %></h4>
-        <%# 説明 %>
-        <p class="card-text text-center"><%= post.post_url %></p>
-        <!--詳細ページへ-->
-        <p class="card-text text-center"><%= link_to "show" ,post_path(post) %></p>
         <!--タグ一覧-->
         <p class="card-text text-center">
           <% post.tags.each do |tag| %>
             <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) %>
           <% end %>
         </p>
+        <div class="card shadow-lg ">
+          <div class="row no-gutters">
+            <div class="col-md-4 my-auto">
+              <img class="card-img" id="link_img_<%= music.id %>" style="width:150px; height:100px;" src=""/>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <a class="card-title" id="link_<%= music.id %>" href="<%= music.music_url%>" target="_blank"><h5 id="linkpreview_<%= music.id %>"></h5></a>
+              </div>
+            </div>
+          </div>
+        
+        <%# 説明 %>
+        <p class="card-text text-center"><%= post.post_url %></p>
+        <!--詳細ページへ-->
+        <p class="card-text text-center"><%= link_to "show" ,post_path(post) %></p>
+
         <%# 投稿日 %>
         <div class="text-right mt-3"><%= time_ago_in_words(post.created_at) %></div>
       </div>
