@@ -43,20 +43,18 @@
             <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) %>
           <% end %>
         </p>
-        <div class="card shadow-lg ">
+        <div class="card shadow-sm ">
           <div class="row no-gutters">
             <div class="col-md-4 my-auto">
-              <img class="card-img" id="link_img_<%= music.id %>" style="width:150px; height:100px;" src=""/>
+              <img class="card-img" id="link_img_<%= post.id %>" style="width:150px; height:100px;" src=""/>
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <a class="card-title" id="link_<%= music.id %>" href="<%= music.music_url%>" target="_blank"><h5 id="linkpreview_<%= music.id %>"></h5></a>
+                <a class="card-title" id="link_<%= post.id %>" href="<%= post.post_url %>" target="_blank"><h5 id="linkpreview_<%= post.id %>"></h5></a>
               </div>
             </div>
           </div>
-        
-        <%# 説明 %>
-        <p class="card-text text-center"><%= post.post_url %></p>
+        </div>
         <!--詳細ページへ-->
         <p class="card-text text-center"><%= link_to "show" ,post_path(post) %></p>
 
@@ -65,6 +63,27 @@
       </div>
     </div>
   </div>
+  <script>
+    const data_<%= post.id %> = {
+      key:'3ce2027b63ce4b30403332b3eb475fbe',
+      q: "<%= post.post_url%>"
+    }
+    //プレビュー表示用の関数
+    const createIMG_<%= post.id %> = json => {
+      document.querySelector('#link_img_<%= post.id %>').src = json.image;
+      document.querySelector('#linkpreview_<%= post.id %>').textContent = json.title;
+      // document.querySelector('#linkcaption_<%= post.id %>').textContent = json.description;
+      document.querySelector('#link_<%= post.id %>').href = json.url;
+    }
+    //LinkPreviewを利用した通信処理
+    fetch('https://api.linkpreview.net', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(data_<%= post.id %>),
+    })
+    .then(data_<%= post.id %> => data_<%= post.id %>.json())
+    .then(json => createIMG_<%= post.id %>(json));
+  </script>
   <% end %>
 </div>
 <div class="row mt-5">
