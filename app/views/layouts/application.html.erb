@@ -144,7 +144,7 @@
         <% end %>
       </ul>
     </div>
-
+    <%= content_tag(:div, flash[:alert], class: "alert alert-danger") if flash[:alert] %>
       <%= yield %>
 
   </main>
