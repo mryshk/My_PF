@@ -4,6 +4,7 @@
     <title>To new Music</title>
     <%= csrf_meta_tags %>
     <script src="https://kit.fontawesome.com/fe634eb8bd.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" >
@@ -12,7 +13,7 @@
  <body　class="d-flex flex-column vh-100">
  <div id="all">
   <header id="header" class="shadow-lg sticky-top" >
-    <nav class="navbar navbar-expand navbar-light" style="background-color:#e3f2fd; height:65px;">
+    <nav class="navbar navbar-expand navbar-light" >
       <div class="container">
         <a class="navbar-brand mr-auto" href="/"><i class="fas fa-headphones-alt">To-new-music</i></a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -20,51 +21,51 @@
             <% if listener_signed_in? %>
             <% if current_listener.listener_type == 0  %>
             <li class="nav-item">
-              <%= link_to new_artist_creater_path, method: :get ,class: 'nav-link text-dark' do %><i>NEW Creater</i><% end %>
+              <%= link_to new_artist_creater_path, method: :get ,class: 'nav-link ' do %><i>NEW Creater</i><% end %>
             </li>
             <% end %>
             <li class="nav-item">
-              <%= link_to artist_albums_path, method: :get ,class: 'nav-link text-dark' do %><i>Albums</i><% end %>
+              <%= link_to artist_albums_path, method: :get ,class: 'nav-link ' do %><i>Albums</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to artist_creaters_path, method: :get ,class: 'nav-link text-dark' do %><i>Creaters</i><% end %>
+              <%= link_to artist_creaters_path, method: :get ,class: 'nav-link ' do %><i>Creaters</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link text-dark' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
+              <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link ' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
             </li>
             <li class="nav-item" >
-              <%= link_to "#",class: 'nav-link text-dark',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
+              <%= link_to "#",class: 'nav-link a',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
             </li>
             <% if unchecked_notifications.any? %>
             <i class="fa fa-circle" style="color: gold;"></i>
             <% end %>
-            <li class="menu-item">
-              <%= link_to notifications_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Notifications</i><% end %>
-            </li>
-            <li class="menu-item">
-              <%= link_to new_inquiry_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
+            <li class="nav-item">
+              <%= link_to notifications_path,class: 'nav-link' do %><i class="fas fa-house-listener">Notifications</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to root_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Home</i><% end %>
+              <%= link_to new_inquiry_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to listener_path(current_listener),class: 'nav-link text-dark' do %><i class="fas fa-listener">Mypage</i><% end %>
+              <%= link_to root_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Home</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_post_path,class: 'nav-link text-dark' do %><i class="fas fa-plus">NewPost</i><% end %>
+              <%= link_to listener_path(current_listener),class: 'nav-link ' do %><i class="fas fa-listener">Mypage</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to posts_path,class: 'nav-link text-dark' do %><i class="fas fa-headphones-alt">Musics</i><% end %>
+              <%= link_to new_post_path,class: 'nav-link ' do %><i class="fas fa-plus">NewPost</i><% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to posts_path,class: 'nav-link ' do %><i class="fas fa-headphones-alt">Musics</i><% end %>
             </li>
             <li class="nav-item" >
-              <%= link_to groups_path ,class: 'nav-link text-dark',id: "search" do %><i class="fas fa-listeners">Groups</i><% end %>
+              <%= link_to groups_path ,class: 'nav-link ',id: "search" do %><i class="fas fa-listeners">Groups</i><% end %>
             </li>
             <% else %>
             <li class="nav-item">
-              <%= link_to new_listener_registration_path,class: 'nav-link text-dark' do %><i class="fas fa-listener-plus">SignUp</i><% end %>
+              <%= link_to new_listener_registration_path,class: 'nav-link ' do %><i class="fas fa-listener-plus">SignUp</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_listener_session_path,class: 'nav-link text-dark' do %><i class="fas fa-sign-in-alt">Login</i><% end %>
+              <%= link_to new_listener_session_path,class: 'nav-link ' do %><i class="fas fa-sign-in-alt">Login</i><% end %>
             </li>
             <% end %>
           </ul>
@@ -108,38 +109,38 @@
       <ul class="hidden-menu ml-auto " style="list-style-type: none" >
         <% if listener_signed_in? %>
         <li class="menu-item">
-          <%= link_to root_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Home</i><% end %>
+          <%= link_to root_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Home</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to notifications_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Notifications</i><% end %>
+          <%= link_to notifications_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Notifications</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to new_inquiry_path,class: 'nav-link text-dark' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
+          <%= link_to new_inquiry_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to listener_path(current_listener),class: 'nav-link text-dark' do %><i class="fas fa-listener">Mypage</i><% end %>
+          <%= link_to listener_path(current_listener),class: 'nav-link a' do %><i class="fas fa-listener">Mypage</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to new_post_path,class: 'nav-link text-dark' do %><i class="fas fa-plus">NewPost</i><% end %>
+          <%= link_to new_post_path,class: 'nav-link ' do %><i class="fas fa-plus">NewPost</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to posts_path,class: 'nav-link text-dark' do %><i class="fas fa-headphones-alt">Musics</i><% end %>
+          <%= link_to posts_path,class: 'nav-link ' do %><i class="fas fa-headphones-alt">Musics</i><% end %>
         </li>
         <li class="nav-item" >
-          <%= link_to groups_path ,class: 'nav-link text-dark',id: "search" do %><i class="fas fa-listeners">Groups</i><% end %>
+          <%= link_to groups_path ,class: 'nav-link a',id: "search" do %><i class="fas fa-listeners">Groups</i><% end %>
         </li>
         <li class="nav-item" >
-          <%= link_to "#",class: 'nav-link text-dark',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
+          <%= link_to "#",class: 'nav-link a',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link text-dark' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
+          <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link a' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
         </li>
         <% else %>
         <li class="menu-item">
-          <%= link_to new_listener_registration_path,class: 'nav-link text-dark' do %><i class="fas fa-listener-plus">SignUp</i><% end %>
+          <%= link_to new_listener_registration_path,class: 'nav-link a' do %><i class="fas fa-listener-plus">SignUp</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to new_listener_session_path,class: 'nav-link text-dark' do %><i class="fas fa-sign-in-alt">Login</i><% end %>
+          <%= link_to new_listener_session_path,class: 'nav-link a' do %><i class="fas fa-sign-in-alt">Login</i><% end %>
         </li>
         <% end %>
       </ul>
