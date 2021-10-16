@@ -45,6 +45,27 @@
         </div>
       </div>
     </div>
+    <script>
+    　const data = {
+      key:'3ce2027b63ce4b30403332b3eb475fbe',
+      q: "<%= @post.post_url%>"
+      }
+      //プレビュー表示用の関数
+      const createIMG = json => {
+        document.querySelector('#link_img').src = json.image;
+        document.querySelector('#linkpreview').textContent = json.title;
+        // document.querySelector('#linkcaption').textContent = json.description;
+        document.querySelector('#link').href = json.url;
+      }
+      //LinkPreviewを利用した通信処理
+      fetch('https://api.linkpreview.net', {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(data),
+      })
+      .then(data => data.json())
+      .then(json => createIMG(json));
+    </script>
   </div>
   <div class="row mt-4" id="comment">
     <%= render "public/post_comments/comments",comments: @comments, post: @post, post_comment_n: @post_comment_n %>
