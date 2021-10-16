@@ -23,9 +23,10 @@ $main_color: rgb(063,163,203);
 $sub_color: #ffffff;
 $font_size-vsm: 10px;
 $font_size-sm: 12px;
-$font_size-md: 14px;
-$font_size-lg: 18px;
-$font_size-vlg: 20px;
+$font_size-md: 16px;
+$font_size-vmd: 20px;
+$font_size-lg: 24px;
+$font_size-vlg: 30px;
 
 body{
   font-family: serif;
@@ -39,11 +40,19 @@ body{
 .navbar{
   background-color: rgb(063,163,203);
   height:100px;
+  .navbar-brand{
+    i{
+      font-size: $font_size-vlg;
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
   .navbar-nav{
     .nav-item{
       .nav-link{
-       color: #ffffff;
+       color: $sub_color;
        text-decoration: none;
+       font-size:$font_size-vmd;
       }
     }
   }
