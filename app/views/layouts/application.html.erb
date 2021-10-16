@@ -12,53 +12,33 @@
 
  <body　class="d-flex flex-column vh-100">
  <div id="all">
-  <header id="header" class="shadow-lg sticky-top" >
+  <header id="header" class=" sticky-top" >
     <nav class="navbar navbar-expand navbar-light" >
       <div class="container">
-        <a class="navbar-brand mr-auto" href="/"><i class="fas fa-headphones-alt">To-new-music</i></a>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+          <ul class="navbar-nav">
             <% if listener_signed_in? %>
-            <% if current_listener.listener_type == 0  %>
-            <li class="nav-item">
-              <%= link_to new_artist_creater_path, method: :get ,class: 'nav-link ' do %><i>NEW Creater</i><% end %>
-            </li>
-            <% end %>
-            <li class="nav-item">
-              <%= link_to artist_albums_path, method: :get ,class: 'nav-link ' do %><i>Albums</i><% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to artist_creaters_path, method: :get ,class: 'nav-link ' do %><i>Creaters</i><% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link ' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
+            <li class="nav-item" >
+              <%= link_to "#",class: 'nav-link a',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
             </li>
             <li class="nav-item" >
               <%= link_to "#",class: 'nav-link a',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
             </li>
+            <li class="nav-item mr-4" >
+              <%= link_to "#",class: 'nav-link a',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
+            </li>
+            <a class="navbar-brand mr-auto" href="/"><i class="fas fa-headphones-alt">To-new-music</i></a>
+            <li class="nav-item ml-4">
+              <%= link_to root_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Home</i><% end %>
+            </li>
             <% if unchecked_notifications.any? %>
-            <i class="fa fa-circle" style="color: gold;"></i>
+            <i class="fa fa-circle fa-sm" style="color: gold;"></i>
             <% end %>
             <li class="nav-item">
               <%= link_to notifications_path,class: 'nav-link' do %><i class="fas fa-house-listener">Notifications</i><% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_inquiry_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to root_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Home</i><% end %>
-            </li>
-            <li class="nav-item">
               <%= link_to listener_path(current_listener),class: 'nav-link ' do %><i class="fas fa-listener">Mypage</i><% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_post_path,class: 'nav-link ' do %><i class="fas fa-plus">NewPost</i><% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to posts_path,class: 'nav-link ' do %><i class="fas fa-headphones-alt">Musics</i><% end %>
-            </li>
-            <li class="nav-item" >
-              <%= link_to groups_path ,class: 'nav-link ',id: "search" do %><i class="fas fa-listeners">Groups</i><% end %>
             </li>
             <% else %>
             <li class="nav-item">
@@ -108,9 +88,23 @@
     <div id="sp-menu" class="pt-5">
       <ul class="hidden-menu ml-auto " style="list-style-type: none" >
         <% if listener_signed_in? %>
+        <% if current_listener.listener_type == 0  %>
+            <li class="menu-item">
+              <%= link_to new_artist_creater_path, method: :get ,class: 'nav-link ' do %><i>NEW Creater</i><% end %>
+            </li>
+            <% end %>
+            <li class="menu-item">
+              <%= link_to artist_albums_path, method: :get ,class: 'nav-link ' do %><i>Albums</i><% end %>
+            </li>
+            <li class="menu-item">
+              <%= link_to artist_creaters_path, method: :get ,class: 'nav-link ' do %><i>Creaters</i><% end %>
+            </li>
         <li class="menu-item">
           <%= link_to root_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Home</i><% end %>
         </li>
+          <% if unchecked_notifications.any? %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
         <li class="menu-item">
           <%= link_to notifications_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Notifications</i><% end %>
         </li>
@@ -131,6 +125,9 @@
         </li>
         <li class="nav-item" >
           <%= link_to "#",class: 'nav-link a',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
+        </li>
+        <li class="menu-item">
+          <%= link_to new_inquiry_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
         </li>
         <li class="menu-item">
           <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link a' do %><i class="fas fa-sign-out-alt">Logout</i><% end %>
