@@ -21,6 +21,7 @@
 
 $main_color: rgb(063,163,203);
 $sub_color: #ffffff;
+$sub2_color: rgb(255,243,063);
 $font_size-vsm: 10px;
 $font_size-sm: 12px;
 $font_size-md: 16px;
@@ -29,7 +30,7 @@ $font_size-lg: 24px;
 $font_size-vlg: 30px;
 
 body{
-  font-family: serif;
+  font-family: Didot,
   header{
 
   }
@@ -53,11 +54,26 @@ body{
        color: $sub_color;
        text-decoration: none;
        font-size:$font_size-vmd;
+       position:relative;
+       top:50px;
+       font-family: Didot,
       }
     }
   }
 }
+.sns_icon{
+  position:relative;
+  top:30px;
+  right:15px;
+  ul{
+    list-style: none;
+    li{
+      i{
 
+      }
+    }
+  }
+}
 
 
 
@@ -279,7 +295,7 @@ background-color: #e3f2fd;
 
 #hm-icon{
   position: fixed;
-  right: 20px;
+  left: 20px;
   top: 5px;
   z-index: 10;
 }
@@ -288,14 +304,6 @@ background-color: #e3f2fd;
 #sp-menu {
    display: none;
 }
-
-
-@media (max-width: 992px){
-.navbar-nav{
-  visibility: hidden;
-}
-
-
 
 .menu-trigger,
 .menu-trigger span{
@@ -306,8 +314,8 @@ background-color: #e3f2fd;
 
 .menu-trigger{
   position: relative;
-  width: 40px;
-  height: 45px;
+  width: 45px;
+  height: 70px;
 }
 
 .menu-trigger span{
@@ -315,24 +323,24 @@ background-color: #e3f2fd;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #000;
+  background-color: $sub2_color;
   border-radius: 3px;
 }
 
 .menu-trigger span:nth-child(1){
-  top: 12px;
+  top: 30px;
 }
 .menu-trigger span:nth-child(2){
-  top: 25px;
+  top: 45px;
 }
 .menu-trigger span:nth-child(3){
-  bottom: 5px;
+  bottom: 10px;
 }
 
 .menu-trigger.active span:nth-child(1){
   -webkit-transform: translateY(12px)skew(-30deg,-45deg);
   transform: translateY(12px)skew(-30deg,-45deg);
-  background-color: #000;
+  background-color: $sub2_color;
 }
 
 .menu-trigger.active span:nth-child(2){
@@ -342,14 +350,14 @@ background-color: #e3f2fd;
 .menu-trigger.active span:nth-child(3){
   -webkit-transform: translateY(-12px)skew(30deg,45deg);
   transform: translateY(-12px)skew(30deg,45deg);
-  background-color: #000;
+  background-color: $sub2_color;
 }
 
 #sp-menu{
   position: fixed;
   top: 0;
   left: 0;
-  background: #e3f2fd;
+  background: $main_color;
   color: #fff;
   width: 100%;
   min-height: 100%;
@@ -365,7 +373,7 @@ background-color: #e3f2fd;
 }
 
 #sp-menu i{
-  color: #000;
+  color: $sub_color;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.5rem;
@@ -375,6 +383,12 @@ background-color: #e3f2fd;
 #theTarget{
   z-index:8;
 }
+
+@media (max-width: 992px){
+.navbar-nav{
+  visibility: hidden;
+}
+
 }
 
 @media (min-width: 993px){
