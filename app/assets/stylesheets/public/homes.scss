@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+$main_color: rgb(063,163,203);
+$sub_color: #ffffff;
+$sub2_color: rgb(255,243,063);
+$font_size-vsm: 10px;
+$font_size-sm: 12px;
+$font_size-md: 16px;
+$font_size-vmd: 20px;
+$font_size-lg: 24px;
+$font_size-vlg: 30px;
+
+
 .tag{
   display: inline-block;
 	margin: 0 .1em .6em 0;
@@ -12,4 +24,18 @@
 	background-color: #fff;
 	border: 1px solid rgb(063,163,203);
 	border-left: 5px solid rgb(063,163,203);
+}
+
+.table{
+	.thead{
+		.circle{
+			width: 100px;
+			height:30px;
+			background-color:$sub2_color;
+			border-radius:3px;
+			margin: 0 auto;
+			text-align: center;
+			line-height: 100px;
+		}
+	}
 }
