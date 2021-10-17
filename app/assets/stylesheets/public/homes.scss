@@ -50,26 +50,23 @@ a {
  * Contenedor Principal
  ===========================*/
 h1 {
-  color: #FFF;
+  color: #000;
   font-size: 24px;
   font-weight: 400;
   text-align: center;
   margin-top: 80px;
  }
 
-h1 a {
-  color: #c12c42;
-  font-size: 16px;
- }
 
  .accordion {
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
   margin: 30px auto 20px;
   background: #FFF;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  padding-left:0px;
  }
 
 .accordion .link {
@@ -108,11 +105,11 @@ h1 a {
 }
 
 .accordion li.open .link {
-  color: #b63b4d;
+  color: $main_color;
 }
 
 .accordion li.open i {
-  color: #b63b4d;
+  color: $main_color;
 }
 .accordion li.open i.fa-chevron-down {
   -webkit-transform: rotate(180deg);
@@ -127,26 +124,29 @@ h1 a {
  -----------------------------*/
  .submenu {
   display: none;
-  background: #444359;
+  background: $main_color;
   font-size: 14px;
  }
 
  .submenu li {
-  border-bottom: 1px solid #4b4a5e;
+  border-bottom: 1px solid #ffffff;
  }
 
  .submenu a {
   display: block;
   text-decoration: none;
-  color: #d9d9d9;
+  color: #000;
   padding: 12px;
   padding-left: 42px;
   -webkit-transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   transition: all 0.25s ease;
+  .i{
+  	color: #000;
+  }
  }
 
  .submenu a:hover {
-  background: #b63b4d;
-  color: #FFF;
+  background: $sub2_color;
+  color: #000;
  }
