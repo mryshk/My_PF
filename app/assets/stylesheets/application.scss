@@ -30,17 +30,28 @@ $font_size-lg: 24px;
 $font_size-vlg: 30px;
 
 body{
-  font-family: Didot,
+  font-family: Didot;
   header{
 
   }
 }
 
+.main-font{
+  font-family: Didot;
+}
 .main-color{
   color:$main_color;
 }
 .sub2_color{
   color:$sub2_color;
+}
+
+.link-none{
+  text-decoration: none;
+  color:#000;
+}
+.link-none:hover{
+  color:$main_color;
 }
 
 .link{
@@ -74,7 +85,7 @@ body{
        font-size:17px;
        position:relative;
        top:0px;
-       font-family: Didot,
+       font-family: Didot;
       }
       .nav-link:hover{
         color:$sub2_color;
@@ -83,12 +94,34 @@ body{
     }
   }
 }
+  #sp-menu{
+    .menu-item{
+      .menu-link{
+       color: $sub_color;
+       text-decoration: none;
+       font-size:17px;
+       position:relative;
+       font-family: Didot;
+      }
+      .menu-link:hover{
+        color:$sub2_color;
+        border-bottom:2px solid $sub2_color;
+      }
+      .menu-link i:hover {
+        color:$sub2_color;
+      }
+    }
+  }
+
 .menu-link:hover{
   color:$sub2_color;
   border-bottom:2px solid $sub2_color;
 }
 .menu-link{
   position:relative;
+  text-decoration: none;
+  font-family: Didot;
+  color: $sub_color;
 }
 .menu-link:before{
   content:"";
