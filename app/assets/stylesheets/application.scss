@@ -36,7 +36,25 @@ body{
   }
 }
 
+.main-color{
+  color:$main_color;
+}
+.sub2_color{
+  color:$sub2_color;
+}
 
+.link{
+  text-decoration: none;
+  color:$main_color;
+}
+.link:hover{
+  color:$sub2_color;
+}
+
+.hover:hover{
+  transform: scale(1.2);
+  transition-duration: 0.5s;
+}
 
 .navbar{
   background-color: rgb(063,163,203);
@@ -65,7 +83,19 @@ body{
     }
   }
 }
-
+.menu-link:hover{
+  color:$sub2_color;
+  border-bottom:2px solid $sub2_color;
+}
+.menu-link{
+  position:relative;
+}
+.menu-link:before{
+  content:"";
+  position:absolute;
+  top: -15px;
+  width:100px;
+}
 
 .sns_icon{
   position:relative;
