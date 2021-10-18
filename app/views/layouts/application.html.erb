@@ -4,10 +4,10 @@
     <title>To new Music</title>
     <%= csrf_meta_tags %>
     <script src="https://kit.fontawesome.com/fe634eb8bd.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
  <body　class="d-flex flex-column vh-100">
@@ -93,37 +93,37 @@
       <ul class="hidden-menu ml-auto " style="list-style-type: none" >
         <% if listener_signed_in? %>
           <li class="menu-item">
-            <%= link_to root_path,class: 'menu-link ' do %><i class="fas fa-house-listener">Home</i><% end %>
+            <%= link_to root_path,class: 'menu-link ' do %><i class="fas fa-home"> Home</i><% end %>
           </li>
           <% if current_listener.listener_type == 0  %>
           <li class="menu-item">
-            <%= link_to new_artist_creater_path, method: :get ,class: 'menu-link ' do %><i>NEW Creater</i><% end %>
+            <%= link_to new_artist_creater_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-feather-alt"> NEW Creater</i><% end %>
           </li>
           <% end %>
           <li class="menu-item">
-            <%= link_to artist_albums_path, method: :get ,class: 'menu-link ' do %><i>Albums</i><% end %>
+            <%= link_to artist_albums_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-compact-disc"> Albums</i><% end %>
           </li>
           <li class="menu-item">
-            <%= link_to artist_creaters_path, method: :get ,class: 'menu-link ' do %><i>Creaters</i><% end %>
+            <%= link_to artist_creaters_path, method: :get ,class: 'menu-link ' do %><i class="far fa-user-circle"> Creaters</i><% end %>
           </li>
         <li class="menu-item">
-          <%= link_to new_post_path,class: 'menu-link' do %><i class="fas fa-plus">NewPost</i><% end %>
+          <%= link_to new_post_path,class: 'menu-link' do %><i class="fas fa-plus"> NewPost</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to posts_path,class: 'menu-link' do %><i class="fas fa-headphones-alt">Musics</i><% end %>
+          <%= link_to posts_path,class: 'menu-link' do %><i class="fas fa-headphones-alt"> Posts</i><% end %>
         </li>
         <li class="menu-item" >
-          <%= link_to groups_path ,class: 'menu-link',id: "search" do %><i class="fas fa-listeners">Groups</i><% end %>
+          <%= link_to groups_path ,class: 'menu-link',id: "search" do %><i class="fas fa-users"> Groups</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to new_inquiry_path,class: 'menu-link' do %><i class="fas fa-house-listener">Inquiry</i><% end %>
+          <%= link_to new_inquiry_path,class: 'menu-link' do %><i class="far fa-envelope"> Inquiry</i><% end %>
         </li>
         <% else %>
         <li class="menu-item">
-          <%= link_to new_listener_registration_path,class: 'menu-link ' do %><i class="fas fa-listener-plus">SignUp</i><% end %>
+          <%= link_to new_listener_registration_path,class: 'menu-link ' do %><i class="fas fa-listener-plus"> SignUp</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to new_listener_session_path,class: 'menu-link ' do %><i class="fas fa-sign-in-alt">Login</i><% end %>
+          <%= link_to new_listener_session_path,class: 'menu-link ' do %><i class="fas fa-sign-in-alt"> Login</i><% end %>
         </li>
         <% end %>
       </ul>
