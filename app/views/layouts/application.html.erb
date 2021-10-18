@@ -13,9 +13,8 @@
  <body　class="d-flex flex-column vh-100">
  <div id="all">
   <header id="header" class=" sticky-top" >
-    <a class="navbar-brand mr-auto" href="/"><%= image_tag "/assets/logo.jpg" ,size: '150x120',id: "logo"%></a>
-    <nav class="navbar navbar-expand navbar-light justify-content-center"style="margin-top:30px;" >
-      <div class="container " style="margin-right:0px; margin-left:0px; margin-bottom:40px;" >
+    <nav class="navbar navbar-expand navbar-light justify-content-center" >
+      <div class="container " style="margin-right:0px; margin-left:0px; margin-bottom:0px;" >
         <div id="hm-icon" style="margin-bottom:40px;">
           <a class="menu-trigger" href="#">
             <span></span>
@@ -24,16 +23,17 @@
           </a>
         </div>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ">
             <% if listener_signed_in? %>
+            <a class="navbar-brand mr-auto" href="/"><%= image_tag "/assets/logo.jpg" ,size: '120x100',id: "logo"%></a>
             <li class="nav-item" >
               <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
             </li>
             <li class="nav-item" >
               <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
             </li>
-            <li class="nav-item mr-4" >
-              <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus">Search</i><% end %>
+            <li class="nav-item">
+              <%= link_to root_path,class: 'nav-link ' do %><i class="fas fa-house-listener">Home</i><% end %>
             </li>
             <li class="nav-item ">
               <%= link_to listener_path(current_listener),class: 'nav-link ' do %><i class="fas fa-listener">Mypage</i><% end %>
@@ -59,13 +59,6 @@
         </div>
       </div>
     </nav>
-        <div class="sns_icon">
-          <ul class="d-flex">
-            <li><i class="fab fa-youtube fa-lg mr-3 text-white" ></i></li>
-            <li><i class="fab fa-spotify fa-lg mr-3 text-white"></i></li>
-            <li><i class="fab fa-soundcloud fa-lg text-white"></i></li>
-          </ul>
-        </div>
   </header>
   <main>
     <div class=" py-5 " id="search-form" >
