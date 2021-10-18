@@ -150,3 +150,7 @@ h1 {
   background: $sub2_color;
   color: #000;
  }
+ .profile_image:hover{
+ 	transform: scale(1.2);
+  transition-duration: 0.5s;
+ }
