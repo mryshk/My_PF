@@ -91,7 +91,7 @@
           <div>
 
             <div>
-              <%= attachment_image_tag imp_rank.listener, :profile_image, :fill, 30, 30, fallback: "no_image.jpg",size: "30x30",class: " rounded-circle" %>
+              <%= attachment_image_tag imp_rank.listener, :profile_image, fallback: "no_image.jpg",size: "30x30",class: " rounded-circle" %>
             </div>
             <div style="font-size: 10px;">
               <%= imp_rank.listener.name %>
