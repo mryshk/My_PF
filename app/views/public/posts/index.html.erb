@@ -1,42 +1,79 @@
 
-<%= render "public/posts/index", posts: @posts %>
-
-  <div class="row my-5">
-    <div class="mx-auto">
-      <table>
-        <thead>
-          <h4>いいねランキング</h4>
-        </thead>
-        <% i = 0  %>
-        <% @post_favorite_rank.each do |fav_rank|  %>
-        <tr>
-          <th>
-            <% i += 1  %>
-            <%= i %>
-            </th>
-          <td><%= fav_rank.post_tweet %></td>
-        </tr>
-        <% end %>
-      </table>
-    </div>
+<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-headphones"></i>Posts</h3>
+<div class="row mt-4 ">
+  <div class="col-3 ml-5 ">
+    <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
+  <div class="col-5 ml-3 mt-5">
+    <%= render "public/posts/index", posts: @posts %>
+  </div>
+  <div class="col-3 ">
+    <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
+      <thead>
+        <h6 class="text-center text-main">Like Ranking</h6>
+      </thead>
+      <% i = 0  %>
+      <% @post_favorite_rank.each do |fav_rank|  %>
+      <tr>
+        <th class="align-middle" style="padding:0;">
+          <% i += 1  %>
+          <%= i %>
+        </th>
+        <td class="d-flex">
+          <div>
+            <div>
+              <%= attachment_image_tag fav_rank.listener, :profile_image, :fill, 30, 30, fallback: "no_image.jpg",size: "30x30",class: " rounded-circle" %>
+            </div>
+            <div style="font-size: 10px;">
+              <%= fav_rank.listener.name %>
+            </div>
+          </div>
+          <p class="align-self-center ml-3"style="font-size: 12px;" ><%= fav_rank.post_tweet.truncate(15) %></p>
+        </td>
+        <td class="align-middle">
+          <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= fav_rank.post_favorites.count %></p>
+          <p class="d-block" style="font-size: 10px;">Likes</p>
+        </td>
+      </tr>
+      <% break if i== 5 %>
+      <% end %>
+    </table>
+    <table class="table .table-bordered">
+      <thead>
+        <h6 class="text-center text-main">View Ranking</h6>
+      </thead>
+      <% i = 0  %>
+      <% @post_impression_rank.each do |imp_rank|  %>
+      <tr>
+        <th class="align-middle">
+          <% i += 1  %>
+          <%= i %>
+        </th>
+        <td class="d-flex">
+          <div>
 
-  <div class="row my-5">
-    <div class="mx-auto">
-      <table>
-        <thead>
-          <h4>閲覧数ランキング</h4>
-        </thead>
-        <% i = 0  %>
-        <% @post_impression_rank.each do |imp_rank|  %>
-        <tr>
-          <th>
-            <% i += 1  %>
-            <%= i %>
-            </th>
-          <td><%= imp_rank.post_tweet %>  <%= imp_rank.impressions_count %></td>
-        </tr>
-        <% end %>
-      </table>
-    </div>
+            <div>
+              <%= attachment_image_tag imp_rank.listener, :profile_image, :fill, 30, 30, fallback: "no_image.jpg",size: "30x30",class: " rounded-circle" %>
+            </div>
+            <div style="font-size: 10px;">
+              <%= imp_rank.listener.name %>
+            </div>
+          </div>
+          <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.post_tweet.truncate(15) %> </p>
+        </td>
+        <td class="align-middle" >
+          <p ><%= imp_rank.impressions_count %></p>
+        </td>
+      </tr>
+      <% break if i== 5 %>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+
+
+
+  <div class="col mr-5">
+
   </div>
