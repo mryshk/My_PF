@@ -60,7 +60,7 @@
         <td class="d-flex">
           <div>
             <div>
-              <%= attachment_image_tag fav_rank.listener, :profile_image, size: "30x30", fallback: "no_image.jpg",class: " rounded-circle" %>
+              <%= attachment_image_tag fav_rank.listener, :profile_image, size:"30x30", fallback: "no_image.jpg",class: " rounded-circle" %>
             </div>
             <div style="font-size: 10px;">
               <%= fav_rank.listener.name %>
@@ -89,9 +89,8 @@
         </th>
         <td class="d-flex">
           <div>
-
             <div>
-              <%= attachment_image_tag imp_rank.listener, :profile_image,size: "30x30",fallback: "no_image.jpg",class: " rounded-circle" %>
+              <%= attachment_image_tag imp_rank.listener, :profile_image, size:"30x30",fallback: "no_image.jpg",class: " rounded-circle" %>
             </div>
             <div style="font-size: 10px;">
               <%= imp_rank.listener.name %>
