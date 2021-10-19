@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
           <ul class="navbar-nav ">
             <% if listener_signed_in? %>
-            <a class="navbar-brand mr-auto" href="/"><%= image_tag "/assets/logo.jpg" ,size: '120x100',id: "logo"%></a>
+            <a class="navbar-brand mr-auto" href="/"><%= image_tag asset_patth("logo.jpg") ,size: '120x100',id: "logo"%></a>
             <li class="nav-item" >
               <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus"></i> Search<% end %>
             </li>
@@ -33,7 +33,7 @@
               <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus"></i> Search<% end %>
             </li>
             <li class="nav-item">
-              <%= link_to root_path,class: 'nav-link ' do %><i class="fas fa-home"></i> Home<% end %>
+              <%= link_to home_path,class: 'nav-link ' do %><i class="fas fa-home"></i> Home<% end %>
             </li>
             <li class="nav-item ">
               <%= link_to listener_path(current_listener),class: 'nav-link ' do %><i class="far fa-user"></i> Mypage<% end %>
@@ -93,7 +93,7 @@
       <ul class="hidden-menu ml-auto " style="list-style-type: none" >
         <% if listener_signed_in? %>
           <li class="menu-item">
-            <%= link_to root_path,class: 'menu-link ' do %><i class="fas fa-home"> Home</i><% end %>
+            <%= link_to home_path,class: 'menu-link ' do %><i class="fas fa-home"> Home</i><% end %>
           </li>
           <% if current_listener.listener_type == 0  %>
           <li class="menu-item">
