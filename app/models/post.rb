@@ -26,7 +26,7 @@ class Post < ApplicationRecord
       return all.order(created_at: :DESC)
     # 古い順
     when 'old'
-      return all.order(creater_at: :ASC)
+      return all.order(created_at: :ASC)
     # いいねが多い順
     when 'likes'
       return find(PostFavorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))
