@@ -20,6 +20,8 @@
 //= require turbolinks
 //= require_tree .
 
+/* global $this */
+/* global $next */
 /* global $ */
 /* global click */
 
