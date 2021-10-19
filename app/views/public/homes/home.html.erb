@@ -19,18 +19,20 @@
     <li class="default open">
       <div class="link"><i class="fa fa-code"></i>Sort<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><a href="#">Javascript</a></li>
-        <li><a href="#">jQuery</a></li>
-        <li><a href="#">Frameworks javascript</a></li>
+        <li><a href="#">いいねが多い順</a></li>
+        <li><a href="#">投稿の新しい順</a></li>
+        <li><a href="#">投稿の古い順</a></li>
       </ul>
     </li>
     <li>
-      <div class="link"><i class="fa fa-mobile"></i>Diseño responsive<i class="fa fa-chevron-down"></i></div>
+      <div class="link"><i class="fas fa-user-friends"></i>My Group<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><a href="#">Tablets</a></li>
+        <% @mygroups.each do |mygroup|%>
+        <li><%= link_to mygroup.name, group_path(mygroup) %></li>
         <li><a href="#">Dispositivos mobiles</a></li>
         <li><a href="#">Medios de escritorio</a></li>
         <li><a href="#">Otros dispositivos</a></li>
+        <% end %>
       </ul>
     </li>
     <li><div class="link"><i class="fa fa-globe"></i>Music cite<i class="fa fa-chevron-down"></i></div>
@@ -170,6 +172,5 @@
       <% end %>
     </table>
   </div>
-  <%= link_to new_post_path,class: 'new_post' do %><i class="fas fa-plus-circle fa-3x"></i><% end %>
 </div>
 
