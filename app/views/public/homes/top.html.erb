@@ -1,0 +1,11 @@
+
+<div class="card bg-dark text-white">
+  <%= image_tag asset_path("musical-background-2886886_1920.jpg"), class: "bd-placeholder-img bd-placeholder-img-lg card-img" ,style: "width: 100%; height:800px;" %>
+  <div class="card-img-overlay text-center">
+    <h1 class="card-title"><i class="fas fa-headphones-alt">Welcome To_new_Musics</i></h1>
+    <div style="margin-top:100px ">
+      <button class="card-text btn btn-link " style="width:300px"><%= link_to new_listener_registration_path ,class: "text-white" do %><h1><i class="fas fa-user-plus">&nbsp;Sign Up</i></h1><% end %></button>
+      <button class="card-text btn btn-link" style="width:300px"><%= link_to new_listener_session_path ,class: "text-white" do%><h1><i class="fas fa-sign-in-alt">&nbsp;Log In</i></h1><% end %></button>
+    </div>
+  </div>
+</div>
