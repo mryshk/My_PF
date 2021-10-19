@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top' # ルートパス
     get 'about' => 'homes#about', as: 'about' # ログアウト後に開くアプリ紹介ページに使用
-    get 'about' => 'homes#home', as: 'home'
+    get 'home' => 'homes#home', as: 'home'
 
     get '/search', to: 'searchs#search'
 
