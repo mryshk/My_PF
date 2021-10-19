@@ -6,14 +6,14 @@
     <li>
       <div class="link"><i class="fas fa-tags"></i>Category<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><%= link_to "Rock",search_posts_path(post_genre: 'ロック') %></li>
+        <li><%= link_to "Rock",search_posts_path(:post_genre => 'ロック') %></li>
         <li><%= link_to "JPOP",search_posts_path(:post_genre => 'JPOP') %></li>
-        <li><a href="#">IDOL</a></li>
-        <li><a href="#">EDM</a></li>
-        <li><a href="#">KPOP</a></li>
-        <li><a href="#">PANK</a></li>
-        <li><a href="#">レゲエ</a></li>
-        <li><a href="#">HIPHOP</a></li>
+        <li><%= link_to "IDOL",search_posts_path(:post_genre => 'アイドル') %></li>
+        <li><%= link_to "EDM",search_posts_path(:post_genre => 'EDM') %></li>
+        <li><%= link_to "KPOP",search_posts_path(:post_genre => 'KPOP') %></li>
+        <li><%= link_to "PANk",search_posts_path(:post_genre => 'パンク') %></li>
+        <li><%= link_to "レゲエ",search_posts_path(:post_genre => 'レゲエ') %></li>
+        <li><%= link_to "HIPHOP",search_posts_path(:post_genre => 'HIPHOP') %></li>
       </ul>
     </li>
     <li class="default open">
