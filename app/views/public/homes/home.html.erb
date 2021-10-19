@@ -1,13 +1,13 @@
 <div class="row  mt-5" >
   <div class="col ml-5">
-    <h4 class="text-center">Menu</h4>
+  <h4 class="text-center">Menu</h4>
   <!-- Contenedor -->
   <ul id="accordion" class="accordion">
     <li>
-      <div class="link"><i class="fa fa-paint-brush"></i>Category<i class="fa fa-chevron-down"></i></div>
+      <div class="link"><i class="fas fa-tags"></i>Category<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><a href="#">Rock</a></li>
-        <li><a href="#">JPOP</a></li>
+        <li><%= link_to "Rock",search_posts_path(post_genre: 'ロック') %></li>
+        <li><%= link_to "JPOP",search_posts_path(:post_genre => 'JPOP') %></li>
         <li><a href="#">IDOL</a></li>
         <li><a href="#">EDM</a></li>
         <li><a href="#">KPOP</a></li>
@@ -17,11 +17,11 @@
       </ul>
     </li>
     <li class="default open">
-      <div class="link"><i class="fa fa-code"></i>Sort<i class="fa fa-chevron-down"></i></div>
+      <div class="link"><i class="fas fa-sort"></i>Sort<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><a href="#">いいねが多い順</a></li>
-        <li><a href="#">投稿の新しい順</a></li>
-        <li><a href="#">投稿の古い順</a></li>
+        <li><%= link_to "投稿が早い順" ,order_posts_path(:keyword => 'new') %></a></li>
+        <li><%= link_to "投稿が古い順" ,order_posts_path(:keyword => 'old') %></a></li>
+        <li><%= link_to "いいねが多い順" ,order_posts_path(:keyword => 'likes') %></a></li>
       </ul>
     </li>
     <li>
@@ -29,9 +29,6 @@
       <ul class="submenu">
         <% @mygroups.each do |mygroup|%>
         <li><%= link_to mygroup.name, group_path(mygroup) %></li>
-        <li><a href="#">Dispositivos mobiles</a></li>
-        <li><a href="#">Medios de escritorio</a></li>
-        <li><a href="#">Otros dispositivos</a></li>
         <% end %>
       </ul>
     </li>
