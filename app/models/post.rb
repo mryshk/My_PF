@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   end
   # 検索機能。投稿内容のキーワードで検索。前後関係なしにどれか一致すればヒットする。
   def self.search(keyword)
-    where(post_genre: "#{keyword}")
+    where(post_genre: "keyword")
   end
   # 並び替え機能。プルダウンで取得した用語で並び替え内容を場合分けしている。
   def self.sort(order)
