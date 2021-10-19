@@ -38,10 +38,12 @@
             <li class="nav-item ">
               <%= link_to listener_path(current_listener),class: 'nav-link ' do %><i class="far fa-user"></i> Mypage<% end %>
             </li>
+            <!--チェックしていない通知があればアイコンが黄色くなる。-->
             <% if unchecked_notifications.any? %>
               <li class="nav-item">
                 <%= link_to notifications_path,class: 'nav-link' do %><i class="fas fa-bell" style="color: rgb(255,243,063)"></i> Notifications<% end %>
               </li>
+            <!--全てチェックしていれば-->
             <% else %>
               <li class="nav-item">
                 <%= link_to notifications_path,class: 'nav-link' do %><i class="far fa-bell"></i> Notifications</i><% end %>
