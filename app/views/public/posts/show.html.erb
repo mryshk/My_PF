@@ -1,8 +1,10 @@
-<div class="container" style="margin-bottom:500px; ">
-  <h1 class="mt-3 ml-4" id="area-1"><i class="fas fa-music main-font">&nbsp;Detail</i></h1>
-  <div class="row mt-4">
-    <div class="col-8 my-4 offset-2">
-      <div class="card">
+<h3 class="text-center" style="margin-top:100px;" ><i class="fab fa-searchengin">Search Result</i></h3>
+<div class="row mt-4 ">
+  <div class="col-3 ml-5 ">
+    <%= render "layouts/menu", mygroups: @mygroups %>
+  </div>
+  <div class="col-5 ml-5 mt-5">
+    <div class="card">
         <div class="card-body">
           <%# 名前と画像 %>
           <div class="card-text" >
@@ -20,7 +22,21 @@
             </table>
           <% end %>
           </div>
-          <div class="card mb-3">
+          <%# 投稿文 %>
+          <h5 class="card-text text-center mt-2"><%= @post.post_tweet  %></h5>
+          <!--タグ一覧-->
+          <p class="card-text text-center">
+            <% @post.tags.each do |tag| %>
+              <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag" %>
+            <% end %>
+          </p>
+          <div class="text-center mt-5">
+            <%= link_to post_path(@post) do %>
+              <%= attachment_image_tag @post,:picture,size:"200x200"%>
+            <% end %>
+          </div>
+           <!--linkpreviewの部分-->
+          <div class="card mb-3 my-5">
             <div class="row">
               <div class="col-md-4 my-auto">
                 <a id="link" href="<%= @post.post_url %>" target="_blank">
@@ -36,19 +52,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <%# 投稿文 %>
-          <h5 class="card-text text-center mt-2"><%= @post.post_tweet  %></h5>
-          <!--タグ一覧-->
-          <p class="card-text text-center">
-            <% @post.tags.each do |tag| %>
-              <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag" %>
-            <% end %>
-          </p>
-          <div class="text-center mt-5">
-            <%= link_to post_path(@post) do %>
-              <%= attachment_image_tag @post,:picture,:fill,200,200%>
-            <% end %>
           </div>
           <p class="card-text text-center"></p>
           <div class="mt-4 text-center" >
@@ -74,7 +77,6 @@
           </div>
         </div>
       </div>
-    </div>
     <script>
     　const data = {
       key:'3ce2027b63ce4b30403332b3eb475fbe',
@@ -97,21 +99,12 @@
       .then(json => createIMG(json));
     </script>
   </div>
+  <div class="col-3">
+
+  </div>
+</div>
   <div class="row mt-4" id="comment">
     <%= render "public/post_comments/comments",comments: @comments, post: @post, post_comment_n: @post_comment_n %>
   </div>
-  <div class="row" style="margin-top:200px;">
-    <div class="col-2">
-       <button class="btn btn-primary">
-         <%= link_to :back ,class: "text-light" do%><i class="fas fa-backward">&nbsp;Back</i><% end %>
-       </button>
-    </div>
-  </div>
-</div>
-
-
-
-
-
 
 

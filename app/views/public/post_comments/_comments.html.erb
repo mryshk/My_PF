@@ -1,5 +1,5 @@
 <div class="col-8 mt-5 offset-2">
-  <h3><i class="fas fa-comments ">コメント</i></h3>
+  <h3 class="main-font"><i class="fas fa-comments "></i>Comment</h3>
   <div class="table-responsive">
   <table class="table table-hover mt-3" >
     <tbody>
@@ -19,12 +19,12 @@
         <td class="">
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_post_post_comment_path(post_comment.post,post_comment),method: :get, class: "text-info" do %>
-              <i class="fas fa-edit">編集</i>
+              <i class="fas fa-edit">Edit</i>
             <% end %>
           </div>
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to post_post_comment_path(post_comment.post,post_comment),method: :delete,'data-confirm' => "Do you really want to delete?", class: "text-danger",remote: true do %>
-              <i class="fas fa-trash-alt">削除</i>
+              <i class="fas fa-trash-alt">Delete</i>
             <% end %>
           </div>
           </td>
@@ -42,7 +42,7 @@
       <%= f.text_area :comment, rows:'5',placeholder: "Comment" ,class: "form-control" %>
     </div>
     <%# 送信ボタン %>
-    <button class="btn btn-info mt-4" style="width:100px">投稿
+    <button class="btn btn-info mt-4" style="width:100px">POST
       <% f.submit %>
     </button>
     <% end %>

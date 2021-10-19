@@ -22,6 +22,11 @@ class Public::PostsController < ApplicationController
     impressionist(@post, nil)
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id,listener_id: current_listener.id)
+
+    # メニュー用
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def index

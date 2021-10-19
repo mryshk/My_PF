@@ -41,7 +41,7 @@
         <div class="mt-4 text-center" >
           <%# 詳細画面へ %>
           <div class="d-inline mt-4" style="margin-right:80px;" >
-            <%= link_to post_path(post) do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
+            <%= link_to post_path(post), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
           </div>
           <%# 曲視聴 %>
           <div class="d-inline mt-4" style="margin-right:80px;" >
