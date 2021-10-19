@@ -29,6 +29,10 @@ class Public::PostsController < ApplicationController
     @post_favorite_rank = Post.includes(:favo_users).sort {|a,b| b.favo_users.size <=> a.favo_users.size}
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
+
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def edit
@@ -56,6 +60,10 @@ class Public::PostsController < ApplicationController
   def search
     @search = Post.where(genre_params).page(params[:page]).reverse_order
     @keyword = params.permit(:post_genre)
+
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
     render "search"
   end
 
@@ -65,6 +73,10 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.page(params[:page]).reverse_order
+
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
     render 'index'
   end
 
@@ -77,8 +89,14 @@ class Public::PostsController < ApplicationController
     elsif order == "likes"
       @posts = Kaminari.paginate_array(Post.sort(order)).page(params[:page])
     end
+    # ランキング用に必要。
     @post_favorite_rank = Post.find(PostFavorite.group(:post_id).order('count(:post_id) desc').pluck(:post_id))
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
+
+    # メニュー用
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
     render 'index'
   end
 
