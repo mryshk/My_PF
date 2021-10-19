@@ -1,4 +1,4 @@
-<h3 class="text-center" style="margin-top:100px;" ><i class="fab fa-searchengin">Search Result</i></h3>
+<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-asterisk">Detail</i></h3>
 <div class="row mt-4 ">
   <div class="col-3 ml-5 ">
     <%= render "layouts/menu", mygroups: @mygroups %>
@@ -53,16 +53,14 @@
               </div>
             </div>
           </div>
-          <p class="card-text text-center"></p>
+          <%# 編集・削除 %>
+          <div class="mt-4 text-right">
+            <% if @post.listener == current_listener %>
+            <button type="button" class="btn "> <%= link_to edit_post_path(@post),class: "text-info" do%><i class="fas fa-edit">Edit</i><% end %></button>
+            <button type="button" class="btn "><%= link_to post_path(@post),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%><i class="fas fa-trash-alt">Delete</i><% end %></button>
+            <% end %>
+          </div>
           <div class="mt-4 text-center" >
-            <%# 詳細画面へ %>
-            <div class="d-inline mt-4" style="margin-right:80px;" >
-              <%= link_to post_path(@post) do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
-            </div>
-            <%# 曲視聴 %>
-            <div class="d-inline mt-4" style="margin-right:80px;" >
-              <a class="card-title text-center" href="<%= @post.post_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
-            </div>
             <%# ファボ %>
             <div class="d-inline mt-4" style="margin-right:80px;"  id="post_post_favorite_<%= @post.id  %>">
               <% @favorite = PostFavorite.find_by(post_id: @post.id,listener_id: current_listener.id) %>
