@@ -1,5 +1,5 @@
-<div class="row mt-5 ">
-    <% posts.each do |post| %>
+
+  <% posts.each do |post| %>
     <div class="card">
       <div class="card-body">
         <%# 名前と画像 %>
@@ -61,18 +61,7 @@
         </div>
       </div>
     </div>
-    <% end %>
-  <div class="mx-auto">
-  <%=  form_with url: order_posts_path ,method: :get, local: true do |f| %>
-    <div>
-      <%= f.select :keyword,[ ['投稿が新しい順', 'new'], ['投稿が古い順', 'old'], ['いいねの多い順', 'likes'] ]%>
-    </div>
-    <div>
-      <%= f.submit %>
-    </div>
   <% end %>
-  </div>
-</div>
 
 
 
