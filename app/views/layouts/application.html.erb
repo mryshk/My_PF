@@ -30,7 +30,7 @@
               <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus"></i> Search<% end %>
             </li>
             <li class="nav-item" >
-              <%= link_to new_post_path,class: 'nav-link' do %><i class="fas fa-plus-circle "> </i> NEW Post<% end %>
+              <%= link_to new_post_path,class: 'nav-link' do %><i class="fas fa-plus-circle "> </i> New Post<% end %>
             </li>
             <li class="nav-item">
               <%= link_to home_path,class: 'nav-link ' do %><i class="fas fa-home"></i> Home<% end %>
@@ -79,16 +79,6 @@
           <% f.submit %>
         </button>
           <% end %>
-        <div class="d-inline">
-            <%=  form_with url: search_posts_path ,method: :get, local: true do |f| %>
-          <div>
-            <%= f.select :post_genre, Post.post_genres.keys.to_a %>
-          </div>
-          <div>
-            <%= f.submit %>
-          </div>
-            <% end %>
-        </div>
       </div>
     </div>
     <div id="sp-menu" class="pt-5">
@@ -99,7 +89,7 @@
           </li>
           <% if current_listener.listener_type == 0  %>
           <li class="menu-item">
-            <%= link_to new_artist_creater_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-feather-alt"> NEW Creater</i><% end %>
+            <%= link_to new_artist_creater_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-feather-alt"> New Creater</i><% end %>
           </li>
           <% end %>
           <li class="menu-item">
@@ -112,7 +102,7 @@
           <%= link_to new_post_path,class: 'menu-link' do %><i class="fas fa-plus"> NewPost</i><% end %>
         </li>
         <li class="menu-item">
-          <%= link_to posts_path,class: 'menu-link' do %><i class="fas fa-headphones-alt"> Posts</i><% end %>
+          <%= link_to posts_path,class: 'menu-link' do %><i class="fas fa-headphones"> Posts</i><% end %>
         </li>
         <li class="menu-item" >
           <%= link_to groups_path ,class: 'menu-link',id: "search" do %><i class="fas fa-users"> Groups</i><% end %>
