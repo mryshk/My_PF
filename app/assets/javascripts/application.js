@@ -122,7 +122,7 @@ $(document).on('turbolinks:load',function(){
   });
 });
 
-$(function() {
+$(document).on('turbolinks:load',function() {
   var Accordion = function(el, multiple) {
     this.el = el || {};
     this.multiple = multiple || false;
