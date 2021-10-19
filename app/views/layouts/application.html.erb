@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
           <ul class="navbar-nav ">
             <% if listener_signed_in? %>
-            <a class="navbar-brand mr-auto" href="/"><%= image_tag asset_patth("logo.jpg") ,size: '120x100',id: "logo"%></a>
+            <a class="navbar-brand mr-auto" href="/"><%= image_tag asset_path("logo.jpg") ,size: '120x100',id: "logo"%></a>
             <li class="nav-item" >
               <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus"></i> Search<% end %>
             </li>
