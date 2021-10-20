@@ -8,7 +8,6 @@ class Ability
     if listener.listener_type == 0
       can :read, Album
       can :read, AlbumMusic
-
     else
       can :manage, :all
     end
