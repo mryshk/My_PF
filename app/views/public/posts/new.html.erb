@@ -18,9 +18,9 @@
         <%= f.text_field :tag_name,class: "form-control" %>
         <small class="form-text text-muted">タグを入力してください。</small>
       </div>
-      <div>
+      <div class="center">
         <div class="mb-2 mt-3"><strong>楽曲ジャンル</strong></div>
-        <%= f.select :post_genre, Post.post_genres.keys.to_a %>
+        <%= f.select :post_genre, Post.post_genres.keys.to_a ,{}, :class =>"custom-select sources" %>
         <small class="form-text text-muted mt-2">ジャンルを選択してください。</small>
       </div>
       <div>

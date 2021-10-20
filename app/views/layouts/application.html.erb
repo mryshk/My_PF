@@ -22,7 +22,7 @@
             <%= f.text_field :keyword, placeholder: "Search",class: "form-control " ,id: "form-control"%>
         </div>
         <div class="d-inline">
-          <%= f.select 'model', options_for_select({ "ユーザー" => "listener", "投稿" => "post", "アルバム" => "album" }),class: "form-select " %>
+          <%= f.select 'model', options_for_select({ "ユーザー" => "listener", "投稿" => "post", "アルバム" => "album" }),{}, :class =>"custom-select" %>
         </div>
         <button class="btn">
           <i class="fas fa-search fa-lg text-white"></i>
