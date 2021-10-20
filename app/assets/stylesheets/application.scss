@@ -239,17 +239,18 @@ height: 28px;
 width: 24em;
 padding-right: 40px;
 transition: all .6s ease;
-border-bottom:3px solid #000;
+border-bottom:3px solid #fff;
 border-right:none;
 border-left:none;
 border-top:none;
 border-radius:0px;
-background-color: #e3f2fd;
+background-color: $main_color;
+color:#fff;
 }
 
 
 #search-form{
-  background-color: #e3f2fd;
+  background-color: $main_color;
   display: none;
 }
 .search-box{
