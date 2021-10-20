@@ -1,57 +1,105 @@
-<div class="container">
-  <h1 class="mt-3" id="area-1"><i class="fas fa-user">アルバム詳細</i></h1>
-  <div class="row" style="margin-bottom:300px;">
-    <div class="col-md-4 mx-md-auto col-8 offset-2">
-      <div class="mt-3">
-        <img>
-        <%= attachment_image_tag @album, :album_image, :fill, 300, 300, fallback: "no_image.jpg",size: "300x300",class: "my-3 rounded-circle" %>
-        </img>
-        <div>
-          <i><strong><%= @album.name %></strong></i>
+<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-compact-disc"></i>Album Detail</h3>
+<div class="row mt-4 ">
+  <div class="col-3 ml-5 ">
+    <%= render "layouts/menu", mygroups: @mygroups %>
+  </div>
+  <div class="col-5 ml-5 mt-5">
+    <div class="card">
+        <div class="card-body">
+          <%# 名前と画像 %>
+          <div class="card-text" >
+          <%= link_to artist_creater_path(@album.creater),class: "text-dark" do %>
+            <table class="table table-borderless">
+              <tr>
+                <td class="align-middle" style="width:60px; padding:0;"><%= attachment_image_tag @album.creater.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %></td>
+                <td class="align-middle">
+                  <%= @album.creater.listener.name%>
+                    <% if @album.creater.listener.listener_type == 1  %>
+                    <i class="fa fa-circle" style="color: gold;"></i>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+          </div>
+          <%# アルバム名 %>
+          <h4 class="card-text text-center mt-2"><%= @album.name  %></h4>
+          <%# アルバム説明 %>
+          <p class="card-text text-center mt-2"><%= @album.caption %></p>
+          <div class="text-center mt-5">
+            <%= link_to artist_album_path(@album) do %>
+              <%= attachment_image_tag @album,:album_image,size:"200x200"%>
+            <% end %>
+          </div>
+           <!--linkpreviewの部分-->
+          <div class="card mb-3 my-5">
+            <div class="row">
+              <div class="col-md-4 my-auto">
+                <a id="link" href="<%= @album.album_url %>" target="_blank">
+                  <img id="link_img" class="card-img" src="">
+                </a>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <a id="link" class="link-none" href="<%= @album.album_url %>" target="_blank">
+                    <h3 id="linktitle" class="card-title"></h3>
+                    <p id="linkcaption"></p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%# 編集・削除 %>
+          <div class="mt-4 text-right">
+            <% if @album.creater.listener == current_listener %>
+            <button type="button" class="btn "> <%= link_to edit_artist_album_path(@album),class: "text-info" do%><i class="fas fa-edit">Edit</i><% end %></button>
+            <button type="button" class="btn "><%= link_to artist_album_path(@album),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%><i class="fas fa-trash-alt">Delete</i><% end %></button>
+            <% end %>
+          </div>
+          <div class="mt-4 text-center" >
+            <%# 投稿日 %>
+            <div class="text-right"><%= time_ago_in_words(@album.created_at) %></div>
+          </div>
         </div>
       </div>
-      <div class="mt-3">
-        <strong><%= @album.caption %></strong>
-      </div>
-      <div class="mt-3">
-        <p><%= @album.genre %><p>
-      </div>
-      <div>
-        <%= link_to  artist_creater_path(@album.creater) do %>
-          <div class="d-inline-block">
-            <%= attachment_image_tag @album.creater.listener,:profile_image ,size:"50x50", fallback: "no_image.jpg",class: "mt-3 rounded-circle" %>
-          </div>
-          <div class="d-inline-block">
-            <% if @album.creater.listener.listener_type == 1  %>
-              <i class="fa fa-circle" style="color: gold;"></i>
-            <% end %>
-            <%= @album.creater.listener.name %>
-          </div>
-        <% end %>
-      </div>
-      <div class="text-right mt-3">
-        <% if @album.creater.listener == current_listener  %>
-        <button class="btn">
-          <%= link_to edit_artist_album_path(@album),class: "text-info" do%><i class="fas fa-user-edit">編集</i><% end %>
-        </button>
-        <button class="btn">
-          <%= link_to artist_album_path(@album),method: :delete, class: "text-danger" do%><i class="fas fa-user-edit">削除</i><% end %>
-        </button>
-        <% end %>
-      </div>
-    </div>
+    <script>
+    　const data = {
+      key:'3ce2027b63ce4b30403332b3eb475fbe',
+      q: "<%= @album.album_url%>"
+      }
+      //プレビュー表示用の関数
+      const createIMG = json => {
+        document.querySelector('#link_img').src = json.image;
+        document.querySelector('#linktitle').textContent = json.title;
+        document.querySelector('#linkcaption').textContent = json.description;
+        document.querySelector('#link').href = json.url;
+      }
+      //LinkPreviewを利用した通信処理
+      fetch('https://api.linkpreview.net', {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(data),
+      })
+      .then(data => data.json())
+      .then(json => createIMG(json));
+    </script>
   </div>
-  <h1 class="text-center my-5" ><i class="fas fa-headphones-alt">楽曲一覧</i></h1>
-  <div>
-    <%= link_to "New music in this album", new_artist_album_album_music_path(@album) %>
+  <div class="col-3">
+
   </div>
-  <%= render "artist/album_musics/index", album_musics: @album_musics %>
 </div>
-
-
-
-
-
-
+<div class="row mt-5">
+  <div class="col-6 offset-3 text-center mt-5">
+    <% if can? :read, current_listener  %>
+      <% if @album.creater.listener == current_listener %>
+        <%= link_to new_artist_album_album_music_path(@album),class:"link" do %>
+          <div class="btn btn-outline-main"><i class="far fa-plus-square"></i> Music</div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+  <h3 class="text-center my-5" ><i class="fas fa-music"></i> Musics in this Album</h3>
+    <%= render "artist/album_musics/index", album_musics: @album_musics %>
 
 
