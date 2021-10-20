@@ -1,5 +1,5 @@
 <div class="col-8 mt-5 offset-2">
-  <h3><i class="fas fa-comments ">コメント</i></h3>
+  <h3><i class="fas fa-comments "></i> Comment</h3>
   <div class="table-responsive">
   <table class="table table-hover mt-3" >
     <tbody>
@@ -34,12 +34,12 @@
         <td class="">
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_artist_album_album_music_music_comment_path(music_comment.album,music_comment.album_music,music_comment),method: :get, class: "text-info" do %>
-              <i class="fas fa-edit">編集</i>
+              <i class="fas fa-edit">Edit</i>
             <% end %>
           </div>
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to artist_album_album_music_music_comment_path(music_comment.album,music_comment.album_music,music_comment),method: :delete,'data-confirm' => "Do you really want to delete?", class: "text-danger",remote: true do %>
-              <i class="fas fa-trash-alt">削除</i>
+              <i class="fas fa-trash-alt">Delete</i>
             <% end %>
           </div>
           </td>
@@ -58,7 +58,7 @@
     </div>
     <%# 星ランク %>
     <div id="post_star" class="mb-2 mt-3">
-      <%= f.label :post_rate,'評価' %>
+      <%= f.label :post_rate,'Rating' %>
       <%= f.hidden_field :rate,id: :review_star %>
     </div>
     <script>
@@ -71,7 +71,7 @@
        });
     </script>
     <%# 送信ボタン %>
-    <button class="btn btn-info mt-4" style="width:100px">投稿
+    <button class="btn btn-main mt-4" style="width:100px">Post
       <%= f.hidden_field :listener_id, :value => current_listener.id %>
       <% f.submit %>
     </button>

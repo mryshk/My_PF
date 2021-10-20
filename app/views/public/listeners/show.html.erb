@@ -21,6 +21,13 @@
         <%= link_to listener_followings_path(@listener),class: "text-dark" do %><i class="fas fa-user-check fa-lg mr-3">Follow:&ensp;<%= @listener.followings.count %><% end %></i>
         <%= link_to listener_followers_path(@listener),class: "text-dark" do %><i class="fas fa-user-friends fa-lg ">Follower:&ensp;<%= @listener.followers.count %><% end %></i>
       </div>
+      <!--クリエイター詳細へ-->
+      <div>
+        <%= link_to  artist_creater_path(@listener.creater) do%></i>
+          <div class="btn btn-outline-main btn-block"><i class="far fa-user-circle"></i> Creater</div>
+        <% end %>
+      </div>
+      <!--フォロー・アンフォロー-->
       <div class="mt-3 text-center">
       <% unless current_listener.id == @listener.id  %>
         <button class="btn btn-outline-main btn-block">
@@ -32,18 +39,15 @@
         </button>
       <% end %>
       </div>
+      <!--チャットへ-->
       <div class="mt-4">
         <% if (current_listener.followings.exists? @listener.id)  && (@listener.followings.exists? current_listener.id )%>
           <%= link_to chat_path(@listener) do  %>
-            <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> Chat</i></div>
+            <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"></i> Chat</div>
           <% end %>
         <% end %>
       </div>
-      <div>
-        <% if @listener.listener_type == 1  %>
-          <i class="fa fa-circle" style="color: gold;"><%= link_to "creater", artist_creater_path(@listener.creater)%></i>
-        <% end %>
-      </div>
+      <!--編集画面へ-->
       <div class="text-right mt-3">
         <% if @listener == current_listener  %>
         <button class="btn">
