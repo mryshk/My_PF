@@ -1,16 +1,12 @@
 
-<div class="row mt-5" >
   <% albums.each do |album| %>
-  <div class="col-lg-5  offset-lg-1  col-8 offset-2" style="margin-top: 150px; " >
-    <div class="card mt-4 shadow-lg h-100" >
+    <div class="card mt-4 shadow-sm " >
       <div>
         <%= link_to artist_album_path(album) do %>
           <%= attachment_image_tag album, :album_image,:fill,300,300,size: "300x300", class: "card-img-top"%>
         <% end %>
       </div>
       <div class="card-body">
-        <!--アルバム名-->
-         <h3 class="card-text text-center"><%= album.name  %></h4>
         <%# 名前と画像 %>
         <div class="card-text" >
           <%= link_to artist_creater_path(album.creater),class: "text-dark" do %>
@@ -25,17 +21,29 @@
           </div>
           <% end %>
         </div>
-        <!--詳細ページへ-->
-        <p class="card-text text-center"><%= link_to "show" ,artist_album_path(album), 'data-turbolinks': false %></p>
-        <%# 投稿日 %>
-        <div class="text-right mt-3"><%= time_ago_in_words(album.created_at) %></div>
+        <!--アルバム名-->
+        <h5 class="card-text text-center mt-2"><%= album.name  %></h5>
+        <!--アルバム画像-->
+        <div class="text-center mt-5">
+          <%= link_to artist_album_path(album)do %>
+            <%= attachment_image_tag album,:album_image ,size:"200x200" %>
+          <% end %>
+        </div>
+        <!--アルバム説明-->
+        <p class="card-text text-center mt-2"><%= album.caption  %></p>
+        <!--詳細ボタン-->
+        <div class="mt-4 text-center" >
+          <%# 詳細画面へ %>
+          <div class="d-inline mt-4" style="margin-right:80px;" >
+            <%= link_to artist_album_path(album), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
+          </div>
+          <%# 曲視聴 %>
+          <div class="d-inline mt-4" style="margin-right:80px;" >
+            <a class="card-title text-center" href="<%= album.album_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
+          </div>
+          <%# 投稿日 %>
+          <div class="text-right"><%= time_ago_in_words(album.created_at) %></div>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
-</div>
-<div class="row mt-5">
-    <div class="">
-      <%= paginate albums %>
-    </div>
-</div>
