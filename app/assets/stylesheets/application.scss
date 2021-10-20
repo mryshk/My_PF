@@ -67,6 +67,29 @@ body{
   transition-duration: 0.5s;
 }
 
+.btn-main{
+  background-color:$main_color;
+  color:#fff;
+}
+
+.btn-main:hover{
+  transform: scale(1.2);
+  transition-duration: 0.5s;
+  color:$sub2_color;
+}
+
+.btn-outline-main{
+  border:1px solid $main_color;
+  color:$main_color;
+  background-color:#fff;
+}
+
+.btn-outline-main:hover{
+  transform: scale(1.2);
+  transition-duration: 0.5s;
+  color:$sub2_color;
+}
+
 .navbar{
   background-color: rgb(063,163,203);
   height:80px;
