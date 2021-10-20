@@ -1,6 +1,6 @@
 class Artist::AlbumsController < ApplicationController
   # 権限確認（cancancan）
-  authorize_resource
+  authorize_resource only: [:new, :create,:edit,:update,:destroy]
   def new
     @album = Album.new
   end
@@ -38,8 +38,8 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def search
-    @search = Album.search(params[:genre]).page(params[:page]).reverse_order
-    @keyword = params[:genre]
+    @search = Album.where(genre_params).page(params[:page]).reverse_order
+    @keyword = params.permit(:genre)
     render "search"
   end
 
@@ -47,5 +47,9 @@ class Artist::AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:name, :caption, :album_image_id, :genre, :album_url)
+  end
+
+  def genre_params
+    params.permit(:genre)
   end
 end
