@@ -1,23 +1,76 @@
-<h3>クリエイター一覧</h3>
+<div class="container mt-4">
+  <h2 class="text-center" id="area-1" style="margin-top:100px;">Creaters</h2>
+  <div class="row"style="margin-top:80px;">
+    <div class="col-8 offset-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Introduction</th>
+          <th>Albums</th>
+          <th>Follow&Unfollow</th>
+          <th>Follow</th>
+          <th>Follower</th>
+          <th>Chat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @creaters.each do |creater|  %>
+        <tr>
+          <td>
+            <%= link_to artist_creater_path(creater.listener) do%>
+            <div>
+              <%= attachment_image_tag creater.listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
+            </div>
+            <div>
+              <i class="text-dark ml-2" style="font-size:14px;"><%= creater.listener.name %></i>
+            </div>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <p class="text-dark ml-2" style="font-size:14px;"><%= creater.listener.caption.truncate(20) %></p>
+
+          </td>
+          <td class="align-middle">
+            <i class="fas fa-listener-check fa-lg mt-3"><%= creater.albums.count %></i>
+          </td>
+          <td class="align-middle">
+            <% unless current_listener.id == creater.listener.id %>
+              <% if current_listener.followings.exists?(creater.listener.id) %>
+                <%= link_to listener_relationships_path(creater.listener.id), method: :delete ,class: "text-info" do %>
+                  <div class="btn btn-outline-main">Unfollow</div>
+                <% end %>
+              <% else %>
+                <%= link_to listener_relationships_path(creater.listener.id), method: :post,class: "text-info"  do %>
+                  <div class="btn btn-main">Follow</div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <%= link_to listener_followings_path(creater.listener),class:"text-dark"  do %>
+              <i class="fas fa-listener-check fa-lg mt-3"><%= creater.listener.followings.count %></i>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <%= link_to listener_followers_path(creater.listener),class:"text-dark"  do %>
+              <i class="fas fa-listener-friends fa-lg mt-3"><%= creater.listener.followers.count %></i>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <% if (current_listener.followers.include? creater.listener)  && (creater.listener.followers.include? current_listener )%>
+              <%= link_to chat_path(creater.listener) do  %>
+                <div class="btn btn-main">Chat</div>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th>説明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @creaters.each do |creater|  %>
-    <tr>
-      <td>
-        <%= link_to creater.listener.name, listener_path(creater.listener) %>
-      </td>
-      <td>
-        <%= creater.listener.caption %>
-      </td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+
