@@ -3,6 +3,11 @@ class Public::SearchsController < ApplicationController
     @model = params["model"]
     @keyword = params[:keyword]
     @records = search_for(@model, @keyword).page(params[:page]).reverse_order
+
+    # メニュー用
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
   end
 
   private
