@@ -9,73 +9,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" >
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
-
  <body　class="d-flex flex-column vh-100">
  <div id="all">
-  <header id="header" class=" sticky-top" >
-    <nav class="navbar navbar-expand navbar-light justify-content-center" >
-      <div class="container " style="margin-right:0px; margin-left:0px; margin-bottom:0px;" >
-        <div id="hm-icon" style="margin-bottom:40px;">
-          <a class="menu-trigger" href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-          </a>
-        </div>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-          <ul class="navbar-nav ">
-            <% if listener_signed_in? %>
-            <a class="navbar-brand mr-auto" href="/"><%= image_tag asset_path("logo.jpg") ,size: '120x100',id: "logo"%></a>
-            <li class="nav-item" >
-              <%= link_to "#",class: 'nav-link ',id: "search" do %><i class="fas fa-search-plus"></i> Search<% end %>
-            </li>
-            <li class="nav-item" >
-              <%= link_to new_post_path,class: 'nav-link' do %><i class="fas fa-plus-circle "> </i> New Post<% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to home_path,class: 'nav-link ' do %><i class="fas fa-home"></i> Home<% end %>
-            </li>
-            <li class="nav-item ">
-              <%= link_to listener_path(current_listener),class: 'nav-link ' do %><i class="far fa-user"></i> Mypage<% end %>
-            </li>
-            <!--チェックしていない通知があればアイコンが黄色くなる。-->
-            <% if unchecked_notifications.any? %>
-              <li class="nav-item">
-                <%= link_to notifications_path,class: 'nav-link' do %><i class="fas fa-bell" style="color: rgb(255,243,063)"></i> Notifications<% end %>
-              </li>
-            <!--全てチェックしていれば-->
-            <% else %>
-              <li class="nav-item">
-                <%= link_to notifications_path,class: 'nav-link' do %><i class="far fa-bell"></i> Notifications</i><% end %>
-              </li>
-            <% end %>
-
-            <li class="nav-item">
-              <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link ' do %><i class="fas fa-sign-out-alt"></i>Logout<% end %>
-            </li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to new_listener_registration_path,class: 'nav-link ' do %><i class="fas fa-listener-plus"></i>SignUp<% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_listener_session_path,class: 'nav-link ' do %><i class="fas fa-sign-in-alt"></i>Login<% end %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <% unless current_page?(root_path) %>
+    <%= render "layouts/header" %>
+  <% end %>
   <main>
     <div class=" py-5 " id="search-form" >
       <div class="search-box">
         <div class="d-inline">
           <%= form_with url: search_path, method: :get,  local: true do |f|%>
             <%= f.text_field :keyword, placeholder: "Search",class: "form-control " ,id: "form-control"%>
-            <%= f.select 'model', options_for_select({ "リスナー・クリエイター" => "listener", "投稿" => "post", "アルバム" => "album" }),class: "form-select " %>
+        </div>
+        <div class="d-inline">
+          <%= f.select 'model', options_for_select({ "ユーザー" => "listener", "投稿" => "post", "アルバム" => "album" }),class: "form-select " %>
         </div>
         <button class="btn">
-          <i class="fas fa-search fa-lg "></i>
+          <i class="fas fa-search fa-lg text-white"></i>
           <% f.submit %>
         </button>
           <% end %>
@@ -124,13 +74,6 @@
       <%= yield %>
   </main>
 
-   <footer id="footer">
-    <a class="mr-4 mb-5" href="#" id="page-top">TOP</a>
-    <div class="row mb-2 pt-2" style="background-color:#e3f2fd; height: 40px">
-      <div class="mx-auto">
-        <i>Copyright © 2021 MY Inc. All rights reserved.</i>
-      </div>
-    </div>
-   </footer>
+  <%= render "layouts/footer" %>
 </div>
 </body>
