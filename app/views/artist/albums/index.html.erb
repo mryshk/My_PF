@@ -1,12 +1,28 @@
-<h3>アルバム一覧</h3>
-        <div class="d-inline">
-            <%=  form_with url: search_artist_albums_path ,method: :get, local: true do |f| %>
-          <div>
-            <%= f.select :genre, Album.genres.keys.to_a %>
-          </div>
-          <div>
-            <%= f.submit %>
-          </div>
-            <% end %>
-        </div>
-<%= render "artist/albums/index", albums: @albums %>
+
+<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-headphones"></i>Albums</h3>
+<div class="row mt-4 ">
+  <div class="col-3 ml-5 ">
+    <%= render "layouts/menu", mygroups: @mygroups %>
+  </div>
+  <div class="col-5 ml-3 mt-5">
+    <%= render "artist/albums/index", albums: @albums %>
+  </div>
+  <div class="col mr-5">
+
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-6 offset-3 text-center mt-5">
+    <% if can? :read, current_listener  %>
+      <%= link_to new_artist_album_path ,class:"link" do %>
+        <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Album</i></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row mt-5">
+    <div class="">
+      <%= paginate @albums %>
+    </div>
+</div>
+
