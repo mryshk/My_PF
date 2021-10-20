@@ -2,7 +2,7 @@
   <!-- Contenedor -->
   <ul id="accordion" class="accordion">
     <li>
-      <div class="link"><i class="fas fa-tags"></i>Category<i class="fa fa-chevron-down"></i></div>
+      <div class="link"><i class="fas fa-tags"></i>Post Category<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
         <li><%= link_to "Rock",search_posts_path(:post_genre => 'ロック') %></li>
         <li><%= link_to "JPOP",search_posts_path(:post_genre => 'JPOP') %></li>
@@ -12,6 +12,19 @@
         <li><%= link_to "PANK",search_posts_path(:post_genre => 'パンク') %></li>
         <li><%= link_to "レゲエ",search_posts_path(:post_genre => 'レゲエ') %></li>
         <li><%= link_to "HIPHOP",search_posts_path(:post_genre => 'HIPHOP') %></li>
+      </ul>
+    </li>
+    <li>
+      <div class="link"><i class="fas fa-tags"></i>Album Category<i class="fa fa-chevron-down"></i></div>
+      <ul class="submenu">
+        <li><%= link_to "Rock",search_artist_albums_path(:genre => 'ロック') %></li>
+        <li><%= link_to "JPOP",search_artist_albums_path(:genre => 'JPOP') %></li>
+        <li><%= link_to "IDOL",search_artist_albums_path(:genre => 'アイドル') %></li>
+        <li><%= link_to "EDM",search_artist_albums_path(:genre => 'EDM') %></li>
+        <li><%= link_to "KPOP",search_artist_albums_path(:genre => 'KPOP') %></li>
+        <li><%= link_to "PANK",search_artist_albums_path(:genre => 'パンク') %></li>
+        <li><%= link_to "レゲエ",search_artist_albums_path(:genre => 'レゲエ') %></li>
+        <li><%= link_to "HIPHOP",search_artist_albums_path(:genre => 'HIPHOP') %></li>
       </ul>
     </li>
     <li class="default open">
@@ -32,10 +45,10 @@
     </li>
     <li><div class="link"><i class="fa fa-globe"></i>Music cite<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><a href="#">Youtube</a></li>
-        <li><a href="#">Spotify</a></li>
-        <li><a href="#">AppleMusic</a></li>
-        <li><a href="#">SoundCloud</a></li>
+        <li><a href="https://www.youtube.com" target="_blank">Youtube</a></li>
+        <li><a href="https://open.spotify.com" target="_blank">Spotify</a></li>
+        <li><a href="https://www.apple.com/jp/apple-music/" target="_blank">AppleMusic</a></li>
+        <li><a href="https://soundcloud.com" target="_blank">SoundCloud</a></li>
       </ul>
     </li>
   </ul>
