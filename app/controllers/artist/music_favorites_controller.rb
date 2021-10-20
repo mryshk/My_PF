@@ -10,9 +10,9 @@ class Artist::MusicFavoritesController < ApplicationController
   end
 
   def index
-   @album = Album.find(params[:album_id])
-   @album_music = AlbumMusic.find(params[:album_music_id])
-   @favorites = MusicFavorite.where(album_id: @album.id,album_music_id: @album_music.id)
+    @album = Album.find(params[:album_id])
+    @album_music = AlbumMusic.find(params[:album_music_id])
+    @favorites = MusicFavorite.where(album_id: @album.id, album_music_id: @album_music.id)
   end
 
   def destroy
@@ -23,5 +23,4 @@ class Artist::MusicFavoritesController < ApplicationController
 
     @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
   end
-
 end

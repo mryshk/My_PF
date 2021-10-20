@@ -7,13 +7,11 @@ class Public::GroupChatsController < ApplicationController
     @chat.save
   end
 
-
   def index
     @group = Group.find(params[:group_id])
     @chats = @group.group_chats
     @chat = GroupChat.new(group_id: @group.id)
   end
-
 
   def destroy
   end
@@ -23,5 +21,4 @@ class Public::GroupChatsController < ApplicationController
   def chat_params
     params.require(:group_chat).permit(:message, :group_id)
   end
-
 end

@@ -1,5 +1,4 @@
 class Artist::CreatersController < ApplicationController
-
   def new
     @creater = Creater.new
   end
@@ -27,5 +26,4 @@ class Artist::CreatersController < ApplicationController
   def creater_params
     params.require(:creater).permit(:listener_id)
   end
-
 end

@@ -6,22 +6,21 @@ class Artist::AlbumMusicsController < ApplicationController
   end
 
   def create
-     @album = Album.find_by(id: params[:album_id])
-     @album_music = AlbumMusic.new(album_music_params)
-     @album_music.album_id = @album.id
-     @album_music.creater_id = current_listener.creater.id
-     @album_music.save
-     redirect_to artist_album_album_music_path(@album,@album_music)
+    @album = Album.find_by(id: params[:album_id])
+    @album_music = AlbumMusic.new(album_music_params)
+    @album_music.album_id = @album.id
+    @album_music.creater_id = current_listener.creater.id
+    @album_music.save
+    redirect_to artist_album_album_music_path(@album, @album_music)
   end
 
   def show
-     @album_music = AlbumMusic.find_by(id: params[:id])
-     @album = Album.find_by(id: params[:album_id])
-     @music_comment = MusicComment.new
-     @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id).all
-     @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
+    @album_music = AlbumMusic.find_by(id: params[:id])
+    @album = Album.find_by(id: params[:album_id])
+    @music_comment = MusicComment.new
+    @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id).all
+    @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
   end
-
 
   def edit
     @album = Album.find_by(id: params[:album_id])
@@ -32,7 +31,7 @@ class Artist::AlbumMusicsController < ApplicationController
     @album = Album.find_by(id: params[:album_id])
     @album_music = AlbumMusic.find_by(album_id: params[:album_id], id: params[:id])
     @album_music.update(album_music_params)
-    redirect_to artist_album_album_music_path(@album,@album_music)
+    redirect_to artist_album_album_music_path(@album, @album_music)
   end
 
   def destroy
@@ -41,12 +40,9 @@ class Artist::AlbumMusicsController < ApplicationController
     redirect_to artist_album_album_musics_path
   end
 
-
   private
 
   def album_music_params
     params.require(:album_music).permit(:name, :caption, :music_url)
   end
-
-
 end

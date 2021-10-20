@@ -4,7 +4,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(listener)
-
     listener ||= Listener.new
     if listener.listener_type == 0
       can :read, Album

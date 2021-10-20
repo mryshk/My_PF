@@ -6,18 +6,17 @@ module Public::NotificationsHelper
     @active_comment = notification.post_comment_id
 
     case notification.action
-      when "follow" then
-        tag.a(notification.active.name, href: listener_path(@active), style: "font-weight: bold;")+"があなたをフォローしました。"
-      when "like" then
-        tag.a(notification.active.name, href: listener_path(@active), style: "font-weight: bold;")+"が"+tag.a('あなた投稿を', href:post_path(notification.post_id), style: "font-weight: bold;")+"いいねしました。"
-      when "comment" then
-        @comment = PostComment.find_by(id: @active_comment)&.comment
-        tag.a(@active.name, href:listener_path(@active), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:post_path(notification.post_id), style:"font-weight: bold;")+"にコメントしました"
+    when "follow" then
+      tag.a(notification.active.name, href: listener_path(@active), style: "font-weight: bold;") + "があなたをフォローしました。"
+    when "like" then
+      tag.a(notification.active.name, href: listener_path(@active), style: "font-weight: bold;") + "が" + tag.a('あなた投稿を', href: post_path(notification.post_id), style: "font-weight: bold;") + "いいねしました。"
+    when "comment" then
+      @comment = PostComment.find_by(id: @active_comment)&.comment
+      tag.a(@active.name, href: listener_path(@active), style: "font-weight: bold;") + "が" + tag.a('あなたの投稿', href: post_path(notification.post_id), style: "font-weight: bold;") + "にコメントしました"
     end
   end
 
   def unchecked_notifications
     @notifications = current_listener.passive_notifications.where(checked: false)
   end
-
 end

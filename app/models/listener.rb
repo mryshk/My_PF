@@ -2,16 +2,17 @@ class Listener < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable,:validatable,
+         :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2, :twitter, :facebook]
 
   def self.find_or_create_for_oauth(auth)
     find_or_create_by!(email: auth.info.email) do |listener|
-      listener.provider = auth.provider,
-      listener.uid = auth.uid,
-      listener.name = auth.info.name,
-      listener.email = auth.info.email,
-      listener.password = Devise.friendly_token[0, 20]
+      listener.provider =
+        auth.provider,
+        listener.uid = auth.uid,
+        listener.name = auth.info.name,
+        listener.email = auth.info.email,
+        listener.password = Devise.friendly_token[0, 20]
     end
   end
 
@@ -72,8 +73,8 @@ class Listener < ApplicationRecord
       notification = current_listener.active_notifications.new(
         passive_id: id,
         action: 'follow'
-        )
-        notification.save if notification.valid?
+      )
+      notification.save if notification.valid?
     end
   end
 end

@@ -7,8 +7,8 @@ class Public::PostFavoritesController < ApplicationController
   end
 
   def index
-   @post = Post.find(params[:post_id])
-   @favorites = PostFavorite.where(post_id: @post.id)
+    @post = Post.find(params[:post_id])
+    @favorites = PostFavorite.where(post_id: @post.id)
   end
 
   def destroy

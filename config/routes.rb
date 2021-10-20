@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
@@ -62,11 +61,11 @@ Rails.application.routes.draw do
     end
 
     # お問い合わせ機能
-    resources :inquiry, only: [:new,:create] do
+    resources :inquiry, only: [:new, :create] do
       collection do
-          post :confirm
-          post :back
-          get :finish
+        post :confirm
+        post :back
+        get :finish
       end
     end
 
@@ -76,16 +75,12 @@ Rails.application.routes.draw do
       resources :album_musics, only: [:index, :show] do
       end
     end
-
   end # リスナー側moduleのエンドポイント
-
-
 
   # 以下クリエイター側ルート
   # URL・コントローラー指定共にartist記述あり。（namespace）
   namespace :artist do # アーティスト（クリエイター側）
-
-    resources :creaters, only: [:new,:create, :show, :edit, :update, :index]
+    resources :creaters, only: [:new, :create, :show, :edit, :update, :index]
     # アルバム投稿（クリエイター側のみ可）
     resources :albums do
       collection do
@@ -93,7 +88,7 @@ Rails.application.routes.draw do
       end
       # 楽曲投稿（クリエイター側のみ可)
       resources :album_musics do
-      # コメント一覧確認画面（クリエイター側のみ可）
+        # コメント一覧確認画面（クリエイター側のみ可）
         resources :music_comments
         resources :music_favorites, only: [:create, :destroy, :index, :show]
       end

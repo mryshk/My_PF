@@ -14,7 +14,7 @@ class Public::InquiryController < ApplicationController
 
   def back
     @inquiry = Inquiry.new(inquiry_params)
-     render 'new'
+    render 'new'
   end
 
   def create
@@ -28,10 +28,10 @@ class Public::InquiryController < ApplicationController
   end
 
   def finish
-
   end
 
   private
+
   def inquiry_params
     params.require(:inquiry).permit(:name, :email, :message)
   end

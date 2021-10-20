@@ -6,12 +6,12 @@ class Artist::MusicCommentsController < ApplicationController
   end
 
   def create
-     @music_comment = MusicComment.new(music_comment_params)
-     @album = Album.find_by(id: params[:album_id])
-     @album_music = AlbumMusic.find_by(id: params[:album_music_id])
-     @music_comment.album_id = @album.id
-     @music_comment.album_music_id = @album_music.id
-     @music_comment.save!
+    @music_comment = MusicComment.new(music_comment_params)
+    @album = Album.find_by(id: params[:album_id])
+    @album_music = AlbumMusic.find_by(id: params[:album_music_id])
+    @music_comment.album_id = @album.id
+    @music_comment.album_music_id = @album_music.id
+    @music_comment.save!
     # create.js用
     @music_comments = @album_music.music_comments
     @music_comment_n = MusicComment.new
@@ -47,5 +47,4 @@ class Artist::MusicCommentsController < ApplicationController
   def music_comment_params
     params.require(:music_comment).permit(:listener_id, :album_id, :album_music_id, :comment, :rate)
   end
-
 end
