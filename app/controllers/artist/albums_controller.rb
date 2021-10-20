@@ -14,7 +14,11 @@ class Artist::AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    @album_musics = AlbumMusic.where(album_id: params[:id]).page(params[:page])
+    @album_musics = AlbumMusic.where(album_id: params[:id]).all
+    # メニュー用
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def index
@@ -45,13 +49,18 @@ class Artist::AlbumsController < ApplicationController
   def search
     @search = Album.where(genre_params).page(params[:page]).reverse_order
     @keyword = params.permit(:genre)
+
+    # メニュー用
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
     render "search"
   end
 
   private
 
   def album_params
-    params.require(:album).permit(:name, :caption, :album_image_id, :genre, :album_url)
+    params.require(:album).permit(:name, :caption, :album_image, :genre, :album_url)
   end
 
   def genre_params
