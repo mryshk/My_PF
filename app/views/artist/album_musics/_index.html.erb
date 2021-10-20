@@ -1,27 +1,54 @@
 
-<div class="row mt-5" >
-  <% album_musics.each do |music| %>
-  <div class="col-lg-5  offset-lg-1  col-8 offset-2" style="margin-top: 150px; " >
-    <div class="card shadow-lg mb-3 mx-auto mt-5" style="max-width: 800px; height: 400px;">
-      <div class="row no-gutters">
-        <div class="col-md-4 my-auto">
-            <img class="card-img" id="link_img_<%= music.id %>" style="width:150px; height:100px;" src=""/>
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h3 class="card-title"><%= music.name  %></h3>
-                <p><%= music.caption  %></p>
-                <a id="link_<%= music.id %>" href="<%= music.music_url%>" target="_blank"><h5 id="linkpreview_<%= music.id %>"></h5></a>
-            </div>
-            <p class="card-text text-center"><%= link_to "show" ,artist_album_album_music_path(music.album_id, music), 'data-turbolinks': false %></p>
-         　　<%# 平均ランク 部分　%>
-         　　　<% @average_rate = music.music_comments.average(:rate) %>
-          　　　<% unless @average_rate.nil? %>
-            　　<h6 class="text-center mt-3"><i><%= @average_rate.round(2) %></i></h6>
-          　　　<% else %>
-                <h6 class="text-center mt-3"><i>0</i></h6>
-              <% end %>
+  <div class="row">
+    <% if @album_musics.exists?  %>
+    <div class="col-8 offset-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Music name</th>
+          <th>caption</th>
+          <th>Music</th>
+          <th>Likes</th>
+          <th>Comments</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% i = 0  %>
+        <% album_musics.each do |music| %>
+        <tr>
+          <td class="align-middle">
+            <% i += 1  %>
+            <%= i %>
+          </td>
+          <td class="align-middle">
+            <%= link_to artist_album_album_music_path(music.album_id,music),class:"link", 'data-turbolinks': false do%>
+            <p style="font-size:18px;"><%= music.name  %></p>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <p><%= music.caption.truncate(15)  %></p>
+          </td>
+          <td class="align-middle">
+            <a href="<%= music.music_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"></i></a>
+          </td>
+          </td>
+          <td class="align-middle">
+            <i class="fas fa-star fa-lg" style="color:rgb(255,243,063);"></i> <%= music.music_favorites.count %>
+          </td>
+          <td class="align-middle">
+            <i class="fas fa-comments main-color"></i> <%= music.music_comments.count %>
+          </td>
+          <td class="align-middle">
+          <%# 平均ランク 部分　%>
+          <% @average_rate = music.music_comments.average(:rate) %>
             <div id="music_rate_<%= music.id  %>" data-score="<%= @average_rate %>" class="text-center " style="margin-top:10px;"></div>
+          <% unless @average_rate.nil? %>
+            <h6 class="text-center mt-3"><i><%= @average_rate.round(2) %></i></h6>
+          <% else %>
+            <h6 class="text-center mt-3"><i>0</i></h6>
+          <% end %>
             <script>
               $('#music_rate_<%= music.id %>').empty();
               $('#music_rate_<%= music.id %>').raty({
@@ -34,35 +61,14 @@
               }
               });
             </script>
-        </div>
-      </div>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
     </div>
-    <script>
-    const data_<%= music.id %> = {
-      key:'3ce2027b63ce4b30403332b3eb475fbe',
-      q: "<%= music.music_url%>"
-    }
-    //プレビュー表示用の関数
-    const createIMG_<%= music.id %> = json => {
-      document.querySelector('#link_img_<%= music.id %>').src = json.image;
-      document.querySelector('#linkpreview_<%= music.id %>').textContent = json.title;
-      // document.querySelector('#linkcaption_<%= music.id %>').textContent = json.description;
-      document.querySelector('#link_<%= music.id %>').href = json.url;
-    }
-    //LinkPreviewを利用した通信処理
-    fetch('https://api.linkpreview.net', {
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify(data_<%= music.id %>),
-    })
-    .then(data_<%= music.id %> => data_<%= music.id %>.json())
-    .then(json => createIMG_<%= music.id %>(json));
-  </script>
   </div>
-  <% end %>
+<% else %>
+<div class="text-center">
+  <h1><i class="fas fa-listeners-slash"> No Music</h1></i>
 </div>
-<div class="row mt-5">
-    <div class="">
-      <%= paginate album_musics %>
-    </div>
-</div>
+<% end %>
