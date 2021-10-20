@@ -1,46 +1,6 @@
 <div class="row  mt-5" >
   <div class="col ml-5">
-  <h4 class="text-center">Menu</h4>
-  <!-- Contenedor -->
-  <ul id="accordion" class="accordion">
-    <li>
-      <div class="link"><i class="fas fa-tags"></i>Category<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
-        <li><%= link_to "Rock",search_posts_path(:post_genre => 'ロック') %></li>
-        <li><%= link_to "JPOP",search_posts_path(:post_genre => 'JPOP') %></li>
-        <li><%= link_to "IDOL",search_posts_path(:post_genre => 'アイドル') %></li>
-        <li><%= link_to "EDM",search_posts_path(:post_genre => 'EDM') %></li>
-        <li><%= link_to "KPOP",search_posts_path(:post_genre => 'KPOP') %></li>
-        <li><%= link_to "PANk",search_posts_path(:post_genre => 'パンク') %></li>
-        <li><%= link_to "レゲエ",search_posts_path(:post_genre => 'レゲエ') %></li>
-        <li><%= link_to "HIPHOP",search_posts_path(:post_genre => 'HIPHOP') %></li>
-      </ul>
-    </li>
-    <li class="default open">
-      <div class="link"><i class="fas fa-sort"></i>Sort<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
-        <li><%= link_to "投稿が早い順" ,order_posts_path(:keyword => 'new') %></a></li>
-        <li><%= link_to "投稿が古い順" ,order_posts_path(:keyword => 'old') %></a></li>
-        <li><%= link_to "いいねが多い順" ,order_posts_path(:keyword => 'likes') %></a></li>
-      </ul>
-    </li>
-    <li>
-      <div class="link"><i class="fas fa-user-friends"></i>My Group<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
-        <% @mygroups.each do |mygroup|%>
-        <li><%= link_to mygroup.name, group_path(mygroup) %></li>
-        <% end %>
-      </ul>
-    </li>
-    <li><div class="link"><i class="fa fa-globe"></i>Music cite<i class="fa fa-chevron-down"></i></div>
-      <ul class="submenu">
-        <li><a href="#">Youtube</a></li>
-        <li><a href="#">Spotify</a></li>
-        <li><a href="#">AppleMusic</a></li>
-        <li><a href="#">SoundCloud</a></li>
-      </ul>
-    </li>
-  </ul>
+    <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
   <div class="col-lg-5 ml-3" >
      <%= render "public/posts/index", posts: @posts %>
@@ -68,7 +28,7 @@
               <%= fav_rank.listener.name %>
             </div>
           </div>
-          <%= link_to post_path(fav_rank.id),class: "link-none" do %>
+          <%= link_to post_path(fav_rank.id),class: "link-none",'data-turbolinks': false do %>
             <p class=" align-self-center ml-3"style="font-size: 12px;" ><%= fav_rank.post_tweet.truncate(15) %></p>
           <% end %>
         </td>
@@ -102,7 +62,7 @@
               <%= imp_rank.listener.name %>
             </div>
           </div>
-          <%= link_to post_path(imp_rank.id),class: "link-none" do %>
+          <%= link_to post_path(imp_rank.id),class: "link-none",'data-turbolinks': false do %>
             <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.post_tweet.truncate(15) %> </p>
           <% end %>
         </td>
