@@ -1,7 +1,7 @@
 
 <div class="container mt-4">
-  <h2>Follower listeners</h2>
-  <div class="row">
+  <h2 class="text-center" id="area-1" style="margin-top:100px;" >Follower</h2>
+  <div class="row"style="margin-top:80px;">
     <% if @listeners.exists?  %>
     <div class="col-8 offset-2">
     <table class="table">
@@ -32,7 +32,7 @@
           <td>
             <% if (current_listener.followers.include? listener)  && (listener.followers.include? current_listener )%>
               <%= link_to chat_path(listener.id) do  %>
-                <div class="btn btn-info">Chat</div>
+                <div class="btn btn-main">Chat</div>
               <% end %>
             <% end %>
           </td>
