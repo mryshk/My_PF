@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 
 //= require jquery
+//= require lightbox
 //= require jquery.raty.js
 //= require jquery_ujs
 //= require turbolinks
