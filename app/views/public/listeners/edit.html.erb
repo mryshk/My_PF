@@ -1,34 +1,26 @@
-<div class="container">
-  <h2 class="mt-3"><i class="fas fa-user-edit">編集</i></h2>
-  <div class="row">
-    <div class="col-7 offset-2 mt-4">
+<h4 class = "text-center" style="margin-top: 100px;"><i class="fas fa-user-edit"></i> Edit</h4>
+<p class = "text-center mt-3 " style="font-size:12px;">下記のフォームへ入力してください。</p>
+  <div class="row form-row"style="margin-top: 100px; ">
+    <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
       <%= form_with model:@listener, local:true do |f| %>
-      <div>
-        <div class="mb-2 mt-3"><strong>ProfileImage</strong></div>
-        <%= f.attachment_field :profile_image  %>
-        <small class="form-text text-muted">プロフィール画像を選択してください。</small>
+      <div class="form-group mt-5">
+        <%= f.label :名前 ,class:"col-4 mr-2 form-label" ,style: "font-size:13px;"%>
+        <%= f.text_field :name, autofocus: true,class: "form-control-static col-3",placeholder:"Name"%>
       </div>
-      <div>
-        <div class="mb-2 mt-3" ><strong>名前</strong></div>
-        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name",class: "form-control"%>
-        <small class="form-text text-muted">名前を入力してください。</small>
+      <div class="form-group mt-3">
+        <%= f.label :メールアドレス,class:"col-4 mr-2 form-label",style: "font-size:13px;" %>
+        <%= f.email_field :email, autocomplete: "email" ,class: "form-control-static col-6",placeholder:"E-mail"%>
       </div>
-      　<!--メールアドレスを登録-->
-      <div class="field">
-        <div class="mb-2 mt-3" ><strong>メールアドレス</strong></div>
-        <%= f.email_field :email, autocomplete: "email" %>
-        <small class="form-text text-muted">メールアドレスを入力してください。</small>
+      <div class="form-group mt-3">
+        <%= f.label :自己紹介,class:"col-4 mr-2 form-label" ,style: "font-size:13px;"%>
+        <%= f.text_area :caption, rows: "2",placeholder: "Introduction",class: "form-control-static col-6"%>
       </div>
-      <div>
-        <div class="mb-2 mt-3"><strong>自己紹介</strong></div>
-        <%= f.text_area :caption, rows: "5",placeholder: "自己紹介",class: "form-control"%>
-        <small class="form-text text-muted">自己紹介を入力してください。</small>
-        <button class="btn btn-info mt-3">更新
-          <% f.submit %>
-        </button>
+      <div class="form-group mt-3" >
+        <%= f.label :プロフィール画像,class:"col-4 mr-2 mt-3 form-label",style: "font-size:13px;" %>
+        <%= f.attachment_field :profile_image ,class: "form-control-file col-6 d-inline-block" ,style: "padding:0px;"  %>
+        <button class="btn btn-main mt-5 d-block mx-auto">Update</button>
+        <% f.submit %>
       </div>
-
-      <% end %>
+      <%end %>
     </div>
   </div>
-</div>

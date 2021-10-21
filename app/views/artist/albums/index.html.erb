@@ -1,5 +1,5 @@
 
-<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-headphones"></i>Albums</h3>
+<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-compact-disc"></i> Albums</h3>
 <div class="row mt-4 ">
   <div class="col-3 ml-5 ">
     <%= render "layouts/menu", mygroups: @mygroups %>
@@ -9,12 +9,13 @@
   </div>
   <div class="col mr-5">
 
+  </div>
 </div>
 <div class="row mt-5">
   <div class="col-6 offset-3 text-center mt-5">
     <% if can? :read, current_listener  %>
       <%= link_to new_artist_album_path ,class:"link" do %>
-        <div class="btn btn-outline-main"><i class="far fa-envelope fa-lg"> New Album</i></div>
+        <div class="btn btn-outline-main"><i class="fas fa-compact-disc"></i> New Album</div>
       <% end %>
     <% end %>
   </div>

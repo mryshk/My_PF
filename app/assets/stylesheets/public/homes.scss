@@ -6,6 +6,7 @@
 $main_color: rgb(063,163,203);
 $sub_color: #ffffff;
 $sub2_color: rgb(255,243,063);
+$sub3_color: rgb(156,209,237);
 $font_size-vsm: 10px;
 $font_size-sm: 12px;
 $font_size-md: 16px;
@@ -34,6 +35,18 @@ $font_size-vlg: 30px;
 	border-bottom:3px solid $main_color;
 	padding-top:10px;
 	padding-bottom:10px;
+	width:200px;
+	text-align:center;
+	font-weight:400;
+}
+
+.text-main2{
+	border-top: 3px solid $sub3_color;
+	border-bottom:3px solid $sub3_color;
+	padding-top:5px;
+	padding-bottom:5px;
+	width:150px;
+	text-align:center;
 	font-weight:400;
 }
 
