@@ -1,16 +1,27 @@
-<h2>Forgot your password?</h2>
+<h4 class = "text-center" style="margin-top: 100px;">Forgot your password?</h4>
+<p class = "text-center mt-3 " style="font-size:12px;">下記のフォームへ入力してください。</p>
+  <div class="row form-row"style="margin-top: 100px; ">
+    <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "public/listeners/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "public/listeners/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="form-group mt-3">
+        <%= f.label :メールアドレス,class:"col-4 mr-2 form-label",style: "font-size:13px;" %>
+        <%= f.email_field :email, autocomplete: "email" ,class: "form-control-static col-6",placeholder:"E-mail"%>
+      </div>
+      <div class="actions text-center" >
+        <button class="btn btn-main">Send me</button>
+        <% f.submit %>
+      </div>
+      <%end %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="row"style="margin-top: 50px;">
+    <div class="col-6 offset-3">
+    <div class="text-center" style="margin-top: 50px;" >
+      <h6>新規登録へ</h6>
+        <!--ログインや各SNSログイン先へ遷移-->
+        <%= render "public/listeners/shared/links" %>
+    </div>
+    </div>
   </div>
-<% end %>
-
-<%= render "public/listeners/shared/links" %>
