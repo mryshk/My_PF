@@ -65,6 +65,24 @@ body{
   color:$sub2_color;
 }
 
+.link-none3{
+  text-decoration: none;
+  color:#fff;
+}
+
+.link-none3:hover{
+  color:$sub2_color;
+}
+
+.link-none4{
+  text-decoration: none;
+  color:#000;
+}
+
+.link-none4:hover{
+  color:$sub2_color;
+}
+
 .link{
   text-decoration: none;
   color:$main_color;
