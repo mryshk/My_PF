@@ -1,7 +1,7 @@
 <h3 class="text-center" style="margin-top:100px;" ><i class="fab fa-searchengin">Search Result</i></h3>
-<div class="row mt-4 ">
+<div class="row "style="margin-top:100px;">
   <% if @model == 'listener' %>
-    <%= render "public/listeners/index", creaters: @records %>
+    <%= render "public/listeners/index", listeners: @records %>
   <% elsif @model == 'post' %>
     <div class="col-3 ml-5 ">
       <%= render "layouts/menu", mygroups: @mygroups %>
