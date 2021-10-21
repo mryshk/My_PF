@@ -1,20 +1,24 @@
-<%=  form_with model: @inquiry ,url: confirm_inquiry_index_path, method: :post ,local: true do |f| %>
-  <div class="page-header">
-    <h3>お問い合わせ</h3>
+<h4 class = "text-center" style="margin-top: 100px;">Inquiry</h4>
+<p class = "text-center mt-3 " style="font-size:12px;">下記のフォームへ入力してください。</p>
+  <div class="row form-row"style="margin-top: 100px; ">
+    <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
+      <%=  form_with model: @inquiry ,url: confirm_inquiry_index_path, method: :post ,local: true do |f| %>
+      <div class="form-group mt-5">
+        <%= f.label :名前 ,class:"col-4 mr-2 form-label" ,style: "font-size:13px;"%>
+        <%= f.text_field :name, autofocus: true,class: "form-control-static col-3",placeholder:"Name"%>
+      </div>
+      <div class="form-group mt-3">
+        <%= f.label :メールアドレス,class:"col-4 mr-2 form-label",style: "font-size:13px;" %>
+        <%= f.email_field :email, autocomplete: "email" ,class: "form-control-static col-6",placeholder:"E-mail"%>
+      </div>
+      <div class="form-group mt-3">
+        <%= f.label :お問い合わせ　,class:"col-4 mr-2 form-label" ,style: "font-size:13px;"%>
+        <%= f.text_area :message,class: "form-control-static col-6",placeholder:"Message" %>
+      </div>
+      <div class="actions text-center" >
+        <button class="btn btn-main">Confirm</button>
+        <% f.submit %>
+      </div>
+      <%end %>
+    </div>
   </div>
-  <table class="table">
-    <tr>
-      <th>名前<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容</th>
-      <td><%= f.text_area :message %></td>
-    </tr>
-  </table>
-  <%= f.submit '確認' %>
-<% end %>
