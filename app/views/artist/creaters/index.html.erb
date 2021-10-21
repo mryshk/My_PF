@@ -18,7 +18,7 @@
         <% @creaters.each do |creater|  %>
         <tr>
           <td>
-            <%= link_to artist_creater_path(creater.listener) do%>
+            <%= link_to artist_creater_path(creater) do%>
             <div>
               <%= attachment_image_tag creater.listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
             </div>
