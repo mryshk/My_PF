@@ -55,6 +55,15 @@ body{
   color:$main_color;
 }
 
+.link-none2{
+  text-decoration: none;
+  color:$main_color;
+}
+
+.link-none2:hover{
+  color:$sub2_color;
+}
+
 .link{
   text-decoration: none;
   color:$main_color;
@@ -89,6 +98,15 @@ body{
   transform: scale(1.2);
   transition-duration: 0.5s;
   color:$sub2_color;
+}
+
+.form-row{
+  background:rgb(156,209,237);
+}
+
+.form-label{
+  border-bottom:1px solid $sub_color;
+
 }
 
 .navbar{
