@@ -45,19 +45,19 @@
   <div class="col-8 offset-2">
     <ul class="gallery" >
       <li>
-        <a href="assets/musical-background-2886886_1920.jpg" data-lightbox="gallery1">
-          <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
-        </a>
-      </li>
-      <li>
-        <a href="assets/musical-background-2886886_1920.jpg" data-lightbox="gallery1">
+        <%= link_to asset_path("images/musical-background-2886886_1920.jpg") ,'data-lightbox': "gallery1" do%>
          <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
-        </a>
+        <% end %>
       </li>
       <li>
-        <a href="assets/musical-background-2886886_1920.jpg" data-lightbox="gallery1">
-          <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
-        </a>
+        <%= link_to asset_path("images/musical-background-2886886_1920.jpg") ,'data-lightbox': "gallery1" do%>
+         <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to asset_path("images/musical-background-2886886_1920.jpg") ,'data-lightbox': "gallery1" do%>
+         <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
+        <% end %>
       </li>
     </ul>
   </div>
