@@ -3,6 +3,6 @@ class Notification < ApplicationRecord
 
   belongs_to :post, optional: true
   belongs_to :post_commment, optional: true
-  belongs_to :active, class_name: 'Listener', optional: true
-  belongs_to :passive, class_name: 'Listener', optional: true
+  belongs_to :active, class_name: 'Listener', optional: true ,dependent: :destroy
+  belongs_to :passive, class_name: 'Listener', optional: true ,dependent: :destroy
 end
