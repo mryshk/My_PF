@@ -1,4 +1,4 @@
-<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-compact-disc"></i>Album Detail</h3>
+<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-compact-disc"></i> Album Detail</h3>
 <div class="row mt-4 ">
   <div class="col-3 ml-5 ">
     <%= render "layouts/menu", mygroups: @mygroups %>
@@ -93,7 +93,7 @@
     <% if can? :read, current_listener  %>
       <% if @album.creater.listener == current_listener %>
         <%= link_to new_artist_album_album_music_path(@album),class:"link" do %>
-          <div class="btn btn-outline-main"><i class="far fa-plus-square"></i> Music</div>
+          <div class="btn btn-outline-main"><i class="fas fa-music"></i> Music</div>
         <% end %>
       <% end %>
     <% end %>
@@ -101,5 +101,13 @@
 </div>
   <h3 class="text-center my-5" ><i class="fas fa-music"></i> Musics in this Album</h3>
     <%= render "artist/album_musics/index", album_musics: @album_musics %>
+
+  <div class="row mt-5 " id="comment">
+    <div class="col-8 offset-2">
+      <%= link_to artist_albums_path do%>
+        <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Albumsへ</button>
+      <% end %>
+    </div>
+  </div>
 
 
