@@ -31,8 +31,8 @@ $font_size-vlg: 30px;
 
 
 .text-main{
-	border-top: 3px solid $main_color;
-	border-bottom:3px solid $main_color;
+	border-top: 3px solid $sub3_color;
+	border-bottom:3px solid $sub3_color;
 	padding-top:10px;
 	padding-bottom:10px;
 	width:200px;
@@ -167,3 +167,32 @@ h1 {
  	transform: scale(1.2);
   transition-duration: 0.5s;
  }
+
+
+ .content{
+    margin: 0 auto;
+    padding: 40px;
+}
+.modal{
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.modal__bg{
+
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+.modal__content{
+    background: #fefefe;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 35%;
+    color:#fefefe;
+}
