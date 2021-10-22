@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource) # リスナー側ログアウト後
-    about_path # About画面に遷移
+    root_path # About画面に遷移
   end
 
   protected
