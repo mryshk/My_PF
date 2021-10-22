@@ -292,7 +292,7 @@ h1 {
 		height:200px;
 		background-size: cover;
 		background-position: center;
-		background-image: image-url("/assets/topimage1.jpg");
+		background-image: image-url("topimage1.jpg");
 		}
 	.box_image2 {
 		margin-right:50px;
@@ -301,7 +301,7 @@ h1 {
 		height:200px;
 		background-size: cover;
 		background-position: center;
-		background-image: image-url("/assets/topimage2.jpg");
+		background-image: image-url("topimage2.jpg");
 		}
 	.box_image3 {
 		margin-right:50px;
@@ -310,13 +310,25 @@ h1 {
 		height:200px;
 		background-size: cover;
 		background-position: center;
-		background-image: image-url("/assets/topimage3.jpg");
+		background-image: image-url("topimage3.jpg");
 		}
 	.box_image4 {
-		background-image: image-url("/assets/topimage4.jpg")
+		margin-right:50px;
+		margin-top:50px;
+		width:200px;
+		height:200px;
+		background-size: cover;
+		background-position: center;
+		background-image: image-url("topimage4.jpg")
 		}
 	.box_image5 {
-	  background-image: image-url("/assets/topimage5.jpg");
+		margin-right:50px;
+		margin-top:50px;
+		width:200px;
+		height:200px;
+		background-size: cover;
+		background-position: center;
+	  background-image: image-url("topimage5.jpg");
 		}
 
 }
