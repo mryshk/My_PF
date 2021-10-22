@@ -16,10 +16,17 @@
       <div class="mt-3 text-center">
         <strong><%= @listener.caption %></strong>
       </div>
-
       <div class="my-4 text-center">
-        <%= link_to listener_followings_path(@listener),class: "text-dark" do %><i class="fas fa-user-check fa-lg mr-3">Follow:&ensp;<%= @listener.followings.count %><% end %></i>
-        <%= link_to listener_followers_path(@listener),class: "text-dark" do %><i class="fas fa-user-friends fa-lg ">Follower:&ensp;<%= @listener.followers.count %><% end %></i>
+        <%= link_to listener_followings_path(@listener),class: "text-dark" do %>
+          <i class="fas fa-user-check fa-lg mr-3 hover">
+            Follow:&ensp;<%= @listener.followings.count %>
+          </i>
+        <% end %>
+        <%= link_to listener_followers_path(@listener),class: "text-dark" do %>
+          <i class="fas fa-user-friends fa-lg hover">
+            Follower:&ensp;<%= @listener.followers.count %>
+          </i>
+         <% end %>
       </div>
       <!--クリエイター詳細へ-->
       <div>
