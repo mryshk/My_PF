@@ -257,3 +257,66 @@ h1 {
 .slick-dots .slick-active button{
 	background:#333;
 }
+
+#skipper{
+	height:500px;
+}
+
+.image1 {
+  background-image: image-url("/assets/topimage1.jpg");
+}
+.image2 {
+  background-image: image-url("/assets/topimage2.jpg");
+}
+.image3 {
+  background-image: image-url("/assets/topimage3.jpg");
+}
+.image4 {
+  background-image: image-url("/assets/topimage4.jpg");
+}
+.image5 {
+  background-image: image-url("/assets/topimage5.jpg");
+
+}
+
+.box_images{
+	width:100%;
+	height:500px;
+	display:flex;
+	flex-wrap: wrap;
+	justify-content:center;
+	.box_image1 {
+		margin-right:50px;
+		margin-top:50px;
+		width:200px;
+		height:200px;
+		background-size: cover;
+		background-position: center;
+		background-image: image-url("/assets/topimage1.jpg");
+		}
+	.box_image2 {
+		margin-right:50px;
+		margin-top:50px;
+		width:200px;
+		height:200px;
+		background-size: cover;
+		background-position: center;
+		background-image: image-url("/assets/topimage2.jpg");
+		}
+	.box_image3 {
+		margin-right:50px;
+		margin-top:50px;
+		width:200px;
+		height:200px;
+		background-size: cover;
+		background-position: center;
+		background-image: image-url("/assets/topimage3.jpg");
+		}
+	.box_image4 {
+		background-image: image-url("/assets/topimage4.jpg")
+		}
+	.box_image5 {
+	  background-image: image-url("/assets/topimage5.jpg");
+		}
+
+}
