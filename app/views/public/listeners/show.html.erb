@@ -24,7 +24,7 @@
       <!--クリエイター詳細へ-->
       <div>
         <% if @listener.listener_type == 1  %>
-          <%= link_to  artist_creater_path(@listener.creater) do%></i>
+          <%= link_to  artist_creater_path(@listener.creater),class:"link" do%></i>
             <div class="btn btn-outline-main btn-block"><i class="far fa-user-circle"></i> Creater</div>
           <% end %>
         <% end %>
@@ -44,7 +44,7 @@
       <!--チャットへ-->
       <div class="mt-4">
         <% if (current_listener.followings.exists? @listener.id)  && (@listener.followings.exists? current_listener.id )%>
-          <%= link_to chat_path(@listener) do  %>
+          <%= link_to chat_path(@listener) ,class:"link" do  %>
             <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"></i> Chat</div>
           <% end %>
         <% end %>
