@@ -196,86 +196,57 @@ h1 {
     width: 35%;
     color:#fefefe;
 }
-.slider{
-	width:94%;
-	margin:0 auto;
-	img{
-		width:60vw;
-		height:auto;
-	}
-}
 
-.slider .slick-slide{
-	transform: scale(0.8);
-	transition:all .5s;
-	opacity: 0.5;
-}
-.slider .slick-slide.slick-center{
-	transform: scale(1);
-	opacity: 1;
-}
+.box_text{
+	 background-image: image-url("topimage12.jpg");
 
-.slick-prev,
-.slick-next{
-	position:absolute;
-	top:42%;
-	cursor: pointer;
-	outline: none;
-	border-top:2px solid #666;
-	border-right:2px solid #666;
-	height:15px;
-	width:15px;
-}
-
-.slick-prev{
-	left: -1.5%;
-	transform: rotate(-135deg);
-}
-
-.slick-next{
-	right: -1.5%;
-	transform: rotate(45deg);
-}
-
-.slick-dots{
-	text-align:center;
-	margin:20px 0 0 0;
-	li{
-		display:inline-block;
-		margin:0 5px;
-	}
-	button{
-		color:transparent;
-		outline:none;
-		width:8px;
-		height:8px;
-		display:block;
-		border-radius:50%;
-		background: #ccc;
-	}
-}
-.slick-dots .slick-active button{
-	background:#333;
 }
 
 #skipper{
 	height:500px;
 }
 
+#top-card-img{
+  width:100%;
+  height:600px;
+   background-image: image-url("topimage13.jpg");
+
+}
+#top-card-img2{
+  width:100%;
+  height:600px;
+   background-image: image-url("topimage14.jpg");
+
+}
+#top-card-text{
+  position:absolute;
+  padding-right:20%;
+  padding-left:20%;
+  margin-top:5%;
+}
+#top-card-text p{
+  padding-top:100px;
+  height:350px;
+  font-size:17px;
+  color:#000;
+  background: rgba(255,255,255,0.4);
+  font-family: 'Anton', sans-serif;
+}
+
 .image1 {
-  background-image: image-url("topimage1.jpg");
+  background-image: image-url("topimage15.jpg");
 }
 .image2 {
-  background-image: image-url("topimage2.jpg");
+  background-image: image-url("topimage16.jpg");
 }
 .image3 {
-  background-image: image-url("topimage3.jpg");
+  background-image: image-url("topimage8.jpg");
 }
 .image4 {
-  background-image: image-url("topimage4.jpg");
+  background-image: image-url("topimage17.jpg");
 }
 .image5 {
-  background-image: image-url("topimage5.jpg");
+  background-image: image-url("topimage9.jpg");
 
 }
 
@@ -329,6 +300,15 @@ h1 {
 		background-size: cover;
 		background-position: center;
 	  background-image: image-url("topimage5.jpg");
+		}
+		.box_image6 {
+		margin-right:50px;
+		margin-top:50px;
+		width:200px;
+		height:200px;
+		background-size: cover;
+		background-position: center;
+	  background-image: image-url("topimage18.jpg");
 		}
 
 }
