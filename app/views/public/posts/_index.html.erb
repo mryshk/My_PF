@@ -7,7 +7,9 @@
         <%= link_to listener_path(post.listener),class: "text-dark" do %>
           <table class="table table-borderless">
             <tr>
-              <td class="align-middle" style="width:60px; padding:0;"><%= attachment_image_tag post.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %></td>
+              <td class="align-middle" style="width:60px; padding:0;">
+                <%= attachment_image_tag post.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
+              </td>
               <td class="align-middle">
                 <%= post.listener.name%>
                   <% if post.listener.listener_type == 1  %>
