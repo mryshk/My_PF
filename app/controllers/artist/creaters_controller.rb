@@ -14,7 +14,7 @@ class Artist::CreatersController < ApplicationController
 
   def show
     @creater = Creater.find(params[:id])
-    @albums = @creater.albums.page(params[:page])
+    @albums = @creater.albums.page(params[:page]).per(2)
   end
 
   def index

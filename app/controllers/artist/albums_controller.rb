@@ -24,7 +24,7 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def index
-    @albums = Album.page(params[:page])
+    @albums = Album.page(params[:page]).per(2)
     @album_impression_rank = Album.all.order(impressions_count: 'DESC').page(params[:page])
     # メニュー用
     # 自分の所属するグループを全て集める。

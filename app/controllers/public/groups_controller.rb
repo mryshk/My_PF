@@ -18,7 +18,7 @@ class Public::GroupsController < ApplicationController
   end
 
   def index
-    @groups = Group.all
+    @groups = Group.page(params[:page]).per(2)
     @group_listeners_rank = Group.includes(:listeners).sort { |a, b| b.listeners.size <=> a.listeners.size }
 
     # メニュー用
