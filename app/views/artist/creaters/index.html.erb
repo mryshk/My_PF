@@ -36,11 +36,11 @@
           <td class="align-middle">
             <% unless current_listener.id == creater.listener.id %>
               <% if current_listener.followings.exists?(creater.listener.id) %>
-                <%= link_to listener_relationships_path(creater.listener.id), method: :delete ,class: "text-info" do %>
+                <%= link_to listener_relationships_path(creater.listener.id), method: :delete ,class: "link" do %>
                   <div class="btn btn-outline-main">Unfollow</div>
                 <% end %>
               <% else %>
-                <%= link_to listener_relationships_path(creater.listener.id), method: :post,class: "text-info"  do %>
+                <%= link_to listener_relationships_path(creater.listener.id), method: :post,class: "link"  do %>
                   <div class="btn btn-main">Follow</div>
                 <% end %>
               <% end %>
@@ -58,8 +58,8 @@
           </td>
           <td class="align-middle">
             <% if (current_listener.followers.include? creater.listener)  && (creater.listener.followers.include? current_listener )%>
-              <%= link_to chat_path(creater.listener) do  %>
-                <div class="btn btn-main">Chat</div>
+              <%= link_to chat_path(creater.listener),class: "link" do  %>
+                <div class="btn btn-main"> Chat</div>
               <% end %>
             <% end %>
           </td>
