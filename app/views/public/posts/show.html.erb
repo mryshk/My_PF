@@ -103,8 +103,15 @@
 
   </div>
 </div>
-  <div class="row mt-4" id="comment">
-    <%= render "public/post_comments/comments",comments: @comments, post: @post, post_comment_n: @post_comment_n %>
+<div class="row mt-4" id="comment">
+  <%= render "public/post_comments/comments",comments: @comments, post: @post, post_comment_n: @post_comment_n %>
+</div>
+<div class="row " style="margin-top:100px;">
+  <div class="col-8 offset-2">
+    <%= link_to posts_path do%>
+      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Posts</button>
+    <% end %>
   </div>
+</div>
 
 
