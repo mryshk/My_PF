@@ -30,20 +30,26 @@
   </div>
 </div>
 </div>
-<div class="row" style="margin-top:200px;">
-  <div class="col-8 offset-2">
-    <div class="text-center">
-      <p>ようこそ、<strong>Nagano Cake</strong></strong>へ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。
+<div class="row " style="margin-top:200px;">
+  <div class="col-6 ">
+    <div class="card text-center">
+      <div id="top-card-img" class="card-img"></div>
+    </div>
+  </div>
+  <div class="col-6" style="margin-top:70px;">
+    <div id="top-card-text" class="card-img-overlay text-dark text-center">
+      <p style="font-size:20px; margin-top:50px;">ようこそ、<strong  style="font-size:22px;">To new Music</strong>へ！<br>
+      このサイトでは、音楽を共有し繋がることができます。<br>
+      日常で聴く音楽を誰かと共有したい時、それらの音楽を通じて誰かと話したい時<br>
+      このサイトをご利用ください！<br>
+      新しい音楽に出会える場となります！
       </p>
     </div>
   </div>
 </div>
-<div class="row" style="margin-top:200px;">
-  <div class="col-8 offset-2 "id="skipper">
-    <div id="theTarget" >
+<div class="row" style="margin-top:150px;">
+  <div class="col-10 offset-1 hover"id="skipper">
+    <div id="theTarget" style="height:600px;">
       <div class="image1"></div>
       <div class="image2"></div>
       <div class="image3"></div>
@@ -52,56 +58,33 @@
     </div>
   </div>
 </div>
-<div class="row" style="margin-top:200px;">
-  <div class="col-8 offset-2">
-    <div class="text-center">
-      <p>ようこそ、<strong>Nagano Cake</strong></strong>へ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。
+<div class="row " style="margin-top:300px;">
+  <div class="col-6" style="margin-top:0px;">
+    <div id="top-card-text" class="card-img-overlay text-dark text-center">
+      <p style="font-size:20px; margin-top:50px;"><strong  style="font-size:22px;">音楽クリエイターの皆様</strong><br>
+          このサイトでは、作品を投稿することができます。<br>
+          作品を拡散することでたくさんの人に音楽を聴いてもらえます！<br>
+          また、楽曲一つ一つにコメントやいいねで反応を感じることができます！<br>
+          自分たちの作品をこのサイトで拡散しましょう！
       </p>
     </div>
   </div>
+    <div class="col-6 ">
+    <div class="card text-center">
+      <div id="top-card-img2" class="card-img"></div>
+    </div>
+  </div>
 </div>
-<div class="row" style="margin-top:200px;">
+<div class="row" style="margin-top:300px;">
   <div class="col-8 offset-2">
-    <div class="box_images">
+    <h2 class=" text-center mx-auto">Albums</h2>
+    <div class="box_images mt-5">
       <div class="box_image1 hover"></div>
       <div class="box_image2 hover"></div>
       <div class="box_image3 hover"></div>
-      <div class="box_image4"></div>
-      <div class="box_image5"></div>
+      <div class="box_image4 hover"></div>
+      <div class="box_image5 hover"></div>
+      <div class="box_image6 hover"></div>
     </div>
   </div>
-</div>
-<div class="row"style="margin-top:100px;">
-<div class="card text-white" style="width:100%;">
-  <%= image_tag asset_path("topimage11.jpg"), class: "bd-placeholder-img bd-placeholder-img-lg card-img mx-auto" ,style: "width: 100%; height:600px;" %>
-  <div class="card-img-overlay text-center">
-    <h1 class="card-title" style="margin-top:80px; font-size:60px;"><a class="js-modal-open link-none4" href="">今からはじめよう！</a></h1>
-    <div class="modal js-modal" >
-      <div class="modal__bg js-modal-close"></div>
-      <div class="modal__content">
-        <p class="mt-3" style="color:#000;">こちらから新規登録ができます。</br>
-        アカウントをお持ちの方はログインへお進みください。
-        </p>
-        <div class="card-text btn btn-outline-main btn-block mt-5" >
-          <%= link_to new_listener_registration_path ,class: "link-none2"  do %>
-            <h3 class="link-none2"><i class="fas fa-user-plus"></i>Sign Up</h3>
-          <% end %>
-        </div>
-        <div class="card-text btn btn-outline-main btn-block mt-5">
-         <%= link_to new_listener_session_path,class: "link-none2" do%>
-            <h3 class="link-none2"><i class="fas fa-sign-in-alt"></i>Log In</h3>
-        <% end %>
-        </div>
-        <div class="mt-5">
-          <a class="js-modal-close link-none2" href="">
-            <i class="fas fa-times-circle fa-2x"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
