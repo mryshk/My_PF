@@ -19,6 +19,12 @@ class Public::GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    @group_listeners_rank = Group.includes(:listeners).sort { |a, b| b.listeners.size <=> a.listeners.size }
+
+    # メニュー用
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def edit
