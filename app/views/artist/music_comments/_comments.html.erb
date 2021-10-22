@@ -22,10 +22,12 @@
               $('#music_post_rate_<%= music_comment.id %>').empty();
               $('#music_post_rate_<%= music_comment.id  %>').raty({
                 readOnly: true,
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
                 score: function() {
                 return $(this).attr('data-score');
-                },
-                path: '/assets/'
+              }
              });
           </script>
           <% end %>
