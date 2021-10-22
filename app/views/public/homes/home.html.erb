@@ -1,8 +1,10 @@
-<div class="row  mt-5" >
+<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-home"></i> Home</h3>
+
+<div class="row  mt-4" >
   <div class="col ml-5">
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
-  <div class="col-lg-5 ml-3 " >
+  <div class="col-lg-5 ml-3  mt-5" >
     <div class="scroll-list jscroll">
      <%= render "public/posts/index", posts: @posts, class:"jscroll scroll-list" %>
     </div>
