@@ -20,6 +20,8 @@ class Artist::AlbumMusicsController < ApplicationController
     @music_comment = MusicComment.new
     @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id).all
     @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
+
+    impressionist(@album_music, nil)
   end
 
   def edit

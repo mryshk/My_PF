@@ -8,6 +8,9 @@ class Album < ApplicationRecord
 
   enum genre: { ロック: 0, JPOP: 1, アイドル: 2, EDM: 3, KPOP: 4, パンク: 5, レゲエ: 6, HIPHOP: 7 }
 
+  # 閲覧数機能の許可
+  is_impressionable counter_cache: true
+
   def favorited_by?(listener) # ファボをしているかどうかの確認・していれば削除へ
     music_favorites.where(listener_id: listener.id).exists?
   end

@@ -8,7 +8,39 @@
     <%= render "artist/albums/index", albums: @albums %>
   </div>
   <div class="col mr-5">
-
+    <table class="table .table-bordered">
+      <thead>
+        <h6 class="text-center text-main mx-auto">Album View Ranking</h6>
+      </thead>
+      <% i = 0  %>
+      <% @album_impression_rank.each do |imp_rank|  %>
+      <tr>
+        <th class="align-middle">
+          <% i += 1  %>
+          <%= i %>
+        </th>
+        <td class="d-flex">
+          <div>
+            <div>
+              <%= link_to artist_album_path(imp_rank)do%>
+                <%= attachment_image_tag imp_rank, :album_image, size:"30x30",fallback: "no_image.jpg",class: "profile_image rounded-circle" %>
+              <% end %>
+            </div>
+            <div style="font-size: 10px;">
+              <%= imp_rank.name %>
+            </div>
+          </div>
+          <%= link_to artist_album_path(imp_rank.id),class: "link-none",'data-turbolinks': false do %>
+            <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.caption.truncate(15) %> </p>
+          <% end %>
+        </td>
+        <td class="align-middle" >
+          <p ><%= imp_rank.impressions_count %></p>
+        </td>
+      </tr>
+      <% break if i == 10 %>
+      <% end %>
+    </table>
   </div>
 </div>
 <div class="row mt-5">

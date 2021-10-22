@@ -15,6 +15,8 @@ class Artist::AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @album_musics = AlbumMusic.where(album_id: params[:id]).all
+    impressionist(@album, nil)
+    @music_impression_rank = AlbumMusic.all.order(impressions_count: 'DESC').page(params[:page])
     # メニュー用
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
@@ -23,7 +25,7 @@ class Artist::AlbumsController < ApplicationController
 
   def index
     @albums = Album.page(params[:page])
-
+    @album_impression_rank = Album.all.order(impressions_count: 'DESC').page(params[:page])
     # メニュー用
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)

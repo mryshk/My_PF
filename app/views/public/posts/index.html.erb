@@ -8,40 +8,6 @@
     <%= render "public/posts/index", posts: @posts %>
   </div>
   <div class="col mr-5">
-    <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
-      <thead>
-        <h6 class="text-center text-main mx-auto">Like Ranking</h6>
-      </thead>
-      <% i = 0  %>
-      <% @post_favorite_rank.each do |fav_rank|  %>
-      <tr>
-        <th class="align-middle" style="padding:0;">
-          <% i += 1  %>
-          <%= i %>
-        </th>
-        <td class="d-flex align-middle">
-          <div>
-            <div>
-              <%= link_to listener_path(fav_rank.listener)do%>
-                <%= attachment_image_tag fav_rank.listener, :profile_image, size:"30x30", fallback: "no_image.jpg",class: " profile_image rounded-circle" %>
-              <% end %>
-            </div>
-            <div style="font-size: 10px;">
-              <%= fav_rank.listener.name %>
-            </div>
-          </div>
-          <%= link_to post_path(fav_rank.id),class: "link-none",'data-turbolinks': false do %>
-            <p class=" align-self-center ml-3"style="font-size: 12px;" ><%= fav_rank.post_tweet.truncate(15) %></p>
-          <% end %>
-        </td>
-        <td class="align-middle">
-          <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= fav_rank.post_favorites.count %></p>
-          <p class="d-block" style="font-size: 10px;">Likes</p>
-        </td>
-      </tr>
-      <% break if i== 5 %>
-      <% end %>
-    </table>
     <table class="table .table-bordered">
       <thead>
         <h6 class="text-center text-main mx-auto">View Ranking</h6>
@@ -72,7 +38,7 @@
           <p ><%= imp_rank.impressions_count %></p>
         </td>
       </tr>
-      <% break if i== 5 %>
+      <% break if i == 10 %>
       <% end %>
     </table>
   </div>

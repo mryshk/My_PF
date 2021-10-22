@@ -22,6 +22,7 @@ class Public::PostsController < ApplicationController
     impressionist(@post, nil)
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id, listener_id: current_listener.id)
+    @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
 
     # メニュー用
     # 自分の所属するグループを全て集める。
