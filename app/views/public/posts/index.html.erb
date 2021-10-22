@@ -5,7 +5,9 @@
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
   <div class="col-5 ml-3 mt-5">
-    <%= render "public/posts/index", posts: @posts %>
+    <div class="scroll-list jscroll">
+      <%= render "public/posts/index", posts: @posts %>
+    </div>
   </div>
   <div class="col mr-5">
     <table class="table .table-bordered">

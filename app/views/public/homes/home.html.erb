@@ -2,8 +2,10 @@
   <div class="col ml-5">
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
-  <div class="col-lg-5 ml-3" >
-     <%= render "public/posts/index", posts: @posts %>
+  <div class="col-lg-5 ml-3 " >
+    <div class="scroll-list jscroll">
+     <%= render "public/posts/index", posts: @posts, class:"jscroll scroll-list" %>
+    </div>
   </div>
   <div class="col mr-5">
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
