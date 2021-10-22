@@ -8,7 +8,7 @@ class Public::RelationshipsController < ApplicationController
 
   def destroy
     current_listener.unfollow(params[:listener_id])
-    redirect_to request.referer
+    redirect_back(fallback_location: root_path)
   end
 
   def followings
