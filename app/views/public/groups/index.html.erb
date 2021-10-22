@@ -5,7 +5,9 @@
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
   <div class="col-5 ml-3 mt-5">
-    <%= render "public/groups/index", groups: @groups %>
+    <div class="scroll-list jscroll">
+      <%= render "public/groups/index", groups: @groups %>
+    </div>
   </div>
   <div class="col mr-5">
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
@@ -42,5 +44,10 @@
       <% break if i== 5 %>
       <% end %>
     </table>
+    <div class="text-center" style="margin-top:100px;">
+      <%= link_to new_group_path ,class:"link" do %>
+        <div class="btn btn-outline-main btn-block"><i class="fas fa-users"></i> New Group</div>
+      <% end %>
+    </div>
   </div>
 </div>

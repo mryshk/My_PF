@@ -5,7 +5,9 @@
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
   <div class="col-5 ml-3 mt-5">
-    <%= render "artist/albums/index", albums: @albums %>
+    <div class="scroll-list jscroll">
+      <%= render "artist/albums/index", albums: @albums %>
+    </div>
   </div>
   <div class="col mr-5">
     <table class="table .table-bordered">
@@ -41,20 +43,15 @@
       <% break if i == 10 %>
       <% end %>
     </table>
-  </div>
-</div>
-<div class="row mt-5">
-  <div class="col-6 offset-3 text-center mt-5">
-    <% if can? :read, current_listener  %>
-      <%= link_to new_artist_album_path ,class:"link" do %>
-        <div class="btn btn-outline-main"><i class="fas fa-compact-disc"></i> New Album</div>
+    <div class="text-center" style="margin-top:100px;">
+      <% if can? :read, current_listener  %>
+        <%= link_to new_artist_album_path ,class:"link" do %>
+          <div class="btn btn-outline-main btn-block"><i class="fas fa-compact-disc"></i> New Album</div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
-<div class="row mt-5">
-    <div class="">
-      <%= paginate @albums %>
-    </div>
-</div>
+
+
 
