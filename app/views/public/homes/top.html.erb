@@ -43,22 +43,32 @@
 </div>
 <div class="row" style="margin-top:200px;">
   <div class="col-8 offset-2">
-    <ul class="gallery" >
+    <ul class="slider" >
       <li>
-        <%= link_to asset_path("images/musical-background-2886886_1920.jpg") ,'data-lightbox': "gallery1" do%>
-         <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
-        <% end %>
+        <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
       </li>
       <li>
-        <%= link_to asset_path("images/musical-background-2886886_1920.jpg") ,'data-lightbox': "gallery1" do%>
-         <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
-        <% end %>
+        <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
       </li>
       <li>
-        <%= link_to asset_path("images/musical-background-2886886_1920.jpg") ,'data-lightbox': "gallery1" do%>
-         <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
-        <% end %>
+        <%= image_tag asset_path("images/musical-background-2886886_1920.jpg") %>
       </li>
     </ul>
   </div>
 </div>
+// <script>
+//   $(document).ready(function(){
+//   $('.slider').slick({
+//     autoplay: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow:3,
+//     slidesToScroll:1,
+//     prevArrow:'<div class="slick-prev"></div>',
+//     nextArrow:'<div class="slick-next"></div>',
+//     centerMode: true,
+//     variableWidth: true,
+//     dots: true,
+//   });
+// });
+// </script>

@@ -15,7 +15,7 @@
 //= require bootstrap-sprockets
 
 //= require jquery
-//= require lightbox
+//= require skippr.min.js
 //= require jquery.raty.js
 //= require jquery_ujs
 //= require turbolinks
@@ -25,6 +25,7 @@
 /* global $next */
 /* global $ */
 /* global click */
+/* global jQuery */
 
 
 $(document).on('turbolinks:load',function () {
@@ -38,7 +39,7 @@ $(document).on('turbolinks:load',function () {
     // ナビゲーションの形("block" or "bubble")
     navType : 'bubble',
     // 子要素の種類('div' or 'img')
-    childrenElementType : 'img',
+    childrenElementType : 'div',
     // ナビゲーション矢印の表示(trueで表示)
     arrows : true,
     // スライドショーの自動再生(falseで自動再生なし)
@@ -161,4 +162,17 @@ $(document).on('turbolinks:load',function() {
     });
 });
 
-
+// $(document).ready(function(){
+//   $('.slider').slick({
+//     autoplay: true,
+//     infinite: true,
+//     speed: 500,
+//     slidesToShow:3,
+//     slidesToScroll:1,
+//     prevArrow:'<div class="slick-prev"></div>',
+//     nextArrow:'<div class="slick-next"></div>',
+//     centerMode: true,
+//     variableWidth: true,
+//     dots: true,
+//   });
+// });
