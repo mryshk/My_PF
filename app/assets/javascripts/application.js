@@ -197,6 +197,6 @@ $(document).on('turbolinks:load', function() {
     // 次のページにいくためのリンクの場所は？ ＞aタグの指定
     nextSelector: 'a.next',
     // 読み込み中の表示はどうする？
-    loadingHtml: '読み込み中'
+    loadingHtml: 'Now loading'
   });
 });
