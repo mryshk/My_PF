@@ -60,11 +60,18 @@
     <div class="col-6 offset-3">
       <%= render "artist/albums/index", albums: @albums %>
     </div>
+    <div class="col-6 offset-3 text-center"style="margin-top:100px;" >
+      <% if @creater.listener == current_listener  %>
+        <%= link_to new_artist_album_path ,class:"link", 'data-turbolinks': false do %>
+          <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Album</i></div>
+        <% end %>
+      <% end %>
+    </div>
     <% else %>
     <div class="col-6 offset-3 text-center">
       <p style="font-size:22px;">投稿はありません。</p>
       <% if @creater.listener == current_listener  %>
-        <%= link_to new_artist_album_path ,class:"link" do %>
+        <%= link_to new_artist_album_path ,class:"link", 'data-turbolinks': false do %>
           <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Album</i></div>
         <% end %>
       <% end %>
