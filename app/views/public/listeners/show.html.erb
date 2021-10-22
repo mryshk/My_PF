@@ -23,8 +23,10 @@
       </div>
       <!--クリエイター詳細へ-->
       <div>
-        <%= link_to  artist_creater_path(@listener.creater) do%></i>
-          <div class="btn btn-outline-main btn-block"><i class="far fa-user-circle"></i> Creater</div>
+        <% if @listener.listener_type == 1  %>
+          <%= link_to  artist_creater_path(@listener.creater) do%></i>
+            <div class="btn btn-outline-main btn-block"><i class="far fa-user-circle"></i> Creater</div>
+          <% end %>
         <% end %>
       </div>
       <!--フォロー・アンフォロー-->
