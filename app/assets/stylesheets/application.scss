@@ -319,6 +319,23 @@ color:#fff;
   align-items: center;
 }
 
+
+.infinite-search-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .infinite-search-form{
+  	form{
+  		#form-control{
+  			width:90%;
+  			border:1px solid $sub3_color;
+  			background-color: #fff;
+  			color:#000;
+  		}
+  	}
+  }
+}
+
 .speech-bubble {
   overflow: hidden;
   padding-bottom: 10px;
