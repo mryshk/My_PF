@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     # アルバム投稿（クリエイター側のみ可）
     resources :albums do
       collection do
+        get :search_genre # アルバムジャンル検索
         get :search # アルバム検索
       end
       # 楽曲投稿（クリエイター側のみ可)
