@@ -21,11 +21,11 @@
     <div class=" py-5 " id="search-form" >
       <div class="search-box">
         <div class="d-inline">
-          <%= form_with url: search_path, method: :get,  local: true do |f|%>
+          <%= form_with url: search_path, method: :get, local: true do |f|%>
             <%= f.text_field :keyword, placeholder: "Search",class: "form-control " ,id: "form-control"%>
         </div>
         <div class="d-inline">
-          <%= f.select 'model', options_for_select({ "ユーザー" => "listener", "投稿" => "post", "アルバム" => "album" }),{}, :class =>"custom-select" %>
+          <%= f.select 'model', options_for_select({ "User" => "listener", "Post" => "post", "Album" => "album" }),{}, :class =>"custom-select" %>
         </div>
         <button class="btn">
           <i class="fas fa-search fa-lg text-white"></i>
