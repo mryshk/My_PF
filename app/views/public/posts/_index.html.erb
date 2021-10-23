@@ -1,5 +1,5 @@
 
-  <% posts.each do |post| %>
+  <% posts.includes(:tags).each do |post| %>
     <div class="card ">
       <div class="card-body">
         <%# 名前と画像 %>

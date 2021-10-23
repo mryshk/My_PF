@@ -31,7 +31,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).reverse_order
+    @posts = Post.page(params[:page]).includes(:listener)
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
