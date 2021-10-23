@@ -18,6 +18,7 @@
 //= require jquery.jscroll.min.js
 //= require skippr.min.js
 //= require jquery.raty.js
+//= require search.js
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -189,6 +190,8 @@ $(document).on('turbolinks:load',function() {
 //     });
 //   }
 // });
+
+// 無限スクロール
 
 $(document).on('turbolinks:load', function() {
   $('.jscroll').jscroll({
