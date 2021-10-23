@@ -343,3 +343,24 @@ h1 {
   padding: 0;
   margin:0;
 }
+
+
+#infinite-search-form{
+  background-color: #fff;
+}
+
+.infinite-search-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .infinite-search-form{
+  	form{
+  		#form-control{
+  			width:90%;
+  			border:1px solid $sub3_color;
+  			background-color: #fff;
+  			color:#000;
+  		}
+  	}
+  }
+}
