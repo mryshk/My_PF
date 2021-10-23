@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       collection do
         get :order # 並び替え時に使用
         get :search # 投稿検索時に使用
+        get :search_genre # ジャンル検索時に使用
         get :search_tag # タグ検索時に使用
       end
       # 投稿コメント
