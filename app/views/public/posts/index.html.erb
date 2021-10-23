@@ -1,18 +1,67 @@
 
-<h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-headphones"></i>Posts</h3>
+<h3 class="text-center" style="margin-top:50px;" ><i class="fas fa-headphones"></i>Posts</h3>
 <div class="row mt-4 ">
-  <div class="col-3 ml-5 ">
+  <div class="col ml-5">
     <%= render "layouts/menu", mygroups: @mygroups %>
+    <h4 class="mx-auto text-main2">Easy Search</h4>
+    <div class="infinite-search-box " style="margin-top:50px;">
+      <div class="d-inline infinite-search-form">
+      <% if current_page?(posts_path)  %>
+        <%= form_with url: search_posts_path, method: :get, local: true do |f|%>
+          <%= f.text_field :keyword, placeholder: "Post Search",class: "form-control ", id: 'searching-form'%>
+      </div>
+      <div class="btn d-inline" style="padding:0;" >
+        <i class="fas fa-search fa-lg hover " style="color:rgb(156,209,237); padding:0;"></i>
+        <% f.submit %>
+      </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="search-post"></div>
   </div>
-  <div class="col-5 ml-3 mt-5">
+  <div class="col-lg-5 ml-3 mt-5">
     <div class="scroll-list jscroll">
       <%= render "public/posts/index", posts: @posts %>
     </div>
   </div>
   <div class="col mr-5">
+    <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
+      <thead>
+        <h6 class="mx-auto text-main">Like Ranking</h6>
+      </thead>
+      <% i = 0  %>
+      <% @post_favorite_rank.each do |fav_rank|  %>
+      <tr>
+        <th class="align-middle" style="padding:0;">
+          <% i += 1  %>
+          <%= i %>
+        </th>
+        <td class="d-flex align-middle">
+          <div>
+            <div>
+              <%= link_to listener_path(fav_rank.listener)do%>
+                <%= attachment_image_tag fav_rank.listener, :profile_image, size:"30x30", fallback: "no_image.jpg",class: " profile_image rounded-circle" %>
+              <% end %>
+            </div>
+            <div style="font-size: 10px;">
+              <%= fav_rank.listener.name %>
+            </div>
+          </div>
+          <%= link_to post_path(fav_rank.id),class: "link-none",'data-turbolinks': false do %>
+            <p class=" align-self-center ml-3"style="font-size: 12px;" ><%= fav_rank.post_tweet.truncate(15) %></p>
+          <% end %>
+        </td>
+        <td class="align-middle">
+          <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= fav_rank.post_favorites.count %></p>
+          <p class="d-block" style="font-size: 10px;">Likes</p>
+        </td>
+      </tr>
+      <% break if i== 5 %>
+      <% end %>
+    </table>
     <table class="table .table-bordered">
       <thead>
-        <h6 class="text-center text-main mx-auto">View Ranking</h6>
+        <h6 class="mx-auto text-main">View Ranking</h6>
       </thead>
       <% i = 0  %>
       <% @post_impression_rank.each do |imp_rank|  %>
@@ -40,7 +89,7 @@
           <p ><%= imp_rank.impressions_count %></p>
         </td>
       </tr>
-      <% break if i == 10 %>
+      <% break if i== 5 %>
       <% end %>
     </table>
   </div>
