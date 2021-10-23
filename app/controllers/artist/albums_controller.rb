@@ -49,6 +49,14 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def search
+    @search = Album.where('name LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(2)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
   end
 
 

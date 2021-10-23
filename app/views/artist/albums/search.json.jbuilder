@@ -1,6 +1,7 @@
-json.array! @search do |post|
-  json.id post.id
-  json.post_tweet post.post_tweet
-  json.name post.listener.name
-  json.image post.listener.profile_image
+json.array! @search do |album|
+  json.id album.id
+  json.name album.name
+  json.creater album.creater.id
+  json.creater_name album.creater.listener.name
+  json.caption album.caption
 end

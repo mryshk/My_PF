@@ -3,6 +3,21 @@
 <div class="row mt-4 ">
   <div class="col-3 ml-5 ">
     <%= render "layouts/menu", mygroups: @mygroups %>
+    <h4 class="mx-auto text-main2">Easy Search</h4>
+    <div class="infinite-search-box " style="margin-top:50px;">
+      <div class="d-inline infinite-search-form">
+      <% if current_page?(artist_albums_path)  %>
+        <%= form_with url: search_artist_albums_path, method: :get, local: true do |f|%>
+          <%= f.text_field :keyword, placeholder: "Post Search",class: "form-control ", id: 'searching-form-album'%>
+      </div>
+      <div class="btn d-inline" style="padding:0;" >
+        <i class="fas fa-search fa-lg hover " style="color:rgb(156,209,237); padding:0;"></i>
+        <% f.submit %>
+      </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="search-post-album"></div>
   </div>
   <div class="col-5 ml-3 mt-5">
     <div class="scroll-list jscroll">

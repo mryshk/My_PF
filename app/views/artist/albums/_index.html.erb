@@ -27,18 +27,18 @@
         <!--アルバム説明-->
         <p class="card-text text-center mt-2"><%= album.caption  %></p>
         <!--詳細ボタン-->
-        <div class="mt-4 text-center" >
+        <div class="mt-4 d-flex justify-content-center" >
           <%# 詳細画面へ %>
-          <div class="d-inline mt-4" style="margin-right:80px;" >
+          <div class=" mt-4" style="margin-right:80px;" >
             <%= link_to artist_album_path(album), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
           </div>
           <%# 曲視聴 %>
-          <div class="d-inline mt-4" style="margin-right:80px;" >
+          <div class=" mt-4" style="" >
             <a class="card-title text-center" href="<%= album.album_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
           </div>
-          <%# 投稿日 %>
-          <div class="text-right"><%= time_ago_in_words(album.created_at) %></div>
         </div>
+        <%# 投稿日 %>
+        <div class="text-right"><%= time_ago_in_words(album.created_at) %></div>
       </div>
     </div>
   <% end %>
