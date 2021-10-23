@@ -52,6 +52,7 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop-airbnb'
+  gem 'bullet'
 end
 
 group :test do
