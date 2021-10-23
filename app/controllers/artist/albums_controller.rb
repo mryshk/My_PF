@@ -49,14 +49,17 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def search
-    @search = Album.where(genre_params).page(params[:page]).reverse_order
+  end
+
+
+  def search_genre
+    @search = Album.where(genre_params).page(params[:page]).per(2)
     @keyword = params.permit(:genre)
 
     # メニュー用
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
-    render "search"
   end
 
   private
