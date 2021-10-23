@@ -8,14 +8,7 @@
 
 
 $(document).on('turbolinks:load',function(){
-  const inputForm = $("#searching-form");
-  const url = location.href;
-  const searchResult = $('.result ul');
 
-  function builtHTML(data){
-    let html = '<li>${data.post_tweet}</li>'
-    searchResult.append(html);
-  }
 
   $("#searching-form").on('keyup',function(){
     console.log("キーボードを入力した時に発生");
