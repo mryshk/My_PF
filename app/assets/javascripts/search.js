@@ -9,7 +9,6 @@
 
 $(document).on('turbolinks:load',function(){
 
-
   $("#searching-form").on('keyup',function(){
     console.log("キーボードを入力した時に発生");
     let target = $("#searching-form").val();
@@ -44,9 +43,6 @@ $(document).on('turbolinks:load',function(){
             );
           // builtHTML(data)
         });
-      }
-      else {
-        NoResult('No Search Result')
       }
     });
   });
