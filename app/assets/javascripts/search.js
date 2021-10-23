@@ -9,6 +9,7 @@
 
 $(document).on('turbolinks:load',function(){
 
+
   $("#searching-form").on('keyup',function(){
     console.log("キーボードを入力した時に発生");
     let target = $("#searching-form").val();
@@ -22,7 +23,7 @@ $(document).on('turbolinks:load',function(){
     })
     .done(function(data){
       console.log(data);
-      searchResult.empty();
+      $('.search-post .table').empty();
       if(data.length !== 0) {
         data.forEach(function(data){
           $('.search-post .table').remove();
@@ -43,6 +44,9 @@ $(document).on('turbolinks:load',function(){
             );
           // builtHTML(data)
         });
+      }
+      else {
+        NoResult('No Search Result')
       }
     });
   });
