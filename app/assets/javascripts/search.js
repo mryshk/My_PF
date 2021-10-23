@@ -22,10 +22,10 @@ $(document).on('turbolinks:load',function(){
     })
     .done(function(data){
       console.log(data);
-      $('.search-post .table').empty();
+      $('.search-post').empty();
       if(data.length !== 0) {
         data.forEach(function(data){
-          $('.search-post .table').remove();
+          // $('.search-post .table').remove();
           $('.search-post').append(
             `<table class="table table-borderless">
                 <tr>
