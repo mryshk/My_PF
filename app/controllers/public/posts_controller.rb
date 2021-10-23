@@ -64,6 +64,19 @@ class Public::PostsController < ApplicationController
   end
 
   def search
+    @search = Post.where('post_tweet LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(2)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+    # 自分の所属するグループを全て集める。
+    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
+    @mygroups = Group.where(id: mygroup_ids)
+    render "search"
+  end
+
+
+  def search_genre
     @search = Post.where(genre_params).page(params[:page]).reverse_order
     @keyword = params.permit(:post_genre)
 
