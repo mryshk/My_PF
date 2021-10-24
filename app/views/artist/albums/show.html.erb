@@ -1,9 +1,9 @@
 <h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-compact-disc"></i> Album Detail</h3>
 <div class="row mt-4 ">
-  <div class="col-3 ml-5 ">
+  <div class="col-md-3 ml-md-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
-  <div class="col-5 ml-5 mt-5">
+  <div class="col-md-5 ml-md-5 mt-md-5 column-center">
     <div class="card">
         <div class="card-body">
           <%# 名前と画像 %>
@@ -84,7 +84,7 @@
       .then(json => createIMG(json));
     </script>
   </div>
-  <div class="col-3">
+  <div class="col-md-3 column-right">
     <table class="table .table-bordered">
       <thead>
         <h6 class="mx-auto text-main">Music Listen Ranking</h6>
@@ -120,8 +120,8 @@
     </table>
   </div>
 </div>
-<div class="row mt-5">
-  <div class="col-6 offset-3 text-center mt-5">
+<div class="row mt-md-5">
+  <div class="col-md-6 offset-md--3 text-center mt-md-5">
     <% if can? :read, current_listener  %>
       <% if @album.creater.listener == current_listener %>
         <%= link_to new_artist_album_album_music_path(@album),class:"link" do %>
@@ -131,15 +131,18 @@
     <% end %>
   </div>
 </div>
-  <h3 class="text-center my-5" ><i class="fas fa-music"></i> Musics in this Album</h3>
-    <%= render "artist/album_musics/index", album_musics: @album_musics %>
-
-  <div class="row mt-5 " id="comment">
-    <div class="col-8 offset-2">
-      <%= link_to artist_albums_path do%>
-        <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Albumsへ</button>
-      <% end %>
+<h3 class="text-center my-5" ><i class="fas fa-music"></i> Musics in this Album</h3>
+  <div class="row mt-md-5" >
+    <div class="col-md-10 offset-md-1" >
+       <%= render "artist/album_musics/index", album_musics: @album_musics %>
     </div>
   </div>
+<div class="row mt-md-5 ">
+  <div class="col-md-10 offset-md-1">
+    <%= link_to artist_albums_path do%>
+      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Albumsへ</button>
+    <% end %>
+  </div>
+</div>
 
 
