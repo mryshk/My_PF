@@ -1,7 +1,5 @@
 
-  <div class="row">
     <% if @album_musics.exists?  %>
-    <div class="col-8 offset-2">
     <table class="table">
       <thead>
         <tr>
@@ -65,10 +63,9 @@
         <% end %>
       </tbody>
     </table>
-    </div>
     <% else %>
     <div class="col-8 offset-2">
       <h1 class="text-center"><i class="fas fa-listeners-slash"> No Music</h1></i>
     </div>
     <% end %>
-  </div>
+
