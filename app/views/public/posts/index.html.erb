@@ -1,7 +1,7 @@
 
 <h3 class="text-center" style="margin-top:50px;" ><i class="fas fa-headphones"></i>Posts</h3>
 <div class="row mt-4 ">
-  <div class="col ml-5">
+  <div class="col ml-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
     <h4 class="mx-auto text-main2">Easy Search</h4>
     <div class="infinite-search-box " style="margin-top:50px;">
@@ -17,12 +17,12 @@
     </div>
     <div class="search-post"></div>
   </div>
-  <div class="col-lg-5 ml-3 mt-5">
+  <div class="col-md-5 ml-md-3 mt-md-5 column-center">
     <div class="scroll-list jscroll">
       <%= render "public/posts/index", posts: @posts %>
     </div>
   </div>
-  <div class="col mr-5">
+  <div class="col mr-md-5 column-right">
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
       <thead>
         <h6 class="mx-auto text-main">Like Ranking</h6>
