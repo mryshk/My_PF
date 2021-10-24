@@ -554,14 +554,34 @@ color:#fff;
   z-index:8;
 }
 
-@media (max-width: 992px){
+
+
+@media screen and (max-width: 765px) {
+// .navbar-nav{
+//   visibility: hidden;
+// }
+
+
 .navbar-nav{
-  visibility: hidden;
-}
+    .nav-item{
+      .nav-link{
+        .nav-text{
+          display:none;
+        }
+      }
+    }
+  }
+
+
+.column-left{
 
 }
-
-@media (min-width: 993px){
-
-
+.column-center{
+  width:80%;
+  margin:0 auto;
 }
+.column-right{
+  display:none;
+}
+}
+
