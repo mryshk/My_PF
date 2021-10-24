@@ -1,9 +1,9 @@
 <h3 class="text-center" style="margin-top:50px;" ><i class="fas fa-home"></i> Home</h3>
 <div class="row  mt-4" >
-  <div class="col ml-5">
+  <div class="col ml-md-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
 　　<h4 class="mx-auto text-main2">Easy Search</h4>
-    <div class="infinite-search-box " style="margin-top:50px;">
+    <div class="infinite-search-box " style="margin-top:50px; margin-bottom:50px;">
       <div class="d-inline infinite-search-form">
       <% if current_page?(home_path)  %>
         <%= form_with url: search_posts_path, method: :get, local: true do |f|%>
@@ -20,12 +20,12 @@
 
     </div>
   </div>
-  <div class="col-lg-5 ml-3  mt-5" >
+  <div class="col-md-5 ml-md-3  mt-md-5 column-center" >
     <div class="scroll-list jscroll">
      <%= render "public/posts/index", posts: @posts  %>
     </div>
   </div>
-  <div class="col mr-5">
+  <div class="col mr-md-5 column-right">
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
       <thead>
         <h6 class="mx-auto text-main">Like Ranking</h6>
