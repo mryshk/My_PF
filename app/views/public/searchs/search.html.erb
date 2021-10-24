@@ -3,10 +3,10 @@
   <% if @model == 'listener' %>
     <%= render "public/listeners/index", listeners: @records %>
   <% elsif @model == 'post' %>
-    <div class="col-3 ml-5 ">
+    <div class="col-md-3 ml-5 column-left">
       <%= render "layouts/menu", mygroups: @mygroups %>
     </div>
-    <div class="col-5 ml-5 mt-5">
+    <div class="col-md-5 ml-md-5 mt-md-5 column-center">
       <%= render "public/posts/index", posts: @records %>
     </div>
   <% elsif @model == 'album' %>
