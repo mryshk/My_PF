@@ -1,25 +1,31 @@
-
+<!--アルバム新規登録-->
 <h4 class = "text-center" style="margin-top: 100px;"><i class="fas fa-compact-disc"></i> New Album</h4>
 <p class = "text-center mt-3 " style="font-size:12px;">下記のフォームへ入力してください。</p>
   <div class="row form-row"style="margin-top: 100px; ">
+    <!--アルバム新規登録フォーム-->
     <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
       <%= form_with model: @album, url: artist_albums_path, method: :post, local: true do |f| %>
+      <!--アルバム名-->
       <div class="form-group　mt-3">
         <%= f.label :アルバム名,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
         <%= f.text_field :name,class: "form-control-static col-6",placeholder:"Album Name" %>
       </div>
+      <!--アルバム説明-->
       <div class="form-group mt-3">
         <%= f.label :アルバム説明 ,class:"col-4 mr-2 mt-3 form-label" ,style: "font-size:14px;"%>
         <%= f.text_area :caption,rows:"2", autofocus: true, class: "form-control-static col-6",placeholder:"Caption" %>
       </div>
+      <!--アルバムURL-->
       <div class="form-group　mt-3">
         <%= f.label :アルバムURL　,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
         <%= f.text_field :album_url ,class: "form-control-static col-6",placeholder:"Album URL" %>
       </div>
+      <!--アルバムURL-->
       <div class="form-group　mt-3">
         <%= f.label :ジャンル,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
         <%= f.select :genre, Album.genres.keys.to_a ,{}, :class =>"custom-select col-6" %>
       </div>
+      <!--アルバム画像-->
       <div class="form-group mt-3">
         <%= f.label :アルバム画像,class:"col-4 mr-2 mt-3 form-label",style: "font-size:13px;" %>
         <%= f.attachment_field :album_image ,class: "form-control-file col-6 d-inline-block" ,style: "padding:0px;"  %>
