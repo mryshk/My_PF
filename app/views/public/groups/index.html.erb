@@ -2,18 +2,18 @@
 <h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-users"></i> Groups</h3>
 <div class="row mt-4 ">
   <!--左メニュー-->
-  <div class="col-3 ml-5 ">
+  <div class="col-md-3 ml-md-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
    <!--グループ一覧の部分テンプレート取得-->
-  <div class="col-5 ml-3 mt-5">
+  <div class="col-md-5 ml-md-3 mt-md-5 column-center">
     <!--無限スクロール-->
     <div class="scroll-list jscroll">
       <%= render "public/groups/index", groups: @groups %>
     </div>
   </div>
   <!--右側ランキング-->
-  <div class="col mr-5">
+  <div class="col mr-md-5 column-right">
     <!--グループメンバーランキング-->
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
       <thead>
