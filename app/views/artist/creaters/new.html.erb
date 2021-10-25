@@ -1,6 +1,8 @@
+<!--クリエイター登録-->
 <h3 class="text-center" style="margin-top:100px;"><i class="fas fa-feather-alt"></i> New Creater</h3>
 <div class="row" style="margin-bottom:200px;">
   <div class="col-6 offset-3"style="margin-top:100px;">
+    <!--クリエイター登録ボタン-->
     <div class="text-center">
     <%=  form_with model: @creater ,url: artist_creaters_path,method: :post ,local: true do |f| %>
       <%= f.hidden_field :listener_id, :value => current_listener.id %>
