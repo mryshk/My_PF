@@ -1,71 +1,86 @@
 
-    <% if @album_musics.exists?  %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Music name</th>
-          <th>caption</th>
-          <th>Music</th>
-          <th>Likes</th>
-          <th>Comments</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% i = 0  %>
-        <% album_musics.each do |music| %>
-        <tr>
-          <td class="align-middle">
-            <% i += 1  %>
-            <%= i %>
-          </td>
-          <td class="align-middle">
-            <%= link_to artist_album_album_music_path(music.album_id,music),class:"link", 'data-turbolinks': false do%>
-            <p style="font-size:18px;"><%= music.name  %></p>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <p><%= music.caption.truncate(15)  %></p>
-          </td>
-          <td class="align-middle">
-            <a href="<%= music.music_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"></i></a>
-          </td>
-          </td>
-          <td class="align-middle">
-            <i class="fas fa-star fa-lg" style="color:rgb(255,243,063);"></i> <%= music.music_favorites.count %>
-          </td>
-          <td class="align-middle">
-            <i class="fas fa-comments main-color"></i> <%= music.music_comments.count %>
-          </td>
-          <td class="align-middle">
-          <%# 平均ランク 部分　%>
-          <% @average_rate = music.music_comments.average(:rate) %>
-            <div id="music_rate_<%= music.id  %>" data-score="<%= @average_rate %>" class="text-center " style="margin-top:10px;"></div>
-          <% unless @average_rate.nil? %>
-            <h6 class="text-center mt-3"><i><%= @average_rate.round(2) %></i></h6>
-          <% else %>
-            <h6 class="text-center mt-3"><i>0</i></h6>
+<!--楽曲一覧-->
+<!--楽曲が存在するかの確認-->
+<% if @album_musics.exists?  %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Music name</th>
+        <th>caption</th>
+        <th>Music</th>
+        <th>Likes</th>
+        <th>Comments</th>
+        <th>Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--曲番のための変数-->
+      <% i = 0  %>
+      <% album_musics.each do |music| %>
+      <tr>
+        <!--曲番-->
+        <td class="align-middle">
+          <% i += 1  %>
+          <%= i %>
+        </td>
+        <!--曲名-->
+        <td class="align-middle">
+          <!--楽曲詳細へ-->
+          <%= link_to artist_album_album_music_path(music.album_id,music),class:"link", 'data-turbolinks': false do%>
+          　<p style="font-size:18px;"><%= music.name  %></p>
           <% end %>
-            <script>
-              $('#music_rate_<%= music.id %>').empty();
-              $('#music_rate_<%= music.id %>').raty({
-              readOnly: true,
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              score: function() {
-                return $(this).attr('data-score')
-              }
-              });
-            </script>
-        </tr>
+        </td>
+        <!--楽曲説明。１５文字制限-->
+        <td class="align-middle">
+          <p><%= music.caption.truncate(15)  %></p>
+        </td>
+        <!--linkpreviewの音楽サイト遷移マーク-->
+        <td class="align-middle">
+          <a href="<%= music.music_url %>" target="_blank">
+            <i class="fas fa-headphones-alt fa-lg main-color hover"></i>
+          </a>
+        </td>
+        <!--いいね数-->
+        <td class="align-middle">
+          <i class="fas fa-star fa-lg" style="color:rgb(255,243,063);"></i> <%= music.music_favorites.count %>
+        </td>
+        <!--コメント数-->
+        <td class="align-middle">
+          <i class="fas fa-comments main-color"></i> <%= music.music_comments.count %>
+        </td>
+        <!--楽曲平均評価-->
+        <td class="align-middle">
+        <!--平均ランク 部分-->
+        <% @average_rate = music.music_comments.average(:rate) %>
+          <div id="music_rate_<%= music.id  %>" data-score="<%= @average_rate %>" class="text-center " style="margin-top:10px;"></div>
+        <% unless @average_rate.nil? %>
+          <h6 class="text-center mt-3"><i><%= @average_rate.round(2) %></i></h6>
+        <% else %>
+          <h6 class="text-center mt-3"><i>0</i></h6>
         <% end %>
-      </tbody>
-    </table>
-    <% else %>
-    <div class="col-8 offset-2">
-      <h1 class="text-center"><i class="fas fa-listeners-slash"> No Music</h1></i>
-    </div>
-    <% end %>
+        　<!--評価用のjavascript-->
+          <script>
+            $('#music_rate_<%= music.id %>').empty();
+            $('#music_rate_<%= music.id %>').raty({
+            readOnly: true,
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: function() {
+              return $(this).attr('data-score')
+            }
+            });
+          </script>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<!--楽曲が無い場合-->
+<% else %>
+  <div class="col-8 offset-2">
+    <h1 class="text-center"><i class="fas fa-listeners-slash"> No Music</h1></i>
+  </div>
+<% end %>
 
