@@ -1,40 +1,49 @@
 <h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-compact-disc"></i> Album Detail</h3>
 <div class="row mt-4 ">
+  <!--左メニューバー-->
   <div class="col-md-3 ml-md-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
+  <!--アルバム詳細-->
   <div class="col-md-5 ml-md-5 mt-md-5 column-center">
     <div class="card">
         <div class="card-body">
-          <%# 名前と画像 %>
+          <!--クリエイター名と画像-->
           <div class="card-text" >
+          <!--クリエイターページへ-->
           <%= link_to artist_creater_path(@album.creater),class: "text-dark" do %>
             <table class="table table-borderless">
               <tr>
-                <td class="align-middle" style="width:60px; padding:0;"><%= attachment_image_tag @album.creater.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %></td>
+                <!--クリエイター画像-->
+                <td class="align-middle" style="width:60px; padding:0;">
+                  <%= attachment_image_tag @album.creater.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
+                </td>
+                <!--クリエイター名-->
                 <td class="align-middle">
                   <%= @album.creater.listener.name%>
-                    <% if @album.creater.listener.listener_type == 1  %>
-                    <i class="fa fa-circle" style="color: gold;"></i>
+                  <!--クリエイターのみ表示マーク-->
+                  <% if @album.creater.listener.listener_type == 1  %>
+                    <i class="far fa-user-circle" style="color: gold;"></i>
                   <% end %>
                 </td>
               </tr>
             </table>
           <% end %>
           </div>
-          <%# アルバム名 %>
+          <!--アルバム名-->
           <h4 class="card-text text-center mt-2"><%= @album.name  %></h4>
-          <%# アルバム説明 %>
+          <!--アルバム説明-->
           <p class="card-text text-center mt-2"><%= @album.caption %></p>
           <div class="text-center mt-5">
             <%= link_to artist_album_path(@album) do %>
               <%= attachment_image_tag @album,:album_image,size:"200x200"%>
             <% end %>
           </div>
-           <!--linkpreviewの部分-->
+           <!--linkpreviewAPIの取得分-->
           <div class="card mb-3 my-5">
             <div class="row">
               <div class="col-md-4 my-auto">
+                <!--リンク画像-->
                 <a id="link" href="<%= @album.album_url %>" target="_blank">
                   <img id="link_img" class="card-img" src="">
                 </a>
@@ -42,26 +51,40 @@
               <div class="col-md-8">
                 <div class="card-body">
                   <a id="link" class="link-none" href="<%= @album.album_url %>" target="_blank">
+                    <!--リンクタイトル-->
                     <h3 id="linktitle" class="card-title"></h3>
+                    <!--リンク詳細説明-->
                     <p id="linkcaption"></p>
                   </a>
                 </div>
               </div>
             </div>
           </div>
-          <%# 編集・削除 %>
+          <!--編集・削除-->
           <div class="mt-4 text-right">
+            <!--ログインユーザーのマイページのみ表示-->
             <% if @album.creater.listener == current_listener %>
-            <button type="button" class="btn "> <%= link_to edit_artist_album_path(@album),class: "text-info" do%><i class="fas fa-edit">Edit</i><% end %></button>
-            <button type="button" class="btn "><%= link_to artist_album_path(@album),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%><i class="fas fa-trash-alt">Delete</i><% end %></button>
+              <!--編集-->
+              <button type="button" class="btn">
+                <%= link_to edit_artist_album_path(@album),class: "text-info" do%>
+                  <i class="fas fa-edit">Edit</i>
+                <% end %>
+              </button>
+              <!--削除へ-->
+              <button type="button" class="btn ">
+                <%= link_to artist_album_path(@album),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%>
+                  <i class="fas fa-trash-alt">Delete</i>
+                <% end %>
+              </button>
             <% end %>
           </div>
-          <div class="mt-4 text-center" >
-            <%# 投稿日 %>
-            <div class="text-right"><%= time_ago_in_words(@album.created_at) %></div>
+          <!--投稿日-->
+          <div class="text-right">
+            <%= time_ago_in_words(@album.created_at) %>
           </div>
         </div>
       </div>
+    <!--linkpreviewのjavascript-->
     <script>
     　const data = {
       key:'3ce2027b63ce4b30403332b3eb475fbe',
@@ -120,10 +143,14 @@
     </table>
   </div>
 </div>
+
 <div class="row mt-md-5">
-  <div class="col-md-6 offset-md--3 text-center mt-md-5">
+  <div class="col-md-6 offset-md-3 mt-md-5 text-center">
+    <!--Cancancanの権限管理クリエイターの人しか次のページにいくことができない。権限があるか無いかの確認-->
     <% if can? :read, current_listener  %>
+      <!--ログインユーザーとこのアルバムのクリエイターが一致するかどうか。-->
       <% if @album.creater.listener == current_listener %>
+      　<!--一致する場合のみ楽曲登録可能。楽曲登録ページへ-->
         <%= link_to new_artist_album_album_music_path(@album),class:"link" do %>
           <div class="btn btn-outline-main"><i class="fas fa-music"></i> Music</div>
         <% end %>
@@ -131,12 +158,17 @@
     <% end %>
   </div>
 </div>
+
+<!--このアルバムの楽曲一覧-->
 <h3 class="text-center my-5" ><i class="fas fa-music"></i> Musics in this Album</h3>
   <div class="row mt-md-5" >
     <div class="col-md-10 offset-md-1" >
+      <!--楽曲一覧部分ページを取得-->
        <%= render "artist/album_musics/index", album_musics: @album_musics %>
     </div>
   </div>
+
+<!--バックボタン。アルバム一覧へ-->
 <div class="row mt-md-5 ">
   <div class="col-md-10 offset-md-1">
     <%= link_to artist_albums_path do%>
