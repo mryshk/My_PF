@@ -1,75 +1,79 @@
 
-  <h3 class="text-center" id="area-1" style="margin-top:100px;" ><i class="fas fa-music"></i> Music Detail</h3>
-  <div class="card shadow-lg mb-3 mx-auto " style="max-width: 800px; height: 300px; margin-top:100px;">
-    <div class="row no-gutters">
-      <div class="col-md-4 my-auto">
-        <img class="card-img" id="link_img" style="width:250px; height:300px;" src=""/>
+<h3 class="text-center" id="area-1" style="margin-top:100px;" ><i class="fas fa-music"></i> Music Detail</h3>
+<!--楽曲詳細カード-->
+<div class="card shadow-lg mb-3 mx-auto " style="max-width: 800px; height: 300px; margin-top:100px;">
+  <div class="row no-gutters">
+    <!--楽曲イメージ linkpreviewで取得-->
+    <div class="col-md-4 my-auto">
+      <img class="card-img" id="link_img" style="width:250px; height:300px;" src=""/>
+    </div>
+    <!--楽曲名と説明 linkpreviewで取得-->
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title"><%= @album_music.name  %></h3>
+        <p><%= @album_music.caption  %></p>
+        <a id="link" href="<%= @album_music.music_url%>" target="_blank"><h6 id="linkpreview">by MusicSite</h6></a>
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h3 class="card-title"><%= @album_music.name  %></h3>
-          <p><%= @album_music.caption  %></p>
-          <a id="link" href="<%= @album_music.music_url%>" target="_blank"><h6 id="linkpreview">by MusicSite</h6></a>
+      <!--いいね・コメント-->
+      <div class="card-text mt-3 text-center">
+        <div class="d-inline " style="margin-right:20px;" id="music_music_favorite_<%= @album_music.id  %>">
+          <%= render 'artist/music_favorites/favorite', album: @album, album_music: @album_music, favorite: @favorite %>
         </div>
-        <%# ファボ・コメント　 %>
-        <div class="card-text mt-3 text-center">
-          <div class="d-inline " style="margin-right:20px;" id="music_music_favorite_<%= @album_music.id  %>">
-            <%= render 'artist/music_favorites/favorite', album: @album, album_music: @album_music, favorite: @favorite %>
-          </div>
-          <div class="d-inline ml-2">
-            <i class="fas fa-comments text-info fa-lg"></i> <%= @music_comments.count %>
-          </div>
+        <div class="d-inline ml-2">
+          <i class="fas fa-comments text-info fa-lg"></i> <%= @music_comments.count %>
         </div>
-        <div class="card-text text-center mt-3">
-        <% if @album_music.album.creater.listener == current_listener  %>
-          <button class="btn">
-            <%= link_to edit_artist_album_album_music_path(@album_music.album, @album_music),class: "text-info" do%><i class="fas fa-user-edit">Edit</i><% end %>
-          </button>
-          <button class="btn">
-            <%= link_to artist_album_path(@album_music.album, @album_music),method: :delete, class: "text-danger" do%><i class="fas fa-user-edit">Delete</i><% end %>
-          </button>
-        <% end %>
-        </div>
+      </div>
+      <!--編集・削除-->
+      <div class="card-text text-center mt-3">
+      <!--ログインユーザーと一致すれば-->
+      <% if @album_music.album.creater.listener == current_listener  %>
+        <button class="btn">
+          <%= link_to edit_artist_album_album_music_path(@album_music.album, @album_music),class: "text-info" do%>
+            <i class="fas fa-user-edit">Edit</i>
+          <% end %>
+        </button>
+        <button class="btn">
+          <%= link_to artist_album_path(@album_music.album, @album_music),method: :delete, class: "text-danger" do%>
+            <i class="fas fa-user-edit">Delete</i>
+          <% end %>
+        </button>
+      <% end %>
       </div>
     </div>
   </div>
-    <div class="row mt-4" id="comment">
-      <%= render "artist/music_comments/comments", album: @album, album_music: @album_music, music_comment: @music_comment, music_comments: @music_comments %>
-    </div>
-    <div class="row mt-5 ">
-      <div class="col-8 offset-2">
-        <%= link_to artist_album_path(@album), 'data-turbolinks': false  do%>
-          <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Album Detailへ</button>
-        <% end %>
-      </div>
-    </div>
-    <script>
-    const data = {
-      key:'3ce2027b63ce4b30403332b3eb475fbe',
-      q: "<%= @album_music.music_url%>"
-    }
-    //プレビュー表示用の関数
-    const createIMG = json => {
-      document.querySelector('#link_img').src = json.image;
-      document.querySelector('#linkpreview').textContent = json.title;
-      document.querySelector('#linkcaption').textContent = json.description;
-      document.querySelector('#link').href = json.url;
-    }
-    //LinkPreviewを利用した通信処理
-    fetch('https://api.linkpreview.net', {
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify(data),
-    })
-    .then(data => data.json())
-    .then(json => createIMG(json));
-  </script>
-
-
-
-
-
-
-
-
+</div>
+<!--コメント登録・一覧-->
+<div class="row mt-4" id="comment">
+  <%= render "artist/music_comments/comments", album: @album, album_music: @album_music, music_comment: @music_comment, music_comments: @music_comments %>
+</div>
+<!--バックボタン・アルバム詳細へ-->
+<div class="row mt-5 ">
+  <div class="col-8 offset-2">
+    <%= link_to artist_album_path(@album), 'data-turbolinks': false  do%>
+      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Album Detailへ</button>
+    <% end %>
+  </div>
+</div>
+<!--linkpreview用のJavascript-->
+<script>
+  const data = {
+    key:'3ce2027b63ce4b30403332b3eb475fbe',
+    q: "<%= @album_music.music_url%>"
+  }
+  //プレビュー表示用の関数
+  const createIMG = json => {
+    document.querySelector('#link_img').src = json.image;
+    document.querySelector('#linkpreview').textContent = json.title;
+    document.querySelector('#linkcaption').textContent = json.description;
+    document.querySelector('#link').href = json.url;
+  }
+  //LinkPreviewを利用した通信処理
+  fetch('https://api.linkpreview.net', {
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify(data),
+  })
+  .then(data => data.json())
+  .then(json => createIMG(json));
+</script>
 
