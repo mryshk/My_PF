@@ -1,11 +1,15 @@
+<!--クリエイター詳細ページへ-->
 <div class="container">
   <h3 class="text-center " id="area-1" style="margin-top:100px;" ><i class="far fa-user-circle"></i> Creater page</h3>
   <div class="row" style="margin-bottom:300px;margin-top:100px;">
+    <!--クリエイター名と画像-->
     <div class="col-md-4 mx-md-auto col-8 offset-2">
+      <!--クリエイター画像-->
       <div class="mt-3 text-center">
         <img>
         <%= attachment_image_tag @creater.listener, :profile_image,size: "300x300",fallback: "no_image.jpg",size: "300x300",class: "my-3 rounded-circle" %>
         </img>
+        <!--クリエイター名-->
         <div class="mt-3">
           <% if @creater.listener.listener_type == 1  %>
             <i class="far fa-user-circle fa-lg" style="color:rgb(255,243,063);"></i>
@@ -13,31 +17,56 @@
           <p class="d-inline-block" style="font-size:22px;"><%= @creater.listener.name %></p>
         </div>
       </div>
+      <!--クリエイター説明-->
       <div class="mt-3 text-center">
         <strong><%= @creater.listener.caption %></strong>
       </div>
-
+      <!--フォロー・フォロワー-->
       <div class="my-4 text-center">
-        <%= link_to listener_followings_path(@creater.listener),class: "text-dark" do %><i class="fas fa-user-check fa-lg mr-3">Follow:&ensp;<%= @creater.listener.followings.count %><% end %></i>
-        <%= link_to listener_followers_path(@creater.listener),class: "text-dark" do %><i class="fas fa-user-friends fa-lg ">Follower:&ensp;<%= @creater.listener.followers.count %><% end %></i>
+        <!--フォロー一覧へ-->
+        <%= link_to listener_followings_path(@creater.listener),class: "text-dark" do %>
+          <i class="fas fa-user-check fa-lg mr-3">
+            Follow:&ensp;<%= @creater.listener.followings.count %>
+          </i>
+        <% end %>
+        <!--フォロワー一覧へ-->
+        <%= link_to listener_followers_path(@creater.listener),class: "text-dark" do %>
+          <i class="fas fa-user-friends fa-lg ">
+            Follower:&ensp;<%= @creater.listener.followers.count %>
+          </i>
+        <% end %>
       </div>
       <!--リスナー詳細へ-->
       <div>
-        <%= link_to  listener_path(@creater.listener) do%></i>
-          <div class="btn btn-outline-main btn-block"><i class="far fa-user"></i> Listener</div>
+        <%= link_to  listener_path(@creater.listener) do%>
+          <div class="btn btn-outline-main btn-block">
+            <i class="far fa-user"></i>
+          Listener</div>
         <% end %>
       </div>
+      <!--フォロー・アンフォローボタン-->
       <div class="mt-3 text-center">
       <% unless current_listener.id == @creater.listener.id  %>
         <button class="btn btn-outline-info btn-block">
           <% if current_listener.following?(@creater.listener) %>
-            <%= link_to listener_relationships_path(@creater.listener), method: :delete ,class: "text-info" do %><i class="fas fa-user-slash">&nbsp;Unfollow</i><% end %>
+            <!--アンフォロー-->
+            <%= link_to listener_relationships_path(@creater.listener), method: :delete ,class: "text-info" do %>
+              <i class="fas fa-user-slash">
+                &nbsp;Unfollow
+              </i>
+            <% end %>
           <% else %>
-            <%= link_to listener_relationships_path(@creater.listener), method: :post,class: "text-info"   do %><i class="fas fa-user-check">&nbsp;Follow</i><% end %>
+            <!--フォロー-->
+            <%= link_to listener_relationships_path(@creater.listener), method: :post,class: "text-info"   do %>
+              <i class="fas fa-user-check">
+                &nbsp;Follow
+              </i>
+            <% end %>
           <% end %>
         </button>
       <% end %>
       </div>
+      <!--相互フォローであればチャットへ-->
       <div class="mt-4 text-center">
         <% if (current_listener.followings.exists? @creater.listener.id)  && (@creater.listener.followings.exists? current_listener.id )%>
           <%= link_to chat_path(@creater.listener) do  %>
@@ -45,34 +74,45 @@
           <% end %>
         <% end %>
       </div>
+      <!--編集-->
       <div class="text-right mt-3">
+        <!--ログインユーザーと一致すれば-->
         <% if @creater.listener == current_listener  %>
         <button class="btn">
-          <%= link_to edit_listener_path(current_listener),class: "text-info" do%><i class="fas fa-user-edit"></i> Edit<% end %>
+          <%= link_to edit_listener_path(current_listener),class: "text-info" do%>
+            <i class="fas fa-user-edit"></i>
+            Edit
+          <% end %>
         </button>
         <% end %>
       </div>
     </div>
   </div>
+  <!--自分の投稿アルバム一覧-->
   <h2 class="text-center my-5" ><i class="fas fa-compact-disc"></i> My Albums</h2>
   <div class="row mt-5">
     <div class="col-6 offset-3 mt-5 text-center"style="margin-bottom:100px;" >
       <% if @creater.listener == current_listener  %>
+        <!--新規アルバム投稿-->
         <%= link_to new_artist_album_path ,class:"link", 'data-turbolinks': false do %>
           <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Album</i></div>
         <% end %>
       <% end %>
     </div>
+    <!--アルバムがあれば-->
     <% if @albums.exists? %>
     <div class="col-6 offset-3">
       <div class="scroll-list jscroll">
+        <!--アルバム一覧部分テンプレートで取得-->
         <%= render "artist/albums/index", albums: @albums %>
       </div>
     </div>
+    <!--アルバム無ければ-->
     <% else %>
     <div class="col-6 offset-3 text-center">
       <p style="font-size:22px;">投稿はありません。</p>
       <% if @creater.listener == current_listener  %>
+        <!--アルバム新規登録へ-->
         <%= link_to new_artist_album_path ,class:"link", 'data-turbolinks': false do %>
           <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Album</i></div>
         <% end %>
