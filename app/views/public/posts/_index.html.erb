@@ -1,66 +1,71 @@
-
-  <% posts.includes(:tags).each do |post| %>
-    <div class="card ">
-      <div class="card-body">
-        <%# 名前と画像 %>
-        <div class="card-text" >
-        <%= link_to listener_path(post.listener),class: "text-dark" do %>
-          <table class="table table-borderless">
-            <tr>
-              <td class="align-middle" style="width:60px; padding:0;">
-                <%= attachment_image_tag post.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
-              </td>
-              <td class="align-middle">
-                <%= post.listener.name%>
-                  <% if post.listener.listener_type == 1  %>
-                  <i class="fa fa-circle" style="color: gold;"></i>
-                <% end %>
-              </td>
-            </tr>
-          </table>
+<!--投稿一覧の部分テンプレート-->
+<!--N+1問題対策のため、includes使用。-->
+<% posts.includes(:tags).each do |post| %>
+<!--投稿カード-->
+  <div class="card ">
+    <div class="card-body">
+      <!--投稿者の名前と画像-->
+      <div class="card-text" >
+      <%= link_to listener_path(post.listener),class: "text-dark" do %>
+        <table class="table table-borderless">
+          <tr>
+            <!--リスナー画像-->
+            <td class="align-middle" style="width:60px; padding:0;">
+              <%= attachment_image_tag post.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
+            </td>
+            <!--リスナー名-->
+            <td class="align-middle">
+              <%= post.listener.name%>
+                <% if post.listener.listener_type == 1  %>
+                <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+      </div>
+      <!--投稿文-->
+      <h5 class="card-text text-center mt-2"><%= post.post_tweet  %></h5>
+      <!--タグ一覧-->
+      <p class="card-text text-center">
+        <% post.tags.each do |tag| %>
+          <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag link" %>
         <% end %>
+      </p>
+      <!--投稿画像-->
+      <div class="text-center mt-5">
+        <%= link_to post_path(post) do %>
+          <%= attachment_image_tag post,:picture,size:"200x200" %>
+        <% end %>
+      </div>
+      <div class="mt-4 text-center" >
+        <!--詳細画面へ-->
+        <div class="d-inline mt-4" style="margin-right:80px;" >
+          <%= link_to post_path(post), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
         </div>
-        <%# 投稿文 %>
-        <h5 class="card-text text-center mt-2"><%= post.post_tweet  %></h5>
-        <!--タグ一覧-->
-        <p class="card-text text-center">
-          <% post.tags.each do |tag| %>
-            <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag link" %>
-          <% end %>
-        </p>
-        <!--投稿画像-->
-        <div class="text-center mt-5">
-          <%= link_to post_path(post) do %>
-            <%= attachment_image_tag post,:picture,size:"200x200" %>
-          <% end %>
+        <!--楽曲視聴-->
+        <div class="d-inline mt-4" style="margin-right:80px;" >
+          <a class="card-title text-center" href="<%= post.post_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
         </div>
-        <div class="mt-4 text-center" >
-          <%# 詳細画面へ %>
-          <div class="d-inline mt-4" style="margin-right:80px;" >
-            <%= link_to post_path(post), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
-          </div>
-          <%# 曲視聴 %>
-          <div class="d-inline mt-4" style="margin-right:80px;" >
-            <a class="card-title text-center" href="<%= post.post_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
-          </div>
-          <%# ファボ %>
-          <div class="d-inline mt-4" style="margin-right:80px;"  id="post_post_favorite_<%= post.id  %>">
-            <% @favorite = PostFavorite.find_by(post_id: post.id,listener_id: current_listener.id) %>
-            <%= render 'public/post_favorites/favorite', post: post, favorite: @favorite %>
-          </div>
-          <%# コメント数 %>
-          <div class="d-inline ml-2 mt-4">
-            <i class="fas fa-comments text-info fa-lg main-color"><%= post.post_comments.count %></br><p class="text-dark " style="font-size:12px;">Comments</p></i>
-          </div>
-          <%# 投稿日 %>
-          <div class="text-right"><%= time_ago_in_words(post.created_at) %></div>
+        <!--いいね-->
+        <div class="d-inline mt-4" style="margin-right:80px;"  id="post_post_favorite_<%= post.id  %>">
+          <% @favorite = PostFavorite.find_by(post_id: post.id,listener_id: current_listener.id) %>
+          <%= render 'public/post_favorites/favorite', post: post, favorite: @favorite %>
         </div>
+        <!--コメント-->
+        <div class="d-inline ml-2 mt-4">
+          <i class="fas fa-comments text-info fa-lg main-color"><%= post.post_comments.count %></br><p class="text-dark " style="font-size:12px;">Comments</p></i>
+        </div>
+        <!--投稿日-->
+        <div class="text-right"><%= time_ago_in_words(post.created_at) %></div>
       </div>
     </div>
-  <% end %>
-  <div>
-    <%= link_to_next_page posts,'次のページ', class: "next" %>
   </div>
+<% end %>
+<!--インクリメンタルサーチ用のリンク-->
+<div>
+  <%= link_to_next_page posts,'次のページ', class: "next" %>
+</div>
 
 
 
