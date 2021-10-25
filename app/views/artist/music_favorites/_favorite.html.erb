@@ -1,7 +1,22 @@
+<!--いいね部分テンプレート・非同期用-->
+<!--ログインユーザーがいいねをしていたら-->
 <% if album_music.favorited_by?(current_listener) %>
-  <%= link_to artist_album_album_music_music_favorite_path(album, album_music,favorite), method: :delete, class: "text-warning",remote: true do %><i class="fas fa-star fa-lg"></i><% end %>
-  <%= link_to artist_album_album_music_music_favorites_path(album, album_music),class:"link" do%><%= album_music.music_favorites.count %><% end %>
+  <!--いいね外す-->
+  <%= link_to artist_album_album_music_music_favorite_path(album, album_music,favorite), method: :delete, class: "text-warning",remote: true do %>
+    <i class="fas fa-star fa-lg"></i>
+  <% end %>
+  <!--いいね数・いいねした人一覧-->
+  <%= link_to artist_album_album_music_music_favorites_path(album, album_music),class:"link" do%>
+    <%= album_music.music_favorites.count %>
+  <% end %>
+<!--いいねしていなければ-->
 <% else %>
-  <%= link_to artist_album_album_music_music_favorites_path(album, album_music), method: :post, remote: true do %><i class="far fa-star fa-lg"></i><% end %>
-  <%= link_to artist_album_album_music_music_favorites_path(album, album_music),class:"link" do%><%= album_music.music_favorites.count %><% end %>
+  <!--いいねする-->
+  <%= link_to artist_album_album_music_music_favorites_path(album, album_music), method: :post, remote: true do %>
+    <i class="far fa-star fa-lg"></i>
+  <% end %>
+  <!--いいね数・いいねした人一覧-->
+  <%= link_to artist_album_album_music_music_favorites_path(album, album_music),class:"link" do%>
+    <%= album_music.music_favorites.count %>
+  <% end %>
 <% end %>
