@@ -1,47 +1,53 @@
-
-  <% albums.includes(creater: :listener).each do |album| %>
-    <div class="card mt-4 shadow-sm " >
-      <div class="card-body">
-        <%# 名前と画像 %>
-        <div class="card-text" >
-          <%= link_to artist_creater_path(album.creater),class: "text-dark" do %>
-          <div class="d-inline-block">
-            <%= attachment_image_tag album.creater.listener,:profile_image ,size:"50x50", fallback: "no_image.jpg",class: "mt-3 rounded-circle" %>
-          </div>
-          <div class="d-inline-block">
-            <% if album.creater.listener.listener_type == 1  %>
-              <i class="fa fa-circle" style="color: gold;"></i>
-            <% end %>
-            <%= album.creater.listener.name %>
-          </div>
+<!--アルバム一覧部分テンプレート-->
+<!--N+1問題対策のため、下記includes使用-->
+<% albums.includes(creater: :listener).each do |album| %>
+  <!--アルバムカード-->
+  <div class="card mt-4 shadow-sm " >
+    <div class="card-body">
+      <!--投稿者名と画像-->
+      <div class="card-text" >
+        <!--クリエイター詳細へ-->
+        <%= link_to artist_creater_path(album.creater),class: "text-dark" do %>
+        <div class="d-inline-block">
+          <!--クリエイター画像-->
+          <%= attachment_image_tag album.creater.listener,:profile_image ,size:"50x50", fallback: "no_image.jpg",class: "mt-3 rounded-circle" %>
+        </div>
+        <div class="d-inline-block">
+          <% if album.creater.listener.listener_type == 1  %>
+            <i class="fa fa-circle" style="color: gold;"></i>
           <% end %>
+          <!--クリエイター名-->
+          <%= album.creater.listener.name %>
         </div>
-        <!--アルバム名-->
-        <h5 class="card-text text-center mt-2"><%= album.name  %></h5>
-        <!--アルバム画像-->
-        <div class="text-center mt-5">
-          <%= link_to artist_album_path(album)do %>
-            <%= attachment_image_tag album,:album_image ,size:"200x200" %>
-          <% end %>
-        </div>
-        <!--アルバム説明-->
-        <p class="card-text text-center mt-2"><%= album.caption  %></p>
-        <!--詳細ボタン-->
-        <div class="mt-4 d-flex justify-content-center" >
-          <%# 詳細画面へ %>
-          <div class=" mt-4" style="margin-right:80px;" >
-            <%= link_to artist_album_path(album), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
-          </div>
-          <%# 曲視聴 %>
-          <div class=" mt-4" style="" >
-            <a class="card-title text-center" href="<%= album.album_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
-          </div>
-        </div>
-        <%# 投稿日 %>
-        <div class="text-right"><%= time_ago_in_words(album.created_at) %></div>
+        <% end %>
       </div>
+      <!--アルバム名-->
+      <h5 class="card-text text-center mt-2"><%= album.name  %></h5>
+      <!--アルバム画像-->
+      <div class="text-center mt-5">
+        <%= link_to artist_album_path(album)do %>
+          <%= attachment_image_tag album,:album_image ,size:"200x200" %>
+        <% end %>
+      </div>
+      <!--アルバム説明-->
+      <p class="card-text text-center mt-2"><%= album.caption  %></p>
+      <!--アルバム詳細ボタン-->
+      <div class="mt-4 d-flex justify-content-center" >
+        <!--詳細画面へ-->
+        <div class=" mt-4" style="margin-right:80px;" >
+          <%= link_to artist_album_path(album), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
+        </div>
+        <!--投稿曲視聴-->
+        <div class=" mt-4" style="" >
+          <a class="card-title text-center" href="<%= album.album_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
+        </div>
+      </div>
+      <!--投稿日-->
+      <div class="text-right"><%= time_ago_in_words(album.created_at) %></div>
     </div>
-  <% end %>
-  <div>
-    <%= link_to_next_page albums,'次のページ', class: "next" %>
   </div>
+<% end %>
+<!--無限スクロール用のリンク-->
+<div>
+  <%= link_to_next_page albums,'次のページ', class: "next" %>
+</div>
