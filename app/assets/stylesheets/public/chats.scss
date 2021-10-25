@@ -1,3 +1,125 @@
 // Place all the styles related to the public/chats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//　チャットアレンジ
+
+.speech-bubble {
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.speech-bubble p {
+  margin: 0;
+}
+
+.speech-bubble {
+  background: #ffffff;
+}
+
+.speech-bubble:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.speech-bubble:before {
+  content: "";
+  display: table;
+}
+
+.sb-bubble:after,
+.sb-bubble:before {
+  content: " ";
+  height: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 1.2em;
+  width: 0;
+}
+
+.sb-left {
+  float: left;
+  margin-left: 20px;
+}
+
+.sb-right {
+  float: right;
+  margin-right: 20px;
+}
+
+
+.sb-line1 {
+  border: solid 1px #f7ffff;
+  border-radius: 1em;
+  max-width: 70%;
+  padding: .2em 1em;
+  position: relative;
+}
+
+// 左側
+
+.sb-line1.sb-left {
+  background: linear-gradient(
+    to bottom,
+    #f7ffff 0%,
+    #f4f5f7 20%,
+    #f4f5f7 80%,
+    #d5d8dd 100% );
+}
+
+.sb-line1.sb-left:after {
+  background: #ffffff;
+  border: solid #f7ffff;
+  border-radius: 1.6em 0 0 1.6em;
+  border-width: 0 0 1px 1px;
+  height: 1.6em;
+  margin: -2.3em -1px 0 0;
+  right: 100%;
+  width: .8em;
+}
+
+.sb-line1.sb-left:before {
+  background: #f4f5f7;
+  border: solid #f7ffff;
+  border-radius: 1.6em 0 0 1.6em;
+  border-width: 0 0 1px 1px;
+  height: 1.6em;
+  margin: -1.8em -1px 0 0;
+  right: 100%;
+  width: .8em;
+}
+
+// 右側
+
+.sb-line1.sb-right {
+  background: linear-gradient(
+    to bottom,
+    #daf0a9 0%,
+    #afe64a 20%,
+    #afe64a 80%,
+    #8cc159 100% );
+}
+
+.sb-line1.sb-right:after {
+  background: #ffffff;
+  border: solid #f7ffff;
+  border-radius: 0 1.6em 1.6em 0;
+  border-width: 0 1px 1px 0;
+  height: 1.6em;
+  left: 100%;
+  margin: -2.3em 0 0 -1px;
+  width: .8em;
+}
+
+.sb-line1.sb-right:before {
+  background: #afe64a;
+  border: solid #f7ffff;
+  border-radius: 0 1.6em 1.6em 0;
+  border-width: 0 1px 1px 0;
+  height: 1.6em;
+  left: 100%;
+  margin: -1.8em 0 0 -1px;
+  width: .8em;
+}

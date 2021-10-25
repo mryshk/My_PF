@@ -1,6 +1,8 @@
-  <h4 class="mx-auto text-main2">Menu</h4>
-  <!-- Contenedor -->
+<!--メニューバーの部分テンプレート-->
+<h4 class="mx-auto text-main2">Menu</h4>
+  <!--メニューバーの内容-->
   <ul id="accordion" class="accordion">
+    <!--投稿のジャンル検索-->
     <li>
       <div class="link"><i class="fas fa-tags"></i>Post Category<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
@@ -14,6 +16,7 @@
         <li><%= link_to "HIPHOP",search_genre_posts_path(:post_genre => 'HIPHOP') %></li>
       </ul>
     </li>
+    <!--アルバムのジャンル検索-->
     <li>
       <div class="link"><i class="fas fa-tags"></i>Album Category<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
@@ -27,6 +30,7 @@
         <li><%= link_to "HIPHOP",search_genre_artist_albums_path(:genre => 'HIPHOP') %></li>
       </ul>
     </li>
+    <!--投稿の並び替え-->
     <li>
       <div class="link"><i class="fas fa-sort"></i>Post Sort<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
@@ -35,6 +39,7 @@
         <li><%= link_to "いいねが多い順" ,order_posts_path(:keyword => 'likes') %></a></li>
       </ul>
     </li>
+    <!--マイページの内容-->
     <li class="default open">
       <div class="link"><i class="fas fa-user-friends"></i>My Friend<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
@@ -46,6 +51,7 @@
         <% end %>
       </ul>
     </li>
+    <!--自分のグループ一覧-->
     <li>
       <div class="link"><i class="fas fa-users"></i>My Group<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
@@ -54,6 +60,7 @@
         <% end %>
       </ul>
     </li>
+    <!--音楽サイトへのリンク-->
     <li><div class="link"><i class="fa fa-globe"></i>Music cite<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
         <li><a href="https://www.youtube.com" target="_blank">Youtube</a></li>

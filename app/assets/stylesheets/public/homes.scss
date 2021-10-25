@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// 変数定義
 
 $main_color: rgb(063,163,203);
 $sub_color: #ffffff;
@@ -15,7 +16,7 @@ $font_size-lg: 24px;
 $font_size-vlg: 30px;
 
 
-
+// タグのアレンジ
 .tag{
   display: inline-block;
 	margin: 0 .1em .6em 0;
@@ -59,9 +60,9 @@ a {
   text-decoration: none;
 }
 
-/** =======================
- * Contenedor Principal
- ===========================*/
+
+// メニューバーのアレンジ
+
 h1 {
   color: #000;
   font-size: 24px;
@@ -132,9 +133,7 @@ h1 {
 }
 
 .accordion li.default .submenu {display: block;}
-/**
- * Submenu
- -----------------------------*/
+
  .submenu {
   display: none;
   background: $main_color;
@@ -163,11 +162,15 @@ h1 {
   background: $sub2_color;
   color: #000;
  }
+
+ //プロフィール画像の動き
  .profile_image:hover{
  	transform: scale(1.2);
   transition-duration: 0.5s;
  }
 
+
+// TOPのポップアップのアレンジ
 
  .content{
     margin: 0 auto;
@@ -202,10 +205,7 @@ h1 {
 
 }
 
-#skipper{
-	height:500px;
-}
-
+// TOPのイメージ画像と説明文
 #top-card-img{
   width:100%;
   height:600px;
@@ -236,7 +236,12 @@ h1 {
   }
 }
 
+// 画像スライド
+#skipper{
+	height:500px;
+}
 
+// 画像スライドのイメージ
 .image1 {
 	background-size: cover;
 	background-position: center;
@@ -264,9 +269,12 @@ h1 {
 
 }
 
+
 .row-responsive{
 		margin-top:600px;
 	}
+
+// TOPのアルバム一覧のアレンジ
 
 .box_images{
 	width:100%;
@@ -383,6 +391,9 @@ h1 {
   }
 }
 
+
+// TOPページのレスポンシブ対応
+// 768px以下の場合変更
 
 @media screen and (max-width:768px) {
 	#top-card-text{
