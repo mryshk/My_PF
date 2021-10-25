@@ -1,28 +1,35 @@
-
+<!--投稿編集画面-->
 <h4 class = "text-center" style="margin-top: 100px;"><i class="far fa-edit"></i> Edit Post</h4>
 <p class = "text-center mt-3 " style="font-size:12px;">下記のフォームへ入力してください。</p>
+  <!--編集フォーム-->
   <div class="row form-row"style="margin-top: 100px; ">
     <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
       <%= form_with model: @post, local: true do |f| %>
+      <!--投稿文-->
       <div class="form-group d-flex mt-3">
-        <%= f.label :投稿 ,class:"col-4 mr-2 mt-3 form-label" ,style: "font-size:14px;"%>
+        <%= f.label :投稿文 ,class:"col-4 mr-2 mt-3 form-label" ,style: "font-size:14px;"%>
         <%= f.text_area :post_tweet,rows:"2", autofocus: true, class: "form-control-static col-6",placeholder:"Tweet" %>
       </div>
+      <!--楽曲URL-->
       <div class="form-group　mt-3">
         <%= f.label :楽曲URL　,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
         <%= f.text_field :post_url ,class: "form-control-static col-6",placeholder:"URL" %>
       </div>
+      <!--タグ-->
       <div class="form-group　mt-3">
         <%= f.label :タグ,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
         <%= f.text_field :tag_name,class: "form-control-static col-6",placeholder:"#Tag" %>
       </div>
+      <!--ジャンル-->
       <div class="form-group　mt-3">
         <%= f.label :ジャンル,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
         <%= f.select :post_genre, Post.post_genres.keys.to_a ,{}, :class =>"custom-select col-6" %>
       </div>
+      <!--投稿画像-->
       <div class="form-group mt-3">
         <%= f.label :画像,class:"col-4 mr-2 mt-3 form-label",style: "font-size:13px;" %>
         <%= f.attachment_field :picture ,class: "form-control-file col-6 d-inline-block" ,style: "padding:0px;"  %>
+        <!--送信ボタン-->
         <button class="btn btn-main mt-5 d-block mx-auto "><i class="fas fa-plus">&nbsp;Post</i>
           <% f.submit %>
         </button>

@@ -1,12 +1,15 @@
+<!--投稿詳細画面-->
 <h3 class="text-center" style="margin-top:100px;" >Post Detail</h3>
 <div class="row mt-4 ">
-  <div class="col-3 ml-5 ">
+  <!--左メニュー-->
+  <div class="col-md-3 ml-md-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
   </div>
-  <div class="col-5 mt-5">
+  <!--詳細内容-->
+  <div class="col-md-5 mt-md-5 column-center">
     <div class="card">
         <div class="card-body">
-          <%# 名前と画像 %>
+          <!--投稿者の名前と画像-->
           <div class="card-text" >
           <%= link_to listener_path(@post.listener),class: "text-dark" do %>
             <table class="table table-borderless">
@@ -24,7 +27,7 @@
             </table>
           <% end %>
           </div>
-          <%# 投稿文 %>
+          <!--投稿文-->
           <h5 class="card-text text-center mt-2"><%= @post.post_tweet  %></h5>
           <!--タグ一覧-->
           <p class="card-text text-center">
@@ -32,12 +35,13 @@
               <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag" %>
             <% end %>
           </p>
+          <!--投稿画像-->
           <div class="text-center mt-5">
             <%= link_to post_path(@post) do %>
               <%= attachment_image_tag @post,:picture,size:"200x200"%>
             <% end %>
           </div>
-           <!--linkpreviewの部分-->
+           <!--linkpreviewの部分 音楽サイトのリンク内容取得-->
           <div class="card mb-3 my-5">
             <div class="row">
               <div class="col-md-4 my-auto">
@@ -55,28 +59,37 @@
               </div>
             </div>
           </div>
-          <%# 編集・削除 %>
+          <!--編集・削除-->
           <div class="mt-4 text-right">
             <% if @post.listener == current_listener %>
-            <button type="button" class="btn "> <%= link_to edit_post_path(@post),class: "text-info" do%><i class="fas fa-edit">Edit</i><% end %></button>
-            <button type="button" class="btn "><%= link_to post_path(@post),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%><i class="fas fa-trash-alt">Delete</i><% end %></button>
+            <button type="button" class="btn ">
+              <%= link_to edit_post_path(@post),class: "text-info" do%>
+                <i class="fas fa-edit">Edit</i>
+              <% end %>
+            </button>
+            <button type="button" class="btn ">
+              <%= link_to post_path(@post),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%>
+                <i class="fas fa-trash-alt">Delete</i>
+              <% end %>
+            </button>
             <% end %>
           </div>
-          <div class="mt-4 text-center" >
-            <%# ファボ %>
+          <div class="mt-4 d-flex justify-content-center" >
+            <!--いいね-->
             <div class="d-inline mt-4" style="margin-right:80px;"  id="post_post_favorite_<%= @post.id  %>">
               <% @favorite = PostFavorite.find_by(post_id: @post.id,listener_id: current_listener.id) %>
               <%= render 'public/post_favorites/favorite', post: @post, favorite: @favorite %>
             </div>
-            <%# コメント数 %>
+            <!--コメント数-->
             <div class="d-inline ml-2 mt-4">
               <i class="fas fa-comments text-info fa-lg main-color"><%= @post.post_comments.count %></br><p class="text-dark " style="font-size:12px;">Comments</p></i>
             </div>
-            <%# 投稿日 %>
-            <div class="text-right"><%= time_ago_in_words(@post.created_at) %></div>
           </div>
+           <!--投稿日-->
+          <div class="text-right"><%= time_ago_in_words(@post.created_at) %></div>
         </div>
       </div>
+      <!--linkpreview用のJavascript-->
     <script>
     　const data = {
       key:'3ce2027b63ce4b30403332b3eb475fbe',
@@ -99,18 +112,22 @@
       .then(json => createIMG(json));
     </script>
   </div>
-  <div class="col-3 ml-2">
+  <!--右側のランキング-->
+  <div class="col-md-3 ml-md-2 column-right">
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
       <thead>
         <h6 class="mx-auto text-main">Like Ranking</h6>
       </thead>
+      <!--ランク番号用の変数-->
       <% i = 0  %>
       <% @post_favorite_rank.each do |fav_rank|  %>
       <tr>
+        <!--ランク番号-->
         <th class="align-middle" style="padding:0;">
           <% i += 1  %>
           <%= i %>
         </th>
+        <!--投稿リスナー名と画像-->
         <td class="d-flex align-middle">
           <div>
             <div>
@@ -122,10 +139,12 @@
               <%= fav_rank.listener.name %>
             </div>
           </div>
+          <!--投稿文と投稿詳細へのリンク-->
           <%= link_to post_path(fav_rank.id),class: "link-none",'data-turbolinks': false do %>
             <p class=" align-self-center ml-3"style="font-size: 12px;" ><%= fav_rank.post_tweet.truncate(15) %></p>
           <% end %>
         </td>
+        <!--いいね数-->
         <td class="align-middle">
           <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= fav_rank.post_favorites.count %></p>
           <p class="d-block" style="font-size: 10px;">Likes</p>
@@ -136,11 +155,14 @@
     </table>
   </div>
 </div>
+<!--コメントフォーム一覧を部分テンプレートで取得-->
 <div class="row mt-4" id="comment">
   <%= render "public/post_comments/comments",comments: @comments, post: @post, post_comment_n: @post_comment_n %>
 </div>
+<!--バックボタン-->
 <div class="row " style="margin-top:100px;">
   <div class="col-8 offset-2">
+    <!--投稿一覧へ-->
     <%= link_to posts_path do%>
       <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Posts</button>
     <% end %>

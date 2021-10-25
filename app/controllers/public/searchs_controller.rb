@@ -15,9 +15,9 @@ class Public::SearchsController < ApplicationController
     if model == "listener"
       Listener.where(["name LIKE?", "%#{keyword}%"])
     elsif model == "post"
-      Post.where(['post_tweet LIKE? OR post_genre LIKE?', "%#{keyword}%", "%#{keyword}%"])
+      Post.where(['post_tweet LIKE? OR post_genre LIKE?', "%#{keyword}%", "%#{keyword}%"]).page(params[:page]).per(2)
     elsif model == "album"
-      Album.where(["name LIKE?", "%#{keyword}%"])
+      Album.where(["name LIKE?", "%#{keyword}%"]).page(params[:page]).per(2)
     end
   end
 end
