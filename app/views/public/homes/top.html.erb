@@ -1,41 +1,53 @@
+<!--TOPページ-->
 <div class="row">
-<div class="card bg-dark text-white" style="width:100%;">
-  <%= image_tag asset_path("topimage10.jpg"), class: "bd-placeholder-img bd-placeholder-img-lg card-img" ,style: "width: 100%; height:800px;" %>
-  <div class="card-img-overlay text-center">
-    <h1 class="card-title" style="margin-top:150px; font-size:60px;">Welcome To new Music</h1>
-    <h1 class="card-title" style="margin-top:80px; font-size:60px;"><a class="js-modal-open link-none4" href="">Start</a></h1>
-    <div class="modal js-modal" >
-      <div class="modal__bg js-modal-close"></div>
-      <div class="modal__content">
-        <p class="mt-3" style="color:#000;">こちらから新規登録ができます。</br>
-        アカウントをお持ちの方はログインへお進みください。
-        </p>
-        <div class="card-text btn btn-outline-main btn-block mt-5" >
-          <%= link_to new_listener_registration_path ,class: "link-none2"  do %>
-            <h3 class="link-none2"><i class="fas fa-user-plus"></i>Sign Up</h3>
+  <!--TOP画像-->
+  <div class="card bg-dark text-white" style="width:100%;">
+    <!--TOP画像-->
+    <%= image_tag asset_path("topimage10.jpg"), class: "bd-placeholder-img bd-placeholder-img-lg card-img" ,style: "width: 100%; height:800px;" %>
+    <div class="card-img-overlay text-center">
+      <!--TOPタイトル-->
+      <h1 class="card-title" style="margin-top:150px; font-size:60px;">Welcome To new Music</h1>
+      <!--ログイン選択画面出力ボタン-->
+      <h1 class="card-title" style="margin-top:80px; font-size:60px;"><a class="js-modal-open link-none4" href="">Start</a></h1>
+      <!--ログイン選択画面-->
+      <div class="modal js-modal" >
+        <div class="modal__bg js-modal-close"></div>
+        <div class="modal__content">
+          <p class="mt-3" style="color:#000;">こちらから新規登録ができます。</br>
+          アカウントをお持ちの方はログインへお進みください。
+          </p>
+          <!--新規登録へ-->
+          <div class="card-text btn btn-outline-main btn-block mt-5" >
+            <%= link_to new_listener_registration_path ,class: "link-none2"  do %>
+              <h3 class="link-none2"><i class="fas fa-user-plus"></i>Sign Up</h3>
+            <% end %>
+          </div>
+          <!--ログインへ-->
+          <div class="card-text btn btn-outline-main btn-block mt-5">
+           <%= link_to new_listener_session_path,class: "link-none2" do%>
+              <h3 class="link-none2"><i class="fas fa-sign-in-alt"></i>Log In</h3>
           <% end %>
-        </div>
-        <div class="card-text btn btn-outline-main btn-block mt-5">
-         <%= link_to new_listener_session_path,class: "link-none2" do%>
-            <h3 class="link-none2"><i class="fas fa-sign-in-alt"></i>Log In</h3>
-        <% end %>
-        </div>
-        <div class="mt-5">
-          <a class="js-modal-close link-none2" href="">
-            <i class="fas fa-times-circle fa-2x"></i>
-          </a>
+          </div>
+          <!--閉じるボタン-->
+          <div class="mt-5">
+            <a class="js-modal-close link-none2" href="">
+              <i class="fas fa-times-circle fa-2x"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+<!--イメージ画像と説明文-->
 <div class="row " style="margin-top:130px;">
+  <!--イメージ画像-->
   <div class="col-6 ">
     <div class="text-center">
       <div id="top-card-img" class="card-img"></div>
     </div>
   </div>
+  <!--アプリ説明-->
   <div class="col-md-6" style="margin-top:0px;">
     <div id="top-card-text" class="text-dark text-center">
       <p class="top-caption" style="font-size:20px; margin-top:50px;">ようこそ、To new Musicへ！<br>
@@ -47,6 +59,7 @@
     </div>
   </div>
 </div>
+<!--スライドショー-->
 <div class="row" style="margin-top:150px;">
   <div class="col-10 offset-1 hover"id="skipper">
     <div id="theTarget" style="height:600px;">
@@ -58,7 +71,9 @@
     </div>
   </div>
 </div>
+<!--イメージ画像とアプリ説明-->
 <div class="row " style="margin-top:300px;">
+  <!--アプリ説明-->
   <div class="col-md-6" style="margin-top:0px;">
     <div id="top-card-text" class=" text-dark text-center">
       <p class="top-caption" style="font-size:20px; margin-top:50px;">Createrの皆様<br>
@@ -69,12 +84,15 @@
       </p>
     </div>
   </div>
+  <!--イメージ画像-->
   <div class="col-6">
     <div class="text-center">
       <div id="top-card-img2" class="card-img"></div>
     </div>
   </div>
 </div>
+
+<!--アルバムイメージ-->
 <div class="row" style="margin-top:400px; margin-bottom:800px;">
   <div class="col-8 offset-2">
     <h2 class=" text-center mx-auto">Albums</h2>
