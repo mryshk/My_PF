@@ -12,12 +12,12 @@
           <!--クリエイター画像-->
           <%= attachment_image_tag album.creater.listener,:profile_image ,size:"50x50", fallback: "no_image.jpg",class: "mt-3 rounded-circle" %>
         </div>
+        <!--クリエイター名-->
         <div class="d-inline-block">
-          <% if album.creater.listener.listener_type == 1  %>
-            <i class="fa fa-circle" style="color: gold;"></i>
-          <% end %>
-          <!--クリエイター名-->
           <%= album.creater.listener.name %>
+          <% if album.creater.listener.listener_type == 1  %>
+            <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+          <% end %>
         </div>
         <% end %>
       </div>
