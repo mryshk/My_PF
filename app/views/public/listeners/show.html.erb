@@ -1,11 +1,14 @@
 <div class="container" style="margin-bottom:200px;">
   <h2 class=" text-center" id="area-1" style="margin-top:100px;" ><i class="far fa-user"></i> My page</h2>
+  <!--プロフィール詳細-->
   <div class="row" style="margin-bottom:200px; margin-top:100px;">
     <div class="col-md-4 mx-md-auto col-8 offset-2">
       <div class="mt-3 text-center">
+        <!--プロフィール画像-->
         <img>
         <%= attachment_image_tag @listener, :profile_image, size:"300x300",fallback: "no_image.jpg",class: "my-3 rounded-circle" %>
         </img>
+        <!--プロフィール名-->
         <div class="mt-3">
           <% if @listener.listener_type == 1  %>
             <i class="far fa-user-circle fa-lg" style="color:rgb(255,243,063);"></i>
@@ -13,24 +16,28 @@
           <p class="d-inline-block" style="font-size:22px;"><%= @listener.name %></p>
         </div>
       </div>
+      <!--自己紹介-->
       <div class="mt-3 text-center">
         <strong><%= @listener.caption %></strong>
       </div>
+      <!--フォロー・フォロワー-->
       <div class="my-4 text-center">
+        <!--フォロー一覧-->
         <%= link_to listener_followings_path(@listener),class: "text-dark" do %>
           <i class="fas fa-user-check fa-lg mr-3 hover">
             Follow:&ensp;<%= @listener.followings.count %>
           </i>
         <% end %>
+        <!--フォロワー一覧-->
         <%= link_to listener_followers_path(@listener),class: "text-dark" do %>
           <i class="fas fa-user-friends fa-lg hover">
             Follower:&ensp;<%= @listener.followers.count %>
           </i>
          <% end %>
       </div>
-      <!--クリエイター詳細へ-->
       <div>
         <% if @listener.listener_type == 1  %>
+         　<!--クリエイター詳細へ-->
           <%= link_to  artist_creater_path(@listener.creater),class:"link" do%></i>
             <div class="btn btn-outline-main btn-block"><i class="far fa-user-circle"></i> Creater</div>
           <% end %>
@@ -58,6 +65,7 @@
       </div>
       <!--編集画面へ-->
       <div class="text-right mt-3">
+        <!--ログインユーザーと一致すれば-->
         <% if @listener == current_listener  %>
         <button class="btn">
           <%= link_to edit_listener_path(current_listener),class: "text-info" do%><i class="fas fa-user-edit"> Edit</i><% end %>
@@ -66,18 +74,24 @@
       </div>
     </div>
   </div>
+
   <h2 class="text-center my-5" ><i class="fas fa-headphones-alt"></i> My Posts</h2>
+  <!--自分の投稿一覧-->
   <div class="row mt-5">
+    <!--投稿があれば-->
     <% if @posts.exists? %>
     <div class="col-md-6 offset-md-3 column-center">
       <div class="scroll-list jscroll">
+        <!--投稿一覧を部分テンプレート取得-->
         <%= render "public/posts/index", posts: @posts %>
       </div>
     </div>
+    <!--投稿が無ければ-->
     <% else %>
     <div class="col-6 offset-3 text-center">
       <p style="font-size:22px;">投稿はありません。</p>
       <% if @listener == current_listener  %>
+      <!--新しい投稿へ-->
         <%= link_to new_post_path ,class:"link" do %>
           <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Post</i></div>
         <% end %>
