@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   attachment :picture
-  belongs_to :listener,dependent: :destroy
+  belongs_to :listener, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :favo_users, through: :post_favorites, source: :listener

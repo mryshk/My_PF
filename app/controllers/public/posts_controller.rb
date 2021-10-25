@@ -75,7 +75,6 @@ class Public::PostsController < ApplicationController
     render "search"
   end
 
-
   def search_genre
     @search = Post.where(genre_params).page(params[:page]).per(2)
     @keyword = params.permit(:post_genre)
