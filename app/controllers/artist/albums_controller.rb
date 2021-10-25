@@ -1,6 +1,7 @@
 class Artist::AlbumsController < ApplicationController
   # 権限確認（cancancan）
-  authorize_resource only: [:new, :create, :edit, :update, :destroy]
+  authorize_resource only: [:new, :create,:edit,:update,:destroy]
+
   def new
     @album = Album.new
   end
@@ -50,14 +51,17 @@ class Artist::AlbumsController < ApplicationController
 
   def search
     @search = Album.where('name LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(2)
+    # インクリメンタルサーチのため。
     respond_to do |format|
       format.html
       format.json
     end
+    # メニュー用
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
   end
+
 
   def search_genre
     @search = Album.where(genre_params).page(params[:page]).per(2)
@@ -71,10 +75,12 @@ class Artist::AlbumsController < ApplicationController
 
   private
 
+  # 新規登録用のパラメーター
   def album_params
     params.require(:album).permit(:name, :caption, :album_image, :genre, :album_url)
   end
 
+  # ジャンル検索用のパラメーター
   def genre_params
     params.permit(:genre)
   end
