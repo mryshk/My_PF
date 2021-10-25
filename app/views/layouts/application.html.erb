@@ -5,76 +5,95 @@
     <%= csrf_meta_tags %>
     <script src="https://kit.fontawesome.com/fe634eb8bd.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--メデイアクエリ使用-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--jQuery使用-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!--無限スクロールに使用-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
- <body　class="d-flex flex-column vh-100">
- <div id="all">
-  <% unless current_page?(root_path) %>
-    <%= render "layouts/header" %>
-  <% end %>
-  <main style="margin-bottom:300px;">
-    <div class=" py-5 " id="search-form" >
-      <div class="search-box">
-        <div class="d-inline">
-          <%= form_with url: search_path, method: :get, local: true do |f|%>
-            <%= f.text_field :keyword, placeholder: "Search",class: "form-control " ,id: "form-control"%>
-        </div>
-        <div class="d-inline">
-          <%= f.select 'model', options_for_select({ "User" => "listener", "Post" => "post", "Album" => "album" }),{}, :class =>"custom-select" %>
-        </div>
-        <button class="btn">
-          <i class="fas fa-search fa-lg text-white"></i>
-          <% f.submit %>
-        </button>
-          <% end %>
-      </div>
-    </div>
-    <div id="sp-menu" class="pt-5">
-      <ul class="hidden-menu ml-auto " style="list-style-type: none" >
-      <% if listener_signed_in? %>
-        <li class="menu-item">
-          <%= link_to home_path,class: 'menu-link ' do %><i class="fas fa-home"> Home</i><% end %>
-        </li>
-        <% if current_listener.listener_type == 0  %>
-        <li class="menu-item">
-          <%= link_to new_artist_creater_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-feather-alt"> New Creater</i><% end %>
-        </li>
-        <% end %>
-        <li class="menu-item">
-          <%= link_to artist_creaters_path, method: :get ,class: 'menu-link ' do %><i class="far fa-user-circle"> Creaters</i><% end %>
-        </li>
-        <li class="menu-item">
-          <%= link_to posts_path,class: 'menu-link' do %><i class="fas fa-headphones"> Posts</i><% end %>
-        </li>
-        <li class="menu-item">
-          <%= link_to artist_albums_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-compact-disc"> Albums</i><% end %>
-        </li>
-        <li class="menu-item" >
-          <%= link_to groups_path ,class: 'menu-link',id: "search" do %><i class="fas fa-users"> Groups</i><% end %>
-        </li>
-        <li class="menu-item">
-          <%= link_to new_inquiry_path,class: 'menu-link' do %><i class="far fa-envelope"> Inquiry</i><% end %>
-        </li>
-      <% else %>
-        <li class="menu-item">
-          <%= link_to new_listener_registration_path,class: 'menu-link ' do %><i class="fas fa-listener-plus"> SignUp</i><% end %>
-        </li>
-        <li class="menu-item">
-          <%= link_to new_listener_session_path,class: 'menu-link ' do %><i class="fas fa-sign-in-alt"> LogIn</i><% end %>
-        </li>
-      <% end %>
-      </ul>
-    </div>
-    <%= content_tag(:div, flash[:alert], class: "alert alert-warning") if flash[:alert] %>
-      <%= yield %>
-  </main>
 
-  <%= render "layouts/footer" %>
-</div>
-</body>
+  <body　class="d-flex flex-column vh-100">
+    <div id="all">
+     <!--今のページがTOPであればヘッダーなし-->
+     <% unless current_page?(root_path) %>
+       <%= render "layouts/header" %>
+     <% end %>
+     <!--ハンバーガーメニュー-->
+     <main style="margin-bottom:300px;">
+      <!--検索バー-->
+      <div class=" py-5 " id="search-form" >
+        <div class="search-box">
+          <div class="d-inline">
+            <%= form_with url: search_path, method: :get, local: true do |f|%>
+              <%= f.text_field :keyword, placeholder: "Search",class: "form-control " ,id: "form-control"%>
+          </div>
+          <!--検索モデルを選択-->
+          <div class="d-inline">
+            <%= f.select 'model', options_for_select({ "User" => "listener", "Post" => "post", "Album" => "album" }),{}, :class =>"custom-select" %>
+          </div>
+          <button class="btn">
+            <i class="fas fa-search fa-lg text-white"></i>
+            <% f.submit %>
+          </button>
+            <% end %>
+        </div>
+       </div>
+       <!--メニュー一覧-->
+       <div id="sp-menu" class="pt-5">
+        <ul class="hidden-menu ml-auto " style="list-style-type: none" >
+        <!--ログインしていれば-->
+        <% if listener_signed_in? %>
+          <!--ホームページへ-->
+          <li class="menu-item">
+            <%= link_to home_path,class: 'menu-link ' do %><i class="fas fa-home"> Home</i><% end %>
+          </li>
+          <!--クリエイター登録をしていない人は-->
+          <% if current_listener.listener_type == 0  %>
+          <li class="menu-item">
+            <%= link_to new_artist_creater_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-feather-alt"> New Creater</i><% end %>
+          </li>
+          <% end %>
+          <!--クリエイター一覧ページへ-->
+          <li class="menu-item">
+            <%= link_to artist_creaters_path, method: :get ,class: 'menu-link ' do %><i class="far fa-user-circle"> Creaters</i><% end %>
+          </li>
+          <!--投稿一覧ページへ-->
+          <li class="menu-item">
+            <%= link_to posts_path,class: 'menu-link' do %><i class="fas fa-headphones"> Posts</i><% end %>
+          </li>
+          <!--アルバム一覧ページへ-->
+          <li class="menu-item">
+            <%= link_to artist_albums_path, method: :get ,class: 'menu-link ' do %><i class="fas fa-compact-disc"> Albums</i><% end %>
+          </li>
+          <!--グループ一覧ページへ-->
+          <li class="menu-item" >
+            <%= link_to groups_path ,class: 'menu-link',id: "search" do %><i class="fas fa-users"> Groups</i><% end %>
+          </li>
+          <!--お問い合わせページへ-->
+          <li class="menu-item">
+            <%= link_to new_inquiry_path,class: 'menu-link' do %><i class="far fa-envelope"> Inquiry</i><% end %>
+          </li>
+        <% else %>
+          <!--新規登録へ-->
+          <li class="menu-item">
+            <%= link_to new_listener_registration_path,class: 'menu-link ' do %><i class="fas fa-listener-plus"> SignUp</i><% end %>
+          </li>
+          <!--ログインへ-->
+          <li class="menu-item">
+            <%= link_to new_listener_session_path,class: 'menu-link ' do %><i class="fas fa-sign-in-alt"> LogIn</i><% end %>
+          </li>
+        <% end %>
+        </ul>
+      <!--アラートがあれば表示-->
+       </div>
+       <%= content_tag(:div, flash[:alert], class: "alert alert-warning") if flash[:alert] %>
+         <%= yield %>
+     </main>
+      <!--フッターへ-->
+      <%= render "layouts/footer" %>
+    </div>
+  </body>
