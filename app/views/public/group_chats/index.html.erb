@@ -1,6 +1,7 @@
 <div class="container">
   <h1 class="my-4 text-center">Group Chat</h1>
   <div id= "chat_ajax" class="row mt-4">
+    <!--部分テンプレートでチャット一覧を取得-->
     <%= render 'public/group_chats/chat', chats: @chats, chat: @chat, group: @group%>
   </div>
 </div>

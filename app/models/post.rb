@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
+
+  # attachment_image_tagに使用。
   attachment :picture
+
   belongs_to :listener, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
@@ -8,6 +11,7 @@ class Post < ApplicationRecord
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
 
+  # ジャンル用に定義したenum
   enum post_genre: { ロック: 0, JPOP: 1, アイドル: 2, EDM: 3, KPOP: 4, パンク: 5, レゲエ: 6, HIPHOP: 7 }
 
   # ファボモデルに自分が存在するかどうか。していたら削除。なかったら作成。
@@ -38,6 +42,7 @@ class Post < ApplicationRecord
   # 閲覧数機能の許可
   is_impressionable counter_cache: true
 
+  # タグ用の定義
   def save_tag(sent_tags)
     current_tags = tags.pluck(:tag_name) unless tags.nil?
     old_tags = current_tags - sent_tags
@@ -53,6 +58,7 @@ class Post < ApplicationRecord
     end
   end
 
+  # 通知定義
   def create_notification_by(current_listener)
     notification = current_listener.active_notifications.new(
       post_id: id,
@@ -62,6 +68,7 @@ class Post < ApplicationRecord
     notification.save if notification.valid?
   end
 
+  # 通知定義
   def create_notification_comment!(current_listener, post_comment_id)
     temp_ids = PostComment.select(:listener_id).where(post_id: id).where.not(listener_id: current_listener.id).distinct
     temp_ids.each do |temp_id|
@@ -70,6 +77,7 @@ class Post < ApplicationRecord
     save_notification_comment!(current_listener, post_comment_id, listener_id) if temp_ids.blank?
   end
 
+  # 通知定義
   def save_notification_comment!(current_listener, post_comment_id, passive_id)
     notification = current_listener.active_notifications.new(
       post_id: id,

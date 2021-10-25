@@ -1,35 +1,45 @@
+<!--チャットの部分テンプレート-->
 <div class="col-6 offset-3">
-      <% if chats.present?  %>
-        <% chats.each do |chat| %>
-          <% if chat.listener_id == current_listener.id  %>
-            <div class="speech-bubble mt-3">
-              <div class="sb-bubble sb-line1 sb-right mt-2">
-                <strong><%= chat.message %></strong>
-              </div>
-            </div>
-          <% elsif chat.listener_id != current_listener.id %>
-            <div>
-              <%= link_to listener_path(chat.listener) do %>
-                <%= attachment_image_tag chat.listener,:profile_image,:fill,40,40, fallback: "no_image.jpg",size: '40x40' ,class: "listener-image" %>
-                <%= chat.listener.name %>
-              <% end %>
-            </div>
-            <div class="speech-bubble mt-3">
-              <div class="sb-bubble sb-line1 sb-left mt-2">
-                <strong><%= chat.message %></strong>
-              </div>
-            </div>
+  <!--チャットが存在すれば-->
+  <% if chats.present?  %>
+    <!--チャット一覧-->
+    <% chats.each do |chat| %>
+      <!--チャットのIDが自分であれば-->
+      <% if chat.listener_id == current_listener.id  %>
+        <!--右側にメッセージのみ表示-->
+        <div class="speech-bubble mt-3">
+          <div class="sb-bubble sb-line1 sb-right mt-2">
+            <strong><%= chat.message %></strong>
+          </div>
+        </div>
+      <!--自分以外のチャットであれば-->
+      <% elsif chat.listener_id != current_listener.id %>
+        <!--左側に名前・画像・メッセージを表示-->
+        <div>
+          <%= link_to listener_path(chat.listener) do %>
+            <%= attachment_image_tag chat.listener,:profile_image,:fill,40,40, fallback: "no_image.jpg",size: '40x40' ,class: "listener-image" %>
+            <%= chat.listener.name %>
           <% end %>
-        <% end %>
+        </div>
+        <div class="speech-bubble mt-3">
+          <div class="sb-bubble sb-line1 sb-left mt-2">
+            <strong><%= chat.message %></strong>
+          </div>
+        </div>
       <% end %>
-
-      <div class="posts mb-4" style="margin-top:300px;">
-      <div style="width:400px;">
-        <%= form_with( model:[group,chat], local: false) do |f| %>
-        <%= f.text_field :message, placeholder: "Message", class: "form-inline form-control", size:"30" %>
-        <%= f.hidden_field :group_id, :value => group.id  %>
-      </div>
-      <button class=" btn btn-info btn-sm " sryle="width: 100px;"><i class="fab fa-telegram-plane">Send<%f.submit %></i></button>
-        <% end %>
+    <% end %>
+  <% end %>
+  <!--チャットを投稿-->
+  <div class="posts mb-4" style="margin-top:300px;">
+    <div style="width:400px;">
+    <%= form_with( model:[group,chat], local: false) do |f| %>
+      <%= f.text_field :message, placeholder: "Message", class: "form-inline form-control", size:"30" %>
+      <%= f.hidden_field :group_id, :value => group.id  %>
     </div>
-    </div>
+    <!--送信ボタン-->
+    <button class=" btn btn-info btn-sm " sryle="width: 100px;">
+      <i class="fab fa-telegram-plane">Send<%f.submit %></i>
+    </button>
+    <% end %>
+  </div>
+</div>

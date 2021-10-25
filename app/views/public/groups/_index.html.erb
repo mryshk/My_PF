@@ -1,20 +1,26 @@
-
-
+<!--グループ一覧の部分テンプレート-->
 <% @groups.each do |group| %>
 <div class="card shadow-sm py-4 col-8 offset-2" style="margin-top:30px;">
   <div class="row ">
+    <!--グループの画像-->
     <div class="col-4 ">
       <%= attachment_image_tag group,:image, size:"100x100", fallback: "no_image.jpg",class:" rounded-circle" %>
     </div>
+    <!--グループ詳細-->
     <div class="col-8">
       <div class="mt-3">
+        <!--グループ名・グループ詳細へ-->
         <%= link_to group_path(group),class:"link" do %>
         <h6 class="card-title"><%= group.name %></h6>
         <% end %>
       </div>
+      <!--グループ説明-->
       <div>
-        <p class="card-text mb-2" style="font-size:13px;"><%= group.introduction.truncate(20)  %></p>
+        <p class="card-text mb-2" style="font-size:13px;">
+          <%= group.introduction.truncate(20)  %>
+        </p>
       </div>
+      <!--グループメンバーの人数-->
       <div>
         <p class="card-text" style="font-size:13px; color:rgb(063,163,203);">
           <i class="fas fa-users fa-lg"></i> <%= group.group_listeners.count %> people
@@ -24,6 +30,7 @@
   </div>
 </div>
 <% end %>
-  <div>
-    <%= link_to_next_page groups,'次のページ', class: "next" %>
-  </div>
+<!--インクリメンタルサーチのためのリンク-->
+<div>
+  <%= link_to_next_page groups,'次のページ', class: "next" %>
+</div>

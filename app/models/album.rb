@@ -6,6 +6,7 @@ class Album < ApplicationRecord
 
   attachment :album_image # 画像表示のため
 
+  # ジャンル用に定義したenum
   enum genre: { ロック: 0, JPOP: 1, アイドル: 2, EDM: 3, KPOP: 4, パンク: 5, レゲエ: 6, HIPHOP: 7 }
 
   # 閲覧数機能の許可
@@ -15,6 +16,7 @@ class Album < ApplicationRecord
     music_favorites.where(listener_id: listener.id).exists?
   end
 
+  # 検索用
   def self.search(keyword)
     where(genre: "#{keyword}")
   end
