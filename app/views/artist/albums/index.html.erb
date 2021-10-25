@@ -1,8 +1,10 @@
-
+<!--アルバム一覧-->
 <h3 class="text-center" style="margin-top:100px;" ><i class="fas fa-compact-disc"></i> Albums</h3>
 <div class="row mt-4 ">
+  <!--左メニュー-->
   <div class="col-md-3 ml-md-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
+    <!--インクリメンタルサーチ-->
     <h4 class="mx-auto text-main2">Easy Search</h4>
     <div class="infinite-search-box " style="margin-top:50px;">
       <div class="d-inline infinite-search-form">
@@ -17,49 +19,67 @@
         <% end %>
       <% end %>
     </div>
+    <!--インクリメンタルサーチの結果-->
     <div class="search-post-album"></div>
   </div>
+  <!--メイン、アルバム一覧-->
   <div class="col-md-5 ml-md-3 mt-md-5 column-center">
     <div class="scroll-list jscroll">
+      <!--アルバム一覧、部分テンプレート取得-->
       <%= render "artist/albums/index", albums: @albums %>
     </div>
   </div>
+
+  <!--右側ランキング-->
   <div class="col mr-md-5 column-right">
     <table class="table .table-bordered">
       <thead>
+        <!--アルバム閲覧数-->
         <h6 class="text-center text-main mx-auto">Album Listen Rank</h6>
       </thead>
+      <!--ランク番号用の変数-->
       <% i = 0  %>
       <% @album_impression_rank.each do |imp_rank|  %>
       <tr>
+        <!--ランク番号-->
         <th class="align-middle">
           <% i += 1  %>
           <%= i %>
         </th>
+        <!--アルバム詳細-->
         <td class="d-flex">
           <div>
+            <!--アルバム画像-->
             <div>
+              <!--アルバム詳細ページへ-->
               <%= link_to artist_album_path(imp_rank)do%>
                 <%= attachment_image_tag imp_rank, :album_image, size:"30x30",fallback: "no_image.jpg",class: "profile_image rounded-circle" %>
               <% end %>
             </div>
+            <!--アルバム名-->
             <div style="font-size: 10px;">
               <%= imp_rank.name %>
             </div>
           </div>
+          <!--アルバム詳細へ-->
           <%= link_to artist_album_path(imp_rank.id),class: "link-none",'data-turbolinks': false do %>
             <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.caption.truncate(15) %> </p>
           <% end %>
         </td>
+        <!--アルバム閲覧数-->
         <td class="align-middle" >
           <p ><%= imp_rank.impressions_count %></p>
         </td>
       </tr>
-      <% break if i == 10 %>
+      <% break if i == 5 %>
       <% end %>
     </table>
+
+    <!--アルバム投稿へ-->
     <div class="text-center" style="margin-top:100px;">
+      <!--アルバム投稿への権限がある人のみ進める-->
       <% if can? :read, current_listener  %>
+      <!--アルバム投稿画面へ-->
         <%= link_to new_artist_album_path ,class:"link" do %>
           <div class="btn btn-outline-main btn-block"><i class="fas fa-compact-disc"></i> New Album</div>
         <% end %>
