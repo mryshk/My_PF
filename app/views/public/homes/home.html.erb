@@ -1,5 +1,7 @@
+<!--ホームページ-->
 <h3 class="text-center" style="margin-top:50px;" ><i class="fas fa-home"></i> Home</h3>
 <div class="row  mt-4" >
+  <!--左メニュー-->
   <div class="col ml-md-5 column-left">
     <%= render "layouts/menu", mygroups: @mygroups %>
 　　<h4 class="mx-auto text-main2">Easy Search</h4>
@@ -20,30 +22,40 @@
 
     </div>
   </div>
+  <!--メイン、フォローいている人の投稿一覧-->
   <div class="col-md-5 ml-md-3  mt-md-5 column-center" >
     <div class="scroll-list jscroll">
+      <!--投稿一覧部分テンプレート-->
      <%= render "public/posts/index", posts: @posts  %>
     </div>
   </div>
+  <!--右側ランキング-->
   <div class="col mr-md-5 column-right">
+    <!--いいねランキング-->
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
       <thead>
         <h6 class="mx-auto text-main">Like Ranking</h6>
       </thead>
+      <!--ランク番号用の変数-->
       <% i = 0  %>
       <% @post_favorite_rank.each do |fav_rank|  %>
       <tr>
+        <!--ランク番号-->
         <th class="align-middle" style="padding:0;">
           <% i += 1  %>
           <%= i %>
         </th>
+        <!--リスナー名と画像-->
         <td class="d-flex align-middle">
           <div>
             <div>
+              <!--リスナー詳細へ-->
               <%= link_to listener_path(fav_rank.listener)do%>
+                <!--リスナー画像-->
                 <%= attachment_image_tag fav_rank.listener, :profile_image, size:"30x30", fallback: "no_image.jpg",class: " profile_image rounded-circle" %>
               <% end %>
             </div>
+            <!--リスナー名-->
             <div style="font-size: 10px;">
               <%= fav_rank.listener.name %>
             </div>
@@ -52,6 +64,7 @@
             <p class=" align-self-center ml-3"style="font-size: 12px;" ><%= fav_rank.post_tweet.truncate(15) %></p>
           <% end %>
         </td>
+        <!--いいね数-->
         <td class="align-middle">
           <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= fav_rank.post_favorites.count %></p>
           <p class="d-block" style="font-size: 10px;">Likes</p>
@@ -60,32 +73,41 @@
       <% break if i== 5 %>
       <% end %>
     </table>
+    <!--閲覧数ランキング-->
     <table class="table .table-bordered">
       <thead>
         <h6 class="mx-auto text-main">View Ranking</h6>
       </thead>
+      <!--ランク番号用の変数-->
       <% i = 0  %>
       <% @post_impression_rank.includes(:listener).each do |imp_rank|  %>
       <tr>
+        <!--ランク番号-->
         <th class="align-middle">
           <% i += 1  %>
           <%= i %>
         </th>
+        <!--リスナー名と画像-->
         <td class="d-flex">
           <div>
             <div>
+              <!--リスナー詳細へ-->
               <%= link_to listener_path(imp_rank.listener)do%>
+                <!--リスナー画像-->
                 <%= attachment_image_tag imp_rank.listener, :profile_image, size:"30x30",fallback: "no_image.jpg",class: "profile_image rounded-circle" %>
               <% end %>
             </div>
+            <!--リスナー名-->
             <div style="font-size: 10px;">
               <%= imp_rank.listener.name %>
             </div>
           </div>
+          <!--投稿詳細へ-->
           <%= link_to post_path(imp_rank.id),class: "link-none",'data-turbolinks': false do %>
             <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.post_tweet.truncate(15) %> </p>
           <% end %>
         </td>
+        <!--閲覧数-->
         <td class="align-middle" >
           <p ><%= imp_rank.impressions_count %></p>
         </td>
