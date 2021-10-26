@@ -19,12 +19,15 @@
         <tr>
           <!--フォローの名前と画像-->
           <td>
-            <%= link_to listener_path(listener.id)do %>
+            <%= link_to listener_path(listener.id), class:"text-dark" do %>
             <div>
               <%= attachment_image_tag listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
             </div>
             <div>
-              <i class="text-dark ml-2"><%= listener.name %></i>
+              <%= listener.name %>
+              <% if listener.listener_type == 1  %>
+                <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+              <% end %>
             </div>
             <% end %>
           </td>

@@ -19,12 +19,15 @@
           <!--クリエイター名と画像-->
           <td>
             <!--クリエイターページへのリンク付き-->
-            <%= link_to artist_creater_path(creater) do%>
+            <%= link_to artist_creater_path(creater),class:"text-dark" do%>
             <div>
               <%= attachment_image_tag creater.listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
             </div>
             <div>
-              <i class="text-dark ml-2" style="font-size:14px;"><%= creater.listener.name %></i>
+              <%= creater.listener.name %>
+              <% if creater.listener.listener_type == 1  %>
+                <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+              <% end %>
             </div>
             <% end %>
           </td>

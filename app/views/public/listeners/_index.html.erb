@@ -15,15 +15,15 @@
         <% listeners.each do |listener|  %>
         <tr>
           <td>
-            <%= link_to listener_path(listener) do%>
+            <%= link_to listener_path(listener) ,class:"text-dark" do %>
             <div>
               <%= attachment_image_tag listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
             </div>
             <div>
+              <%= listener.name %>
               <% if listener.listener_type == 1  %>
-                <i class="far fa-user-circle" style="color:rgb(255,243,063);"></i>
+                <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
               <% end %>
-              <i class="text-dark" style="font-size:14px; margin-left:0;"><%= listener.name %></i>
             </div>
             <% end %>
           </td>
