@@ -9,4 +9,3 @@ RSpec.describe Creater, "モデルに関するテスト", type: :model do
     end
   end
 end
-

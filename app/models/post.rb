@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-
   # attachment_image_tagに使用。
   attachment :picture
 

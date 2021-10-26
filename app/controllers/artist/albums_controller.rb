@@ -1,6 +1,6 @@
 class Artist::AlbumsController < ApplicationController
   # 権限確認（cancancan）
-  authorize_resource only: [:new, :create,:edit,:update,:destroy]
+  authorize_resource only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @album = Album.new
@@ -61,7 +61,6 @@ class Artist::AlbumsController < ApplicationController
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
   end
-
 
   def search_genre
     @search = Album.where(genre_params).page(params[:page]).per(2)
