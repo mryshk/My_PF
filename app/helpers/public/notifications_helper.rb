@@ -1,18 +1,18 @@
 module Public::NotificationsHelper
   def notification_form(notification)
-    @active = notification.active
+    @visiter = notification.active
     @comment = nil
-    your_post = link_to 'あなたの投稿', post_path(notification), style: "font-weight: bold; color:rgb(063,163,203);"
+    # your_post = link_to 'あなたの投稿', post_path(notification), style: "font-weight: bold; color:rgb(063,163,203);"
     @active_comment = notification.post_comment_id
 
     case notification.action
     when "follow" then
-      tag.a(notification.active.name, href: listener_path(@active), style: "font-weight: bold; color:rgb(063,163,203);") + "があなたをフォローしました。"
+      tag.a(notification.active.name, href: listener_path(@visiter), style: "font-weight: bold; color:rgb(063,163,203);") + "があなたをフォローしました。"
     when "like" then
-      tag.a(notification.active.name, href: listener_path(@active), style: "font-weight: bold; color:rgb(063,163,203);") + "が" + tag.a('あなた投稿を', href: post_path(notification.post_id), style: "font-weight: bold; color:rgb(063,163,203);") + "いいねしました。"
+      tag.a(notification.active.name, href: listener_path(@visiter), style: "font-weight: bold; color:rgb(063,163,203);") + "が" + tag.a('あなた投稿を', href: post_path(notification.post_id), style: "font-weight: bold; color:rgb(063,163,203);") + "いいねしました。"
     when "comment" then
       @comment = PostComment.find_by(id: @active_comment)&.comment
-      tag.a(@active.name, href: listener_path(@active), style: "font-weight: bold; color:rgb(063,163,203);") + "が" + tag.a('あなたの投稿', href: post_path(notification.post_id), style: "font-weight: bold; color:rgb(063,163,203);") + "にコメントしました"
+      tag.a(@visiter.name, href: listener_path(@visiter), style: "font-weight: bold; color:rgb(063,163,203);") + "が" + tag.a('あなたの投稿', href: post_path(notification.post_id), style: "font-weight: bold; color:rgb(063,163,203);") + "にコメントしました"
     end
   end
 
