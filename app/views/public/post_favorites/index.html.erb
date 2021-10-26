@@ -4,53 +4,53 @@
   <!--いいねした人が存在すれば-->
   <% if @favorites.exists?  %>
   <div class="col-8 offset-2">
-  　　<table class="table">
-  　　  <thead>
-  　　    <tr>
-  　　      <th>name</th>
-  　　      <th>Follow</th>
-  　　      <th>Follower</th>
-  　　      <th>chat</th>
-  　　    </tr>
-  　　  </thead>
-  　　  <tbody>
-  　　    <% @favorites.each do |favo|  %>
-  　　    <tr>
-  　　      <!--リスナー名・画像-->
-  　　      <td>
-  　　        <%= link_to listener_path(favo.listener.id)do %>
-  　　        <div>
-  　　          <%= attachment_image_tag favo.listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
-  　　        </div>
-  　　        <div>
-  　　          <i class="text-dark ml-2"><%= favo.listener.name %></i>
-  　　        </div>
-  　　        <% end %>
-  　　      </td>
-  　　      <!--フォロ数・フォロー一覧へ-->
-  　　      <td>
-  　　        <%= link_to listener_followings_path(favo.listener),class:"text-dark"  do %>
-  　　          <i class="fas fa-listener-check fa-lg mt-3"><%= favo.listener.followings.count %></i>
-  　　        <% end %>
-  　　      </td>
-  　　      <!--フォロワー数・フォロワー一覧へ-->
-  　　      <td>
-  　　        <%= link_to listener_followers_path(favo.listener),class:"text-dark"  do %>
-  　　          <i class="fas fa-listener-friends fa-lg mt-3"><%= favo.listener.followers.count %></i>
-  　　        <% end %>
-  　　      </td>
-  　　      <!--相互フォローであればチャットへ-->
-  　　      <td>
-  　　        <% if (current_listener.followers.include? favo.listener)  && (favo.listener.followers.include? current_listener )%>
-  　　          <%= link_to chat_path(favo.listener.id) do  %>
-  　　            <div class="btn btn-info">Chat</div>
-  　　          <% end %>
-  　　        <% end %>
-  　　      </td>
-  　　    </tr>
-  　　    <% end %>
-  　　  </tbody>
-  　</table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>Follow</th>
+          <th>Follower</th>
+          <th>chat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorites.each do |favo|  %>
+        <tr>
+          <!--リスナー名・画像-->
+          <td>
+            <%= link_to listener_path(favo.listener.id)do %>
+            <div>
+              <%= attachment_image_tag favo.listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
+            </div>
+            <div>
+              <i class="text-dark ml-2"><%= favo.listener.name %></i>
+            </div>
+            <% end %>
+          </td>
+          <!--フォロ数・フォロー一覧へ-->
+          <td>
+            <%= link_to listener_followings_path(favo.listener),class:"text-dark"  do %>
+              <i class="fas fa-listener-check fa-lg mt-3"><%= favo.listener.followings.count %></i>
+            <% end %>
+          </td>
+          <!--フォロワー数・フォロワー一覧へ-->
+          <td>
+            <%= link_to listener_followers_path(favo.listener),class:"text-dark"  do %>
+              <i class="fas fa-listener-friends fa-lg mt-3"><%= favo.listener.followers.count %></i>
+            <% end %>
+          </td>
+          <!--相互フォローであればチャットへ-->
+          <td>
+            <% if (current_listener.followers.include? favo.listener)  && (favo.listener.followers.include? current_listener )%>
+              <%= link_to chat_path(favo.listener.id) do  %>
+                <div class="btn btn-info">Chat</div>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 <!--いいねした人がいなければ-->
   <% else %>
@@ -58,13 +58,13 @@
     <div class="text-center">
       <h3>No favorites</h3>
     </div>
-  </div>
+   </div>
   <% end %>
 
 </div>
 <!--バックボタン-->
 <div class="row mt-5 " id="comment">
-    <div class="col-8 offset-2">
+  <div class="col-8 offset-2">
     <!--前のページへ-->
     <%= link_to :back do%>
       <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
