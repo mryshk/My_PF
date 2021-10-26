@@ -8,7 +8,7 @@ Rails:
   Enabled: true
 
 LineLength:
-  Max: 130
+  Max: 130lin
 
 AllCops:
   Exclude:
