@@ -4,17 +4,17 @@
   <!--いいねを削除-->
   <%= link_to post_post_favorite_path(post, favorite), method: :delete, class: "text-warning ",remote: true do %>
     <!--いいね数-->
-    <i class="fas fa-star fa-lg sub2_color hover"><%= post.post_favorites.count %>
-      <p class="text-dark" style="font-size:12px;">Likes</p>
-    </i>
+    <i class="fas fa-star fa-lg hover" style="rgb(255,243,063)"></i>
+    <%= post.post_favorites.count %></br>
+    <p class="text-dark" style="font-size:12px;"><%= link_to "Likes",post_post_favorites_path(post),class:"link hover"%></p>
   <% end %>
   <%= link_to post_post_favorites_path(post) do %><% end %>
 <% else %>
   <!--いいね作成-->
   <%= link_to post_post_favorites_path(post), method: :post,class: "link", remote: true do %>
     <!--いいね数-->
-    <i class="far fa-star fa-lg hover" style="rgb(063,163,203)">
-      <%= post.post_favorites.count %></br><p class="text-dark" style="font-size:12px;">Likes</p>
-    </i>
+    <i class="far fa-star fa-lg " style="rgb(255,243,063)"></i>
+    <%= post.post_favorites.count %></br>
+    <p class="text-dark" style="font-size:12px;"><%= link_to "Likes",post_post_favorites_path(post),class:"link hover"%></p>
   <% end %>
 <% end %>
