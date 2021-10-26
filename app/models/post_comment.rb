@@ -1,5 +1,5 @@
 class PostComment < ApplicationRecord
   belongs_to :listener
   belongs_to :post
-  has_many :notification
+  has_many :notifications
 end
