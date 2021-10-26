@@ -25,13 +25,13 @@
       <div class="my-4 text-center">
         <!--フォロー一覧へ-->
         <%= link_to listener_followings_path(@creater.listener),class: "text-dark" do %>
-          <i class="fas fa-user-check fa-lg mr-3">
+          <i class="fas fa-user-check fa-lg mr-3 hover">
             Follow:&ensp;<%= @creater.listener.followings.count %>
           </i>
         <% end %>
         <!--フォロワー一覧へ-->
         <%= link_to listener_followers_path(@creater.listener),class: "text-dark" do %>
-          <i class="fas fa-user-friends fa-lg ">
+          <i class="fas fa-user-friends fa-lg hover">
             Follower:&ensp;<%= @creater.listener.followers.count %>
           </i>
         <% end %>
