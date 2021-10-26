@@ -1,6 +1,8 @@
+<!--フォロー一覧-->
 <div class="container mt-4">
   <h2 class="text-center" id="area-1" style="margin-top:100px;" >Follow</h2>
   <div class="row"style="margin-top:80px;">
+    <!--フォローがいれば-->
     <% if @listeners.exists?  %>
     <div class="col-8 offset-2">
     <table class="table">
@@ -15,6 +17,7 @@
       <tbody>
         <% @listeners.each do |listener|  %>
         <tr>
+          <!--フォローの名前と画像-->
           <td>
             <%= link_to listener_path(listener.id)do %>
             <div>
@@ -25,8 +28,19 @@
             </div>
             <% end %>
           </td>
-          <td><%= link_to listener_followings_path(listener),class:"text-dark"  do %><i class="fas fa-listener-check fa-lg mt-3"><%= listener.followings.count %></i><% end %></td>
-          <td><%= link_to listener_followers_path(listener),class:"text-dark"  do %><i class="fas fa-listener-friends fa-lg mt-3"><%= listener.followers.count %></i><% end %></td>
+          <!--フォロー一覧へ-->
+          <td>
+            <%= link_to listener_followings_path(listener),class:"text-dark"  do %>
+              <i class="fas fa-listener-check fa-lg mt-3"><%= listener.followings.count %></i>
+            <% end %>
+          </td>
+          <!--フォロワー一覧へ-->
+          <td>
+            <%= link_to listener_followers_path(listener),class:"text-dark"  do %>
+              <i class="fas fa-listener-friends fa-lg mt-3"><%= listener.followers.count %></i>
+            <% end %>
+          </td>
+          <!--相互フォローであればチャットへ-->
           <td>
             <% if (current_listener.followers.include? listener)  && (listener.followers.include? current_listener )%>
               <%= link_to chat_path(listener.id) do  %>
@@ -39,6 +53,7 @@
       </tbody>
     </table>
     </div>
+    <!--フォローがいなければ-->
     <% else %>
     <div class="mx-auto">
       <h1><i class="fas fa-listeners-slash">&nbsp;No listeners</h1></i>
@@ -46,8 +61,10 @@
     <% end %>
   </div>
 </div>
+<!--バックボタン-->
 <div class="row mt-5 " id="comment">
   <div class="col-8 offset-2">
+    <!--前のページへ-->
     <%= link_to :back do%>
       <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
     <% end %>
