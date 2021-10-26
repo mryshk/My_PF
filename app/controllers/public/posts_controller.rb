@@ -9,9 +9,9 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(nil)
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to posts_path
+      redirect_to home_path
     else
-      　redirect_to posts_path
+      　redirect_to home_path
     end
   end
 
@@ -31,7 +31,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).includes(:listener)
+    @posts = Post.page(params[:page]).includes(:listener).reverse_order
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
