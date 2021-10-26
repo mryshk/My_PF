@@ -17,7 +17,7 @@
         <!--左側に名前・画像・メッセージを表示-->
         <div>
           <%= link_to listener_path(chat.listener) do %>
-            <%= attachment_image_tag chat.listener,:profile_image,:fill,40,40, fallback: "no_image.jpg",size: '40x40' ,class: "listener-image" %>
+            <%= attachment_image_tag chat.listener,:profile_image,size: '40x40' ,fallback: "no_image.jpg",class: "listener-image" %>
             <%= chat.listener.name %>
           <% end %>
         </div>
