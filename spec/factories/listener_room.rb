@@ -1,7 +1,6 @@
 FactoryBot.define do
-  factory :chat do
+  factory :listener_room do
     association :listener
     association :room
-    message { Faker::Lorem.characters(number: 50) }
   end
 end
