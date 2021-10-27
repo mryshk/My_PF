@@ -64,7 +64,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @search = Post.where('post_tweet LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(2)
+    @search = Post.where('post_tweet LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5)
     respond_to do |format|
       format.html
       format.json
