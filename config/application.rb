@@ -16,7 +16,7 @@ module Music
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.assets.precompile += %w( admin/active_admin.css )
+    config.assets.precompile += %w( admin/active_admin.scss )
     config.assets.precompile += %w( admin/active_admin.js )
   end
 end
