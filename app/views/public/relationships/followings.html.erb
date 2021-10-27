@@ -4,21 +4,22 @@
   <div class="row"style="margin-top:80px;">
     <!--フォローがいれば-->
     <% if @listeners.exists?  %>
-    <div class="col-8 offset-2">
+    <div class="col-10 mx-auto">
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Follow</th>
-          <th>Follower</th>
-          <th>Chat</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Follow&Unfollow</th>
+          <th class="text-center">Follows</th>
+          <th class="text-center">Followers</th>
+          <th class="text-center">Chat</th>
         </tr>
       </thead>
       <tbody>
         <% @listeners.each do |listener|  %>
         <tr>
           <!--フォローの名前と画像-->
-          <td>
+          <td class="align-middle text-center">
             <%= link_to listener_path(listener.id), class:"text-dark" do %>
             <div>
               <%= attachment_image_tag listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
@@ -26,25 +27,42 @@
             <div>
               <%= listener.name %>
               <% if listener.listener_type == 1  %>
-                <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+                <i class="far fa-user-circle " style="color:rgb(063,163,203);"></i>
               <% end %>
             </div>
             <% end %>
           </td>
+          <!--フォロー・アンフォロー-->
+          <td class="align-middle text-center">
+          <!--自分と一致しない限り-->
+          <% unless current_listener.id == listener.id %>
+            <!--自分がフォローをしていればアンフォロー-->
+            <% if current_listener.followings.exists?(listener.id) %>
+              <%= link_to listener_relationships_path(listener.id), method: :delete ,class: "link" do %>
+              <div class="btn btn-outline-main">Unfollow</div>
+              <% end %>
+            <!--フォローしていなければフォロー-->
+            <% else %>
+              <%= link_to listener_relationships_path(listener.id), method: :post,class: "link"   do %>
+              <div class="btn btn-main">Follow</div>
+              <% end %>
+            <% end %>
+          <% end %>
+          </td>
           <!--フォロー一覧へ-->
-          <td>
+          <td class="align-middle text-center">
             <%= link_to listener_followings_path(listener),class:"text-dark"  do %>
               <i class="fas fa-listener-check fa-lg mt-3"><%= listener.followings.count %></i>
             <% end %>
           </td>
           <!--フォロワー一覧へ-->
-          <td>
+          <td class="align-middle text-center">
             <%= link_to listener_followers_path(listener),class:"text-dark"  do %>
               <i class="fas fa-listener-friends fa-lg mt-3"><%= listener.followers.count %></i>
             <% end %>
           </td>
           <!--相互フォローであればチャットへ-->
-          <td>
+          <td class="align-middle text-center">
             <% if (current_listener.followers.include? listener)  && (listener.followers.include? current_listener )%>
               <%= link_to chat_path(listener.id) do  %>
                 <div class="btn btn-main">Chat</div>

@@ -5,17 +5,17 @@
   <div class="row">
     <!--楽曲イメージ linkpreviewで取得-->
     <div class="col-4 my-auto">
-      <img class="card-img" id="link_img" style="width:250px; height:300px;" src=""/>
+      <img class="card-img" id="link_img" style="width:270px; height:300px;" src=""/>
     </div>
     <!--楽曲名と説明 linkpreviewで取得-->
-    <div class="col-7 ml-5">
+    <div class="col-7">
       <div class="card-body">
-        <h3 class="card-title"><%= @album_music.name  %></h3>
-        <p><%= @album_music.caption  %></p>
-        <a id="link" href="<%= @album_music.music_url%>" target="_blank"><h6 id="linkpreview"></h6></a>
+        <h3 class="card-title text-center"><%= @album_music.name  %></h3>
+        <p class="text-center"><%= @album_music.caption  %></p>
+        <a id="link" href="<%= @album_music.music_url%>" target="_blank"><h6 class="text-center" id="linkpreview"></h6></a>
       </div>
       <!--いいね・コメント-->
-      <div class="card-text mt-3 text-center">
+      <div class="card-text mt-3 d-flex justify-content-center">
         <div class="d-inline " style="margin-right:20px;" id="music_music_favorite_<%= @album_music.id  %>">
           <%= render 'artist/music_favorites/favorite', album: @album, album_music: @album_music, favorite: @favorite %>
         </div>

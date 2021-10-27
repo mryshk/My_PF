@@ -1,69 +1,71 @@
+<!--検索表示用のリスナー一覧部分テンプレート-->
+<div class="col-8 offset-2">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-center">Name</th>
+        <th>Introduction</th>
+        <th class="text-center">Follow&Unfollow</th>
+        <th class="text-center">Follow</th>
+        <th class="text-center">Follower</th>
+        <th class="text-center">Chat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% listeners.each do |listener|  %>
+      <tr>
+        <td class="align-middle text-center">
+          <%= link_to listener_path(listener) ,class:"text-dark" do %>
+          <div>
+            <%= attachment_image_tag listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
+          </div>
+          <div>
+            <%= listener.name %>
+            <% if listener.listener_type == 1  %>
+              <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+            <% end %>
+          </div>
+          <% end %>
+        </td>
+        <td class="align-middle text-center">
+          <% unless listener.caption.nil? %>
+          <p class="text-dark ml-2" style="font-size:14px;"><%= listener.caption.truncate(20) %></p>
+          <% end %>
+        </td>
+        <td class="align-middle text-center">
+          <% unless current_listener.id == listener.id %>
+            <% if current_listener.followings.exists?(listener.id) %>
+              <%= link_to listener_relationships_path(listener), method: :delete ,class: "text-info" do %>
+                <div class="btn btn-outline-main">Unfollow</div>
+              <% end %>
+            <% else %>
+              <%= link_to listener_relationships_path(listener), method: :post,class: "text-info"  do %>
+                <div class="btn btn-main">Follow</div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+        <td class="align-middle text-center">
+          <%= link_to listener_followings_path(listener),class:"text-dark"  do %>
+            <i class="fas fa-listener-check fa-lg mt-3"><%= listener.followings.count %></i>
+          <% end %>
+        </td>
+        <td class="align-middle text-center">
+          <%= link_to listener_followers_path(listener),class:"text-dark"  do %>
+            <i class="fas fa-listener-friends fa-lg mt-3"><%= listener.followers.count %></i>
+          <% end %>
+        </td>
+        <td class="align-middle text-center">
+          <% if (current_listener.followers.include? listener.id)  && (listener.followers.include? current_listener.id )%>
+            <%= link_to chat_path(listener) do  %>
+              <div class="btn btn-main">Chat</div>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-  <div class="col-8 offset-2">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Introduction</th>
-          <th>Follow&Unfollow</th>
-          <th>Follow</th>
-          <th>Follower</th>
-          <th>Chat</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% listeners.each do |listener|  %>
-        <tr>
-          <td>
-            <%= link_to listener_path(listener) ,class:"text-dark" do %>
-            <div>
-              <%= attachment_image_tag listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
-            </div>
-            <div>
-              <%= listener.name %>
-              <% if listener.listener_type == 1  %>
-                <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
-              <% end %>
-            </div>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <% unless listener.caption.nil? %>
-            <p class="text-dark ml-2" style="font-size:14px;"><%= listener.caption.truncate(20) %></p>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <% unless current_listener.id == listener.id %>
-              <% if current_listener.followings.exists?(listener.id) %>
-                <%= link_to listener_relationships_path(listener), method: :delete ,class: "text-info" do %>
-                  <div class="btn btn-outline-main">Unfollow</div>
-                <% end %>
-              <% else %>
-                <%= link_to listener_relationships_path(listener), method: :post,class: "text-info"  do %>
-                  <div class="btn btn-main">Follow</div>
-                <% end %>
-              <% end %>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <%= link_to listener_followings_path(listener),class:"text-dark"  do %>
-              <i class="fas fa-listener-check fa-lg mt-3"><%= listener.followings.count %></i>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <%= link_to listener_followers_path(listener),class:"text-dark"  do %>
-              <i class="fas fa-listener-friends fa-lg mt-3"><%= listener.followers.count %></i>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <% if (current_listener.followers.include? listener.id)  && (listener.followers.include? current_listener.id )%>
-              <%= link_to chat_path(listener) do  %>
-                <div class="btn btn-main">Chat</div>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+

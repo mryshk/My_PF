@@ -1,52 +1,67 @@
 <!--いいねした人一覧-->
-<div class="container mt-4">
-  <h2>Favorites</h2>
-  <div class="row">
-    <!--いいねした人がいれば-->
-    <% if @favorites.exists?  %>
-    <div class="col-8 offset-2">
+<h3 class="text-center" style="margin-top:100px;"><i class="far fa-star"></i> Favorites</h3>
+<div class="row" style="margin-top:80px;">
+  <!--いいねした人が存在すれば-->
+  <% if @favorites.exists?  %>
+  <div class="col-9 mx-auto">
     <table class="table">
       <thead>
         <tr>
-          <th>name</th>
-          <th>Follow</th>
-          <th>Follower</th>
-          <th>chat</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Follow&Unfollow</th>
+          <th class="text-center">Follows</th>
+          <th class="text-center">Followers</th>
+          <th class="text-center">Chat</th>
         </tr>
       </thead>
       <tbody>
         <% @favorites.each do |favo|  %>
         <tr>
-          <!--リスナー名と画像-->
-          <td>
-            <%= link_to listener_path(favo.listener.id)do %>
+          <!--リスナー名・画像-->
+          <td class="align-middle text-center">
+            <%= link_to listener_path(favo.listener.id), class: "text-dark" do %>
             <div>
               <%= attachment_image_tag favo.listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
             </div>
             <div>
-              <i class="text-dark ml-2"><%= favo.listener.name %></i>
+              <%= favo.listener.name %>
+              <% if favo.listener.listener_type == 1  %>
+                <i class="far fa-user-circle " style="color:rgb(063,163,203);"></i>
+              <% end %>
             </div>
             <% end %>
           </td>
-          <!--フォロー一覧-->
-          <td>
+          <!--フォロー・アンフォロー-->
+          <td class="align-middle text-center">
+          <!--自分と一致しない限り-->
+          <% unless current_listener.id == favo.listener.id %>
+            <!--自分がフォローをしていればアンフォロー-->
+            <% if current_listener.followings.exists?(favo.listener.id) %>
+              <%= link_to listener_relationships_path(favo.listener.id), method: :delete ,class: "link" do %>
+              <div class="btn btn-outline-main">Unfollow</div>
+              <% end %>
+            <!--フォローしていなければフォロー-->
+            <% else %>
+              <%= link_to listener_relationships_path(favo.listener.id), method: :post,class: "link"   do %>
+              <div class="btn btn-main">Follow</div>
+              <% end %>
+            <% end %>
+          <% end %>
+          </td>
+          <!--フォロ数・フォロー一覧へ-->
+          <td class="align-middle text-center">
             <%= link_to listener_followings_path(favo.listener),class:"text-dark"  do %>
-            <i class="fas fa-listener-check fa-lg mt-3">
-              <%= favo.listener.followings.count %>
-            </i>
+              <i class="fas fa-listener-check fa-lg mt-3"><%= favo.listener.followings.count %></i>
             <% end %>
           </td>
-          <!--フォロワー一覧-->
-          <td>
+          <!--フォロワー数・フォロワー一覧へ-->
+          <td class="align-middle text-center">
             <%= link_to listener_followers_path(favo.listener),class:"text-dark"  do %>
-              <i class="fas fa-listener-friends fa-lg mt-3">
-                <%= favo.listener.followers.count %>
-              </i>
+              <i class="fas fa-listener-friends fa-lg mt-3"><%= favo.listener.followers.count %></i>
             <% end %>
           </td>
-          <!--チャットへ-->
-          <td>
-            <!--相互フォローしていれば-->
+          <!--相互フォローであればチャットへ-->
+          <td class="align-middle text-center">
             <% if (current_listener.followers.include? favo.listener)  && (favo.listener.followers.include? current_listener )%>
               <%= link_to chat_path(favo.listener.id) do  %>
                 <div class="btn btn-info">Chat</div>
@@ -57,13 +72,23 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+<!--いいねした人がいなければ-->
+  <% else %>
+  <div class="col-9 mx-auto">
+    <div class="text-center">
+      <h3>No favorites</h3>
     </div>
+   </div>
+  <% end %>
+
+</div>
+<!--バックボタン-->
+<div class="row mt-5 " id="comment">
+  <div class="col-8 offset-2">
+    <!--前のページへ-->
+    <%= link_to :back, 'data-turbolinks': false  do%>
+      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
+    <% end %>
   </div>
 </div>
-
-<!--いいねした人がいなければ-->
-<% else %>
-<div class="text-center">
-  <h1><i class="fas fa-listeners-slash">&nbsp;No favorite</h1></i>
-</div>
-<% end %>

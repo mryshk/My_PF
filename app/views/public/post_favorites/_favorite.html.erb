@@ -8,7 +8,6 @@
     <%= post.post_favorites.count %></br>
     <p class="text-dark" style="font-size:12px;"><%= link_to "Likes",post_post_favorites_path(post),class:"link hover"%></p>
   <% end %>
-  <%= link_to post_post_favorites_path(post) do %><% end %>
 <% else %>
   <!--いいね作成-->
   <%= link_to post_post_favorites_path(post), method: :post,class: "link", remote: true do %>
