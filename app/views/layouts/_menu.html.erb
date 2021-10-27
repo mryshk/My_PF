@@ -34,20 +34,20 @@
     <li>
       <div class="link"><i class="fas fa-sort"></i>Post Sort<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><%= link_to "投稿が早い順" ,order_posts_path(:keyword => 'new') %></a></li>
-        <li><%= link_to "投稿が古い順" ,order_posts_path(:keyword => 'old') %></a></li>
-        <li><%= link_to "いいねが多い順" ,order_posts_path(:keyword => 'likes') %></a></li>
+        <li><%= link_to "投稿が早い順" ,order_posts_path(:keyword => 'new') %></li>
+        <li><%= link_to "投稿が古い順" ,order_posts_path(:keyword => 'old') %></li>
+        <li><%= link_to "いいねが多い順" ,order_posts_path(:keyword => 'likes') %></li>
       </ul>
     </li>
     <!--マイページの内容-->
     <li class="default open">
       <div class="link"><i class="fas fa-user-friends"></i>My Friend<i class="fa fa-chevron-down"></i></div>
       <ul class="submenu">
-        <li><%= link_to "Follow" , listener_followings_path(current_listener) %></a></li>
-        <li><%= link_to "Follower" , listener_followers_path(current_listener) %></a></li>
-        <li><%= link_to "My page" , listener_path(current_listener) %></a></li>
+        <li><%= link_to "Follow" , listener_followings_path(current_listener) %></li>
+        <li><%= link_to "Follower" , listener_followers_path(current_listener) %></li>
+        <li><%= link_to "My page" , listener_path(current_listener) %></li>
         <% if current_listener.listener_type == 1  %>
-          <li><%= link_to "Creater page" , artist_creater_path(current_listener.creater) %></a></li>
+          <li><%= link_to "Creater page" , artist_creater_path(current_listener.creater) %></li>
         <% end %>
       </ul>
     </li>
