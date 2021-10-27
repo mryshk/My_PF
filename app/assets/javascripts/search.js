@@ -70,15 +70,15 @@ $(document).on('turbolinks:load',function(){
         data.forEach(function(data){
           // $('.search-post .table').remove();
           $('.search-post-album').append(
-            `<table class="table"style="margin-bottom:0px;">
+            `<table class="table table-borderless">
                 <tr>
-                  <td class="align-middle" style="width:60px; padding:0;">
+                  <td class="align-middle text-center" style="width:60px; padding:0;">
                     <a href="creaters/${data.creater}" class="link"data-turbolinks="false">
                       <p style="font-size:16px; margin-bottom:0px;">${data.creater_name}</p>
                     </a>
                   </td>
-                  <td class="align-middle">
-                    <a href="albums/${data.id}" class="link d-inline-block" data-turbolinks="false">
+                  <td class="align-middle text-center">
+                    <a href="albums/${data.id}" class="link " data-turbolinks="false">
                       <p style="font-size:22px; margin-bottom:0px;">${data.name}</p>
                     </a>
                   </td>
