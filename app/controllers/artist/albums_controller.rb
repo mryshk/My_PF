@@ -50,7 +50,7 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def search
-    @search = Album.where('name LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(2)
+    @search = Album.where('name LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5)
     # インクリメンタルサーチのため。
     respond_to do |format|
       format.html
