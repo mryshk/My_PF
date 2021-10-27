@@ -109,7 +109,7 @@ describe 'ログイン後のテスト' do
   end
 
 
-  describe '自分の投稿編集画面のテスト' do
+  describe '投稿編集画面のテスト' do
     before do
       visit edit_post_path(post)
     end
@@ -117,14 +117,14 @@ describe 'ログイン後のテスト' do
       it 'URLが正しい' do
         expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
       end
-      it '「 Edit Post」と表示される' do
-        expect(page).to have_content ' Edit Post'
+      it '「Edit Post」と表示される' do
+        expect(page).to have_content 'Edit Post'
       end
       it 'post_tweet編集フォームが表示される' do
         expect(page).to have_field 'post[post_tweet]', with: post.post_tweet
       end
       it 'post_url編集フォームが表示される' do
-        expect(page).to have_field 'post[post_tweet]', with: post.post_url
+        expect(page).to have_field 'post[post_url]', with: post.post_url
       end
       it 'Updateボタンが表示される' do
         expect(page).to have_button 'Update'
@@ -151,6 +151,27 @@ describe 'ログイン後のテスト' do
         expect(page).to have_content 'Detail'
       end
     end
+  end
 
+  describe '自分のマイページのテスト' do
+    before do
+      visit listener_path(listener)
+    end
+
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/listeners/' + listener.id.to_s
+      end
+      it 'マイページに自分の名前が表示される' do
+        expect(page).to have_content listener.name
+      end
+      it 'マイページに自分の投稿一覧が表示される' do
+        expect(page).to have_content post.post_tweet
+      end
+      it '他人の詳細は表示されない' do
+        expect(page).not_to have_link '', href: listener_path(other_listener)
+        expect(page).not_to have_content other_post.post_tweet
+      end
+    end
   end
 end
