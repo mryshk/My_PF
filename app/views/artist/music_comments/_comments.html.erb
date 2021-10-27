@@ -8,7 +8,7 @@
       <% music_comments.each do |music_comment| %>
       <tr>
         <!--コメントリスナー-->
-        <td>
+        <td class=" align-middle text-center" style="width:20%;">
           <!--リスナー詳細へ-->
           <%= link_to  listener_path(music_comment.listener_id), class: "text-dark" do %>
           <div><%= attachment_image_tag music_comment.listener,:profile_image ,size:"50x50", fallback: "no_image.jpg",class:"mt-3 rounded-circle" %></div>
@@ -16,9 +16,9 @@
           <% end %>
         </td>
         <!--コメント-->
-        <td class="pt-4"><%= music_comment.comment %></td>
+        <td class="align-middle " style="width:40%;" ><%= music_comment.comment %></td>
         <!--星ランク表示-->
-        <td>
+        <td class="align-middle " style="width:20%;" >
           <% unless music_comment.rate.nil? %>
           <div id="music_post_rate_<%= music_comment.id  %>" data-score="<%= music_comment.rate %>" class="text-center mt-3"></div>
           <!--ランク表示Javascript-->
@@ -38,7 +38,7 @@
         <!--コメント編集・削除-->
         <!--ログインユーザーと一致すれば-->
         <% if music_comment.listener == current_listener %>
-        <td class="">
+        <td class="align-middle text-center" style="width:20%;">
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_artist_album_album_music_music_comment_path(music_comment.album,music_comment.album_music,music_comment),method: :get, class: "text-info" do %>
               <i class="fas fa-edit">Edit</i>
