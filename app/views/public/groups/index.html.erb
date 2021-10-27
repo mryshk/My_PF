@@ -15,39 +15,35 @@
   <!--右側ランキング-->
   <div class="col mr-md-5 column-right">
     <!--グループメンバーランキング-->
+    <h6 class="text-center text-main mx-auto">Group Joiner Rank</h6>
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
-      <thead>
-        <h6 class="text-center text-main mx-auto">Group Joiner Rank</h6>
-      </thead>
       <!--ランク番号用の変数-->
       <% i = 0  %>
       <% @group_listeners_rank.each do |group_rank|  %>
       <tr>
         <!--ランク番号-->
-        <th class="align-middle" style="padding:0;">
+        <th class="align-middle" style="padding:0;" style="width:10%;">
           <% i += 1  %>
           <%= i %>
         </th>
-        <td class="d-flex align-middle">
-          <div>
-            <!--グループ画像-->
-            <div>
-              <%= link_to group_path(group_rank) do%>
-                <%= attachment_image_tag group_rank, :image, size:"30x30", fallback: "no_image.jpg",class: " profile_image rounded-circle" %>
-              <% end %>
-            </div>
-            <!--グループ名-->
-            <div style="font-size: 10px;">
-              <%= group_rank.name %>
-            </div>
+        <td class="align-middle" style="width:20%; margin:0px; padding:0px;">
+          <!--グループ画像-->
+          <div class="text-center">
+            <%= link_to group_path(group_rank) do%>
+              <%= attachment_image_tag group_rank, :image, size:"30x30", fallback: "no_image.jpg",class: " profile_image rounded-circle" %>
+            <% end %>
           </div>
-          <!--グループ説明-->
-          <%= link_to group_path(group_rank.id),class: "link-none",'data-turbolinks': false do %>
-            <p class=" align-self-center ml-3"style="font-size: 12px;" ><%= group_rank.introduction.truncate(15) %></p>
-          <% end %>
+          <!--グループ名-->
+          <p class="text-center" style="font-size: 10px; margin:0px;"> <%= group_rank.name %></p>
+        </td>
+        <!--グループ説明-->
+        <td class="align-middle" style="width:60%; margin:0px; padding:0px;">
+        <%= link_to group_path(group_rank.id),class: "link-none",'data-turbolinks': false do %>
+          <p class=" align-self-center ml-3"style="font-size: 12px;" ><%= group_rank.introduction.truncate(15) %></p>
+        <% end %>
         </td>
         <!--グループメンバー数-->
-        <td class="align-middle">
+        <td class="align-middle" style="width:10%;">
           <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= group_rank.group_listeners.count %></p>
           <p class="d-block" style="font-size: 10px;">People</p>
         </td>
