@@ -107,4 +107,50 @@ describe 'ログイン後のテスト' do
       end
     end
   end
+
+
+  describe '自分の投稿編集画面のテスト' do
+    before do
+      visit edit_post_path(post)
+    end
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
+      end
+      it '「 Edit Post」と表示される' do
+        expect(page).to have_content ' Edit Post'
+      end
+      it 'post_tweet編集フォームが表示される' do
+        expect(page).to have_field 'post[post_tweet]', with: post.post_tweet
+      end
+      it 'post_url編集フォームが表示される' do
+        expect(page).to have_field 'post[post_tweet]', with: post.post_url
+      end
+      it 'Updateボタンが表示される' do
+        expect(page).to have_button 'Update'
+      end
+    end
+
+    context '編集成功のテスト' do
+      before do
+        @post_old_post_tweet = post.post_tweet
+        @post_old_post_url = post.post_url
+        fill_in 'post[post_tweet]', with: Faker::Lorem.characters(number: 20)
+        fill_in 'post[post_url]', with: Faker::Lorem.characters(number: 20)
+        click_button 'Update'
+      end
+
+      it 'tweetが正しく更新される' do
+        expect(post.reload.post_tweet).not_to eq @post_old_post_tweet
+      end
+      it 'urlが正しく更新される' do
+        expect(post.reload.post_url).not_to eq @post_old_post_url
+      end
+      it 'リダイレクト先が、更新した投稿の詳細画面になっている' do
+        expect(current_path).to eq '/posts/' + post.id.to_s
+        expect(page).to have_content 'Detail'
+      end
+    end
+
+  end
 end
