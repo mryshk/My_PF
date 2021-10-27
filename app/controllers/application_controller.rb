@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception # ActionController::InvalidAuthenticityTokenエラー対策
 
-  # before_action :authenticate_listener!, except: [:top, :about]
+  before_action :authenticate_listener!, except: [:top, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # 権限確認（cancancan）
