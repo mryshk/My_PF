@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception # ActionController::InvalidAuthenticityTokenエラー対策
 
-  before_action :authenticate_listener!, except: [:top, :about]
+  # before_action :authenticate_listener!, except: [:top, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # 権限確認（cancancan）
@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
     if listener_signed_in? # リスナー側ログイン後
       home_path # リスナー側トップ画面に遷移
     else
-      home_path
+     admin_root_path
     end
   end
 
   def after_sign_out_path_for(resource) # リスナー側ログアウト後
-    root_path # About画面に遷移
+    root_path # TOP画面に遷移
   end
 
   protected
