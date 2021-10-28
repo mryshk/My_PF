@@ -10,7 +10,7 @@
   <% end %>
 <% else %>
   <!--いいね作成-->
-  <%= link_to artist_album_album_music_music_favorites_path(album, album_music), method: :post, remote: true do %>
+  <%= link_to artist_album_album_music_music_favorites_path(album, album_music), method: :post,class:"link", remote: true do %>
     <!--いいね数-->
     <i class="far fa-star fa-lg " style="rgb(255,243,063)"></i>
     <%= album_music.music_favorites.count %></br>
