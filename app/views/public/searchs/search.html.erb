@@ -12,7 +12,9 @@
     </div>
     <!--投稿一覧部分テンプレート取得-->
     <div class="col-md-5 ml-md-5 mt-md-5 column-center">
-      <%= render "public/posts/index", posts: @records %>
+      <div class="scroll-list jscroll">
+        <%= render "public/posts/index", posts: @records %>
+      </div>
     </div>
   <!--アルバム検索であれば-->
   <% elsif @model == 'album' %>
@@ -22,7 +24,9 @@
     </div>
     <!--投稿一覧部分テンプレート取得-->
     <div class="col-md-5 ml-md-5 mt-md-5 column-center">
-     <%= render "artist/albums/index", albums: @records %>
+      <div class="scroll-list jscroll">
+        <%= render "artist/albums/index", albums: @records %>
+       </div>
     </div>
   <% end %>
 </div>
