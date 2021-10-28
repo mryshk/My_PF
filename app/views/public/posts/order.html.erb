@@ -1,0 +1,24 @@
+<!--投稿一覧-->
+<h3 class="text-center" style="margin-top:50px;" ><i class="fas fa-headphones-alt"></i> Posts</h3>
+<div class="row mt-4 ">
+  <!--左メニュー-->
+  <div class="col ml-5 column-left">
+    <%= render "layouts/menu", mygroups: @mygroups %>
+  </div>
+  <!--メイン、真ん中投稿一覧-->
+  <div class="col-md-5 ml-md-3 mt-md-5 column-center">
+    <div class="scroll-list jscroll">
+      <%= render "public/posts/index", posts: @posts %>
+    </div>
+  </div>
+  <!--右側ランキング-->
+  <div class="col mr-md-5 column-right">
+    <!--いいねランキング-->
+    <h6 class="mx-auto text-main">Like Ranking</h6>
+      <%= render "layouts/favo_rank",favo_rank: @post_favorite_rank %>
+
+    <!--閲覧数ランキング-->
+    <h6 class="mx-auto text-main">View Ranking</h6>
+       <%= render "layouts/impre_rank",imp_rank: @post_impression_rank %>
+  </div>
+</div>
