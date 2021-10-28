@@ -4,20 +4,20 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Introduction</th>
-          <th>Albums</th>
-          <th>Follow&Unfollow</th>
-          <th>Follow</th>
-          <th>Follower</th>
-          <th>Chat</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Introduction</th>
+          <th class="text-center">Albums</th>
+          <th class="text-center">Follow&Unfollow</th>
+          <th class="text-center">Follow</th>
+          <th class="text-center">Follower</th>
+          <th class="text-center">Chat</th>
         </tr>
       </thead>
       <tbody>
         <% @creaters.each do |creater|  %>
         <tr>
           <!--クリエイター名と画像-->
-          <td>
+          <td class="align-middle text-center">
             <!--クリエイターページへのリンク付き-->
             <%= link_to artist_creater_path(creater),class:"text-dark" do%>
             <div>
@@ -32,17 +32,19 @@
             <% end %>
           </td>
           <!--クリエイター自己紹介-->
-          <td class="align-middle">
+          <td class="align-middle text-center">
             <p class="text-dark ml-2" style="font-size:14px;">
-              <%= creater.listener.caption.truncate(20) %>
+              <% unless creater.listener.caption.nil? %>
+              　<%= creater.listener.caption.truncate(20) %>
+              <% end %>
             </p>
           </td>
           <!--投稿アルバム数-->
-          <td class="align-middle">
+          <td class="align-middle text-center">
             <i class="fas fa-listener-check fa-lg mt-3"><%= creater.albums.count %></i>
           </td>
           <!--フォローとアンフォロー-->
-          <td class="align-middle">
+          <td class="align-middle text-center">
             <% unless current_listener.id == creater.listener.id %>
               <% if current_listener.followings.exists?(creater.listener.id) %>
                 <%= link_to listener_relationships_path(creater.listener.id), method: :delete ,class: "link" do %>
@@ -56,21 +58,21 @@
             <% end %>
           </td>
           <!--フォロー数-->
-          <td class="align-middle">
+          <td class="align-middle text-center">
             <!--フォロー一覧へのリンク-->
             <%= link_to listener_followings_path(creater.listener),class:"text-dark"  do %>
               <i class="fas fa-listener-check fa-lg mt-3"><%= creater.listener.followings.count %></i>
             <% end %>
           </td>
           <!--フォロワー数-->
-          <td class="align-middle">
+          <td class="align-middle text-center">
             <!--フォロワー一覧へのリンク-->
             <%= link_to listener_followers_path(creater.listener),class:"text-dark"  do %>
               <i class="fas fa-listener-friends fa-lg mt-3"><%= creater.listener.followers.count %></i>
             <% end %>
           </td>
           <!--チャットボタン-->
-          <td class="align-middle">
+          <td class="align-middle text-center">
             <!--相互フォロー（マッチング）できていればチャットへ-->
             <% if (current_listener.followers.include? creater.listener)  && (creater.listener.followers.include? current_listener )%>
               <%= link_to chat_path(creater.listener),class: "link" do  %>

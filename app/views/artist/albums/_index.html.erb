@@ -4,22 +4,27 @@
   <!--アルバムカード-->
   <div class="card mt-4 shadow-sm " >
     <div class="card-body">
-      <!--投稿者名と画像-->
+      <!--クリエイター名と画像-->
       <div class="card-text" >
-        <!--クリエイター詳細へ-->
-        <%= link_to artist_creater_path(album.creater),class: "text-dark" do %>
-        <div class="d-inline-block">
-          <!--クリエイター画像-->
-          <%= attachment_image_tag album.creater.listener,:profile_image ,size:"50x50", fallback: "no_image.jpg",class: "mt-3 rounded-circle" %>
-        </div>
-        <!--クリエイター名-->
-        <div class="d-inline-block">
-          <%= album.creater.listener.name %>
-          <% if album.creater.listener.listener_type == 1  %>
-            <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
-          <% end %>
-        </div>
-        <% end %>
+      <!--クリエイターページへ-->
+      <%= link_to artist_creater_path(album.creater),class: "text-dark" do %>
+        <table class="table table-borderless">
+          <tr>
+            <!--クリエイター画像-->
+            <td class="align-middle" style="width:60px; padding:0;">
+              <%= attachment_image_tag album.creater.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
+            </td>
+            <!--クリエイター名-->
+            <td class="align-middle">
+              <%= album.creater.listener.name%>
+              <!--クリエイターのみ表示マーク-->
+              <% if album.creater.listener.listener_type == 1  %>
+                <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
       </div>
       <!--アルバム名-->
       <h5 class="card-text text-center mt-2"><%= album.name  %></h5>
