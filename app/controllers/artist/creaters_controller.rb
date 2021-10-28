@@ -9,7 +9,7 @@ class Artist::CreatersController < ApplicationController
     @listener.listener_type = 1
     @listener.save
     @creater.save
-    redirect_to artist_creaters_path
+    redirect_to artist_creater_path(@creater)
   end
 
   def show
