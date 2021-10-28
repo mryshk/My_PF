@@ -54,7 +54,7 @@ https://app.diagrams.net/#G1uGJZjChS0OeGnZXeJuZ8YXO1FEiAvOd4
 
 
 ## チャレンジ要素一覧
-https://docs.google.com/spreadsheets/d/1jcPegLVuT-Q3KqS4D96l6st2mI7QgAxaKpkZgkH3xTk/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1jcPegLVuT-Q3KqS4D96l6st2mI7QgAxaKpkZgkH3xTk/edit#gid=566224576
 
 ## 開発環境
 - OS：Linux(CentOS)
