@@ -2,8 +2,13 @@
 <h3 class="text-center" style="margin-top:100px;"><i class="fas fa-feather-alt"></i> New Creater</h3>
 <div class="row" style="margin-bottom:200px;">
   <div class="col-6 offset-3"style="margin-top:100px;">
+    <p class="text-center">
+      クリエイター登録をすれば、アルバム・楽曲投稿ができるようになります。</br>
+      現在は、アルバム・楽曲に関しては閲覧と視聴しかできません。</br>
+      ぜひ登録してみましょう！
+    </p>
     <!--クリエイター登録ボタン-->
-    <div class="text-center">
+    <div class="text-center" style="margin-top:50px;">
     <%=  form_with model: @creater ,url: artist_creaters_path,method: :post ,local: true do |f| %>
       <%= f.hidden_field :listener_id, :value => current_listener.id %>
       <%= f.submit "クリエイター登録",class:"btn btn-main" %>
