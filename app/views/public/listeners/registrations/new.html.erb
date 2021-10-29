@@ -21,8 +21,6 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control-static col-6",placeholder:"Password confirmed", id:"registration_password_confirmation" %>
       </div>
       <div class="actions text-center" >
-        <!--リスナータイプ。default：０であるため。-->
-        <%= f.hidden_field :listener_type, :value => 0  %>
         <button class="btn btn-main">SignUp</button>
         <% f.submit %>
       </div>
