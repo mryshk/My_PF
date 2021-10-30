@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   # attachment_image_tagに使用。
   attachment :picture
 
-  belongs_to :listener, dependent: :destroy
+  belongs_to :listener
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :favo_users, through: :post_favorites, source: :listener
