@@ -40,11 +40,20 @@
       <div class="mt-4 d-flex justify-content-center" >
         <!--詳細画面へ-->
         <div class=" mt-4" style="margin-right:80px;" >
-          <%= link_to artist_album_path(album), 'data-turbolinks': false do %><i class="fas fa-arrow-circle-right fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Detail</p></i><% end %>
+          <!--アルバム詳細へ-->
+          <%= link_to artist_album_path(album), class:"card-title text-center", 'data-turbolinks': false do %>
+            <i class="fas fa-arrow-circle-right fa-lg main-color hover">
+              <p class="text-dark" style="font-size:12px;"> Detail</p>
+            </i>
+          <% end %>
         </div>
         <!--投稿曲視聴-->
         <div class=" mt-4" style="" >
-          <a class="card-title text-center" href="<%= album.album_url %>" target="_blank"><i class="fas fa-headphones-alt fa-lg main-color hover"><p class="text-dark" style="font-size:12px;">Music</p></i></a>
+          <a class="card-title text-center" href="<%= album.album_url %>" target="_blank">
+            <i class="fas fa-headphones-alt fa-lg main-color hover">
+              <p class="text-dark" style="font-size:12px;">Music</p>
+            </i>
+          </a>
         </div>
       </div>
       <!--投稿日-->
