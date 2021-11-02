@@ -28,15 +28,15 @@
             <td class="align-middle " style="width:10%;" >
               <!--スコアによって絵文字を変える！-->
               <!--スコアが0.4以下なら-->
-              <% if music_comment.score.to_d <= 0.4 %>
+              <% if music_comment.score.to_d <= 0 %>
                 <!--青色の泣いた顔を表示-->
                 <i class="far fa-sad-cry fa-lg" style="color:rgb(001,093,178);"></i> <%= music_comment.score %>
               <!--0.7以下なら-->
-              <% elsif music_comment.score.to_d <= 0.7  %>
+              <% elsif music_comment.score.to_d <= 0.5  %>
                 <!--黄色のウインクした顔を表示-->
                 <i class="far fa-smile-wink fa-lg" style="color:rgb(255,213,055);"></i> <%= music_comment.score %>
               <!--0.7より上の場合-->
-              <% elsif 0.7 < music_comment.score.to_d %>
+              <% elsif 0.5 < music_comment.score.to_d %>
                 <!--赤色の笑顔を表示-->
                 <i class="far fa-smile-beam fa-lg" style="color:rgb(234,085,050);"></i> <%= music_comment.score %>
               <% end %>
