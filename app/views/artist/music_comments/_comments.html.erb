@@ -19,13 +19,27 @@
         <td class="align-middle " style="width:40%;" >
           <%= music_comment.comment %>
         </td>
+        <!--コメント解析スコア表示-->
         <!--全ての権限を持っている人であれば（クリエイター権限を持っていれば）、スコア閲覧可能-->
         <% if can? :manage , current_listener %>
           <!--なおかつ自分の投稿したアルバム・楽曲の場合のみスコアを表示-->
           <% if album_music.creater == current_listener.creater %>
             <!--コメント評価Natural LanguageAPI-->
             <td class="align-middle " style="width:10%;" >
-              <%= music_comment.score %>
+              <!--スコアによって絵文字を変える！-->
+              <!--スコアが0.4以下なら-->
+              <% if music_comment.score.to_d <= 0.4 %>
+                <!--青色の泣いた顔を表示-->
+                <i class="far fa-sad-cry fa-lg" style="color:rgb(001,093,178);"></i> <%= music_comment.score %>
+              <!--0.7以下なら-->
+              <% elsif music_comment.score.to_d <= 0.7  %>
+                <!--黄色のウインクした顔を表示-->
+                <i class="far fa-smile-wink fa-lg" style="color:rgb(255,213,055);"></i> <%= music_comment.score %>
+              <!--0.7より上の場合-->
+              <% elsif 0.7 < music_comment.score.to_d %>
+                <!--赤色の笑顔を表示-->
+                <i class="far fa-smile-beam fa-lg" style="color:rgb(234,085,050);"></i> <%= music_comment.score %>
+              <% end %>
             </td>
           <% end %>
         <% end %>
