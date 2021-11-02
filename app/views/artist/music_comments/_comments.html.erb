@@ -16,9 +16,19 @@
           <% end %>
         </td>
         <!--コメント-->
-        <td class="align-middle " style="width:30%;" ><%= music_comment.comment %></td>
-        <!--コメント評価Natural LanguageAPI-->
-        <td class="align-middle " style="width:10%;" ><%= music_comment.score %></td>
+        <td class="align-middle " style="width:40%;" >
+          <%= music_comment.comment %>
+        </td>
+        <!--全ての権限を持っている人であれば（クリエイター権限を持っていれば）、スコア閲覧可能-->
+        <% if can? :manage , current_listener %>
+          <!--なおかつ自分の投稿したアルバム・楽曲の場合のみスコアを表示-->
+          <% if album_music.creater == current_listener.creater %>
+            <!--コメント評価Natural LanguageAPI-->
+            <td class="align-middle " style="width:10%;" >
+              <%= music_comment.score %>
+            </td>
+          <% end %>
+        <% end %>
         <!--星ランク表示-->
         <td class="align-middle " style="width:20%;" >
           <% unless music_comment.rate.nil? %>
@@ -40,7 +50,7 @@
         <!--コメント編集・削除-->
         <!--ログインユーザーと一致すれば-->
         <% if music_comment.listener == current_listener %>
-        <td class="align-middle text-center" style="width:20%;">
+        <td class="align-middle text-center" style="width:10%;">
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_artist_album_album_music_music_comment_path(music_comment.album,music_comment.album_music,music_comment),method: :get, class: "text-info" do %>
               <i class="fas fa-edit">Edit</i>
