@@ -6,12 +6,12 @@
     <thead>
       <tr>
         <th></th>
-        <th>Music name</th>
-        <th>caption</th>
-        <th>Music</th>
-        <th>Likes</th>
-        <th>Comments</th>
-        <th>Rate</th>
+        <th class="text-center">Music name</th>
+        <th class="text-center">caption</th>
+        <th class="text-center">Music</th>
+        <th class="text-center">Likes</th>
+        <th class="text-center">Comments</th>
+        <th class="text-center">Rate</th>
       </tr>
     </thead>
     <tbody>
@@ -20,37 +20,37 @@
       <% album_musics.each do |music| %>
       <tr>
         <!--曲番-->
-        <td class="align-middle">
+        <td class="align-middle text-center">
           <% i += 1  %>
           <%= i %>
         </td>
         <!--曲名-->
-        <td class="align-middle">
+        <td class="align-middle text-center">
           <!--楽曲詳細へ-->
           <%= link_to artist_album_album_music_path(music.album_id,music),class:"link", 'data-turbolinks': false do%>
           　<p style="font-size:18px;"><%= music.name  %></p>
           <% end %>
         </td>
         <!--楽曲説明。１５文字制限-->
-        <td class="align-middle">
+        <td class="align-middle text-center">
           <p><%= music.caption.truncate(15)  %></p>
         </td>
         <!--linkpreviewの音楽サイト遷移マーク-->
-        <td class="align-middle">
+        <td class="align-middle text-center">
           <a href="<%= music.music_url %>" target="_blank">
             <i class="fas fa-headphones-alt fa-lg main-color hover"></i>
           </a>
         </td>
         <!--いいね数-->
-        <td class="align-middle">
+        <td class="align-middle text-center">
           <i class="fas fa-star fa-lg" style="color:rgb(255,243,063);"></i> <%= music.music_favorites.count %>
         </td>
         <!--コメント数-->
-        <td class="align-middle">
+        <td class="align-middle text-center">
           <i class="fas fa-comments main-color"></i> <%= music.music_comments.count %>
         </td>
         <!--楽曲平均評価-->
-        <td class="align-middle">
+        <td class="align-middle text-center">
         <!--平均ランク 部分-->
         <% @average_rate = music.music_comments.average(:rate) %>
           <div id="music_rate_<%= music.id  %>" data-score="<%= @average_rate %>" class="text-center " style="margin-top:10px;"></div>
@@ -59,6 +59,7 @@
         <% else %>
           <h6 class="text-center mt-3"><i>0</i></h6>
         <% end %>
+        </td>
         　<!--評価用のjavascript-->
           <script>
             $('#music_rate_<%= music.id %>').empty();
