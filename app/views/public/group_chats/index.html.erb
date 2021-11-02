@@ -4,4 +4,13 @@
     <!--部分テンプレートでチャット一覧を取得-->
     <%= render 'public/group_chats/chat', chats: @chats, chat: @chat, group: @group%>
   </div>
+  <!--バックボタン-->
+  <div class="row" style="margin-top:100px;">
+      <div class="col-8 offset-2">
+      <!--前のページへ-->
+      <%= link_to :back do%>
+        <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
+      <% end %>
+    </div>
+  </div>
 </div>
