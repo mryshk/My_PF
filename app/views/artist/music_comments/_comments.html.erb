@@ -16,7 +16,7 @@
           <% end %>
         </td>
         <!--コメント-->
-        <td class="align-middle " style="width:40%;" >
+        <td class="align-middle " style="width:35%;" >
           <%= music_comment.comment %>
         </td>
         <!--コメント解析スコア表示-->
@@ -25,7 +25,7 @@
           <!--なおかつ自分の投稿したアルバム・楽曲の場合のみスコアを表示-->
           <% if album_music.creater == current_listener.creater %>
             <!--コメント評価Natural LanguageAPI-->
-            <td class="align-middle " style="width:10%;" >
+            <td class="align-middle " style="width:15%;" >
               <!--スコアによって絵文字を変える！-->
               <!--スコアが0.4以下なら-->
               <% if music_comment.score.to_d < 0 %>
