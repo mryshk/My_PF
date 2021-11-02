@@ -12,6 +12,7 @@ class Artist::MusicCommentsController < ApplicationController
     @album_music = AlbumMusic.find_by(id: params[:album_music_id])
     @music_comment.album_id = @album.id
     @music_comment.album_music_id = @album_music.id
+    # Natural Language APIから情報取得。スコアカラムへ格納。
     @music_comment.score = Language.get_data(music_comment_params[:comment])
     @music_comment.save!
     # create.js用
