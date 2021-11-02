@@ -1,5 +1,12 @@
 <div class="container" style="margin-bottom:200px;">
-  <h2 class=" text-center" id="area-1" style="margin-top:100px;" ><i class="far fa-user"></i> My page</h2>
+  <!--タイトル-->
+  <% if @listener.id == current_listener.id %>
+    <!--自分のページであればマイページ-->
+    <h2 class=" text-center" id="area-1" style="margin-top:100px;" ><i class="far fa-user"></i> My page</h2>
+  <% else %>
+    <!--他人のページであれば、リスナーページとする。-->
+    <h2 class=" text-center" id="area-1" style="margin-top:100px;" ><i class="far fa-user"></i> Listener page</h2>
+  <% end %>
   <!--プロフィール詳細-->
   <div class="row" style="margin-bottom:200px; margin-top:100px;">
     <div class="col-md-4 mx-md-auto col-8 offset-2">
