@@ -30,6 +30,7 @@ class Artist::MusicCommentsController < ApplicationController
     @music_comment = MusicComment.find_by(id: params[:id], album_id: params[:album_id], album_music_id: params[:album_music_id])
     @album = Album.find_by(id: params[:album_id])
     @album_music = AlbumMusic.find_by(id: params[:album_music_id])
+    # Natural Language APIから情報取得。スコアカラムへ格納
     @music_comment.score = Language.get_data(music_comment_params[:comment])
     @music_comment.update(music_comment_params)
     redirect_to artist_album_album_music_path(@album, @album_music)
