@@ -18,6 +18,13 @@ class Public::PostCommentsController < ApplicationController
     @post_comment_n = PostComment.new
   end
 
+  def show
+    @post = Post.find(params[:post_id])
+    @post_comment = PostComment.find(params[:id])
+    @post_comment_n = PostComment.new
+  end
+
+
   def edit
     @post = Post.find(params[:post_id])
     @comment = PostComment.find_by(id: params[:id])
