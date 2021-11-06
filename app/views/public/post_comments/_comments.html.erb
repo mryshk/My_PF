@@ -13,8 +13,13 @@
           <div>&ensp;<%= post_comment.listener.name %></div>
           <% end %>
         </td>
+
         <%# コメント %>
-        <td class="align-middle " style="width:60%;" ><%= post_comment.comment %></td>
+        <td class="align-middle " style="width:60%;" >
+          <%= link_to post_post_comment_path(post, post_comment.id) do%>
+            <%= post_comment.comment %>
+          <% end %>
+        </td>
         <%# コメント編集・削除 %>
         <% if post_comment.listener == current_listener %>
         <td class="align-middle text-center" style="width:20%;">
