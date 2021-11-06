@@ -37,10 +37,11 @@ Rails.application.routes.draw do
         get :search_tag # タグ検索時に使用
       end
       # 投稿コメント
-      resources :post_comments, only: [:index, :create, :edit, :update, :destroy,:show]
-        collection do
+      resources :post_comments, only: [:index, :create, :edit, :update, :destroy,:show] do
+        member do
           post :reply_create
         end
+      end
       # 投稿いいね
       resources :post_favorites, only: [:index, :create, :destroy]
     end
