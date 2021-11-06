@@ -35,22 +35,10 @@
   </table>
   </div>
 
-  <h3 class="text-center">Reply to this comment</h3>
-  <%# コメント投稿フォーム %>
-  <div>
-    <%= form_with(model:[@post, @post_comment_n], local: true) do |f| %>
-    <%# コメント欄 %>
-    <div>
-      <%= f.text_area :comment, rows:'5',placeholder: "Comment" ,class: "form-control" %>
-      <%= f.hidden_field :reply_comment, :value => @post_comment.id %>
-    </div>
-    <%# 送信ボタン %>
-    <button class="btn btn-main mt-4" style="width:100px">POST
-      <% f.submit %>
-    </button>
-    <% end %>
+  <div class="row mt-4" id="comment">
+    <%= render "public/post_comments/reply_comments",comments: @comments, post: @post, post_comment_n: @post_comment_n, post_comment: @post_comment %>
   </div>
-</div>
+
 
 
 
