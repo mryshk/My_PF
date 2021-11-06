@@ -41,6 +41,9 @@ Rails.application.routes.draw do
         collection do
           post :reply_create
         end
+        member do
+          delete :reply_destroy
+        end
       end
       # 投稿いいね
       resources :post_favorites, only: [:index, :create, :destroy]
