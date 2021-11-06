@@ -4,7 +4,7 @@ class Post < ApplicationRecord
 
   belongs_to :listener
   has_many :post_comments, dependent: :destroy
-  has_many :replies, class_name: PostComment,foreign_key: :reply_comment, dependent: :destroy
+  has_many :replies, class_name: "PostComment",foreign_key: "reply_comment", dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :favo_users, through: :post_favorites, source: :listener
   has_many :notifications, dependent: :destroy
