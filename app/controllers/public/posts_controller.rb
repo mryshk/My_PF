@@ -28,6 +28,7 @@ class Public::PostsController < ApplicationController
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
+     binding.pry
   end
 
   def index
