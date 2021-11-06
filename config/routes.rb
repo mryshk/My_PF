@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       end
       # 投稿コメント
       resources :post_comments, only: [:index, :create, :edit, :update, :destroy,:show] do
-        member do
+        collection do
           post :reply_create
         end
       end
