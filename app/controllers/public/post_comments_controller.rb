@@ -22,11 +22,24 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
     @post_comment_n = PostComment.new
+    @comments = PostComment.where(reply_comment: @post_comment.id)
   end
 
+  def reply_create
+    @post = Post.find(params[:post_id])
+    @post_comment = PostComment.find(params[:id])
+    @comment = PostComment.new(post_comment_params)
+    @comment.listener_id = current_listener.id
+    @comment.post_id = @post.id
+    @comment.save!
+
+    @comments = PostComment.where(reply_comment: @post_comment.id)
+    @post_comment_n = PostComment.new
+  end
 
   def edit
     @post = Post.find(params[:post_id])
+    @post_comment = PostComment.find(params[:id])
     @comment = PostComment.find_by(id: params[:id])
   end
 
@@ -49,6 +62,6 @@ class Public::PostCommentsController < ApplicationController
   private
 
   def post_comment_params
-    params.require(:post_comment).permit(:comment)
+    params.require(:post_comment).permit(:comment,:reply_comment)
   end
 end
