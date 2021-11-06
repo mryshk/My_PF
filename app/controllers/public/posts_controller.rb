@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment_n = PostComment.new
-    @comments = @post.post_comments
+    @comments = PostComment.where(post_id: @post.id, reply_comment: nil)
     impressionist(@post, nil)
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id, listener_id: current_listener.id)
@@ -28,7 +28,6 @@ class Public::PostsController < ApplicationController
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
-     binding.pry
   end
 
   def index
