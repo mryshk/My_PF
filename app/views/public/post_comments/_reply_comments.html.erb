@@ -43,7 +43,7 @@
   <h3 class="text-center">Reply to this comment</h3>
   <%# コメント投稿フォーム %>
   <div>
-    <%= form_with model:[post, post_comment_n],url: reply_create_post_post_comment_path(post.id, post_comment_n),method: :post, local: false do |f| %>
+    <%= form_with model:[post, post_comment_n],url: reply_create_post_post_comments_path(post),method: :post, local: false do |f| %>
     <%# コメント欄 %>
     <div>
       <%= f.text_area :comment, rows:'5',placeholder: "Comment" ,class: "form-control" %>
