@@ -2,6 +2,7 @@ class Public::ListenersController < ApplicationController
   def show
     @listener = Listener.find(params[:id])
     @posts = @listener.posts.page(params[:page]).per(2)
+    @bookmark = 
   end
 
   def edit
