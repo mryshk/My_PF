@@ -81,15 +81,19 @@
       </div>
     </div>
   </div>
-  <ul class="tab-list list-unstyled d-flex justify-content-center">
-    <li class="tab tab-active btn btn-main text-center">
-      My posts
-    </li>
-    <li class="tab btn btn-main text-center ml-5">
-      Bookmarks
-    </li>
-  </ul>
-  <div class="tabbox-contents">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <ul class="tab-list list-unstyled ">
+        <li class="tab tab-active ">
+          <p class="hover" style="margin-bottom:0px;">My posts</p>
+        </li>
+        <li class="tab">
+          <p class="hover" style="margin-bottom:0px;">Bookmarks</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tabbox-contents mt-5">
     <div class="tabbox box-show">
       <%= render "public/listeners/mypost", posts: @posts %>
     </div>
@@ -98,6 +102,7 @@
     </div>
   </div>
 </div>
+
 
 
 
