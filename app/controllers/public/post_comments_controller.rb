@@ -23,7 +23,7 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
     @post_comment_n = PostComment.new
-    @comments = PostComment.where(reply_comment: @post_comment.id)
+    @comments = PostComment.includes(:listener).where(reply_comment: @post_comment.id)
   end
 
   # 返信コメント作成
