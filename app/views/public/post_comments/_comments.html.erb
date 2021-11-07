@@ -13,27 +13,34 @@
           <div>&ensp;<%= post_comment.listener.name %></div>
           <% end %>
         </td>
-
-        <%# コメント %>
-        <td class="align-middle " style="width:60%;" >
-          <%= link_to post_post_comment_path(post, post_comment.id) do%>
+        <!--コメント-->
+        <td class="align-middle " style="width:50%;" >
+          <%= link_to post_post_comment_path(post, post_comment.id), class:"text-dark hover" do%>
             <%= post_comment.comment %>
           <% end %>
         </td>
-        <%# コメント編集・削除 %>
+        <td class=" align-middle text-center" style="width:10%;">
+          <p>
+            <% @reply = PostComment.where(reply_comment: post_comment.id) %>
+            <i class="fas fa-reply-all"></i><%= @reply.count %>
+          </p>
+        </td>
+        <!--編集削除-->
         <% if post_comment.listener == current_listener %>
         <td class="align-middle text-center" style="width:20%;">
+          <!--コメント編集-->
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_post_post_comment_path(post_comment.post,post_comment),method: :get, class: "text-info" do %>
               <i class="fas fa-edit">Edit</i>
             <% end %>
           </div>
+          <!--コメント削除-->
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to post_post_comment_path(post_comment.post,post_comment),method: :delete,'data-confirm' => "Do you really want to delete?", class: "text-danger",remote: true do %>
               <i class="fas fa-trash-alt">Delete</i>
             <% end %>
           </div>
-          </td>
+        </td>
         <% end %>
       </tr>
       <% end %>
