@@ -65,7 +65,7 @@
               </div>
               <!--いいね-->
               <div class=" mt-4" style="margin-right:10%;"  id="post_post_favorite_<%= bookmark.post.id  %>">
-                <% @favorite = PostFavorite.find_by(post_id: bookmark.post.id,listener_id: current_listener.id) %>
+                <% @favorite = PostFavorite.find_by(post_id: bookmark.post_id,listener_id: current_listener.id) %>
                 <%= render 'public/post_favorites/favorite', post: bookmark.post, favorite: @favorite %>
               </div>
               <!--コメント-->
