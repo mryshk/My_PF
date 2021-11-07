@@ -81,53 +81,21 @@
       </div>
     </div>
   </div>
-  <h2 class="text-center my-5" ><i class="fas fa-headphones-alt"></i> My Posts</h2>
-  <!--自分の投稿一覧-->
-  <div class="row mt-5">
-    <!--投稿があれば-->
-    <% if @posts.exists? %>
-    <div class="col-md-6 offset-md-3 column-center">
-      <div class="scroll-list jscroll">
-        <!--投稿一覧を部分テンプレート取得-->
-        <%= render "public/posts/index", posts: @posts %>
-      </div>
+  <ul class="tab-list list-unstyled d-flex justify-content-center">
+    <li class="tab tab-active btn btn-main text-center">
+      My posts
+    </li>
+    <li class="tab btn btn-main text-center ml-5">
+      Bookmarks
+    </li>
+  </ul>
+  <div class="tabbox-contents">
+    <div class="tabbox box-show">
+      <%= render "public/listeners/mypost", posts: @posts %>
     </div>
-    <!--投稿が無ければ-->
-    <% else %>
-    <div class="col-6 offset-3 text-center">
-      <p style="font-size:22px;">投稿はありません。</p>
-      <% if @listener == current_listener  %>
-      <!--新しい投稿へ-->
-        <%= link_to new_post_path ,class:"link" do %>
-          <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Post</i></div>
-        <% end %>
-      <% end %>
+    <div class="tabbox">
+      <%= render "public/listeners/bookmarks", bookmarks: @bookmarks %>
     </div>
-    <% end %>
-  </div>
-  <h2 class="text-center my-5" ><i class="fas fa-bookmark"></i> Bookmark</h2>
-  <!--自分の投稿一覧-->
-  <div class="row mt-5">
-    <!--投稿があれば-->
-    <% if @posts.exists? %>
-    <div class="col-md-6 offset-md-3 column-center">
-      <div class="scroll-list jscroll">
-        <!--投稿一覧を部分テンプレート取得-->
-        <%= render "public/posts/index", posts: @posts %>
-      </div>
-    </div>
-    <!--投稿が無ければ-->
-    <% else %>
-    <div class="col-6 offset-3 text-center">
-      <p style="font-size:22px;">投稿はありません。</p>
-      <% if @listener == current_listener  %>
-      <!--新しい投稿へ-->
-        <%= link_to new_post_path ,class:"link" do %>
-          <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Post</i></div>
-        <% end %>
-      <% end %>
-    </div>
-    <% end %>
   </div>
 </div>
 
