@@ -80,7 +80,7 @@
   <%= link_to_next_page posts,'次のページ', class: "next" %>
 </div>
 
-<!--投稿一覧ページで以外あればinclude不使用。Oederアクションのいいねの並び替えが
+<!--投稿一覧ページ以外あればinclude不使用。Oederアクションのいいねの並び替えが
 配列で取得している部分があるため。そのエラー対策-->
 <% else %>
 <!--変更点はincludeを含むか含まないかだけ。-->
@@ -90,7 +90,7 @@
     <div class="card-body">
       <!--投稿者の名前と画像-->
       <div class="card-text" >
-      <%= link_to listener_path(post.listener),class: "text-dark" do %>
+      <%= link_to listener_path(post.listener),class: "link-none" do %>
         <table class="table table-borderless">
           <tr>
             <!--リスナー画像-->
@@ -99,7 +99,7 @@
             </td>
             <!--リスナー名-->
             <td class="align-middle">
-              <%= post.listener.name%>
+              <%= post.listener.name %>
                 <% if post.listener.listener_type == 1  %>
                 <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
               <% end %>
@@ -125,15 +125,15 @@
       <!--詳細ボタン群-->
       <div class="mt-4 d-flex justify-content-center" >
         <!--詳細画面へ-->
-        <div class="d-inline mt-4" style="margin-right:60px;" >
-          <%= link_to post_path(post), 'data-turbolinks': false do %>
+        <div class=" mt-4" style="margin-right:10%;" >
+          <%= link_to post_path(post),class: "card-title text-center", 'data-turbolinks': false do %>
             <i class="fas fa-arrow-circle-right fa-lg main-color hover">
               <p class="text-dark" style="font-size:12px;">Detail</p>
             </i>
           <% end %>
         </div>
         <!--楽曲視聴-->
-        <div class="d-inline mt-4" style="margin-right:60px;" >
+        <div class=" mt-4" style="margin-right:10%;" >
           <a class="card-title text-center" href="<%= post.post_url %>" target="_blank">
             <i class="fas fa-headphones-alt fa-lg main-color hover">
               <p class="text-dark" style="font-size:12px;">Music</p>
@@ -141,13 +141,15 @@
           </a>
         </div>
         <!--いいね-->
-        <div class="d-inline mt-4" style="margin-right:60px;"  id="post_post_favorite_<%= post.id  %>">
+        <div class=" mt-4" style="margin-right:10%;"  id="post_post_favorite_<%= post.id  %>">
           <% @favorite = PostFavorite.find_by(post_id: post.id,listener_id: current_listener.id) %>
           <%= render 'public/post_favorites/favorite', post: post, favorite: @favorite %>
         </div>
         <!--コメント-->
-        <div class="d-inline ml-2 mt-4">
-          <i class="fas fa-comments text-info fa-lg main-color"><%= post.post_comments.count %></br><p class="text-dark " style="font-size:12px;">Comments</p></i>
+        <div class=" ml-2 mt-4">
+          <i class="fas fa-comments text-info fa-lg main-color">
+            <%= post.post_comments.count %><p class="text-dark " style="font-size:12px;">Comments</p>
+          </i>
         </div>
       </div>
       <!--投稿日-->
