@@ -1,8 +1,8 @@
 class Public::ListenersController < ApplicationController
   def show
     @listener = Listener.find(params[:id])
-    @posts = @listener.posts
-    @bookmarks = PostFavorite.where(listener_id: @listener.id)
+    @posts = @listener.posts.reverse_order
+    @bookmarks = PostFavorite.where(listener_id: @listener.id).reverse_order
   end
 
   def edit
