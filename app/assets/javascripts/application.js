@@ -56,6 +56,7 @@ $(document).on('turbolinks:load',function () {
   });
 });
 
+// ページTOPボタン・TOPスクロール
 $(document).on('turbolinks:load',function(){
   $('#page-top').on('click',function(event){
     $('body,html').animate({
@@ -127,6 +128,8 @@ $(document).on('turbolinks:load',function(){
   });
 });
 
+// メニューバー
+
 $(document).on('turbolinks:load',function() {
   var Accordion = function(el, multiple) {
     this.el = el || {};
@@ -165,41 +168,29 @@ $(document).on('turbolinks:load',function() {
     });
 });
 
-// $(document).ready(function(){
-//   $('.slider').slick({
-//     autoplay: true,
-//     infinite: true,
-//     speed: 500,
-//     slidesToShow:3,
-//     slidesToScroll:1,
-//     prevArrow:'<div class="slick-prev"></div>',
-//     nextArrow:'<div class="slick-next"></div>',
-//     centerMode: true,
-//     variableWidth: true,
-//     dots: true,
-//   });
-// });
-
-// $(window).on('scroll', function() {
-//   scrollHeight = $(document).height();
-//   scrollPosition = $(window).height() + $(window).scrollTop();
-//   if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-//     $('.jscroll').jscroll({
-//       contentSelector: '.scroll-list',
-//       nextSelector: 'span.next:last a'
-//     });
-//   }
-// });
 
 // 無限スクロール
-
 $(document).on('turbolinks:load', function() {
   $('.jscroll').jscroll({
-    // 無限に追加する要素は、どこに入れる？
+    // 無限に追加する要素のクラス名
     contentSelector: '.jscroll',
-    // 次のページにいくためのリンクの場所は？ ＞aタグの指定
+    // 次のページにいくためのリンクの場所を指定
     nextSelector: 'a.next',
-    // 読み込み中の表示はどうする？
+    // 読み込み中の文言の表示
     loadingHtml: 'Now loading'
+  });
+});
+
+// マイページのタブ機能
+
+$(document).on('Turbolinks:load', function(){
+  $(function(){
+    $('.tab').click(function(){
+      $('.tab-active').removeClass('tab-active');
+      $(this).addClass('tab-active');
+      $('box-show').removeClass('box-show');
+      const index = $(this).index()
+      $('tabbox').eq(index).addClass('box-show');
+    });
   });
 });
