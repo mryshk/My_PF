@@ -8,7 +8,7 @@
     <div class="card-body">
       <!--投稿者の名前と画像-->
       <div class="card-text" >
-      <%= link_to listener_path(post.listener),class: "text-dark" do %>
+      <%= link_to listener_path(post.listener),class: "link-none" do %>
         <table class="table table-borderless">
           <tr>
             <!--リスナー画像-->
@@ -17,7 +17,7 @@
             </td>
             <!--リスナー名-->
             <td class="align-middle">
-              <%= post.listener.name%>
+              <%= post.listener.name %>
                 <% if post.listener.listener_type == 1  %>
                 <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
               <% end %>
