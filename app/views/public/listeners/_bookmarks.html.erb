@@ -2,7 +2,7 @@
 <!--自分の投稿一覧-->
 <div class="row mt-5">
   <!--投稿があれば-->
-  <% if @bookmarks.exists? %>
+  <% if bookmarks.exists? %>
   <div class="col-md-6 offset-md-3 column-center">
     <div class="scroll-list jscroll">
       <!--ブックマークを部分テンプレート取得-->
@@ -80,10 +80,6 @@
           </div>
         </div>
       <% end %>
-      <!--インクリメンタルサーチ用のリンク-->
-      <div>
-        <%= link_to_next_page bookmarks,'次のページ', class: "next" %>
-      </div>
     </div>
   </div>
   <% end %>
