@@ -61,6 +61,7 @@ body{
   color:#000;
 }
 .link-none:hover{
+  text-decoration: none;
   color:$main_color;
 }
 
@@ -70,6 +71,7 @@ body{
 }
 
 .link-none2:hover{
+  text-decoration: none;
   color:$sub2_color;
 }
 
@@ -79,6 +81,7 @@ body{
 }
 
 .link-none3:hover{
+  text-decoration: none;
   color:$sub2_color;
 }
 
@@ -89,6 +92,17 @@ body{
 
 .link-none4:hover{
   color:$sub2_color;
+}
+
+
+.link-none5{
+  text-decoration: none;
+  color:$main_color;
+}
+
+.link-none5:hover{
+  text-decoration: none;
+  color:$main_color;
 }
 
 .link{
