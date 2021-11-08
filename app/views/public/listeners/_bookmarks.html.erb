@@ -76,7 +76,7 @@
               </div>
             </div>
             <!--投稿日-->
-            <div class="text-right"><%= time_ago_in_words(bookmark.post.created_at) %></div>
+            <div class="text-right"><%= l bookmark.post.created_at %></div>
           </div>
         </div>
       <% end %>
