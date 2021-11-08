@@ -17,6 +17,7 @@ class Listener < ApplicationRecord
   end
 
   attachment :profile_image # 画像表示のため
+  attachment :profile_back_image # 背景画像表示のため
 
   has_one :creater, dependent: :destroy
 
