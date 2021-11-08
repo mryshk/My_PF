@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_080238) do
+ActiveRecord::Schema.define(version: 2021_11_08_032012) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_080238) do
     t.string "provider"
     t.integer "impressions_count", default: 0
     t.integer "listener_type", default: 0
+    t.string "profile_back_image_id"
     t.index ["email"], name: "index_listeners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_listeners_on_reset_password_token", unique: true
   end
