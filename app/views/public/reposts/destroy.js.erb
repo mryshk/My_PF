@@ -1,0 +1,1 @@
+$("#post_repost_<%= @post.id  %>").html("<%= j(render 'public/reposts/repost', post: @post ,repost: @repost )%>");
