@@ -1,10 +1,15 @@
 class Public::HomesController < ApplicationController
-  # フォローしている人のみを表示。タイムライン機能。
+  # before_action :post_join
+
 
   def top
   end
 
   def home
+    # フォローしている人のみを表示。タイムライン機能。
+    # following_ids = Relationship.select(:followed_id).where(follower_id: current_listener.id)
+    # repost_ids = Repost.select(:post_id).where(listener_id: [current_listener, *current_listener.following_ids])
+    # @posts = Post.where("id IN (#{repost_ids}}) OR listener_id IN (#{following_ids}})").page(params[:page]).per(2).reverse_order
     @posts = Post.where(listener_id: [current_listener, *current_listener.following_ids]).page(params[:page]).includes(:listener).per(2).reverse_order
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
@@ -14,6 +19,7 @@ class Public::HomesController < ApplicationController
     @mygroups = Group.where(id: mygroup_ids)
   end
 
-  def about
-  end
+  # def post_join
+  # @post_repost = Post.joins("LEFT OUTER JOIN reposts ON posts_id = reposts.post_id").select("posts.*, reposts.listener_id AS repost_listener_id, (SELECT name FROM listeners WHERE id = repost_listener_id) AS repost_listener_name")
+  # end
 end

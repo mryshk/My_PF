@@ -7,7 +7,6 @@ class Public::RepostsController < ApplicationController
     else
       @repost = Repost.create(listener_id: current_listener.id, post_id: @post.id)
     end
-
   end
 
   def destroy
