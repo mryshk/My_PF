@@ -7,6 +7,24 @@ $sub2_color: rgb(255,243,063);
 $sub3_color: rgb(156,209,237);
 
 
+
+.profile_box{
+  position:relative;
+}
+.my_back_image{
+  width:100%;
+  height:500px;
+
+}
+.profile{
+  position:absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
 .tab-list {
   display: flex;
   justify-content: space-around;
