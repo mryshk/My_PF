@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   attachment :picture
 
   belongs_to :listener
+  has_many :reposts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :replies, class_name: "PostComment",foreign_key: "reply_comment", dependent: :destroy
   has_many :post_favorites, dependent: :destroy
