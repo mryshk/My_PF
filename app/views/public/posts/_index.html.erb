@@ -22,6 +22,12 @@
                 <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
               <% end %>
             </td>
+            <td>
+              <% @repost = Repost.find_by(post_id: post.id)  %>
+              <% until repost.nil?  %>
+                <%= @repost.listener.name %>
+              <% end %>
+            </td>
           </tr>
         </table>
       <% end %>
@@ -107,6 +113,12 @@
               <%= post.listener.name %>
                 <% if post.listener.listener_type == 1  %>
                 <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+              <% end %>
+            </td>
+            <td>
+              <% @repost = Repost.find_by(post_id: post.id)  %>
+              <% until post.repost.listener.name.nil?  %>
+                <%= @repost.listener.name %>
               <% end %>
             </td>
           </tr>
