@@ -32,7 +32,7 @@
           <!--タグ一覧-->
           <p class="card-text text-center">
             <% @post.tags.each do |tag| %>
-              <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag" %>
+              <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag link" %>
             <% end %>
           </p>
           <!--投稿画像-->
