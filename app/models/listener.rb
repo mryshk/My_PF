@@ -68,10 +68,6 @@ class Listener < ApplicationRecord
     followers.include?(listener)
   end
 
-  # リポスト済みがどうかの確認。
-  def reposted?(post_id)
-    self.reposts.where(post_id: post_id).exists?
-  end
 
   # 閲覧数機能の許可
   is_impressionable counter_cache: true
