@@ -18,6 +18,8 @@
       <div class="form-group mt-3" >
         <%= f.label :プロフィール画像,class:"col-4 mr-2 mt-3 form-label",style: "font-size:13px;" %>
         <%= f.attachment_field :profile_image ,class: "form-control-file col-6 d-inline-block" ,style: "padding:0px;"  %>
+        <%= f.label :プロフィール背景画像,class:"col-4 mr-2 mt-3 form-label",style: "font-size:13px;" %>
+        <%= f.attachment_field :profile_back_image ,class: "form-control-file col-6 d-inline-block" ,style: "padding:0px;"  %>
         <button class="btn btn-main mt-5 d-block mx-auto">Update</button>
         <% f.submit %>
       </div>
