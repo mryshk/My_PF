@@ -18,6 +18,6 @@ class Public::ListenersController < ApplicationController
   private
 
   def listener_params
-    params.require(:listener).permit(:name, :caption, :profile_image, :listener_type, :email)
+    params.require(:listener).permit(:name, :caption, :profile_image,:profile_back_image, :listener_type, :email)
   end
 end
