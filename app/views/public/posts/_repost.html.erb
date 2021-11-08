@@ -1,0 +1,13 @@
+<% unless post.listener.id = current_listener.id  %>
+  <% if reposted?(post.id)  %>
+    <%= link_to post_repost_path(post.id, post.reposts.ids), method: :delete,remote: true do%>
+      <i class="fas fa-retweet"></i><%= post.reposts.length %>
+    <% end %>
+  <% else %>
+    <%= link_to post_reposts_path(post.id), method: :post,remote: true do%>
+      <i class="fas fa-retweet"></i><%= post.reposts.length %>
+    <% end %>
+  <% end %>
+<% else %>
+  <i class="fas fa-retweet"></i><%= post.reposts.length %>
+<% end %>
