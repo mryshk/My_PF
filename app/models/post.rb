@@ -19,6 +19,10 @@ class Post < ApplicationRecord
   def favorited_by?(listener)
     post_favorites.where(listener_id: listener.id).exists?
   end
+  # リポスト済みがどうかの確認。
+  def reposted_by?(listener)
+    reposts.where(listener_id: listener.id).exists?
+  end
 
   # 検索機能。投稿内容のキーワードで検索。前後関係なしにどれか一致すればヒットする。
   def self.search(keyword)
