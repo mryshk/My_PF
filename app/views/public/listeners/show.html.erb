@@ -8,7 +8,7 @@
   <% end %>
   <!--プロフィール詳細-->
   <div class="row profile_box" style="margin-bottom:200px;">
-    <%= image_tag asset_path("topimage2.jpg") ,class:"my_back_image"%>
+    <%= attachment_image_tag @listener, :profile_back_image, size:"300x300",fallback: "topimage18.jpg",class: "my_back_image  w-100" %>
     <!--プロフィール画像-->
     <div class="text-center profile">
       <%= attachment_image_tag @listener, :profile_image, size:"300x300",fallback: "no_image.jpg",class: "rounded-circle " %>
