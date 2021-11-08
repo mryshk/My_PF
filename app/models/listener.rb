@@ -54,21 +54,29 @@ class Listener < ApplicationRecord
     relationships.create!(followed_id: listener_id)
   end
 
-  def unfollow(listener_id) # リレーションシップから引数のリスナーを削除する。
+  # リレーションシップから引数のリスナーを削除する。
+  def unfollow(listener_id)
     relationships.find_by(followed_id: listener_id).destroy
   end
 
-  def following?(listener) # フォローしている人に引数のリスナーが存在するかの確認
+  # フォローしている人に引数のリスナーが存在するかの確認
+  def following?(listener)
     followings.include?(listener)
   end
-
-  def followed?(listener) # フォロワーに引数のリスナーが存在するかの確認
+  # フォロワーに引数のリスナーが存在するかの確認
+  def followed?(listener)
     followers.include?(listener)
+  end
+
+  # リポスト済みがどうかの確認。
+  def reposted?(post_id)
+    self.reposts.where(post_id: post_id).exists?
   end
 
   # 閲覧数機能の許可
   is_impressionable counter_cache: true
 
+  # 通知機能のための定義
   def create_notification_follow!(current_listener)
     temp = Notification.where(["passive_id = ? and active_id = ? and action = ?", current_listener.id, id, 'follow'])
     if temp.blank?
