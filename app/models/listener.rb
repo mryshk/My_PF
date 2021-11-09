@@ -68,6 +68,20 @@ class Listener < ApplicationRecord
     followers.include?(listener)
   end
 
+  def followings_with_userself
+    Listener.where(id: self.followings.pluck(:id)).or(Listener.where(id: self.id))
+  end
+
+
+  def followings_posts_with_reposts
+  relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.listener_id = #{self.id} OR reposts.listener_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
+                 .select("posts.*, reposts.listener_id AS repost_listener_id, (SELECT name FROM listeners WHERE id = reposts.listener_id) AS repost_listener_name")
+  relation.where(listener_id: self.followings_with_userself.pluck(:id))
+          .or(relation.where(id: Repost.where(listener_id: self.followings_with_userself.pluck(:id)).distinct.pluck(:post_id)))
+          .where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)")
+          .preload(:listener, :post_comments,:post_favorites, :reposts)
+          .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
+  end
 
   # 閲覧数機能の許可
   is_impressionable counter_cache: true
