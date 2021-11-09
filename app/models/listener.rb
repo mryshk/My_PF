@@ -5,6 +5,7 @@ class Listener < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2, :twitter, :facebook]
 
+  # SNS認証omniauthのための定義。
   def self.find_or_create_for_oauth(auth)
     find_or_create_by!(email: auth.info.email) do |listener|
       listener.provider =
