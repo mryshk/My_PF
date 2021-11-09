@@ -85,10 +85,13 @@
     <div class="col-6 offset-3">
       <ul class="tab-list list-unstyled ">
         <li class="tab tab-active ">
-          <p class="hover" style="margin-bottom:0px;">My posts</p>
+          <p class="hover" style="margin-bottom:0px;"><i class="fas fa-headphones-alt"></i> My posts</p>
         </li>
         <li class="tab">
-          <p class="hover" style="margin-bottom:0px;">Bookmarks</p>
+          <p class="hover" style="margin-bottom:0px;"><i class="fas fa-bookmark"></i> Bookmarks</p>
+        </li>
+        <li class="tab">
+          <p class="hover" style="margin-bottom:0px;"><i class="fas fa-retweet fa-lg"></i> Reposts</p>
         </li>
       </ul>
     </div>
@@ -99,6 +102,9 @@
     </div>
     <div class="tabbox">
       <%= render "public/listeners/bookmarks", bookmarks: @bookmarks %>
+    </div>
+    <div class="tabbox">
+      <%= render "public/listeners/reposts", reposts: @reposts %>
     </div>
   </div>
 
