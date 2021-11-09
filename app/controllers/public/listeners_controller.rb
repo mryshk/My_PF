@@ -1,16 +1,20 @@
 class Public::ListenersController < ApplicationController
-  def show
+  before_action :set_listener
+
+  def set_listener
     @listener = Listener.find(params[:id])
+  end
+
+  def show
     @posts = @listener.posts.reverse_order
-    @bookmarks = PostFavorite.where(listener_id: @listener.id).reverse_order
+    @bookmarks = PostFavorite.where(listener_id: @listener.id).includes(:post).reverse_order
+    @reposts = Repost.where(listener_id: @listener.id).includes(:post).reverse_order
   end
 
   def edit
-    @listener = Listener.find(params[:id])
   end
 
   def update
-    @listener = Listener.find(params[:id])
     @listener.update(listener_params)
     redirect_to listener_path(@listener)
   end
