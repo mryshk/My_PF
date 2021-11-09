@@ -47,7 +47,7 @@
             <!--詳細ボタン群-->
             <div class="mt-4 d-flex justify-content-center" >
               <!--詳細画面へ-->
-              <div class=" mt-4" style="margin-right:10%;" >
+              <div class=" mt-4" style="margin-right:8%;" >
                 <%= link_to post_path(post),class: "card-title text-center", 'data-turbolinks': false do %>
                   <i class="fas fa-arrow-circle-right fa-lg main-color hover">
                     <p class="text-dark" style="font-size:12px;">Detail</p>
@@ -55,7 +55,7 @@
                 <% end %>
               </div>
               <!--楽曲視聴-->
-              <div class=" mt-4" style="margin-right:10%;" >
+              <div class=" mt-4" style="margin-right:8%;" >
                 <a class="card-title text-center" href="<%= post.post_url %>" target="_blank">
                   <i class="fas fa-headphones-alt fa-lg main-color hover">
                     <p class="text-dark" style="font-size:12px;">Music</p>
@@ -63,12 +63,12 @@
                 </a>
               </div>
               <!--いいね-->
-              <div class=" mt-4" style="margin-right:10%;"  id="post_post_favorite_<%= post.id  %>">
+              <div class=" mt-4" style="margin-right:8%;"  id="post_post_favorite_<%= post.id  %>">
                 <% @favorite = PostFavorite.find_by(post_id: post.id,listener_id: current_listener.id) %>
                 <%= render 'public/post_favorites/favorite', post: post, favorite: @favorite %>
               </div>
               <!--リポスト-->
-              <div class=" mt-4" style="margin-right:10%;"  id="post_repost_<%= post.id  %>">
+              <div class=" mt-4" style="margin-right:8%;"  id="post_repost_<%= post.id  %>">
                 <% @repost = Repost.find_by(post_id: post.id,listener_id: current_listener.id) %>
                 <%= render 'public/reposts/repost', post: post, repost: @repost %>
               </div>
