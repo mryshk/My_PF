@@ -114,6 +114,16 @@ body{
   color:$sub2_color;
 }
 
+.link-repost{
+  text-decoration: none;
+  color:rgb(0, 255, 0);
+}
+
+.link-repost:hover{
+  text-decoration: none;
+  color:$main_color;
+}
+
 .hover:hover{
   transform: scale(1.2);
   transition-duration: 0.5s;
