@@ -1,6 +1,10 @@
 class Public::RepostsController < ApplicationController
   before_action :set_post
 
+  def index
+    @reposts = Repost.where(post_id: @post.id)
+  end
+
   def create
     if Repost.find_by(listener_id: current_listener.id, post_id: @post.id)
       alert :"Already reposted"
