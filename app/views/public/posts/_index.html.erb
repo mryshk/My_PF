@@ -116,10 +116,7 @@
               <% end %>
             </td>
             <td>
-              <% @repost = Repost.find_by(post_id: post.id)  %>
-              <% until post.repost.listener.name.nil?  %>
-                <%= @repost.listener.name %>
-              <% end %>
+
             </td>
           </tr>
         </table>
