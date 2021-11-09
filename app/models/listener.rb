@@ -68,11 +68,16 @@ class Listener < ApplicationRecord
     followers.include?(listener)
   end
 
+  # リポストに使用。
+  # 自分がフォローしている人（自分にフォローされている人）と自分を取得し配列に並べている。
   def followings_with_userself
     Listener.where(id: self.followings.pluck(:id)).or(Listener.where(id: self.id))
   end
 
-
+  # リポストに使用。
+  # タイムラインにフォローしている人の投稿とリポストを一覧表示するための定義
+  # PostモデルとRepostモデルを左外部結合を行い、フォローしている人のIDとPostIDで検索取得。
+  # それらをorderで並び替え。preloadはN+1問題解決のため。
   def followings_posts_with_reposts
   relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.listener_id = #{self.id} OR reposts.listener_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
                  .select("posts.*, reposts.listener_id AS repost_listener_id, (SELECT name FROM listeners WHERE id = reposts.listener_id) AS repost_listener_name")
