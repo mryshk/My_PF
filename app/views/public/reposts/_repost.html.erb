@@ -2,12 +2,12 @@
   <% if post.reposted_by?(current_listener)  %>
     <%= link_to post_repost_path(post.id, repost.id), method: :delete,class:"link-repost",remote: true do%>
       <i class="fas fa-retweet fa-lg"></i><%= post.reposts.length %>
-      <p style="font-size:12px;">Repost</p>
+      <p class="text-dark" style="font-size:12px;">Repost</p>
     <% end %>
   <% else %>
     <%= link_to post_reposts_path(post.id), method: :post, class:"link",remote: true do%>
       <i class="fas fa-retweet fa-lg"></i><%= post.reposts.length %>
-      <p style="font-size:12px;">Repost</p>
+      <p class="text-dark" style="font-size:12px;">Repost</p>
     <% end %>
   <% end %>
 
