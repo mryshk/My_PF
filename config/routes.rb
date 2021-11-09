@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       end
       # 投稿いいね
       resources :post_favorites, only: [:index, :create, :destroy]
-      resources :reposts, only:[:create, :destroy]
+      resources :reposts, only:[:index,:create, :destroy]
     end
 
     # グループ機能CRUD全部
