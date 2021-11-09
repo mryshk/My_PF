@@ -1,19 +1,12 @@
-<!--タイトル-->
-  <% if @listener.id == current_listener.id %>
-    <!--自分のページであればマイページ-->
-    <!--<h2 class=" text-center" id="area-1" style="margin-top:100px;" ><i class="far fa-user"></i> My page</h2>-->
-  <% else %>
-    <!--他人のページであれば、リスナーページとする。-->
-    <!--<h2 class=" text-center" id="area-1" style="margin-top:100px;" ><i class="far fa-user"></i> Listener page</h2>-->
-  <% end %>
-  <!--プロフィール詳細-->
+
+<!--プロフィール詳細-->
   <div class="row profile_box" style="margin-bottom:200px;">
     <%= attachment_image_tag @listener, :profile_back_image, size:"300x300",fallback: "topimage18.jpg",class: "my_back_image  w-100" %>
     <!--プロフィール画像-->
     <div class="text-center profile">
       <%= attachment_image_tag @listener, :profile_image, size:"300x300",fallback: "no_image.jpg",class: "rounded-circle " %>
     </div>
-    <div class="col-md-4 mx-md-auto col-8 offset-2" style="margin-top:230px;">
+    <div class="col-md-6 mx-md-auto col-8 offset-2" style="margin-top:230px;">
       <div class="mt-3 text-center ">
         <!--プロフィール名-->
         <div class="mt-3">
