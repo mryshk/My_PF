@@ -1,8 +1,12 @@
+<!--リポスト用の部分テンプレート-->
+<!--非同期として使用するため-->
+<!--もし、ログインユーザーがリポストしているのであれば-->
 <% if post.reposted_by?(current_listener)  %>
   <%= link_to post_repost_path(post.id, repost.id), method: :delete,class:"link-repost",remote: true do%>
     <i class="fas fa-retweet fa-lg"></i><%= post.reposts.length %>
     <p class="text-dark" style="font-size:12px;"><%= link_to "Reposts",post_reposts_path(post),class:"link hover"%></p>
   <% end %>
+<!--リポストしていなければ-->
 <% else %>
   <%= link_to post_reposts_path(post.id), method: :post, class:"link",remote: true do%>
     <i class="fas fa-retweet fa-lg"></i><%= post.reposts.length %>
