@@ -65,5 +65,5 @@ https://docs.google.com/spreadsheets/d/1jcPegLVuT-Q3KqS4D96l6st2mI7QgAxaKpkZgkH3
 
 ## 使用素材
 - 外部API: Linkpreview API  https://www.linkpreview.net, Twitter API https://developer.twitter.com/en/docs/twitter-api Google API https://console.cloud.google.com/apis/library?hl=ja , Facebook API https://developers.facebook.com/docs/facebook-login/ </br>
-- (Facebookのみhttpsのみ使用かのうであったため、本番環境では未導入)
+- (Facebookのみhttpsのみ使用可能であったため、本番環境では未導入・・本番環境のURLがhttpである。)
 
