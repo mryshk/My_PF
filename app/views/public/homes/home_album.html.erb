@@ -1,0 +1,40 @@
+<!--ホームページ-->
+<h3 class="text-center" style="margin-top:50px;" ><i class="fas fa-compact-disc"></i> Home Album</h3>
+<div class="row  mt-4" >
+  <!--左メニュー-->
+  <div class="col ml-md-5 column-left">
+    <%= render "layouts/menu", mygroups: @mygroups %>
+    <!--インクリメンタルサーチ-->
+    <h4 class="mx-auto text-main2">Easy Search</h4>
+    <div class="infinite-search-box " style="margin-top:50px;">
+      <div class="d-inline infinite-search-form">
+      <!--現在のページがホームページである場合のみ、インクリメンタルサーチを表示-->
+      <% if current_page?(home_album_path)  %>
+        <%= form_with url: search_artist_albums_path, method: :get, local: true do |f|%>
+          <%= f.text_field :keyword, placeholder: "Album Search",class: "form-control ", id: 'searching-form-album'%>
+      </div>
+      <div class="btn d-inline" style="padding:0;" >
+        <i class="fas fa-search fa-lg hover " style="color:rgb(156,209,237); padding:0;"></i>
+        <% f.submit %>
+      </div>
+        <% end %>
+      <% end %>
+    </div>
+    <!--インクリメンタルサーチの結果を以下div内に表示-->
+    <div class="search-post-album">
+
+    </div>
+  </div>
+  <!--メイン、フォローいている人の投稿一覧-->
+  <div class="col-md-5 ml-md-3  mt-md-5 column-center" >
+    <div class="scroll-list jscroll">
+      <!--投稿一覧部分テンプレート-->
+     <%= render "artist/albums/index", albums: @albums  %>
+    </div>
+  </div>
+  <!--右側ランキング-->
+  <div class="col mr-md-5 column-right">
+
+  </div>
+</div>
+
