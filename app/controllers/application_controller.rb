@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if listener_signed_in? # リスナー側ログイン後
-      home_path # リスナー側トップ画面に遷移
+      home_post_path # リスナー側トップ画面に遷移
     else
      admin_root_path
     end
