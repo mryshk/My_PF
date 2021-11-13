@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :set_menu, only:[:show,:index,:search,:search_genre,:search_tag,:order]
+
   def new
     @post = Post.new
   end
@@ -23,11 +25,6 @@ class Public::PostsController < ApplicationController
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id, listener_id: current_listener.id)
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
-
-    # メニュー用
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def index
@@ -35,10 +32,6 @@ class Public::PostsController < ApplicationController
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
-
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def edit
@@ -69,9 +62,6 @@ class Public::PostsController < ApplicationController
       format.html
       format.json
     end
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
     render "search"
   end
 
@@ -79,9 +69,6 @@ class Public::PostsController < ApplicationController
     @search = Post.where(genre_params).page(params[:page]).per(2)
     @keyword = params.permit(:post_genre)
 
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def search_tag
@@ -90,10 +77,6 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.page(params[:page]).reverse_order
-
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def order
@@ -108,7 +91,10 @@ class Public::PostsController < ApplicationController
     # ランキング用に必要。
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
+  end
 
+
+  def set_menu
     # メニュー用
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
