@@ -31,11 +31,18 @@
               <span class="nav-text">New Post</span>
             <% end %>
           </li>
-          <!--ホームページへ-->
+          <!--ホームページ(投稿)へ-->
           <li class="nav-item">
-            <%= link_to home_path,class: 'nav-link ' do %>
-              <i class="fas fa-home"></i>
-              <span class="nav-text">Home</span>
+            <%= link_to home_post_path,class: 'nav-link ' do %>
+              <i class="fas fa-headphones-alt"></i>
+              <span class="nav-text">Home Post</span>
+            <% end %>
+          </li>
+          <!--ホームページ(アルバム)へ-->
+          <li class="nav-item">
+            <%= link_to home_album_path,class: 'nav-link ' do %>
+              <i class="fas fa-compact-disc"></i>
+              <span class="nav-text">Home Album</span>
             <% end %>
           </li>
           <!--マイページへ-->
