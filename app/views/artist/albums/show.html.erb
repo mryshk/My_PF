@@ -72,7 +72,7 @@
               </button>
               <!--削除へ-->
               <button type="button" class="btn ">
-                <%= link_to artist_album_path(@album),method: :delete, "data-confirm" => "Do you really delete?",class: "text-danger" do%>
+                <%= link_to artist_album_path(@album),method: :delete, "data-confirm" => "本当に消しますか?",class: "text-danger" do%>
                   <i class="fas fa-trash-alt">Delete</i>
                 <% end %>
               </button>
