@@ -15,8 +15,10 @@
         <ul class="navbar-nav ">
           <!--ログインしていれば-->
           <% if listener_signed_in? %>
+          <!--1つ目のリンク-->
           <!--ロゴ-->
           <a class="navbar-brand mr-auto" href="/"><%= image_tag asset_path("logo.png") ,size: '120x100',id: "logo"%></a>
+           <!--2つ目のリンク-->
           <!--検索バー-->
           <li class="nav-item" >
             <%= link_to "#",class: 'nav-link ',id: "search" do %>
@@ -24,6 +26,7 @@
               <span class="nav-text">Search</span>
             <% end %>
           </li>
+           <!--3つ目のリンク-->
           <!--新規投稿-->
           <li class="nav-item" >
             <%= link_to new_post_path,class: 'nav-link' do %>
@@ -31,6 +34,7 @@
               <span class="nav-text">New Post</span>
             <% end %>
           </li>
+          <!--4つ目のリンク-->
           <!--ホームページ(投稿)へ-->
           <li class="nav-item">
             <%= link_to home_post_path,class: 'nav-link ' do %>
@@ -38,6 +42,7 @@
               <span class="nav-text">Home Post</span>
             <% end %>
           </li>
+           <!--5つ目のリンク-->
           <!--ホームページ(アルバム)へ-->
           <li class="nav-item">
             <%= link_to home_album_path,class: 'nav-link ' do %>
@@ -45,6 +50,7 @@
               <span class="nav-text">Home Album</span>
             <% end %>
           </li>
+           <!--6つ目のリンク-->
           <!--マイページへ-->
           <li class="nav-item ">
             <%= link_to listener_path(current_listener),class: 'nav-link ' do %>
@@ -52,6 +58,7 @@
               <span class="nav-text">Mypage</span>
             <% end %>
           </li>
+          <!--7つ目のリンク-->
           <!--通知ページへ-->
           <!--チェックしていない通知があればアイコンが黄色くなる。-->
           <% if unchecked_notifications.any? %>
@@ -70,6 +77,7 @@
               <% end %>
             </li>
           <% end %>
+          <!--8つ目のリンク-->
           <!--ログアウト-->
           <li class="nav-item">
             <%= link_to destroy_listener_session_path, method: :delete,class: 'nav-link ' do %>
