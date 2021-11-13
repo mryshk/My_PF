@@ -34,7 +34,57 @@
   </div>
   <!--右側ランキング-->
   <div class="col mr-md-5 column-right">
-
+    <!--アルバム閲覧数-->
+    <h6 class="text-center text-main mx-auto">Creater Follower Rank</h6>
+    <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
+      <!--ランク番号用の変数-->
+      <% i = 0  %>
+      <% @creaters.each do |creater|  %>
+      <tr>
+        <!--ランク番号-->
+        <th class="align-middle" style="padding:0;" style="width:10%;">
+          <% i += 1  %>
+          <%= i %>
+        </th>
+        <!--アルバム詳細-->
+        <td class="align-middle" style="width:20%; margin:0px; padding:0px;">
+          <div class="text-center">
+          <!--アルバム詳細へ-->
+            <%= link_to artist_creater_path(creater.creater)do%>
+              <%= attachment_image_tag creater, :profile_image, size:"30x30",fallback: "sky-2076868_1280.jpg",class: "profile_image rounded-circle" %>
+            <% end %>
+          </div>
+          <!--リスナー名-->
+          <p class="text-center" style="font-size: 10px; margin:0px;"><%= creater.name %></p>
+        </td>
+        <td class="align-middle" style="width:60%; margin:0px; padding:0px;">
+          <!--自己紹介がある場合は、truncateメソッドありで表示-->
+          <% if creater.caption.blank?  %>git
+            <p class="align-self-center ml-3" style="font-size: 12px;"><%= creater.caption %></p>
+          <!--自己紹介がない場合は、truncateメソッド無しで表示-->
+          <% else %>
+            <p class="align-self-center ml-3" style="font-size: 12px;"><%= creater.caption.truncate(18) %></p>
+          <% end %>
+        </td>
+        <!--いいね数-->
+        <td class="align-middle" style="width:10%;">
+          <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= creater.followers.count %></p>
+          <p class="d-block" style="font-size: 10px;">People</p>
+        </td>
+      </tr>
+      <% break if i== 5 %>
+      <% end %>
+    </table>
+    <!--アルバム投稿へ-->
+    <div class="text-center" style="margin-top:100px;">
+      <!--アルバム投稿への権限がある人のみ進める-->
+      <% if can? :read, current_listener  %>
+      <!--アルバム投稿画面へ-->
+        <%= link_to new_artist_album_path ,class:"link" do %>
+          <div class="btn btn-outline-main btn-block"><i class="fas fa-compact-disc"></i> New Album</div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 
