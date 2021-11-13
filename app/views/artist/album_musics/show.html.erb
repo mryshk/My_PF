@@ -33,7 +33,7 @@
           <% end %>
         </button>
         <button class="btn">
-          <%= link_to artist_album_path(@album_music.album, @album_music),method: :delete, class: "text-danger" do%>
+          <%= link_to artist_album_path(@album_music.album, @album_music),method: :delete,"data-confirm" => "本当に消しますか？", class: "text-danger" do%>
             <i class="fas fa-user-edit">Delete</i>
           <% end %>
         </button>
