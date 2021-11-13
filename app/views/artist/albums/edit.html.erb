@@ -25,6 +25,8 @@
         <%= f.label :ジャンル,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
         <%= f.select :genre, Album.genres.keys.to_a ,{}, :class =>"custom-select col-6" %>
       </div>
+      <!--リスナーIDをパラメーターに送信-->
+      <%= hidden_field :listener_id, :value => "current_listener.id" %>
       <!--アルバム画像-->
       <div class="form-group mt-3">
         <%= f.label :アルバム画像,class:"col-4 mr-2 mt-3 form-label",style: "font-size:13px;" %>
