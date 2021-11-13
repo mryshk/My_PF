@@ -15,6 +15,7 @@ class Public::HomesController < ApplicationController
 
   def home_album
     @albums = Album.where(listener_id: [current_listener, *current_listener.following_ids]).page(params[:page]).includes(:listener).per(2).reverse_order
+    @creaters = Listener.where(listener_type: 1).includes(:followers).sort { |a, b| b.followers.size <=> a.followers.size }
   end
 
   def set_menu
