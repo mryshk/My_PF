@@ -16,13 +16,49 @@ describe 'ログイン後のテスト' do
     click_button 'LogIn'
   end
 
+  describe 'ヘッダーのテスト: ログインしている場合' do
+    context 'リンクの内容を確認' do
+      subject { current_path }
+      it 'New Postを押すと、投稿フォーム画面に遷移する' do
+        new_post_link = find_all('a')[3].native.inner_text
+        new_post_link = new_post_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+        click_link new_post_link
+        is_expected.to eq '/posts/new'
+      end
+      it 'Home Postを押すと、投稿タイムライン画面に遷移する' do
+        home_post_link = find_all('a')[4].native.inner_text
+        home_post_link = home_post_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+        click_link home_post_link
+        is_expected.to eq '/home_post'
+      end
+      it 'Home Albumを押すと、アルバムタイムライン画面に遷移する' do
+        home_album_link = find_all('a')[5].native.inner_text
+        home_album_link = home_album_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+        click_link home_album_link
+        is_expected.to eq '/home_album'
+      end
+      it 'Mypageを押すと、自分の詳細画面に遷移する' do
+        listener_link = find_all('a')[6].native.inner_text
+        listener_link = listener_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+        click_link listener_link
+        is_expected.to eq '/listeners/' + listener.id.to_s
+      end
+      it 'Notificationsを押すと、通知一覧画面に遷移する' do
+        notifiation_link = find_all('a')[7].native.inner_text
+        notifiation_link = notifiation_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+        click_link notifiation_link
+        is_expected.to eq '/notifications'
+      end
+    end
+  end
+
   describe 'ホーム画面のテスト' do
     before do
-      visit home_path
+      visit home_post_path
     end
-    context '表示画面の確認' do
+    context 'タイムライン表示画面の確認' do
       it 'URLの表示の確認'do
-        expect(current_path).to eq "/home"
+        expect(current_path).to eq "/home_post"
       end
       it '自分と他人の投稿のリンク先が正しい' do
         expect(page).to have_link'', href: listener_path(post.listener)
@@ -34,6 +70,12 @@ describe 'ログイン後のテスト' do
       end
       it '自分の投稿が表示される'do
         expect(page).to have_content post.post_tweet
+      end
+    end
+
+    context '左メニューバーの表示確認'do
+      it '投稿ジャンル検索が表示されているか'do
+        expect(page).to have_content 'Post Category'
       end
     end
   end
@@ -103,7 +145,7 @@ describe 'ログイン後のテスト' do
         fill_in 'post[post_tweet]', with: Faker::Lorem.characters(number: 30)
         fill_in 'post[post_url]', with: Faker::Lorem.characters(number: 20)
         click_button 'Post'
-        expect(page).to have_current_path home_path
+        expect(page).to have_current_path home_post_path
       end
     end
   end
