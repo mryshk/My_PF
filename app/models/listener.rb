@@ -27,6 +27,9 @@ class Listener < ApplicationRecord
   has_many :post_favorites, dependent: :destroy
   has_many :reposts, dependent: :destroy
 
+  has_many :album_musics,dependent: :destroy
+  has_many :albums,dependent: :destroy
+
   has_many :group_listeners, dependent: :destroy
   has_many :groups, through: :group_listeners, dependent: :destroy
   has_many :group_chats, dependent: :destroy
