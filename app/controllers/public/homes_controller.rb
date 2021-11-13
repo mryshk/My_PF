@@ -15,6 +15,7 @@ class Public::HomesController < ApplicationController
 
   def home_album
     @albums = Album.where(listener_id: [current_listener, *current_listener.following_ids]).page(params[:page]).includes(:listener).per(2).reverse_order
+    @album_impression_rank = Album.all.order(impressions_count: 'DESC').page(params[:page])
     @creaters = Listener.where(listener_type: 1).includes(:followers).sort { |a, b| b.followers.size <=> a.followers.size }
   end
 
