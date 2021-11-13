@@ -1,6 +1,8 @@
 class Artist::AlbumsController < ApplicationController
   # 権限確認（cancancan）
   authorize_resource only: [:new, :create, :edit, :update, :destroy]
+  # メニューバー用。メニューバーがあるページのアクションのみ。
+  before_action :set_menu, only:[:show,:index,:search,:search_genre]
 
   def new
     @album = Album.new
@@ -19,19 +21,11 @@ class Artist::AlbumsController < ApplicationController
     @album_musics = AlbumMusic.where(album_id: params[:id]).all
     impressionist(@album, nil)
     @music_impression_rank = AlbumMusic.all.order(impressions_count: 'DESC').page(params[:page])
-    # メニュー用
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def index
     @albums = Album.page(params[:page]).per(2)
     @album_impression_rank = Album.all.order(impressions_count: 'DESC').page(params[:page])
-    # メニュー用
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def edit
@@ -58,16 +52,14 @@ class Artist::AlbumsController < ApplicationController
       format.html
       format.json
     end
-    # メニュー用
-    # 自分の所属するグループを全て集める。
-    mygroup_ids = current_listener.group_listeners.pluck(:group_id)
-    @mygroups = Group.where(id: mygroup_ids)
   end
 
   def search_genre
     @search = Album.where(genre_params).page(params[:page]).per(2)
     @keyword = params.permit(:genre)
+  end
 
+  def set_menu
     # メニュー用
     # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
@@ -85,4 +77,5 @@ class Artist::AlbumsController < ApplicationController
   def genre_params
     params.permit(:genre)
   end
+
 end
