@@ -77,9 +77,63 @@ describe 'ログイン後のテスト' do
       it '投稿ジャンル検索が表示されているか'do
         expect(page).to have_content 'Post Category'
       end
+      it 'アルバムジャンル検索が表示されているか'do
+        expect(page).to have_content 'Album Category'
+      end
+      it '投稿並び替えが表示されているか'do
+        expect(page).to have_content 'Post Sort'
+      end
+      it 'マイページ欄が表示されているか'do
+        expect(page).to have_content 'My Friend'
+      end
+      it 'マイグループ欄が表示されているか'do
+        expect(page).to have_content 'My Group'
+      end
+      it 'ミュージックサイトが表示されているか'do
+        expect(page).to have_content'Music cite'
+      end
+    end
+    context '左メニューバーのリンク先確認' do
+      it '投稿ジャンル検索のリンク先表示確認'do
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'ロック')
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'JPOP')
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'アイドル')
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'EDM')
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'KPOP')
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'パンク')
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'レゲエ')
+        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'HIPHOP')
+      end
+      it 'アルバムジャンル検索のリンク先表示確認'do
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'ロック')
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'JPOP')
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'アイドル')
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'EDM')
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'KPOP')
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'パンク')
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'レゲエ')
+        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'HIPHOP')
+      end
+      it '投稿並び替えのリンク先表示確認'do
+        expect(page).to have_link'', href: order_posts_path(:keyword => 'new')
+        expect(page).to have_link'', href: order_posts_path(:keyword => 'old')
+        expect(page).to have_link'', href: order_posts_path(:keyword => 'likes')
+      end
+
+      it 'マイページ欄のリンク先表示確認'do
+        expect(page).to have_link'', href: listener_path(listener)
+        expect(page).to have_link '',href: listener_followers_path(listener)
+        expect(page).to have_link '',href: listener_followings_path(listener)
+      end
+      it '音楽サイト欄のリンク先表示確認'do
+        expect(page).to have_link'', href: "https://www.youtube.com"
+        expect(page).to have_link '',href: "https://open.spotify.com"
+        expect(page).to have_link '',href: "https://www.apple.com/jp/apple-music/"
+        expect(page).to have_link '',href: "https://soundcloud.com"
+      end
+
     end
   end
-
   describe '投稿一覧画面のテスト'do
     before do
       visit posts_path
