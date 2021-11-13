@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
   belongs_to :creater
+  belongs_to :listener
   has_many :album_musics, dependent: :destroy
   has_many :music_comments, dependent: :destroy
   has_many :music_favorites, dependent: :destroy
