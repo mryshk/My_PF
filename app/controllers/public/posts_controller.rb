@@ -11,9 +11,9 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(nil)
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to home_path
+      redirect_to home_post_path
     else
-      　redirect_to home_path
+      　redirect_to home_post_path
     end
   end
 
@@ -53,7 +53,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to home_path
+    redirect_to home_post_path
   end
 
   def search
