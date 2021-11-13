@@ -129,11 +129,11 @@
             <% end %>
           </div>
           <!--楽曲名-->
-          <p class="text-center" style="font-size: 10px; margin:0px;"><%= imp_rank.name %></p>
+          <p class="text-center" style="font-size: 10px; margin:0px;"><%= imp_rank.album.name %></p>
         </td>
         <td class="align-middle" style="width:60%; margin:0px; padding:0px;">
           <%= link_to artist_album_album_music_path(imp_rank.album.id,imp_rank.id),class: "link-none",'data-turbolinks': false do %>
-            <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.caption.truncate(15) %> </p>
+            <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.name %> </p>
           <% end %>
         </td>
         <!--閲覧数-->
