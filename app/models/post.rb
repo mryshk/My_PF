@@ -63,7 +63,7 @@ class Post < ApplicationRecord
     end
   end
 
-  # 通知定義
+  # いいね通知の定義
   def create_notification_by(current_listener)
     notification = current_listener.active_notifications.new(
       post_id: id,
@@ -73,7 +73,7 @@ class Post < ApplicationRecord
     notification.save if notification.valid?
   end
 
-  # 通知定義
+  # コメント通知の定義
   def create_notification_comment!(current_listener, post_comment_id)
     temp_ids = PostComment.select(:listener_id).where(post_id: id).where.not(listener_id: current_listener.id).distinct
     temp_ids.each do |temp_id|
@@ -82,7 +82,7 @@ class Post < ApplicationRecord
     save_notification_comment!(current_listener, post_comment_id, listener_id) if temp_ids.blank?
   end
 
-  # 通知定義
+  # コメント通知保存の部分の定義
   def save_notification_comment!(current_listener, post_comment_id, passive_id)
     notification = current_listener.active_notifications.new(
       post_id: id,
