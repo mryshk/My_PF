@@ -1,8 +1,7 @@
 <!--アルバム一覧部分テンプレート-->
-<!--N+1問題対策のため、下記includes使用-->
-<% albums.includes(creater: :listener).each do |album| %>
+<% albums.each do |album| %>
   <!--アルバムカード-->
-  <div class="card mt-4 shadow-sm " >
+  <div class="card  shadow-sm " >
     <div class="card-body">
       <!--クリエイター名と画像-->
       <div class="card-text" >
@@ -12,13 +11,13 @@
           <tr>
             <!--クリエイター画像-->
             <td class="align-middle" style="width:60px; padding:0;">
-              <%= attachment_image_tag album.creater.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
+              <%= attachment_image_tag album.listener,:profile_image ,size:"60x60", fallback: "sky-2076868_1280.jpg",class: "profile_image mt-3 rounded-circle" %>
             </td>
             <!--クリエイター名-->
             <td class="align-middle">
-              <%= album.creater.listener.name%>
+              <%= album.listener.name%>
               <!--クリエイターのみ表示マーク-->
-              <% if album.creater.listener.listener_type == 1  %>
+              <% if album.listener.listener_type == 1  %>
                 <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
               <% end %>
             </td>
