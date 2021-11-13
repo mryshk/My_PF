@@ -9,6 +9,7 @@ class Artist::AlbumsController < ApplicationController
   def create
     @album = Album.new(album_params)
     @album.creater_id = current_listener.creater.id
+    @album.listener_id = current_listener.id
     @album.save
     redirect_to artist_album_path(@album)
   end
@@ -39,6 +40,7 @@ class Artist::AlbumsController < ApplicationController
 
   def update
     @album = Album.find(params[:id])
+    @album.listener_id = current_listener.id
     @album.update(album_params)
     redirect_to artist_album_path(@album)
   end
