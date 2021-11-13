@@ -34,7 +34,7 @@
   </div>
   <!--右側ランキング-->
   <div class="col mr-md-5 column-right">
-    <!--アルバム閲覧数-->
+    <!--クリエイターフォロワーランキング-->
     <h6 class="text-center text-main mx-auto">Creater Follower Rank</h6>
     <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
       <!--ランク番号用の変数-->
@@ -46,30 +46,68 @@
           <% i += 1  %>
           <%= i %>
         </th>
-        <!--アルバム詳細-->
+        <!--クリエイター詳細-->
         <td class="align-middle" style="width:20%; margin:0px; padding:0px;">
           <div class="text-center">
-          <!--アルバム詳細へ-->
+          <!--クリエイター詳細ページへ-->
             <%= link_to artist_creater_path(creater.creater)do%>
               <%= attachment_image_tag creater, :profile_image, size:"30x30",fallback: "sky-2076868_1280.jpg",class: "profile_image rounded-circle" %>
             <% end %>
           </div>
-          <!--リスナー名-->
+          <!--クリエイター名-->
           <p class="text-center" style="font-size: 10px; margin:0px;"><%= creater.name %></p>
         </td>
+        <!--クリエイター自己紹介-->
         <td class="align-middle" style="width:60%; margin:0px; padding:0px;">
           <!--自己紹介がある場合は、truncateメソッドありで表示-->
-          <% if creater.caption.blank?  %>git
+          <% if creater.caption.blank?  %>
             <p class="align-self-center ml-3" style="font-size: 12px;"><%= creater.caption %></p>
           <!--自己紹介がない場合は、truncateメソッド無しで表示-->
           <% else %>
             <p class="align-self-center ml-3" style="font-size: 12px;"><%= creater.caption.truncate(18) %></p>
           <% end %>
         </td>
-        <!--いいね数-->
+        <!--フォロワー数-->
         <td class="align-middle" style="width:10%;">
           <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= creater.followers.count %></p>
           <p class="d-block" style="font-size: 10px;">People</p>
+        </td>
+      </tr>
+      <% break if i== 5 %>
+      <% end %>
+    </table>
+    <!--アルバム閲覧数ランキング-->
+    <h6 class="text-center text-main mx-auto">Album Listen Rank</h6>
+    <table class="table mb-5" style="bordercolor= rgb(063,163,203)">
+      <!--ランク番号用の変数-->
+      <% i = 0  %>
+      <% @album_impression_rank.each do |imp_rank|  %>
+      <tr>
+        <!--ランク番号-->
+        <th class="align-middle" style="padding:0;" style="width:10%;">
+          <% i += 1  %>
+          <%= i %>
+        </th>
+        <!--アルバム詳細-->
+        <td class="align-middle" style="width:20%; margin:0px; padding:0px;">
+          <div class="text-center">
+          <!--アルバム詳細へ-->
+            <%= link_to artist_album_path(imp_rank)do%>
+              <%= attachment_image_tag imp_rank, :album_image, size:"30x30",fallback: "sky-2076868_1280.jpg",class: "profile_image rounded-circle" %>
+            <% end %>
+          </div>
+          <!--リスナー名-->
+          <p class="text-center" style="font-size: 10px; margin:0px;"><%= imp_rank.name %></p>
+        </td>
+        <td class="align-middle" style="width:60%; margin:0px; padding:0px;">
+          <%= link_to artist_album_path(imp_rank.id),class: "link-none",'data-turbolinks': false do %>
+            <p class="align-self-center ml-3" style="font-size: 12px;"><%= imp_rank.caption.truncate(15) %> </p>
+          <% end %>
+        </td>
+        <!--いいね数-->
+        <td class="align-middle" style="width:10%;">
+          <p class="d-block text-center" style=" font-size: 12px; margin:0;" ><%= imp_rank.impressions_count %></p>
+          <p class="d-block" style="font-size: 10px;">Listens</p>
         </td>
       </tr>
       <% break if i== 5 %>
