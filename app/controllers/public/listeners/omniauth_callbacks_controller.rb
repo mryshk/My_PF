@@ -17,7 +17,7 @@ class Public::Listeners::OmniauthCallbacksController < Devise::OmniauthCallbacks
   end
 
   def callback_for(provider)
-    provider = provider.to_
+    provider = provider.to_s
     @listener = Listener.find_or_create_for_oauth(request.env["omniauth.auth"])
     sign_in_and_redirect @listener, event: :authentication
     set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
