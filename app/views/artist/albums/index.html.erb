@@ -8,6 +8,7 @@
     <h4 class="mx-auto text-main2">Easy Search</h4>
     <div class="infinite-search-box " style="margin-top:50px;">
       <div class="d-inline infinite-search-form">
+      <!--現在のページがアルバム一覧である場合のみ、インクリメンタルサーチを表示-->
       <% if current_page?(artist_albums_path)  %>
         <%= form_with url: search_artist_albums_path, method: :get, local: true do |f|%>
           <%= f.text_field :keyword, placeholder: "Album Search",class: "form-control ", id: 'searching-form-album'%>
