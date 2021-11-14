@@ -27,7 +27,7 @@
             <% end %>
           </div>
           <div class="btn d-block" style="width: 70px; ">
-            <%= link_to reply_destroy_post_post_comment_path(reply_comment.post, reply_comment),method: :delete,'data-confirm' => "Do you really want to delete?", class: "text-danger",remote: true do %>
+            <%= link_to reply_destroy_post_post_comment_path(reply_comment.post, reply_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
               <i class="fas fa-trash-alt">Delete</i>
             <% end %>
           </div>
