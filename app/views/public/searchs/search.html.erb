@@ -13,7 +13,7 @@
     <!--投稿一覧部分テンプレート取得-->
     <div class="col-md-5 ml-md-5 mt-md-5 column-center">
       <div class="scroll-list jscroll">
-        <%= render "public/posts/index", posts: @records %>
+        <%= render "public/posts/index_without_repost_listener", posts: @records %>
       </div>
     </div>
   <!--アルバム検索であれば-->
@@ -32,7 +32,7 @@
 </div>
 <!--バックボタン-->
 <div class="row mt-5 " id="comment">
-  <div class="col-8 offset-2">
+  <div class="col-6 offset-3">
     <!--前のページへ-->
     <%= link_to :back, 'data-turbolinks': false  do%>
       <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
