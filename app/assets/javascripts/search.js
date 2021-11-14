@@ -49,7 +49,52 @@ $(document).on('turbolinks:load',function(){
 });
 
 
-// Album用
+// アルバム一覧用
+$(document).on('turbolinks:load',function(){
+
+  $("#searching-form-home-album").on('keyup',function(){
+    console.log("キーボードを入力した時に発生");
+    let target = $("#searching-form-home-album").val();
+    console.log(target);
+
+    $.ajax({
+    type: 'GET',
+    url: "artist/albums/search",
+    data: {keyword: target},
+    dataType: 'json'
+    })
+    .done(function(data){
+      console.log(data);
+      $('.search-post-home-album').empty();
+      if(data.length !== 0) {
+        data.forEach(function(data){
+          // $('.search-post .table').remove();
+          $('.search-post-home-album').append(
+            `<table class="table table-borderless">
+                <tr>
+                  <td class="align-middle text-center" style="width:60px; padding:0;">
+                    <a href="artist/creaters/${data.creater}" class="link"data-turbolinks="false">
+                      <p style="font-size:16px; margin-bottom:0px;">${data.creater_name}</p>
+                    </a>
+                  </td>
+                  <td class="align-middle text-center">
+                    <a href="artist/albums/${data.id}" class="link " data-turbolinks="false">
+                      <p style="font-size:22px; margin-bottom:0px;">${data.name}</p>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            `
+            );
+          // builtHTML(data)
+        });
+      }
+    });
+  });
+});
+
+
+// アルバムホーム画面用
 $(document).on('turbolinks:load',function(){
 
   $("#searching-form-album").on('keyup',function(){
