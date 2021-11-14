@@ -57,7 +57,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @search = Post.where('post_tweet LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5)
+    @search = Post.where('post_tweet LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5).reverse_order
     respond_to do |format|
       format.html
       format.json
@@ -66,7 +66,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search_genre
-    @search = Post.where(genre_params).page(params[:page]).per(2)
+    @search = Post.where(genre_params).page(params[:page]).per(2).reverse_order
     @keyword = params.permit(:post_genre)
 
   end
