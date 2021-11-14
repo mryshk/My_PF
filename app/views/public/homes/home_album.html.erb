@@ -8,10 +8,10 @@
     <h4 class="mx-auto text-main2">Easy Search</h4>
     <div class="infinite-search-box " style="margin-top:50px;">
       <div class="d-inline infinite-search-form">
-      <!--現在のページがホームページである場合のみ、インクリメンタルサーチを表示-->
+      <!--現在のページがアルバム一覧である場合のみ、インクリメンタルサーチを表示-->
       <% if current_page?(home_album_path)  %>
         <%= form_with url: search_artist_albums_path, method: :get, local: true do |f|%>
-          <%= f.text_field :keyword, placeholder: "Album Search",class: "form-control ", id: 'searching-form-album'%>
+          <%= f.text_field :keyword, placeholder: "Album Search",class: "form-control ", id: 'searching-form-home-album'%>
       </div>
       <div class="btn d-inline" style="padding:0;" >
         <i class="fas fa-search fa-lg hover " style="color:rgb(156,209,237); padding:0;"></i>
@@ -21,7 +21,7 @@
       <% end %>
     </div>
     <!--インクリメンタルサーチの結果を以下div内に表示-->
-    <div class="search-post-album">
+    <div class="search-post-home-album">
 
     </div>
   </div>
