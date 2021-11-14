@@ -88,10 +88,10 @@
           <!--ログインしていなければ-->
           <% else %>
           <li class="nav-item">
-            <%= link_to new_listener_registration_path,class: 'nav-link ' do %><i class="fas fa-listener-plus"></i>SignUp<% end %>
+            <%= link_to new_listener_registration_path,class: 'nav-link ' do %><i class="fas fa-user-plus"></i> SignUp<% end %>
           </li>
           <li class="nav-item">
-            <%= link_to new_listener_session_path,class: 'nav-link ' do %><i class="fas fa-sign-in-alt"></i>Login<% end %>
+            <%= link_to new_listener_session_path,class: 'nav-link ' do %><i class="fas fa-sign-in-alt"></i> Login<% end %>
           </li>
           <% end %>
         </ul>
