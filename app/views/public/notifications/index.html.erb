@@ -19,6 +19,11 @@
             </th>
             <td class="align-middle text-center p-0" style="width:60%;">
               <%= notification_form(notification) %>
+              <!--コメントが存在すれば-->
+              <% if !@comment.nil? %>
+              <!--コメントを薄色で表示-->
+                <p class="moderate-font text-center m-0" style="color: #C0C0C0;"><%= @comment %></p>
+              <% end %>
             </td>
             <td class="align-middle text-left p-0" style="width:20%;">
               <%= l notification.created_at %>
@@ -26,15 +31,6 @@
           </tr>
         </tbody>
       </table>
-
-      <!--通知の概要 helperにて定義-->
-
-      <br>
-      <!--コメントが存在すれば-->
-      <% if !@comment.nil? %>
-        <!--コメントを薄色で表示-->
-        <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
-      <% end %>
     </div>
     <% end %>
   </div>
