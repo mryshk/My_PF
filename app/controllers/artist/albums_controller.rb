@@ -24,7 +24,7 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def index
-    @albums = Album.page(params[:page]).per(2)
+    @albums = Album.page(params[:page]).per(2).reverse_order
     @album_impression_rank = Album.all.order(impressions_count: 'DESC').page(params[:page])
   end
 
@@ -46,7 +46,7 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def search
-    @search = Album.where('name LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5)
+    @search = Album.where('name LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5).reverse_order
     # インクリメンタルサーチのため。
     respond_to do |format|
       format.html
@@ -55,7 +55,7 @@ class Artist::AlbumsController < ApplicationController
   end
 
   def search_genre
-    @search = Album.where(genre_params).page(params[:page]).per(2)
+    @search = Album.where(genre_params).page(params[:page]).per(2).reverse_order
     @keyword = params.permit(:genre)
   end
 
