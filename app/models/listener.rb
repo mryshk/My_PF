@@ -3,7 +3,7 @@ class Listener < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:google_oauth2, :twitter, :facebook]
+         :omniauthable, omniauth_providers: [:google_oauth2, :twitter]
 
   # SNS認証omniauthのための定義。
   def self.find_or_create_for_oauth(auth)
@@ -19,39 +19,41 @@ class Listener < ApplicationRecord
 
   attachment :profile_image # 画像表示のため
   attachment :profile_back_image # 背景画像表示のため
-
+  # クリエイターとのアソシエーション
   has_one :creater, dependent: :destroy
 
+  # 投稿関連のアソシエーション
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :reposts, dependent: :destroy
 
+  # アルバム関係のアソシエーション
   has_many :album_musics,dependent: :destroy
   has_many :albums,dependent: :destroy
+  has_many :music_comments, dependent: :destroy
+  has_many :music_favorites, dependent: :destroy
 
+  # グループ関連のアソシエーション
   has_many :group_listeners, dependent: :destroy
   has_many :groups, through: :group_listeners, dependent: :destroy
   has_many :group_chats, dependent: :destroy
 
+  # チャット関連のアソシエーション
   has_many :chats, dependent: :destroy
   has_many :listener_rooms, dependent: :destroy
 
+  # 通知関連のアソシエーション
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'active_id', dependent: :destroy
-
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'passive_id', dependent: :destroy
 
+  # フォロー関連のアソシエーション
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-
   has_many :followers, through: :reverse_of_relationships, source: :follower
-
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-
   has_many :followings, through: :relationships, source: :followed
 
-  has_many :music_comments, dependent: :destroy
 
-  has_many :music_favorites, dependent: :destroy
 
   # ログイン中のリスナーを引数で取得し、そのリスナーがフォローした人としてリレーションシップに登録される。
   def follow(listener_id)
