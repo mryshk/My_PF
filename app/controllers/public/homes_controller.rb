@@ -8,7 +8,7 @@ class Public::HomesController < ApplicationController
   def home_post
     # フォローしている人のみを表示。タイムライン機能。
     @listener = Listener.find(current_listener.id)
-    @posts = @listener.followings_posts_with_reposts.page(params[:page]).per(10).reverse_order
+    @posts = @listener.followings_posts_with_reposts.page(params[:page]).per(4).reverse_order
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
   end
