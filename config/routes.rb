@@ -5,11 +5,15 @@ Rails.application.routes.draw do
   # 以下リスナー側ルート
   # コントローラー指定にpublicを追加。URLはpublic記述なし。(module)
   scope module: :public do
-    root to: 'homes#top' # ルートパス
-    get 'about' => 'homes#about', as: 'about' # ログアウト後に開くアプリ紹介ページに使用
+    # ルートパス
+    root to: 'homes#top'
+
+    # 投稿ホーム画面表示
     get 'home_post' => 'homes#home_post', as: 'home_post'
+    # アルバムホーム画面表示
     get 'home_album' => 'homes#home_album', as: 'home_album'
 
+    # ヘッダー検索機能
     get '/search', to: 'searchs#search'
 
     # リスナー側のDevise登録
