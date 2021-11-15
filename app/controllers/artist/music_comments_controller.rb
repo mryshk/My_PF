@@ -1,5 +1,4 @@
 class Artist::MusicCommentsController < ApplicationController
-
   def new
     @album = Album.find_by(id: params[:album_id])
     @album_music = AlbumMusic.find_by(id: params[:album_music_id])
