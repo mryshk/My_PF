@@ -39,6 +39,7 @@ class Public::PostCommentsController < ApplicationController
     @post_comment_n = PostComment.new
     @post_comment = PostComment.find_by(id: @comment.reply_comment)
   end
+
   # 返信コメント削除
   def reply_destroy
     @post = Post.find(params[:post_id])
@@ -80,6 +81,6 @@ class Public::PostCommentsController < ApplicationController
   private
 
   def post_comment_params
-    params.require(:post_comment).permit(:comment,:reply_comment)
+    params.require(:post_comment).permit(:comment, :reply_comment)
   end
 end
