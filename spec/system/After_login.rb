@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 describe 'ログイン後のテスト' do
-  let(:listener) { create(:listener, listener_type:0) }
-  let!(:other_listener) { create(:listener, listener_type:0) }
+  let(:listener) { create(:listener, listener_type: 0) }
+  let!(:other_listener) { create(:listener, listener_type: 0) }
   let!(:post) { create(:post, listener: listener) }
   let!(:other_post) { create(:post, listener: other_listener) }
 
@@ -19,6 +19,7 @@ describe 'ログイン後のテスト' do
   describe 'ヘッダーのテスト: ログインしている場合' do
     context 'リンクの内容を確認' do
       subject { current_path }
+
       it 'New Postを押すと、投稿フォーム画面に遷移する' do
         new_post_link = find_all('a')[3].native.inner_text
         new_post_link = new_post_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
@@ -56,113 +57,117 @@ describe 'ログイン後のテスト' do
     before do
       visit home_post_path
     end
+
     context 'タイムライン表示画面の確認' do
-      it 'URLの表示の確認'do
+      it 'URLの表示の確認' do
         expect(current_path).to eq "/home_post"
       end
       it '自分と他人の投稿のリンク先が正しい' do
-        expect(page).to have_link'', href: listener_path(post.listener)
-        expect(page).to have_link'', href: listener_path(other_post.listener)
+        expect(page).to have_link '', href: listener_path(post.listener)
+        expect(page).to have_link '', href: listener_path(other_post.listener)
       end
-      it '自分の投稿と他人の投稿のタイトルのリンク先がそれぞれ正しい'do
+      it '自分の投稿と他人の投稿のタイトルのリンク先がそれぞれ正しい' do
         expect(page).to have_link '', href: post_path(post)
         expect(page).to have_link '', href: post_path(other_post)
       end
-      it '自分の投稿が表示される'do
+      it '自分の投稿が表示される' do
         expect(page).to have_content post.post_tweet
       end
     end
 
-    context '左メニューバーの表示確認'do
-      it '投稿ジャンル検索が表示されているか'do
+    context '左メニューバーの表示確認' do
+      it '投稿ジャンル検索が表示されているか' do
         expect(page).to have_content 'Post Category'
       end
-      it 'アルバムジャンル検索が表示されているか'do
+      it 'アルバムジャンル検索が表示されているか' do
         expect(page).to have_content 'Album Category'
       end
-      it '投稿並び替えが表示されているか'do
+      it '投稿並び替えが表示されているか' do
         expect(page).to have_content 'Post Sort'
       end
-      it 'マイページ欄が表示されているか'do
+      it 'マイページ欄が表示されているか' do
         expect(page).to have_content 'My Friend'
       end
-      it 'マイグループ欄が表示されているか'do
+      it 'マイグループ欄が表示されているか' do
         expect(page).to have_content 'My Group'
       end
-      it 'ミュージックサイトが表示されているか'do
-        expect(page).to have_content'Music cite'
+      it 'ミュージックサイトが表示されているか' do
+        expect(page).to have_content 'Music cite'
       end
     end
+
     context '左メニューバーのリンク先確認' do
-      it '投稿ジャンル検索のリンク先表示確認'do
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'ロック')
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'JPOP')
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'アイドル')
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'EDM')
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'KPOP')
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'パンク')
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'レゲエ')
-        expect(page).to have_link'', href: search_genre_posts_path(:post_genre => 'HIPHOP')
+      it '投稿ジャンル検索のリンク先表示確認' do
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'ロック')
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'JPOP')
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'アイドル')
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'EDM')
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'KPOP')
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'パンク')
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'レゲエ')
+        expect(page).to have_link '', href: search_genre_posts_path(:post_genre => 'HIPHOP')
       end
-      it 'アルバムジャンル検索のリンク先表示確認'do
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'ロック')
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'JPOP')
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'アイドル')
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'EDM')
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'KPOP')
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'パンク')
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'レゲエ')
-        expect(page).to have_link'', href: search_genre_artist_albums_path(:genre => 'HIPHOP')
+      it 'アルバムジャンル検索のリンク先表示確認' do
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'ロック')
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'JPOP')
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'アイドル')
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'EDM')
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'KPOP')
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'パンク')
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'レゲエ')
+        expect(page).to have_link '', href: search_genre_artist_albums_path(:genre => 'HIPHOP')
       end
-      it '投稿並び替えのリンク先表示確認'do
-        expect(page).to have_link'', href: order_posts_path(:keyword => 'new')
-        expect(page).to have_link'', href: order_posts_path(:keyword => 'old')
-        expect(page).to have_link'', href: order_posts_path(:keyword => 'likes')
-      end
-
-      it 'マイページ欄のリンク先表示確認'do
-        expect(page).to have_link'', href: listener_path(listener)
-        expect(page).to have_link '',href: listener_followers_path(listener)
-        expect(page).to have_link '',href: listener_followings_path(listener)
-      end
-      it '音楽サイト欄のリンク先表示確認'do
-        expect(page).to have_link'', href: "https://www.youtube.com"
-        expect(page).to have_link '',href: "https://open.spotify.com"
-        expect(page).to have_link '',href: "https://www.apple.com/jp/apple-music/"
-        expect(page).to have_link '',href: "https://soundcloud.com"
+      it '投稿並び替えのリンク先表示確認' do
+        expect(page).to have_link '', href: order_posts_path(:keyword => 'new')
+        expect(page).to have_link '', href: order_posts_path(:keyword => 'old')
+        expect(page).to have_link '', href: order_posts_path(:keyword => 'likes')
       end
 
+      it 'マイページ欄のリンク先表示確認' do
+        expect(page).to have_link '', href: listener_path(listener)
+        expect(page).to have_link '', href: listener_followers_path(listener)
+        expect(page).to have_link '', href: listener_followings_path(listener)
+      end
+      it '音楽サイト欄のリンク先表示確認' do
+        expect(page).to have_link '', href: "https://www.youtube.com"
+        expect(page).to have_link '', href: "https://open.spotify.com"
+        expect(page).to have_link '', href: "https://www.apple.com/jp/apple-music/"
+        expect(page).to have_link '', href: "https://soundcloud.com"
+      end
     end
   end
-  describe '投稿一覧画面のテスト'do
+
+  describe '投稿一覧画面のテスト' do
     before do
       visit posts_path
     end
+
     context '表示画面の確認' do
-      it 'URLの表示の確認'do
+      it 'URLの表示の確認' do
         expect(current_path).to eq '/posts'
       end
       it '自分と他人の投稿のリンク先が正しい' do
-        expect(page).to have_link'', href: listener_path(post.listener)
-        expect(page).to have_link'', href: listener_path(other_post.listener)
+        expect(page).to have_link '', href: listener_path(post.listener)
+        expect(page).to have_link '', href: listener_path(other_post.listener)
       end
-      it '自分の投稿と他人の投稿のタイトルのリンク先がそれぞれ正しい'do
+      it '自分の投稿と他人の投稿のタイトルのリンク先がそれぞれ正しい' do
         expect(page).to have_link '', href: post_path(post)
         expect(page).to have_link '', href: post_path(other_post)
       end
-      it '自分の投稿が表示される'do
+      it '自分の投稿が表示される' do
         expect(page).to have_content post.post_tweet
         expect(page).to have_content other_post.post_tweet
       end
     end
   end
 
-  describe '投稿詳細画面のテスト'do
+  describe '投稿詳細画面のテスト' do
     before do
       visit post_path(post)
     end
+
     context '表示画面の確認' do
-      it 'URLの表示の確認'do
+      it 'URLの表示の確認' do
         expect(current_path).to eq '/posts/' + post.id.to_s
       end
       it '「detail」と表示される' do
@@ -182,10 +187,12 @@ describe 'ログイン後のテスト' do
       end
     end
   end
-  describe '投稿登録画面のテスト'do
+
+  describe '投稿登録画面のテスト' do
     before do
       visit new_post_path
     end
+
     context '表示画面の確認' do
       it 'URLの表示の確認' do
         expect(current_path).to eq('/posts/new')
@@ -194,7 +201,8 @@ describe 'ログイン後のテスト' do
         expect(page).to have_button 'Post'
       end
     end
-    context '投稿処理のテスト'do
+
+    context '投稿処理のテスト' do
       it '投稿後の遷移先は正しいか' do
         fill_in 'post[post_tweet]', with: Faker::Lorem.characters(number: 30)
         fill_in 'post[post_url]', with: Faker::Lorem.characters(number: 20)
@@ -204,11 +212,11 @@ describe 'ログイン後のテスト' do
     end
   end
 
-
   describe '投稿編集画面のテスト' do
     before do
       visit edit_post_path(post)
     end
+
     context '表示の確認' do
       it 'URLが正しい' do
         expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
