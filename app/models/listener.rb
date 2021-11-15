@@ -29,8 +29,8 @@ class Listener < ApplicationRecord
   has_many :reposts, dependent: :destroy
 
   # アルバム関係のアソシエーション
-  has_many :album_musics,dependent: :destroy
-  has_many :albums,dependent: :destroy
+  has_many :album_musics, dependent: :destroy
+  has_many :albums, dependent: :destroy
   has_many :music_comments, dependent: :destroy
   has_many :music_favorites, dependent: :destroy
 
@@ -53,8 +53,6 @@ class Listener < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
 
-
-
   # ログイン中のリスナーを引数で取得し、そのリスナーがフォローした人としてリレーションシップに登録される。
   def follow(listener_id)
     relationships.create!(followed_id: listener_id)
@@ -69,6 +67,7 @@ class Listener < ApplicationRecord
   def following?(listener)
     followings.include?(listener)
   end
+
   # フォロワーに引数のリスナーが存在するかの確認
   def followed?(listener)
     followers.include?(listener)
@@ -77,7 +76,7 @@ class Listener < ApplicationRecord
   # リポストに使用。
   # 自分がフォローしている人（自分にフォローされている人）と自分を取得し配列に並べている。
   def followings_with_userself
-    Listener.where(id: self.followings.pluck(:id)).or(Listener.where(id: self.id))
+    Listener.where(id: followings.pluck(:id)).or(Listener.where(id: id))
   end
 
   # リポストに使用。
@@ -85,13 +84,13 @@ class Listener < ApplicationRecord
   # PostモデルとRepostモデルを左外部結合を行い、フォローしている人のIDとPostIDで検索取得。
   # それらをorderで並び替え。preloadはN+1問題解決のため。
   def followings_posts_with_reposts
-  relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.listener_id = #{self.id} OR reposts.listener_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
-                 .select("posts.*, reposts.listener_id AS repost_listener_id, (SELECT name FROM listeners WHERE id = reposts.listener_id) AS repost_listener_name")
-  relation.where(listener_id: self.followings_with_userself.pluck(:id))
-          .or(relation.where(id: Repost.where(listener_id: self.followings_with_userself.pluck(:id)).distinct.pluck(:post_id)))
-          .where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)")
-          .preload(:listener, :post_comments,:post_favorites, :reposts)
-          .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
+    relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.listener_id = #{id} OR reposts.listener_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{id}))").
+      select("posts.*, reposts.listener_id AS repost_listener_id, (SELECT name FROM listeners WHERE id = reposts.listener_id) AS repost_listener_name")
+    relation.where(listener_id: followings_with_userself.pluck(:id)).
+      or(relation.where(id: Repost.where(listener_id: followings_with_userself.pluck(:id)).distinct.pluck(:post_id))).
+      where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)").
+      preload(:listener, :post_comments, :post_favorites, :reposts).
+      order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
 
   # 閲覧数機能の許可
