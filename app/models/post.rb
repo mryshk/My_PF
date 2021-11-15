@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   belongs_to :listener
   has_many :reposts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-  has_many :replies, class_name: "PostComment",foreign_key: "reply_comment", dependent: :destroy
+  has_many :replies, class_name: "PostComment", foreign_key: "reply_comment", dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :favo_users, through: :post_favorites, source: :listener
   has_many :notifications, dependent: :destroy
@@ -19,6 +19,7 @@ class Post < ApplicationRecord
   def favorited_by?(listener)
     post_favorites.where(listener_id: listener.id).exists?
   end
+
   # リポスト済みがどうかの確認。
   def reposted_by?(listener)
     reposts.where(listener_id: listener.id).exists?
