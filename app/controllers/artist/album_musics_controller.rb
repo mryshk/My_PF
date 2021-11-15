@@ -47,6 +47,6 @@ class Artist::AlbumMusicsController < ApplicationController
   private
 
   def album_music_params
-    params.require(:album_music).permit(:name, :caption, :music_url,:listener_id)
+    params.require(:album_music).permit(:name, :caption, :music_url, :listener_id)
   end
 end
