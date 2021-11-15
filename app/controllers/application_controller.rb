@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     if listener_signed_in? # リスナー側ログイン後
       home_post_path # リスナー側トップ画面に遷移
     else
-     admin_root_path
+      admin_root_path
     end
   end
 
