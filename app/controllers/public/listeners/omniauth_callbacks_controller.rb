@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Public::Listeners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
-   # Google認証
+  # Google認証
   def google_oauth2
     callback_for(:google)
   end
+
   # Twitter認証
   def twitter
     callback_for(:twitter)
