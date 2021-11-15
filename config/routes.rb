@@ -42,7 +42,7 @@ Rails.application.routes.draw do
         get :search_tag # タグ検索時に使用
       end
       # 投稿コメント
-      resources :post_comments, only: [:index, :create, :edit, :update, :destroy,:show] do
+      resources :post_comments, only: [:index, :create, :edit, :update, :destroy, :show] do
         collection do
           post :reply_create
         end
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       end
       # 投稿いいね
       resources :post_favorites, only: [:index, :create, :destroy]
-      resources :reposts, only:[:index,:create, :destroy]
+      resources :reposts, only: [:index, :create, :destroy]
     end
 
     # グループ機能CRUD全部
