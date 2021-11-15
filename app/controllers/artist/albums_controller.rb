@@ -2,7 +2,7 @@ class Artist::AlbumsController < ApplicationController
   # 権限確認（cancancan）
   authorize_resource only: [:new, :create, :edit, :update, :destroy]
   # メニューバー用。メニューバーがあるページのアクションのみ。
-  before_action :set_menu, only:[:show,:index,:search,:search_genre]
+  before_action :set_menu, only: [:show, :index, :search, :search_genre]
 
   def new
     @album = Album.new
@@ -77,5 +77,4 @@ class Artist::AlbumsController < ApplicationController
   def genre_params
     params.permit(:genre)
   end
-
 end
