@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :set_menu, only:[:show,:index,:search,:search_genre,:search_tag,:order]
+  before_action :set_menu, only: [:show, :index, :search, :search_genre, :search_tag, :order]
 
   def new
     @post = Post.new
@@ -68,7 +68,6 @@ class Public::PostsController < ApplicationController
   def search_genre
     @search = Post.where(genre_params).page(params[:page]).per(2).reverse_order
     @keyword = params.permit(:post_genre)
-
   end
 
   def search_tag
@@ -92,7 +91,6 @@ class Public::PostsController < ApplicationController
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
   end
-
 
   def set_menu
     # メニュー用
