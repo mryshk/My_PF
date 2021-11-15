@@ -1,6 +1,5 @@
 class Public::HomesController < ApplicationController
-  before_action :set_menu,only:[:home_post,:home_album]
-
+  before_action :set_menu, only: [:home_post, :home_album]
 
   def top
   end
@@ -25,5 +24,4 @@ class Public::HomesController < ApplicationController
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
   end
-
 end
