@@ -23,7 +23,6 @@ Rails.application.routes.draw do
       passwords: "public/listeners/passwords",
       omniauth_callbacks: 'public/listeners/omniauth_callbacks',
     }
-
     # マイページ用に使用
     resources :listeners, only: [:show, :edit, :update] do
       # フォロー機能
