@@ -15,9 +15,10 @@ class Listener < ApplicationRecord
         listener.password = Devise.friendly_token[0, 20]
     end
   end
-
-  attachment :profile_image # 画像表示のため
-  attachment :profile_back_image # 背景画像表示のため
+  # プロフィール画像表示のため
+  attachment :profile_image 
+  # 背景画像表示のため
+  attachment :profile_back_image 
   # クリエイターとのアソシエーション
   has_one :creater, dependent: :destroy
 
