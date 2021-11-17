@@ -71,11 +71,14 @@ class Public::PostsController < ApplicationController
   end
 
   def search_tag
-    @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
-    @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
+    # タグをクリックし、タグIDを取得。タグIDが付随する投稿を検索し取得。
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.page(params[:page]).reverse_order
+    
+    # 投稿のいいねランク取得。
+    @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
+    @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
   end
 
   def order
