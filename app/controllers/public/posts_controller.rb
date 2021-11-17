@@ -1,5 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :set_menu, only: [:show, :index, :search, :search_genre, :search_tag, :order]
+  before_action :fav_rank, only: [:show, :index,:search_tag, :order]
+  before_action :imp_rank, only: [:index,:search_tag, :order]
 
   def new
     @post = Post.new
@@ -13,7 +15,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to home_post_path
     else
-      　redirect_to home_post_path
+      redirect_to home_post_path
     end
   end
 
@@ -24,13 +26,10 @@ class Public::PostsController < ApplicationController
     impressionist(@post, nil)
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id, listener_id: current_listener.id)
-    @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
   end
 
   def index
     @posts = Post.page(params[:page]).includes(:listener).reverse_order
-    @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
-    @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
     @tag_list = Tag.all
   end
 
@@ -75,10 +74,6 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.page(params[:page]).reverse_order
-    
-    # 投稿のいいねランク取得。
-    @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
-    @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
   end
 
   def order
@@ -90,8 +85,16 @@ class Public::PostsController < ApplicationController
     elsif order == "likes"
       @posts = Kaminari.paginate_array(Post.sort(order)).page(params[:page])
     end
-    # ランキング用に必要。
+  end
+
+
+  def fav_rank
+    # 投稿のいいねランキングを取得。
     @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
+  end
+
+  def imp_rank
+    # 投稿の閲覧数ランキングを取得。
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
   end
 
