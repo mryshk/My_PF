@@ -103,12 +103,13 @@ Rails.application.routes.draw do
       # 楽曲投稿（クリエイター側のみ可)
       resources :album_musics do
         # コメント一覧確認画面（クリエイター側のみ可）
-        resources :music_comments
-        collection do
-          post :reply_create
-        end
-        member do
-          delete :reply_destroy
+        resources :music_comments do
+          collection do
+            post :reply_create
+          end
+          member do
+            delete :reply_destroy
+          end
         end
         resources :music_favorites, only: [:create, :destroy, :index, :show]
       end
