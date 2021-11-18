@@ -25,6 +25,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment_n = PostComment.new
+    # 投稿に対するコメント一覧 リプライコメントは除く。
     @comments = PostComment.where(post_id: @post.id, reply_comment: nil)
     impressionist(@post, nil)
     @post_tags = @post.tags
