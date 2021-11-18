@@ -41,7 +41,7 @@ Rails.application.routes.draw do
         get :search_tag # タグ検索時に使用
       end
       # 投稿コメント
-      resources :post_comments, only: [:index, :create, :edit, :update, :destroy, :show] do
+      resources :post_comments, only: [:create, :edit, :update, :destroy, :show] do
         collection do
           post :reply_create
         end
@@ -104,6 +104,12 @@ Rails.application.routes.draw do
       resources :album_musics do
         # コメント一覧確認画面（クリエイター側のみ可）
         resources :music_comments
+        collection do
+          post :reply_create
+        end
+        member do
+          delete :reply_destroy
+        end
         resources :music_favorites, only: [:create, :destroy, :index, :show]
       end
     end
