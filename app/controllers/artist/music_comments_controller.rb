@@ -23,7 +23,8 @@ class Artist::MusicCommentsController < ApplicationController
     @album = Album.find_by(params[:album_id])
     @album_music = AlbumMusic.find_by(params[:album_music_id])
     @music_comment = MusicComment.find(params[:id])
-
+    @music_comment_n = MusicComment.new
+    @comments = MusicComment.includes(:listener).where(reply_comment: @music_comment.id)
   end
 
   def edit
@@ -55,11 +56,31 @@ class Artist::MusicCommentsController < ApplicationController
 
 
   def reply_create
+    @album = Album.find_by(params[:album_id])
+    @album_music = AlbumMusic.find_by(params[:album_music_id])
+    @comment = MusicComment.new(music_comment_params)
+    @comment.listener_id = current_listener.id
+    @comment.album_id = @album.id
+    @comment.album_music_id = @album_music.id
+    @comment.save
 
+    # reply_create.jsへ送る用 非同期通信
+    @comments = MusicComment.where(reply_comment: @comment.reply_comment)
+    @music_comment_n = MusicComment.new
+    @music_comment = MusicComment.find_by(id: @comment.reply_comment)
   end
 
   def reply_destroy
+    @album = Album.find_by(params[:album_id])
+    @album_music = AlbumMusic.find_by(params[:album_music_id])
+    @music_comment = MusicComment.find_by(album_id: @album.id, album_music_id: @album_music.id,id: params[:id])
+    @music_comment.destroy
 
+    # reply_create.jsへ送る用 非同期通信
+    @reply_comment = @music_comment.reply_comment
+    @comments = MusicComment.where(reply_comment: @reply_comment)
+    @music_comment_n = MusicComment.new
+    @music_comment = Music_comment.find(id: @reply_comment)
   end
 
 
