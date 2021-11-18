@@ -19,6 +19,13 @@ class Artist::MusicCommentsController < ApplicationController
     @music_comment_n = MusicComment.new
   end
 
+  def show
+    @album = Album.find_by(params[:album_id])
+    @album_music = AlbumMusic.find_by(params[:album_music_id])
+    @music_comment = MusicComment.find(params[:id])
+
+  end
+
   def edit
     @album = Album.find_by(id: params[:album_id])
     @album_music = AlbumMusic.find_by(id: params[:album_music_id])
@@ -45,6 +52,17 @@ class Artist::MusicCommentsController < ApplicationController
     @music_comments = @album_music.music_comments
     @music_comment_n = MusicComment.new
   end
+
+
+  def reply_create
+
+  end
+
+  def reply_destroy
+
+  end
+
+
 
   private
 
