@@ -1,6 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   def new
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])rails
     @post_comment = PostComment.new
   end
 
