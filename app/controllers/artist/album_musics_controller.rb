@@ -1,6 +1,7 @@
 class Artist::AlbumMusicsController < ApplicationController
   # 権限確認（cancancan）
   authorize_resource
+  
   def new
     @album_music = AlbumMusic.new
   end
@@ -21,7 +22,7 @@ class Artist::AlbumMusicsController < ApplicationController
     @music_comment = MusicComment.new
     @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id).all
     @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
-
+    # 閲覧数カウントされるための記述
     impressionist(@album_music, nil)
   end
 
