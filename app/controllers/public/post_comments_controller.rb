@@ -1,6 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   def new
-    @post = Post.find(params[:post_id])rails
+    @post = Post.find(params[:post_id])
     @post_comment = PostComment.new
   end
 
@@ -14,7 +14,7 @@ class Public::PostCommentsController < ApplicationController
     if @comment.save
       @comment_post.create_notification_comment!(current_listener, @comment.id)
     end
-    
+
     # create.js用
     @comments = PostComment.where(post_id: @post.id, reply_comment: nil)
     @post_comment_n = PostComment.new
