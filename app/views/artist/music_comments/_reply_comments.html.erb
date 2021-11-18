@@ -1,0 +1,55 @@
+<!--コメント一覧の部分テンプレート-->
+<div class="col-8 mt-5 offset-2">
+  <h5 class="main-font"><i class="fas fa-reply"></i>Reply</h5>
+  <div class="table-responsive">
+  <table class="table table-hover mt-3" >
+    <tbody>
+      <% comments.each do |reply_comment| %>
+      <tr>
+        <%# ユーザー %>
+        <td class=" align-middle text-center" style="width:20%;">
+          <%= link_to  listener_path(reply_comment.listener), class: "text-dark" do %>
+          <div><%= attachment_image_tag reply_comment.listener,:profile_image ,size:"50x50", fallback: "sky-2076868_1280.jpg",class:"mt-3 rounded-circle" %></div>
+          <div>&ensp;<%= reply_comment.listener.name %></div>
+          <% end %>
+        </td>
+        <%# コメント %>
+        <td class="align-middle " style="width:60%;" >
+          <p style="color:rgb(063,163,203);"><%= post_comment.listener.name %>さんへ</p>
+          <p><%= reply_comment.comment %></p>
+        </td>
+        <%# コメント編集・削除 %>
+        <% if reply_comment.listener == current_listener %>
+        <td class="align-middle text-center" style="width:20%;">
+          <div class="btn d-block" style="width: 70px; ">
+            <%= link_to edit_post_post_comment_path(reply_comment.post,reply_comment),method: :get, class: "text-info" do %>
+              <i class="fas fa-edit">Edit</i>
+            <% end %>
+          </div>
+          <div class="btn d-block" style="width: 70px; ">
+            <%= link_to reply_destroy_post_post_comment_path(reply_comment.post, reply_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
+              <i class="fas fa-trash-alt">Delete</i>
+            <% end %>
+          </div>
+          </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+  <%# コメント投稿フォーム %>
+  <div>
+    <%= form_with model:[post, post_comment_n],url: reply_create_post_post_comments_path(post),method: :post, local: false do |f| %>
+    <%# コメント欄 %>
+    <div>
+      <%= f.text_area :comment, rows:'5',placeholder: "Reply to comment" ,class: "form-control" %>
+      <%= f.hidden_field :reply_comment, :value => post_comment.id %>
+    </div>
+    <%# 送信ボタン %>
+    <button class="btn btn-main mt-4" style="width:100px">POST
+      <% f.submit %>
+    </button>
+    <% end %>
+  </div>
+</div>
