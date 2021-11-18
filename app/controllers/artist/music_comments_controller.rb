@@ -47,7 +47,11 @@ class Artist::MusicCommentsController < ApplicationController
     @music_comment = MusicComment.find_by(id: params[:id], album_id: params[:album_id], album_music_id: params[:album_music_id])
     @album = Album.find_by(id: params[:album_id])
     @album_music = AlbumMusic.find_by(id: params[:album_music_id])
+
+    # コメントに付随するリプライも同時に消す。
+    @reply_comment = MusicComment.where(reply_comment: @music_comment.id)
     @music_comment.destroy
+    @reply_comment.destroy_all
 
     # destroy.js用
     @music_comments = @album_music.music_comments
@@ -80,14 +84,12 @@ class Artist::MusicCommentsController < ApplicationController
     @reply_comment = @music_comment.reply_comment
     @comments = MusicComment.where(reply_comment: @reply_comment)
     @music_comment_n = MusicComment.new
-    @music_comment = Music_comment.find(id: @reply_comment)
+    @music_comment = MusicComment.find_by(id: @reply_comment)
   end
-
-
 
   private
 
   def music_comment_params
-    params.require(:music_comment).permit(:listener_id, :album_id, :album_music_id, :comment, :rate)
+    params.require(:music_comment).permit(:listener_id, :album_id, :album_music_id, :comment, :rate,:reply_comment)
   end
 end
