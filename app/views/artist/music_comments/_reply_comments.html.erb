@@ -22,12 +22,12 @@
         <% if reply_comment.listener == current_listener %>
         <td class="align-middle text-center" style="width:20%;">
           <div class="btn d-block" style="width: 70px; ">
-            <%= link_to edit_post_post_comment_path(reply_comment.post,reply_comment),method: :get, class: "text-info" do %>
+            <%= link_to edit_artist_album_album_music_music_comment_path(reply_comment.album, reply_comment.album_music, reply_comment),method: :get, class: "text-info" do %>
               <i class="fas fa-edit">Edit</i>
             <% end %>
           </div>
           <div class="btn d-block" style="width: 70px; ">
-            <%= link_to reply_destroy_post_post_comment_path(reply_comment.post, reply_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
+            <%= link_to reply_destroy_artist_album_album_music_music_comment(reply_comment.album, reply_comment.album_music, reply_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
               <i class="fas fa-trash-alt">Delete</i>
             <% end %>
           </div>
@@ -40,11 +40,11 @@
   </div>
   <%# コメント投稿フォーム %>
   <div>
-    <%= form_with model:[post, post_comment_n],url: reply_create_post_post_comments_path(post),method: :post, local: false do |f| %>
+    <%= form_with model: [album, album_music, music_comment_n], url: reply_create_artist_album_album_music_music_comments_path(album,album_music), method: :post, local: false do |f| %>
     <%# コメント欄 %>
     <div>
       <%= f.text_area :comment, rows:'5',placeholder: "Reply to comment" ,class: "form-control" %>
-      <%= f.hidden_field :reply_comment, :value => post_comment.id %>
+      <%= f.hidden_field :reply_comment, :value => music_comment.id %>
     </div>
     <%# 送信ボタン %>
     <button class="btn btn-main mt-4" style="width:100px">POST
