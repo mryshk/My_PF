@@ -71,6 +71,7 @@ class Public::PostCommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @comment = PostComment.find_by(id: params[:id], post_id: @post.id)
+    # コメントに付随するリプライも同時に消す。
     @reply_comment = PostComment.where(reply_comment: @comment.id)
     @comment.destroy
     @reply_comment.destroy_all
