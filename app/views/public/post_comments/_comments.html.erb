@@ -19,10 +19,12 @@
             <%= post_comment.comment %>
           <% end %>
         </td>
+        <!--コメント詳細へ-->
         <td class=" align-middle text-center" style="width:10%;">
           <p>
             <% @reply = PostComment.where(reply_comment: post_comment.id) %>
             <%= link_to post_post_comment_path(post, post_comment.id), class:"link-none5" do%>
+              <!--リプライ数表示-->
               <i class="fas fa-reply-all fa-lg hover"></i> <%= @reply.count %>
             <% end %>
           </p>
