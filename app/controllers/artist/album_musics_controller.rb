@@ -1,7 +1,7 @@
 class Artist::AlbumMusicsController < ApplicationController
   # 権限確認（cancancan）
   authorize_resource
-  
+
   def new
     @album_music = AlbumMusic.new
   end
@@ -20,7 +20,8 @@ class Artist::AlbumMusicsController < ApplicationController
     @album_music = AlbumMusic.find_by(id: params[:id])
     @album = Album.find_by(id: params[:album_id])
     @music_comment = MusicComment.new
-    @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id).all
+    # 楽曲に対するコメント一覧 リプライコメントは除く。
+    @music_comments = MusicComment.where(album_id: @album.id, album_music_id: @album_music.id, reply_comment: nil).all
     @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
     # 閲覧数カウントされるための記述
     impressionist(@album_music, nil)
