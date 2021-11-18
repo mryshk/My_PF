@@ -15,7 +15,7 @@
         </td>
         <%# コメント %>
         <td class="align-middle " style="width:60%;" >
-          <p style="color:rgb(063,163,203);"><%= post_comment.listener.name %>さんへ</p>
+          <p style="color:rgb(063,163,203);"><%= music_comment.listener.name %>さんへ</p>
           <p><%= reply_comment.comment %></p>
         </td>
         <%# コメント編集・削除 %>
@@ -27,7 +27,7 @@
             <% end %>
           </div>
           <div class="btn d-block" style="width: 70px; ">
-            <%= link_to reply_destroy_artist_album_album_music_music_comment(reply_comment.album, reply_comment.album_music, reply_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
+            <%= link_to reply_destroy_artist_album_album_music_music_comment_path(reply_comment.album, reply_comment.album_music, reply_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
               <i class="fas fa-trash-alt">Delete</i>
             <% end %>
           </div>
