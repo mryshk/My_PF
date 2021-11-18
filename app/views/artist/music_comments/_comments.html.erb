@@ -21,7 +21,7 @@
         </td>
         <!--コメント詳細へ-->
         <td class=" align-middle text-center" style="width:10%;">
-          <p>
+          <p class="mb-0">
             <% @reply = MusicComment.where(reply_comment: music_comment.id) %>
             <%= link_to artist_album_album_music_music_comment_path(music_comment.album,music_comment.album_music,music_comment), class:"link-none5" do%>
               <!--リプライ数表示-->
