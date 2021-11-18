@@ -1,1 +1,1 @@
-$("#comment").html("<%= j(render 'public/post_comments/reply_comments', comments: @comments, post: @post, post_comment_n: @post_comment_n, post_comment: @post_comment  )%>");
+$("#comment").html("<%= j(render "artist/music_comments/reply_comments",comments: @comments, album: @album, album_music: @album_music, music_comment_n: @music_comment_n, music_comment: @music_comment  )%>");
