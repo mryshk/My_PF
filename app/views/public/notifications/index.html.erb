@@ -43,6 +43,14 @@
     <% end %>
   </div>
 </div>
+<!--バックボタン-->
+<div class="row mt-5">
+  <div class="col-6 offset-3 text-left">
+    <%= link_to 'javascript:history.back()' do %>
+      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
+    <% end %>
+  </div>
+</div>
   <!--通知がなければ-->
   <% else %>
   <div class="col-8 offset-2 text-center">
