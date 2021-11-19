@@ -8,7 +8,8 @@ class Listener < ApplicationRecord
   # SNS認証omniauthのための定義。
   def self.find_or_create_for_oauth(auth)
     find_or_create_by!(email: auth.info.email) do |listener|
-      listener.provider = auth.provider,
+      listener.provider =
+        auth.provider,
         listener.uid = auth.uid,
         listener.name = auth.info.name,
         listener.email = auth.info.email,
@@ -16,9 +17,9 @@ class Listener < ApplicationRecord
     end
   end
   # プロフィール画像表示のため
-  attachment :profile_image 
+  attachment :profile_image
   # 背景画像表示のため
-  attachment :profile_back_image 
+  attachment :profile_back_image
   # クリエイターとのアソシエーション
   has_one :creater, dependent: :destroy
 
