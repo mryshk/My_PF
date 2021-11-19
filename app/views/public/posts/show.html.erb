@@ -37,9 +37,7 @@
           </p>
           <!--投稿画像-->
           <div class="text-center mt-5">
-            <%= link_to post_path(@post) do %>
-              <%= attachment_image_tag @post,:picture,size:"200x200"%>
-            <% end %>
+            <%= attachment_image_tag @post,:picture,size:"200x200"%>
           </div>
            <!--linkpreviewの部分 音楽サイトのリンク内容取得-->
           <div class="card mb-3 my-5">
@@ -127,8 +125,8 @@
 <div class="row " style="margin-top:100px;">
   <div class="col-8 offset-2">
     <!--投稿一覧へ-->
-    <%= link_to posts_path do%>
-      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Posts</button>
+    <%= link_to :back do%>
+      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
     <% end %>
   </div>
 </div>
