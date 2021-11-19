@@ -56,7 +56,7 @@
         <!--星ランク表示-->
         <td class="align-middle " style="width:20%;" >
           <% unless music_comment.rate.nil? %>
-          <div id="music_post_rate_<%= music_comment.id  %>" data-score="<%= music_comment.rate %>" class="text-center mt-3"></div>
+          <div class="m-0" id="music_post_rate_<%= music_comment.id  %>" data-score="<%= music_comment.rate %>" class="text-center mt-3"></div>
           <!--ランク表示Javascript-->
           <script>
               $('#music_post_rate_<%= music_comment.id %>').empty();
