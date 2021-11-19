@@ -2,9 +2,9 @@ class Public::PostsController < ApplicationController
   # 左メニューバーのマイグループ取得のための定義。以下のアクションの際に使用。
   before_action :set_menu, only: [:show, :index, :search, :search_genre, :search_tag, :order]
   # いいねランキング取得用。以下のアクションの際に使用。
-  before_action :fav_rank, only: [:show, :index,:search_tag, :order]
+  before_action :fav_rank, only: [:show, :index, :search_tag, :order]
   # 閲覧数ランキング取得用。以下のアクションの際に使用。
-  before_action :imp_rank, only: [:index,:search_tag, :order]
+  before_action :imp_rank, only: [:index, :search_tag, :order]
 
   def new
     @post = Post.new
@@ -90,7 +90,6 @@ class Public::PostsController < ApplicationController
       @posts = Kaminari.paginate_array(Post.sort(order)).page(params[:page])
     end
   end
-
 
   def fav_rank
     # 投稿のいいねランキングを取得。
