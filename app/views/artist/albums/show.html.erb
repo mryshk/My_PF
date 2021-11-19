@@ -156,7 +156,7 @@
       <% if @album.creater.listener == current_listener %>
       　<!--一致する場合のみ楽曲登録可能。楽曲登録ページへ-->
         <%= link_to new_artist_album_album_music_path(@album),class:"link" do %>
-          <div class="btn btn-outline-main"><i class="fas fa-music"></i> Music</div>
+          <div class="btn btn-outline-main"><i class="fas fa-music"></i> New Music</div>
         <% end %>
       <% end %>
     <% end %>
