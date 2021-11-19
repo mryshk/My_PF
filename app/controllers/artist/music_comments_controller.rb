@@ -58,7 +58,6 @@ class Artist::MusicCommentsController < ApplicationController
     @music_comment_n = MusicComment.new
   end
 
-
   def reply_create
     @album = Album.find_by(params[:album_id])
     @album_music = AlbumMusic.find_by(params[:album_music_id])
@@ -77,7 +76,7 @@ class Artist::MusicCommentsController < ApplicationController
   def reply_destroy
     @album = Album.find_by(params[:album_id])
     @album_music = AlbumMusic.find_by(params[:album_music_id])
-    @music_comment = MusicComment.find_by(album_id: @album.id, album_music_id: @album_music.id,id: params[:id])
+    @music_comment = MusicComment.find_by(album_id: @album.id, album_music_id: @album_music.id, id: params[:id])
     @music_comment.destroy
 
     # reply_create.jsへ送る用 非同期通信
@@ -90,6 +89,6 @@ class Artist::MusicCommentsController < ApplicationController
   private
 
   def music_comment_params
-    params.require(:music_comment).permit(:listener_id, :album_id, :album_music_id, :comment, :rate,:reply_comment)
+    params.require(:music_comment).permit(:listener_id, :album_id, :album_music_id, :comment, :rate, :reply_comment)
   end
 end
