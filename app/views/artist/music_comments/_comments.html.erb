@@ -71,15 +71,16 @@
              });
           </script>
           <% end %>
-        <!--コメント編集・削除-->
         <!--ログインユーザーと一致すれば-->
         <% if music_comment.listener == current_listener %>
+        <!--コメント編集ボタン-->
         <td class="align-middle text-center" style="width:10%;">
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_artist_album_album_music_music_comment_path(music_comment.album,music_comment.album_music,music_comment),method: :get, class: "text-info" do %>
               <i class="fas fa-edit">Edit</i>
             <% end %>
           </div>
+          <!--コメント削除ボタン-->
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to artist_album_album_music_music_comment_path(music_comment.album,music_comment.album_music,music_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
               <i class="fas fa-trash-alt">Delete</i>
