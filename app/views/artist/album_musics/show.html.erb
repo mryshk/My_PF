@@ -27,13 +27,15 @@
       <div class="card-text text-center mt-3">
       <!--ログインユーザーと一致すれば-->
       <% if @album_music.album.creater.listener == current_listener  %>
+        <!--楽曲編集-->
         <button class="btn">
           <%= link_to edit_artist_album_album_music_path(@album_music.album, @album_music),class: "text-info" do%>
             <i class="fas fa-user-edit">Edit</i>
           <% end %>
         </button>
+        <!--楽曲削除-->
         <button class="btn">
-          <%= link_to artist_album_path(@album_music.album, @album_music),method: :delete,"data-confirm" => "本当に消しますか？", class: "text-danger" do%>
+          <%= link_to artist_album_album_music_path(@album_music.album, @album_music),method: :delete,"data-confirm" => "本当に消しますか？", class: "text-danger" do%>
             <i class="fas fa-user-edit">Delete</i>
           <% end %>
         </button>
