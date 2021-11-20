@@ -88,7 +88,8 @@ class Public::PostCommentsController < ApplicationController
   end
 
   private
-
+  
+  # コメント内容取得用のパラメーター
   def post_comment_params
     params.require(:post_comment).permit(:comment, :reply_comment)
   end
