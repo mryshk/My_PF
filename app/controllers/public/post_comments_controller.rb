@@ -1,6 +1,7 @@
 class Public::PostCommentsController < ApplicationController
 
-  before_action :set_post_comment_new,only;[:create,:destroy,:reply_create,:reply_destroy]
+  # 非同期Js用。非同期通信を行うアクションのみ指定。
+  before_action :set_post_comment_new, only: [:create,:destroy,:reply_create,:reply_destroy]
 
   def new
     @post = Post.find(params[:post_id])
@@ -39,7 +40,6 @@ class Public::PostCommentsController < ApplicationController
 
     # reply_create.jsへ送る用 非同期通信
     @comments = PostComment.where(reply_comment: @comment.reply_comment)
-    @post_comment_n = PostComment.new
     @post_comment = PostComment.find_by(id: @comment.reply_comment)
   end
 
@@ -53,7 +53,6 @@ class Public::PostCommentsController < ApplicationController
 
     # reply_create.jsへ送る用 非同期通信
     @comments = PostComment.where(reply_comment: @reply_comment)
-    @post_comment_n = PostComment.new
     @post_comment = PostComment.find_by(id: @reply_comment)
   end
 
@@ -80,11 +79,10 @@ class Public::PostCommentsController < ApplicationController
 
     # create.js用
     @comments = PostComment.where(post_id: @post.id, reply_comment: nil)
-    @post_comment_n = PostComment.new
   end
 
 
-  # 非同期Js用。新しいコメントをクリエイトするたの空のインスタンス
+  # 非同期Js用。新しいコメントをクリエイトするための空のインスタンス
   def set_post_comment_new
     @post_comment_n = PostComment.new
   end
