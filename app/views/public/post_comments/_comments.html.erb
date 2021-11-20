@@ -40,7 +40,7 @@
           </div>
           <!--コメント削除-->
           <div class="btn d-block" style="width: 70px; ">
-            <%= link_to post_post_comment_path(post_comment.post,post_comment),method: :delete,'data-confirm' => "Do you really want to delete?", class: "text-danger",remote: true do %>
+            <%= link_to post_post_comment_path(post_comment.post,post_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
               <i class="fas fa-trash-alt">Delete</i>
             <% end %>
           </div>
