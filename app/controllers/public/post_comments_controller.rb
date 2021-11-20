@@ -1,4 +1,7 @@
 class Public::PostCommentsController < ApplicationController
+
+  before_action :set_post_comment_new,only;[:create,:destroy,:reply_create,:reply_destroy]
+
   def new
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.new
@@ -17,7 +20,6 @@ class Public::PostCommentsController < ApplicationController
 
     # create.js用
     @comments = PostComment.where(post_id: @post.id, reply_comment: nil)
-    @post_comment_n = PostComment.new
   end
 
   def show
@@ -76,7 +78,14 @@ class Public::PostCommentsController < ApplicationController
     @comment.destroy
     @reply_comment.destroy_all
 
+    # create.js用
     @comments = PostComment.where(post_id: @post.id, reply_comment: nil)
+    @post_comment_n = PostComment.new
+  end
+
+
+  # 非同期Js用。新しいコメントをクリエイトするたの空のインスタンス
+  def set_post_comment_new
     @post_comment_n = PostComment.new
   end
 
