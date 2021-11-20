@@ -110,10 +110,12 @@ class Public::PostsController < ApplicationController
 
   private
 
+  #投稿内容取得用のパラメーター
   def post_params
     params.require(:post).permit(:post_url, :post_tweet, :picture, :post_genre)
   end
 
+  #ジャンル取得用のパラメーター
   def genre_params
     params.permit(:post_genre)
   end
