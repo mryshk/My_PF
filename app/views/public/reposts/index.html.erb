@@ -1,12 +1,12 @@
 <!--いいねした人一覧-->
-<h3 class="text-center" style="margin-top:100px;"><i class="far fa-star"></i> repostrites</h3>
+<h3 class="text-center" style="margin-top:100px;"><i class="far fa-star"></i> reposts</h3>
 <div class="row" style="margin-top:80px;">
   <!--いいねした人が存在すれば-->
   <% if @reposts.exists?  %>
   <div class="col-9 mx-auto">
     <table class="table">
       <thead>
-        <!--テーブルの-->
+        <!--テーブルのタイトル-->
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">Follow&Unfollow</th>
