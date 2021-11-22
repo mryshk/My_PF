@@ -16,6 +16,7 @@ class Public::PostCommentsController < ApplicationController
     @comment.post_id = @post.id
     @comment_post = @comment.post
     if @comment.save
+      # 通知保存。以下、Postモデルに定義したメソッド使用。 
       @comment_post.create_notification_comment!(current_listener, @comment.id)
     end
 
