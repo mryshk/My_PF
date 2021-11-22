@@ -15,10 +15,13 @@
             <table class="table table-borderless">
               <tr>
                 <td class="align-middle" style="width:60px; padding:0;">
+                  <!--プロフ画像-->
                   <%= attachment_image_tag @post.listener,:profile_image ,size:"60x60", fallback: "sky-2076868_1280.jpg",class: "profile_image mt-3 rounded-circle" %>
                 </td>
+                <!--投稿者名-->
                 <td class="align-middle">
                   <%= @post.listener.name%>
+                    <!--クリエイターであればクリエイターマークがつく。-->
                     <% if @post.listener.listener_type == 1  %>
                     <i class="far fa-user-circle " style="color:rgb(063,163,203);"></i>
                   <% end %>
@@ -32,6 +35,7 @@
           <!--タグ一覧-->
           <p class="card-text text-center">
             <% @post.tags.each do |tag| %>
+              <!--タグ検索-->
               <%= link_to tag.tag_name, search_tag_posts_path(tag_id: tag.id) , class: "tag link" %>
             <% end %>
           </p>
@@ -40,17 +44,22 @@
             <%= attachment_image_tag @post,:picture,size:"200x200"%>
           </div>
            <!--linkpreviewの部分 音楽サイトのリンク内容取得-->
+           <!--カードとして表示-->
           <div class="card mb-3 my-5">
             <div class="row">
               <div class="col-md-4 my-auto">
+                <!--リンク先へ-->
                 <a id="link" href="<%= @post.post_url %>" target="_blank">
+                  <!--リンク先の画像-->
                   <img id="link_img" class="card-img" src="">
                 </a>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <a id="link" class="link-none" href="<%= @post.post_url %>" target="_blank">
+                    <!--リンク先のタイトル-->
                     <h3 id="linktitle" class="card-title"></h3>
+                    <!--リンク先の説明-->
                     <p id="linkcaption" ></p>
                   </a>
                 </div>
@@ -59,12 +68,15 @@
           </div>
           <!--編集・削除-->
           <div class="mt-4 text-right">
+            <!--自分の投稿であれば-->
             <% if @post.listener == current_listener %>
+            <!--編集ボタン-->
             <button type="button" class="btn ">
               <%= link_to edit_post_path(@post),class: "text-info" do%>
                 <i class="fas fa-edit">Edit</i>
               <% end %>
             </button>
+            <!--削除ボタン-->
             <button type="button" class="btn ">
               <%= link_to post_path(@post),method: :delete, "data-confirm" => "本当に消しますか？",class: "text-danger" do%>
                 <i class="fas fa-trash-alt">Delete</i>
