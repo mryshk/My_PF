@@ -56,13 +56,14 @@
     <% end %>
   </div>
 </div>
-<!--linkpreview用のJavascript-->
+<!--linkpreview用(リンク先情報取得用)のJavascript-->
 <script>
   const data = {
     key:'3ce2027b63ce4b30403332b3eb475fbe',
     q: "<%= @album_music.music_url%>"
   }
-  //プレビュー表示用の関数
+  // プレビュー表示用の関数
+  // 取得したJSON形式の情報を各IDへ付与。
   const createIMG = json => {
     document.querySelector('#link_img').src = json.image;
     document.querySelector('#linkpreview').textContent = json.title;
@@ -70,6 +71,7 @@
     document.querySelector('#link').href = json.url;
   }
   //LinkPreviewを利用した通信処理
+  // 情報をJSON形式で取得
   fetch('https://api.linkpreview.net', {
     method: 'POST',
     mode: 'cors',
