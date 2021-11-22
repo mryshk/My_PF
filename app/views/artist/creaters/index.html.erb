@@ -3,7 +3,7 @@
   <div class="col-md-10 offset-md-1">
     <table class="table">
       <thead>
-        <!---->
+        <!--テーブルのタイトル-->
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">Introduction</th>
@@ -22,9 +22,12 @@
             <!--クリエイターページへのリンク付き-->
             <%= link_to artist_creater_path(creater),class:"text-dark" do%>
             <div>
+              <!--プロフィール画像-->
               <%= attachment_image_tag creater.listener, :profile_image,size:"50x50", fallback: "sky-2076868_1280.jpg",class: "rounded-circle"%>
             </div>
             <div>
+              <!--クリエイター名-->
+              <!--クリエイタータイプなのであれば、クリエイターマークをつける。-->
               <%= creater.listener.name %>
               <% if creater.listener.listener_type == 1  %>
                 <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
@@ -35,6 +38,7 @@
           <!--クリエイター自己紹介-->
           <td class="align-middle text-center">
             <p class="text-dark ml-2" style="font-size:14px;">
+              <!--自己紹介が空白でない場合、自己紹介表示。２０文字制限あり。-->
               <% unless creater.listener.caption.nil? %>
               　<%= creater.listener.caption.truncate(20) %>
               <% end %>
@@ -46,6 +50,7 @@
           </td>
           <!--フォローとアンフォロー-->
           <td class="align-middle text-center">
+            <!--自分以外の人であれば、フォロー可能。-->
             <% unless current_listener.id == creater.listener.id %>
               <% if current_listener.followings.exists?(creater.listener.id) %>
                 <%= link_to listener_relationships_path(creater.listener.id), method: :delete ,class: "link" do %>
