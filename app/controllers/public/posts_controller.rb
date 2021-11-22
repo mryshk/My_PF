@@ -13,6 +13,8 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.listener_id = current_listener.id
+    # 登録のタグを配列(splitメソッド)として取得。
+    # Postモデル記載のsave_tagメソッドでsaveする。
     tag_list = params[:post][:tag_name].split(nil)
     if @post.save
       @post.save_tag(tag_list)
@@ -44,6 +46,9 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.listener_id = current_listener.id
+
+    # 登録のタグを配列(splitメソッド)として取得。
+    # Postモデル記載のsave_tagメソッドでsaveする。
     tag_list = params[:post][:tag_name].split(nil)
     if @post.update(post_params)
       @post.save_tag(tag_list)
@@ -61,6 +66,7 @@ class Public::PostsController < ApplicationController
 
   def search
     @search = Post.where('post_tweet LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5).reverse_order
+    # インクリメンタルサーチがあるため、二つの形式を用意。
     respond_to do |format|
       format.html
       format.json
