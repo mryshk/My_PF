@@ -99,7 +99,7 @@ class Public::PostsController < ApplicationController
 
   def fav_rank
     # 投稿のいいねランキングを取得。
-    @post_favorite_rank = Post.includes(:favo_users).sort { |a, b| b.favo_users.size <=> a.favo_users.size }
+    @post_favorite_rank = Post.left_joins(:post_favorites).group(:post_id).order('count(post_id) desc')
   end
 
   def imp_rank
