@@ -29,6 +29,7 @@ class Public::PostsController < ApplicationController
     @post_comment_n = PostComment.new
     # 投稿に対するコメント一覧 リプライコメントは除く。
     @comments = PostComment.where(post_id: @post.id, reply_comment: nil)
+    # 閲覧数カウント。
     impressionist(@post, nil)
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id, listener_id: current_listener.id)
