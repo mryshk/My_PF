@@ -7,105 +7,83 @@
   <!--アルバム詳細-->
   <div class="col-md-5 ml-md-5 mt-md-5 column-center">
     <div class="card">
-        <div class="card-body">
-          <!--クリエイター名と画像-->
-          <div class="card-text" >
-          <!--クリエイターページへ-->
-          <%= link_to artist_creater_path(@album.creater),class: "text-dark" do %>
-            <table class="table table-borderless">
-              <tr>
-                <!--クリエイター画像-->
-                <td class="align-middle" style="width:60px; padding:0;">
-                  <%= attachment_image_tag @album.creater.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
-                </td>
-                <!--クリエイター名-->
-                <td class="align-middle">
-                  <%= @album.creater.listener.name%>
-                  <!--クリエイターのみ表示マーク-->
-                  <% if @album.creater.listener.listener_type == 1  %>
-                    <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
-                  <% end %>
-                </td>
-              </tr>
-            </table>
+      <div class="card-body">
+        <!--クリエイター名と画像-->
+        <div class="card-text" >
+        <!--クリエイターページへ-->
+        <%= link_to artist_creater_path(@album.creater),class: "text-dark" do %>
+          <table class="table table-borderless">
+            <tr>
+              <!--クリエイター画像-->
+              <td class="align-middle" style="width:60px; padding:0;">
+                <%= attachment_image_tag @album.creater.listener,:profile_image ,size:"60x60", fallback: "no_image.jpg",class: "profile_image mt-3 rounded-circle" %>
+              </td>
+              <!--クリエイター名-->
+              <td class="align-middle">
+                <%= @album.creater.listener.name%>
+                <!--クリエイターのみ表示マーク-->
+                <% if @album.creater.listener.listener_type == 1  %>
+                  <i class="far fa-user-circle " style="color:rgb(156,209,237);"></i>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        <% end %>
+        </div>
+        <!--アルバム名-->
+        <h4 class="card-text text-center mt-2"><%= @album.name  %></h4>
+        <!--アルバム説明-->
+        <p class="card-text text-center mt-2"><%= @album.caption %></p>
+        <div class="text-center mt-5">
+          <%= link_to artist_album_path(@album), 'data-turbolinks': false do %>
+            <%= attachment_image_tag @album,:album_image,size:"200x200"%>
           <% end %>
-          </div>
-          <!--アルバム名-->
-          <h4 class="card-text text-center mt-2"><%= @album.name  %></h4>
-          <!--アルバム説明-->
-          <p class="card-text text-center mt-2"><%= @album.caption %></p>
-          <div class="text-center mt-5">
-            <%= link_to artist_album_path(@album), 'data-turbolinks': false do %>
-              <%= attachment_image_tag @album,:album_image,size:"200x200"%>
-            <% end %>
-          </div>
-           <!--linkpreviewAPIの取得分-->
-          <div class="card mb-3 my-5">
-            <div class="row">
-              <div class="col-md-4 my-auto">
-                <!--リンク画像-->
-                <a id="link" href="<%= @album.album_url %>" target="_blank">
-                  <img id="link_img" class="card-img" src="">
+        </div>
+         <!--linkpreviewAPIの取得分-->
+        <div class="card mb-3 my-5">
+          <div class="row">
+            <div class="col-md-4 my-auto">
+              <!--リンク画像-->
+              <a id="link" href="<%= @album.album_url %>" target="_blank">
+                <img id="link_img" class="card-img" src="">
+              </a>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <a id="link" class="link-none" href="<%= @album.album_url %>" target="_blank">
+                  <!--リンクタイトル-->
+                  <h3 id="linktitle" class="card-title"></h3>
+                  <!--リンク詳細説明-->
+                  <p id="linkcaption"></p>
                 </a>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <a id="link" class="link-none" href="<%= @album.album_url %>" target="_blank">
-                    <!--リンクタイトル-->
-                    <h3 id="linktitle" class="card-title"></h3>
-                    <!--リンク詳細説明-->
-                    <p id="linkcaption"></p>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
-          <!--編集・削除-->
-          <div class="mt-4 text-right">
-            <!--ログインユーザーのマイページのみ表示-->
-            <% if @album.creater.listener == current_listener %>
-              <!--編集-->
-              <button type="button" class="btn">
-                <%= link_to edit_artist_album_path(@album),class: "text-info" do%>
-                  <i class="fas fa-edit">Edit</i>
-                <% end %>
-              </button>
-              <!--削除へ-->
-              <button type="button" class="btn ">
-                <%= link_to artist_album_path(@album),method: :delete, "data-confirm" => "本当に消しますか?",class: "text-danger" do%>
-                  <i class="fas fa-trash-alt">Delete</i>
-                <% end %>
-              </button>
-            <% end %>
-          </div>
-          <!--投稿日-->
-          <div class="text-right">
-            <%= l @album.created_at %>
-          </div>
+        </div>
+        <!--編集・削除-->
+        <div class="mt-4 text-right">
+          <!--ログインユーザーのマイページのみ表示-->
+          <% if @album.creater.listener == current_listener %>
+            <!--編集-->
+            <button type="button" class="btn">
+              <%= link_to edit_artist_album_path(@album),class: "text-info" do%>
+                <i class="fas fa-edit">Edit</i>
+              <% end %>
+            </button>
+            <!--削除へ-->
+            <button type="button" class="btn ">
+              <%= link_to artist_album_path(@album),method: :delete, "data-confirm" => "本当に消しますか?",class: "text-danger" do%>
+                <i class="fas fa-trash-alt">Delete</i>
+              <% end %>
+            </button>
+          <% end %>
+        </div>
+        <!--投稿日-->
+        <div class="text-right">
+          <%= l @album.created_at %>
         </div>
       </div>
-    <!--linkpreviewのjavascript-->
-    <script>
-    　const data = {
-      key:'3ce2027b63ce4b30403332b3eb475fbe',
-      q: "<%= @album.album_url%>"
-      }
-      //プレビュー表示用の関数
-      const createIMG = json => {
-        document.querySelector('#link_img').src = json.image;
-        document.querySelector('#linktitle').textContent = json.title;
-        document.querySelector('#linkcaption').textContent = json.description;
-        document.querySelector('#link').href = json.url;
-      }
-      //LinkPreviewを利用した通信処理
-      fetch('https://api.linkpreview.net', {
-        method: 'POST',
-        mode: 'cors',
-        body: JSON.stringify(data),
-      })
-      .then(data => data.json())
-      .then(json => createIMG(json));
-    </script>
+    </div>
   </div>
   <!--右側ランキング-->
   <div class="col-md-3 column-right">
