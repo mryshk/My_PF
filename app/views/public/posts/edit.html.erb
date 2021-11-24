@@ -4,9 +4,9 @@
   <!--編集フォーム-->
   <div class="row form-row"style="margin-top: 100px; ">
     <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
-      <%= form_with model: @post, local: true do |f| %>
+      <%= form_with(model: @post, local: true, id: "form") do |f| %>
       <!--投稿文-->
-      <div class="form-group d-flex mt-3">
+      <div class="form-group  mt-3">
         <%= f.label :投稿文 ,class:"col-4 mr-2 mt-3 form-label" ,style: "font-size:14px;"%>
         <%= f.text_area :post_tweet,rows:"2", autofocus: true, class: "form-control-static col-6",placeholder:"Tweet" %>
       </div>
