@@ -25,6 +25,9 @@ class Artist::AlbumMusicsController < ApplicationController
     @favorite = MusicFavorite.find_by(album_id: @album.id, album_music_id: @album_music.id, listener_id: current_listener.id)
     # 閲覧数カウントされるための記述
     impressionist(@album_music, nil)
+    # LinkpreviewのKeyを環境変数として使用するための定義。gem/gonを使用。
+    gon.linkpreview_key = ENV['LINKPREVIEW_KEY']
+    gon.url = @album_music.music_url
   end
 
   def edit
