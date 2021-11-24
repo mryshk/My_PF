@@ -1,9 +1,9 @@
 <!--フォロワー一覧-->
 <div class="container mt-4">
-  <h2 class="text-center" id="area-1" style="margin-top:100px;" >Follower</h2>
+  <h2 class="text-center" id="area-1" style="margin-top:100px;" ><%= @listener.name%>'s Follower</h2>
   <div class="row"style="margin-top:80px;">
     <!--フォロワーが存在すれば-->
-    <% if @listeners.exists?  %>
+    <% if @listeners.includes(:followers).exists?  %>
     <div class="col-10 mx-auto">
     <table class="table">
       <thead>
@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @listeners.each do |listener|  %>
+        <% @listeners.includes(:followers).each do |listener|  %>
         <tr>
           <!--フォロワーの名前と画像-->
           <td class="align-middle text-center">
