@@ -32,6 +32,10 @@ class Public::PostsController < ApplicationController
     impressionist(@post, nil)
     @post_tags = @post.tags
     @favorite = PostFavorite.find_by(post_id: @post.id, listener_id: current_listener.id)
+
+    # LinkpreviewのKeyを環境変数として使用するための定義。gem/gonを使用。
+    gon.linkpreview_key = ENV['LINKPREVIEW_KEY']
+    gon.url = @post.post_url
   end
 
   def index
