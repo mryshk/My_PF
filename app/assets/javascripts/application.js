@@ -26,6 +26,7 @@
 /* global $this */
 /* global $next */
 /* global scrollHeight */
+/* global gon */
 /* global $ */
 /* global click */
 /* global jQuery */
@@ -193,3 +194,25 @@ $(document).on('turbolinks:load',function(){
   });
 });
 
+// linkpreview用のJavascript
+const data = {
+  key: gon.linkpreview_key,
+  q: gon.url,
+}
+//プレビュー表示用の関数
+// 取得したJSON形式の情報を各IDへ付与。
+const createIMG = json => {
+  document.querySelector('#link_img').src = json.image;
+  document.querySelector('#linktitle').textContent = json.title;
+  document.querySelector('#linkcaption').textContent = json.description;
+  document.querySelector('#link').href = json.url;
+}
+//LinkPreviewを利用した通信処理
+// 情報をJSON形式で取得
+fetch('https://api.linkpreview.net', {
+  method: 'POST',
+  mode: 'cors',
+  body: JSON.stringify(data),
+})
+.then(data => data.json())
+.then(json => createIMG(json));
