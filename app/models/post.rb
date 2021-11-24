@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  # attachment_image_tagに使用。
+  # attachment_image_tagに使用。画像使用のための定義
   attachment :picture
 
   belongs_to :listener
@@ -11,6 +11,10 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :tagmaps, dependent: :destroy
   has_many :tags, through: :tagmaps
+
+  # 投稿のバリデーション
+  validates :post_tweet, presence: true, length: {minimum: 1, maximum: 140}
+
 
   # ジャンル用に定義したenum
   enum post_genre: { ロック: 0, JPOP: 1, アイドル: 2, EDM: 3, KPOP: 4, パンク: 5, レゲエ: 6, HIPHOP: 7 }
