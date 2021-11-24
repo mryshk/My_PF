@@ -11,4 +11,13 @@ $sub2_color: rgb(255,243,063);
   display: inline-block;
 }
 
-
+// 投稿バリデーションメッセージ
+.invalid:nth-child(0){
+  border: red 1px solid;
+}
+#post_post_tweet-error{
+  color:red;
+  font-size:14px;
+  text-align:center;
+  margin:0px;
+}
