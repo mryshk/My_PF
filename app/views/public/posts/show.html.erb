@@ -43,8 +43,8 @@
           <div class="text-center mt-5">
             <%= attachment_image_tag @post,:picture,size:"200x200"%>
           </div>
-           <!--linkpreviewの部分 音楽サイトのリンク内容取得-->
-           <!--カードとして表示-->
+          <!--linkpreviewの部分 音楽サイトのリンク内容取得-->
+          <!--カードとして表示-->
           <div class="card mb-3 my-5">
             <div class="row">
               <div class="col-md-4 my-auto">
@@ -102,7 +102,7 @@
       <!--linkpreview用のJavascript-->
     <script>
     　const data = {
-      key:'3ce2027b63ce4b30403332b3eb475fbe',
+      key: ENV['LINKPREVIEW_PASSWORD'],
       q: "<%= @post.post_url%>"
       }
       //プレビュー表示用の関数
