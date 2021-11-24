@@ -19,8 +19,13 @@ class Artist::AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @album_musics = AlbumMusic.where(album_id: params[:id]).all
+    # 閲覧数カウントされるための記述
     impressionist(@album, nil)
+    # 閲覧数ランキング
     @music_impression_rank = AlbumMusic.all.order(impressions_count: 'DESC').page(params[:page])
+    # LinkpreviewのKeyを環境変数として使用するための定義。gem/gonを使用。
+    gon.linkpreview_key = ENV['LINKPREVIEW_KEY']
+    gon.url = @album.album_url
   end
 
   def index
