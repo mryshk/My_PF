@@ -12,12 +12,12 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def followings
-    listener = Listener.find(params[:listener_id])
-    @listeners = listener.followings
+    @listener = Listener.find(params[:listener_id])
+    @listeners = @listener.followings
   end
 
   def followers
-    listener = Listener.find(params[:listener_id])
-    @listeners = listener.followers
+    @listener = Listener.find(params[:listener_id])
+    @listeners = @listener.followers
   end
 end
