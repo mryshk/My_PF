@@ -195,8 +195,9 @@ $(document).on('turbolinks:load',function(){
 });
 
 // linkpreview用のJavascript
+// post/show album/show album_music/showの３つのviewで使用。
 const data = {
-  key: gon.linkpreview_key,
+  key: gon.linkpreview_key, //環境変数化済み。gem/gon使用。
   q: gon.url,
 }
 //プレビュー表示用の関数
