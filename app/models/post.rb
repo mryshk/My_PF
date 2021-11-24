@@ -14,6 +14,7 @@ class Post < ApplicationRecord
 
   # 投稿のバリデーション
   validates :post_tweet, presence: true, length: {minimum: 1, maximum: 140}
+  validates :post_url, presence: true
 
 
   # ジャンル用に定義したenum
