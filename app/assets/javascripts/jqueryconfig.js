@@ -40,7 +40,18 @@ $(function(){
       "group[introduction]":{
         maxlength: 140,
       },
+      // 以下お問い合わせ機能のバリデーション
+      "inquiry[name]":{
+        required: true,
+      },
+      "inquiry[email]":{
+        required: true,
+      },
+      "inquiry[message]":{
+        maxlength: 300,
+      },
     },
+    // 以下アラート分
     messages: {
       // 以下つぶやき投稿のアラート文
       "post[post_tweet]": {
@@ -64,16 +75,27 @@ $(function(){
         required: "楽曲名を入力してください。"
       },
       "album_music[caption]":{
-        required: "１４０文字以内で入力してください。"
+        required: "140文字以内で入力してください。"
       },
       "album_music[music_url]":{
         required: "楽曲のURL（Youtubeや音楽サブスク等）を入力してください。"
       },
+      // 以下グループ作成のアラート文
       "group[name]":{
         required: "グループ名を入力してください。"
       },
       "group[introduction]":{
-        required: "１４０文字以内で入力してください。"
+        required: "140文字以内で入力してください。"
+      },
+      // 以下お問合わせ機能のアラート文
+      "inquiry[name]":{
+        required: "グループ名を入力してください。"
+      },
+      "inquiry[email]":{
+        required: "メールアドレスを入力してください。"
+      },
+      "inquiry[message]":{
+        required: "300文字以内で入力してください。"
       },
     },
     // 失敗した際に以下クラス名付与
