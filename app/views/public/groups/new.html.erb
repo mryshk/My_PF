@@ -4,7 +4,7 @@
   <!--新グループフォーム-->
   <div class="row form-row"style="margin-top: 100px; ">
     <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
-      <%= form_with model: @group, local: true do |f| %>
+      <%= form_with(model: @group, local: true,id: "form") do |f| %>
       <!--グループ名-->
       <div class="form-group　mt-3">
         <%= f.label :グループ名,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
