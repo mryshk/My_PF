@@ -19,6 +19,7 @@
 //= require skippr.min.js
 //= require jquery.raty.js
 //= require search.js
+//= require jqueryconfig.js
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
