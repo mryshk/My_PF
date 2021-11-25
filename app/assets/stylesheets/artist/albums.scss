@@ -1,3 +1,8 @@
-// Place all the styles related to the artist/albums controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#album_name-error,#album_album_url-error{
+  color:red;
+  font-size:14px;
+  text-align:left;
+  margin:0px;
+}
