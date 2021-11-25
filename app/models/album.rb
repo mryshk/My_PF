@@ -1,19 +1,20 @@
 class Album < ApplicationRecord
-  
+
   # アソシエーション
   belongs_to :creater
   belongs_to :listener
   has_many :album_musics, dependent: :destroy
   has_many :music_comments, dependent: :destroy
   has_many :music_favorites, dependent: :destroy
-  
+
   # アルバム投稿の際のバリデーション
   validates :name, presence: true
+  validates :caption, length: {maximum: 140}
   validates :album_url, presence: true
-  
-  
+
+
   # 画像表示のため
-  attachment :album_image 
+  attachment :album_image
 
 
 
