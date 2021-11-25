@@ -13,7 +13,19 @@ $(function(){
       "album[name]": {
         required: true,
       },
+      "album[caption]": {
+        maxlength: 140,
+      },
       "album[album_url]": {
+        required: true,
+      },
+      "album_music[name]":{
+        required: true,
+      },
+      "album_music[caption]": {
+        maxlength: 140,
+      },
+      "album_music[music_url]":{
         required: true,
       }
     },
@@ -27,8 +39,20 @@ $(function(){
       "album[name]": {
         required: "アルバム名を入力してください。"
       },
+      "album[caption]":{
+        required: "１４０文字以内で入力してください。"
+      },
       "album[album_url]":{
         required: "アルバムのURL（Youtubeや音楽サブスク等）を入力してください。"
+      },
+      "album_music[name]": {
+        required: "楽曲名を入力してください。"
+      },
+      "album_music[caption]":{
+        required: "１４０文字以内で入力してください。"
+      },
+      "album_music[music_url]":{
+        required: "楽曲のURL（Youtubeや音楽サブスク等）を入力してください。"
       },
     },
     errorClass: "invalid",
