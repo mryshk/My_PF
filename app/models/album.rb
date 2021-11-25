@@ -1,4 +1,6 @@
 class Album < ApplicationRecord
+  
+  # アソシエーション
   belongs_to :creater
   belongs_to :listener
   has_many :album_musics, dependent: :destroy
