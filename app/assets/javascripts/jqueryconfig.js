@@ -9,6 +9,12 @@ $(function(){
       },
       "post[post_url]": {
         required: true,
+      },
+      "album[name]": {
+        required: true,
+      },
+      "album[album_url]": {
+        required: true,
       }
     },
     messages: {
@@ -17,7 +23,13 @@ $(function(){
       },
       "post[post_url]": {
         required: "音楽のURL（Youtubeや音楽サブスク等）を入力してください。"
-      }
+      },
+      "album[name]": {
+        required: "アルバム名を入力してください。"
+      },
+      "album[album_url]":{
+        required: "アルバムのURL（Youtubeや音楽サブスク等）を入力してください。"
+      },
     },
     errorClass: "invalid",
     errorElement: "p",
