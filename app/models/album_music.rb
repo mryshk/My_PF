@@ -1,4 +1,6 @@
 class AlbumMusic < ApplicationRecord
+
+  # アソシエーション
   belongs_to :album
   belongs_to :creater
   belongs_to :listener
