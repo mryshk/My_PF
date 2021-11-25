@@ -1,8 +1,9 @@
 class Post < ApplicationRecord
+
   # attachment_image_tagに使用。画像使用のための定義
   attachment :picture
 
-　# アソシエーション
+  # アソシエーション
   belongs_to :listener
   has_many :reposts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
