@@ -4,7 +4,7 @@
   <!--編集フォーム-->
   <div class="row form-row"style="margin-top: 100px; ">
     <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
-      <%= form_with( model: [@album,@album_music], url: artist_album_album_music_path(@album,@album_music), method: :patch, local: true ) do |f| %>
+      <%= form_with( model: [@album,@album_music], url: artist_album_album_music_path(@album,@album_music), method: :patch, local: true, id: "form" ) do |f| %>
       <!--楽曲名-->
       <div class="form-group　mt-3">
         <%= f.label :楽曲名,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
