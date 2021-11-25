@@ -12,8 +12,11 @@ class Artist::AlbumsController < ApplicationController
     @album = Album.new(album_params)
     @album.creater_id = current_listener.creater.id
     @album.listener_id = current_listener.id
-    @album.save
-    redirect_to artist_album_path(@album)
+    if @album.save
+      redirect_to artist_album_path(@album)
+    else
+      render :new
+    end
   end
 
   def show
@@ -40,8 +43,11 @@ class Artist::AlbumsController < ApplicationController
   def update
     @album = Album.find(params[:id])
     @album.listener_id = current_listener.id
-    @album.update(album_params)
-    redirect_to artist_album_path(@album)
+    if @album.update(album_params)
+      redirect_to artist_album_path(@album)
+    else
+      render :edit
+    end
   end
 
   def destroy
