@@ -9,6 +9,7 @@ class Group < ApplicationRecord
 
   # グループ作成のバリデーション
   validates :name, presence: true
+  validates :introduction,length: {maximum: 140}
 
   # グループに参加しているかどうかの確認。
   def joined_by?(listener_id)
