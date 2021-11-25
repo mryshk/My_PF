@@ -4,8 +4,16 @@ class Album < ApplicationRecord
   has_many :album_musics, dependent: :destroy
   has_many :music_comments, dependent: :destroy
   has_many :music_favorites, dependent: :destroy
+  
+  # アルバム投稿の際のバリデーション
+  validates :name, presence: true
+  validates :album_url, presence: true
+  
+  
+  # 画像表示のため
+  attachment :album_image 
 
-  attachment :album_image # 画像表示のため
+
 
   # ジャンル用に定義したenum
   enum genre: { ロック: 0, JPOP: 1, アイドル: 2, EDM: 3, KPOP: 4, パンク: 5, レゲエ: 6, HIPHOP: 7 }
