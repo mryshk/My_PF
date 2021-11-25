@@ -2,7 +2,7 @@
 <p class = "text-center mt-3 " style="font-size:12px;">下記のフォームを確認してください。</p>
   <div class="row form-row"style="margin-top: 100px; ">
     <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
-      <%=  form_with model: @inquiry ,url: inquiry_index_path, method: :post ,local: true do |f| %>
+      <%=  form_with(model: @inquiry ,url: inquiry_index_path, method: :post ,local: true,id: "form") do |f| %>
       <div class="form-group mt-5">
         <table class="table table-borderless">
           <tr>
