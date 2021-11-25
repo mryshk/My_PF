@@ -2,7 +2,7 @@
 <p class = "text-center mt-3 " style="font-size:12px;">下記のフォームへ入力してください。</p>
   <div class="row form-row"style="margin-top: 100px; ">
     <div class="col-6 offset-3"style="margin-top: 100px; margin-bottom:100px;">
-      <%=  form_with model: @inquiry ,url: confirm_inquiry_index_path, method: :post ,local: true do |f| %>
+      <%=  form_with(model: @inquiry ,url: confirm_inquiry_index_path, method: :post ,local: true,id: "form") do |f| %>
       <div class="form-group mt-5">
         <%= f.label :名前 ,class:"col-4 mr-2 form-label" ,style: "font-size:13px;"%>
         <%= f.text_field :name, autofocus: true,class: "form-control-static col-3",placeholder:"Name"%>
