@@ -7,6 +7,11 @@ class AlbumMusic < ApplicationRecord
   has_many :music_comments, dependent: :destroy
   has_many :music_favorites, dependent: :destroy
 
+  # 楽曲投稿のバリデーション
+  validates :name, presence: true
+  validates :caption, length: {maximum: 140}
+  validates :music_url, presence: true
+
   # 閲覧数機能の許可
   is_impressionable counter_cache: true
 
