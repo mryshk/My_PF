@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   # 権限確認後の遷移先（権限無しの場合）
   rescue_from CanCan::AccessDenied do |_exception|
-    redirect_to root_path, alert: '画面を閲覧する権限がありません。'
+    redirect_to home_post_path, alert: '画面を閲覧する権限がありません。'
   end
 
   def after_sign_in_path_for(resource)
