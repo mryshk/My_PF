@@ -2,9 +2,9 @@
 <!--投稿にいいねされていたら-->
 <% if post.favorited_by?(current_listener) %>
   <!--いいねを削除-->
-  <%= link_to post_post_favorite_path(post, favorite), method: :delete, class: "text-warning ",remote: true do %>
+  <%= link_to post_post_favorite_path(post, favorite), method: :delete, class: "text-warning link",remote: true do %>
     <!--いいね数-->
-    <i class="fas fa-star fa-lg hover" style="rgb(255,243,063)"></i>
+    <i class="fas fa-bookmark fa-lg hover" style="rgb(255,243,063)"></i>
     <%= post.post_favorites.count %></br>
     <p class="text-dark" style="font-size:12px;"><%= link_to "Likes",post_post_favorites_path(post),class:"link hover"%></p>
   <% end %>
@@ -12,8 +12,10 @@
   <!--いいね作成-->
   <%= link_to post_post_favorites_path(post), method: :post,class: "link", remote: true do %>
     <!--いいね数-->
-    <i class="far fa-star fa-lg " style="rgb(255,243,063)"></i>
+    <i class="far fa-bookmark fa-lg " style="rgb(255,243,063)"></i>
     <%= post.post_favorites.count %></br>
-    <p class="text-dark" style="font-size:12px;"><%= link_to "Likes",post_post_favorites_path(post),class:"link hover"%></p>
+    <p class="text-dark" style="font-size:12px;">
+      <%= link_to "Likes",post_post_favorites_path(post),class:"link hover"%>
+    </p>
   <% end %>
 <% end %>
