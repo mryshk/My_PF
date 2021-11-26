@@ -5,6 +5,8 @@ class Public::PostsController < ApplicationController
   before_action :fav_rank, only: [:show, :index, :search_tag, :order]
   # 閲覧数ランキング取得用。以下のアクションの際に使用。
   before_action :imp_rank, only: [:index, :search_tag, :order]
+  # 自分以外の人をアクセス不可にするための確認
+  before_action :ensure_listener, only:[:edit,:update,:destroy]
 
   def new
     @post = Post.new
@@ -45,11 +47,9 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.listener_id = current_listener.id
 
     # 登録のタグを配列(splitメソッド)として取得。
@@ -64,14 +64,13 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to home_post_path
   end
 
   def search
     @search = Post.where('post_tweet LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5).reverse_order
-    # インクリメンタルサーチがあるため、二つの形式を用意。
+    # インクリメンタルサーチ(jsonで検索結果取得)があるため、二つの形式を用意。
     respond_to do |format|
       format.html
       format.json
@@ -102,24 +101,34 @@ class Public::PostsController < ApplicationController
     end
   end
 
+
+  # 以下プライベート
+  private
+
+  # 投稿のいいねランキングを取得。
   def fav_rank
-    # 投稿のいいねランキングを取得。
     @post_favorite_rank = Post.left_joins(:post_favorites).group(:post_id).order('count(post_id) desc')
   end
 
+   # 投稿の閲覧数ランキングを取得。
   def imp_rank
-    # 投稿の閲覧数ランキングを取得。
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
   end
 
+  # メニュー用
+  # 自分の所属するグループを全て集める。
   def set_menu
-    # メニュー用
-    # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
   end
 
-  private
+  # 本人確認 本人以外であれば、ホーム画面へ遷移。
+  def ensure_listener
+    @post = Post.find(params[:id])
+    if @post.listener_id != current_listener.id
+      redirect_to home_post_path, alert: '画面を閲覧する権限がありません。'
+    end
+  end
 
   #投稿内容取得用のパラメーター
   def post_params
