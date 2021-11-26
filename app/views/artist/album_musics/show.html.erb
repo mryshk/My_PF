@@ -30,13 +30,13 @@
         <!--楽曲編集-->
         <button class="btn">
           <%= link_to edit_artist_album_album_music_path(@album_music.album, @album_music),class: "text-info" do%>
-            <i class="fas fa-user-edit">Edit</i>
+            <i class="fas fa-user-edit hover">Edit</i>
           <% end %>
         </button>
         <!--楽曲削除-->
         <button class="btn">
           <%= link_to artist_album_album_music_path(@album_music.album, @album_music),method: :delete,"data-confirm" => "本当に消しますか？", class: "text-danger" do%>
-            <i class="fas fa-user-edit">Delete</i>
+            <i class="fas fa-user-edit hover">Delete</i>
           <% end %>
         </button>
       <% end %>
