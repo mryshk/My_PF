@@ -10,7 +10,7 @@
         <!--コメントリスナー-->
         <td class=" align-middle text-center" style="width:15%;">
           <!--リスナー詳細へ-->
-          <%= link_to  listener_path(music_comment.listener_id), class: "text-dark" do %>
+          <%= link_to  listener_path(music_comment.listener_id), class: "link-none" do %>
           <div><%= attachment_image_tag music_comment.listener,:profile_image ,size:"50x50", fallback: "sky-2076868_1280.jpg",class:"mt-3 rounded-circle" %></div>
           <div>&ensp;<%= music_comment.listener.name %></div>
           <% end %>
