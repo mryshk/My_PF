@@ -48,9 +48,15 @@
       <% unless current_listener.id == @listener.id  %>
         <button class="btn btn-outline-main btn-block">
           <% if current_listener.following?(@listener) %>
-            <%= link_to listener_relationships_path(@listener), method: :delete ,class: "link" do %><i class="fas fa-user-slash">&nbsp;Unfollow</i><% end %>
+            <!--フォロー解除-->
+            <%= link_to listener_relationships_path(@listener), method: :delete ,class: "link" do %>
+              <i class="fas fa-user-slash">&nbsp;Unfollow</i>
+            <% end %>
           <% else %>
-            <%= link_to listener_relationships_path(@listener), method: :post,class: "link" do %><i class="fas fa-user-check">&nbsp;Follow</i><% end %>
+            <!--フォロー-->
+            <%= link_to listener_relationships_path(@listener), method: :post,class: "link" do %>
+              <i class="fas fa-user-check">&nbsp;Follow</i>
+            <% end %>
           <% end %>
         </button>
       <% end %>
@@ -68,7 +74,9 @@
         <!--ログインユーザーと一致すれば-->
         <% if @listener == current_listener  %>
         <button class="btn">
-          <%= link_to edit_listener_path(current_listener),class: "text-info" do%><i class="fas fa-user-edit"> Edit</i><% end %>
+          <%= link_to edit_listener_path(current_listener),class: "text-info" do%>
+            <i class="fas fa-user-edit hover"> Edit</i>
+          <% end %>
         </button>
         <% end %>
       </div>
