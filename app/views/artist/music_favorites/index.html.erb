@@ -1,5 +1,5 @@
 <!--いいねした人一覧-->
-<h3 class="text-center" style="margin-top:100px;"><i class="far fa-star"></i> Favorites</h3>
+<h3 class="text-center" style="margin-top:100px;"><i class="far fa-bookmark"></i> Like's listeners</h3>
 <div class="row" style="margin-top:80px;">
   <!--いいねした人が存在すれば-->
   <% if @favorites.exists?  %>
@@ -19,7 +19,7 @@
         <tr>
           <!--リスナー名・画像-->
           <td class="align-middle text-center">
-            <%= link_to listener_path(favo.listener.id), class: "text-dark" do %>
+            <%= link_to listener_path(favo.listener.id), class: "link-none" do %>
             <div>
               <%= attachment_image_tag favo.listener, :profile_image,size:"50x50", fallback: "no_image.jpg",class: "rounded-circle"%>
             </div>
