@@ -38,13 +38,13 @@
           <!--コメント編集-->
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_post_post_comment_path(post_comment.post,post_comment),method: :get, class: "text-info" do %>
-              <i class="fas fa-edit">Edit</i>
+              <i class="fas fa-edit hover">Edit</i>
             <% end %>
           </div>
           <!--コメント削除-->
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to post_post_comment_path(post_comment.post,post_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
-              <i class="fas fa-trash-alt">Delete</i>
+              <i class="fas fa-trash-alt hover">Delete</i>
             <% end %>
           </div>
         </td>
