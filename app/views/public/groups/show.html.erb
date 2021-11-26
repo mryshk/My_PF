@@ -52,8 +52,16 @@
       <!--編集画面へ-->
       <div class="text-right mt-5">
         <% if @group.owner_id == current_listener.id %>
-         <div type="button" class="btn "> <%= link_to edit_group_path(@group),class: "text-info" do%><i class="fas fa-edit">Edit</i><% end %></div>
-         <div type="button" class="btn "><%= link_to group_path(@group),method: :delete, "data-confirm" => "本当に消しますか？",class: "text-danger" do%><i class="fas fa-trash-alt">Delete</i><% end %></div>
+          <div type="button" class="btn ">
+            <%= link_to edit_group_path(@group),class: "text-info" do%>
+              <i class="fas fa-edit hover">Edit</i>
+            <% end %>
+          </div>
+          <div type="button" class="btn ">
+            <%= link_to group_path(@group),method: :delete, "data-confirm" => "本当に消しますか？",class: "text-danger" do%>
+              <i class="fas fa-trash-alt hover">Delete</i>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
