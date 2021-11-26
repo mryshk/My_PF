@@ -23,12 +23,12 @@
         <td class="align-middle text-center" style="width:20%;">
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to edit_post_post_comment_path(reply_comment.post,reply_comment),method: :get, class: "text-info" do %>
-              <i class="fas fa-edit">Edit</i>
+              <i class="fas fa-edit hover">Edit</i>
             <% end %>
           </div>
           <div class="btn d-block" style="width: 70px; ">
             <%= link_to reply_destroy_post_post_comment_path(reply_comment.post, reply_comment),method: :delete,'data-confirm' => "本当に消しますか？", class: "text-danger",remote: true do %>
-              <i class="fas fa-trash-alt">Delete</i>
+              <i class="fas fa-trash-alt hover">Delete</i>
             <% end %>
           </div>
           </td>
