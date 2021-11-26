@@ -20,7 +20,7 @@
           <tr>
           　<!--フォローの名前と画像-->
             <td class="align-middle text-center">
-              <%= link_to listener_path(group_listener.listener.id), class:"text-dark" do %>
+              <%= link_to listener_path(group_listener.listener.id),class:"link-none" do %>
               <div>
                 <%= attachment_image_tag group_listener.listener, :profile_image,size:"50x50", fallback: "sky-2076868_1280.jpg",class: "rounded-circle"%>
               </div>
@@ -52,13 +52,13 @@
             <!--フォロー一覧へ-->
             <td class="align-middle text-center">
               <%= link_to listener_followings_path(group_listener.listener_id),class:"text-dark"  do %>
-                <i class="fas fa-listener-check fa-lg mt-3"><%=group_listener.listener.followings.count %></i>
+                <i class="fas fa-listener-check fa-lg mt-3 hover"><%=group_listener.listener.followings.count %></i>
               <% end %>
             </td>
             <!--フォロワー一覧へ-->
             <td class="align-middle text-center">
               <%= link_to listener_followers_path(group_listener.listener_id),class:"text-dark"  do %>
-                <i class="fas fa-listener-friends fa-lg mt-3"><%= group_listener.listener.followers.count %></i>
+                <i class="fas fa-listener-friends fa-lg mt-3 hover"><%= group_listener.listener.followers.count %></i>
               <% end %>
             </td>
             <!--相互フォローの人はチャットへ-->
