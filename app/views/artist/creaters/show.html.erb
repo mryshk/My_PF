@@ -47,17 +47,17 @@
       <!--フォロー・アンフォローボタン-->
       <div class="mt-3 text-center">
       <% unless current_listener.id == @creater.listener.id  %>
-        <button class="btn btn-outline-info btn-block">
+        <button class="btn btn-outline-main btn-block">
           <% if current_listener.following?(@creater.listener) %>
             <!--アンフォロー-->
-            <%= link_to listener_relationships_path(@creater.listener), method: :delete ,class: "text-info" do %>
+            <%= link_to listener_relationships_path(@creater.listener), method: :delete ,class: "link" do %>
               <i class="fas fa-user-slash">
                 &nbsp;Unfollow
               </i>
             <% end %>
           <% else %>
             <!--フォロー-->
-            <%= link_to listener_relationships_path(@creater.listener), method: :post,class: "text-info"   do %>
+            <%= link_to listener_relationships_path(@creater.listener), method: :post,class: "link" do %>
               <i class="fas fa-user-check">
                 &nbsp;Follow
               </i>
@@ -69,8 +69,8 @@
       <!--相互フォローであればチャットへ-->
       <div class="mt-4 text-center">
         <% if (current_listener.followings.exists? @creater.listener.id)  && (@creater.listener.followings.exists? current_listener.id )%>
-          <%= link_to chat_path(@creater.listener) do  %>
-            <div class="btn btn-outline-info btn-block"><i class="far fa-envelope fa-lg"> Chat</i></div>
+          <%= link_to chat_path(@creater.listener), class: "link" do  %>
+            <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> Chat</i></div>
           <% end %>
         <% end %>
       </div>
