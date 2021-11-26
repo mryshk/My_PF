@@ -51,13 +51,13 @@
           <!--フォロ数・フォロー一覧へ-->
           <td class="align-middle text-center">
             <%= link_to listener_followings_path(favo.listener),class:"text-dark"  do %>
-              <i class="fas fa-listener-check fa-lg mt-3"><%= favo.listener.followings.count %></i>
+              <i class="fas fa-listener-check fa-lg mt-3 hover"><%= favo.listener.followings.count %></i>
             <% end %>
           </td>
           <!--フォロワー数・フォロワー一覧へ-->
           <td class="align-middle text-center">
             <%= link_to listener_followers_path(favo.listener),class:"text-dark"  do %>
-              <i class="fas fa-listener-friends fa-lg mt-3"><%= favo.listener.followers.count %></i>
+              <i class="fas fa-listener-friends fa-lg mt-3 hover"><%= favo.listener.followers.count %></i>
             <% end %>
           </td>
           <!--相互フォローであればチャットへ-->
