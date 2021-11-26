@@ -20,7 +20,7 @@
           <!--クリエイター名と画像-->
           <td class="align-middle text-center">
             <!--クリエイターページへのリンク付き-->
-            <%= link_to artist_creater_path(creater),class:"text-dark" do%>
+            <%= link_to artist_creater_path(creater),class:"link-none" do%>
             <div>
               <!--プロフィール画像-->
               <%= attachment_image_tag creater.listener, :profile_image,size:"50x50", fallback: "sky-2076868_1280.jpg",class: "rounded-circle"%>
@@ -67,14 +67,14 @@
           <td class="align-middle text-center">
             <!--フォロー一覧へのリンク-->
             <%= link_to listener_followings_path(creater.listener),class:"text-dark"  do %>
-              <i class="fas fa-listener-check fa-lg mt-3"><%= creater.listener.followings.count %></i>
+              <i class="fas fa-listener-check fa-lg mt-3 hover"><%= creater.listener.followings.count %></i>
             <% end %>
           </td>
           <!--フォロワー数-->
           <td class="align-middle text-center">
             <!--フォロワー一覧へのリンク-->
             <%= link_to listener_followers_path(creater.listener),class:"text-dark"  do %>
-              <i class="fas fa-listener-friends fa-lg mt-3"><%= creater.listener.followers.count %></i>
+              <i class="fas fa-listener-friends fa-lg mt-3 hover"><%= creater.listener.followers.count %></i>
             <% end %>
           </td>
           <!--チャットボタン-->
