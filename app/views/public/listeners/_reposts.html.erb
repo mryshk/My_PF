@@ -87,5 +87,16 @@
       <% end %>
     </div>
   </div>
+  <!--投稿が無ければ-->
+  <% else %>
+  <div class="col-6 offset-3 text-center">
+    <p style="font-size:22px;">リポストした投稿はありません。</p>
+    <% if @listener == current_listener  %>
+      <!--投稿ホーム画面へ-->
+      <%= link_to home_post_path ,class:"link" do %>
+        <div class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i>Home Postへ</div>
+      <% end %>
+    <% end %>
+  </div>
   <% end %>
 </div>
