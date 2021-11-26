@@ -32,7 +32,7 @@
       </div>
       <!--グループ人数　グループ一覧へ-->
       <div>
-        <%= link_to group_group_listeners_path(@group) do %>
+        <%= link_to group_group_listeners_path(@group),class: "link" do %>
           <div class="btn btn-outline-main btn-block">
             <i class="fas fa-users fa-lg"></i> <%= @group.listeners.count %>
           </div>
@@ -42,7 +42,7 @@
       <div class="mt-4">
         <!--グループに参加していれば-->
         <% if @group.joined_by?(current_listener)  %>
-          <%= link_to group_group_chats_path(@group) do  %>
+          <%= link_to group_group_chats_path(@group),class: "link" do  %>
             <div class="btn btn-outline-main btn-block">
               <i class="far fa-envelope fa-lg"></i> Group Chat
             </div>
