@@ -2,17 +2,19 @@
 <!--投稿にいいねされていたら-->
 <% if album_music.favorited_by?(current_listener) %>
   <!--いいねを削除-->
-  <%= link_to artist_album_album_music_music_favorite_path(album, album_music,favorite), method: :delete, class: "text-warning",remote: true do %>
+  <%= link_to artist_album_album_music_music_favorite_path(album, album_music,favorite), method: :delete, class: "text-warning link",remote: true do %>
     <!--いいね数-->
-    <i class="fas fa-star fa-lg hover" style="rgb(255,243,063)"></i>
+    <i class="fas fa-bookmark fa-lg hover" style="rgb(255,243,063)"></i>
     <%= album_music.music_favorites.count %></br>
-    <p class="text-dark" style="font-size:12px;"><%= link_to "Likes",artist_album_album_music_music_favorites_path(album, album_music),class:"link hover"%></p>
+    <p class="text-dark" style="font-size:12px;">
+      <%= link_to "Likes",artist_album_album_music_music_favorites_path(album, album_music),class:"link hover"%>
+    </p>
   <% end %>
 <% else %>
   <!--いいね作成-->
   <%= link_to artist_album_album_music_music_favorites_path(album, album_music), method: :post,class:"link", remote: true do %>
     <!--いいね数-->
-    <i class="far fa-star fa-lg " style="rgb(255,243,063)"></i>
+    <i class="far fa-bookmark fa-lg " style="rgb(255,243,063)"></i>
     <%= album_music.music_favorites.count %></br>
     <p class="text-dark" style="font-size:12px;"><%= link_to "Likes",artist_album_album_music_music_favorites_path(album, album_music),class:"link hover"%></p>
   <% end %>
