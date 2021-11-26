@@ -1,93 +1,91 @@
 <!--グループメンバー一覧-->
-<div class="container" style="height:1000px;">
-  <h2 class="text-center" id="area-1" style="margin-top:100px;" ><i class="fas fa-users"></i> Group Menber</h2>
-  <div class="row">
-    <!--一覧の表-->
-    <div class="col-10 mx-auto">
-    <% if @group_listeners.exists?  %>
-      <table class="table" style="margin-top:100px;">
-        <thead>
-          <tr>
-          <th class="text-center">Name</th>
-          <th class="text-center">Follow&Unfollow</th>
-          <th class="text-center">Follows</th>
-          <th class="text-center">Followers</th>
-          <th class="text-center">Chat</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @group_listeners.each do |group_listener|  %>
-          <tr>
-          　<!--フォローの名前と画像-->
-            <td class="align-middle text-center">
-              <%= link_to listener_path(group_listener.listener.id),class:"link-none" do %>
-              <div>
-                <%= attachment_image_tag group_listener.listener, :profile_image,size:"50x50", fallback: "sky-2076868_1280.jpg",class: "rounded-circle"%>
-              </div>
-              <div>
-                 <%= group_listener.listener.name %>
-                <% if group_listener.listener.listener_type == 1  %>
-                  <i class="far fa-user-circle " style="color:rgb(063,163,203);"></i>
-                <% end %>
-              </div>
-            <% end %>
-            </td>
-            <!--フォロー・アンフォロー-->
-            <td class="align-middle text-center">
-            <!--自分と一致しない限り-->
-            <% unless current_listener.id == group_listener.listener_id %>
-              <!--自分がフォローをしていればアンフォロー-->
-              <% if current_listener.followings.exists?(group_listener.listener_id) %>
-                <%= link_to listener_relationships_path(group_listener.listener_id), method: :delete ,class: "link" do %>
-                <div class="btn btn-outline-main">Unfollow</div>
-                <% end %>
-              <!--フォローしていなければフォロー-->
-              <% else %>
-                <%= link_to listener_relationships_path(group_listener.listener_id), method: :post,class: "link"   do %>
-                <div class="btn btn-main">Follow</div>
-                <% end %>
+<h2 class="text-center" id="area-1" style="margin-top:100px;" ><i class="fas fa-users"></i> Group Menber</h2>
+<div class="row">
+  <!--一覧の表-->
+  <div class="col-8 mx-auto">
+  <% if @group_listeners.exists?  %>
+    <table class="table" style="margin-top:100px;">
+      <thead>
+        <tr>
+        <th class="text-center">Name</th>
+        <th class="text-center">Follow&Unfollow</th>
+        <th class="text-center">Follows</th>
+        <th class="text-center">Followers</th>
+        <th class="text-center">Chat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @group_listeners.each do |group_listener|  %>
+        <tr>
+        　<!--フォローの名前と画像-->
+          <td class="align-middle text-center">
+            <%= link_to listener_path(group_listener.listener.id),class:"link-none" do %>
+            <div>
+              <%= attachment_image_tag group_listener.listener, :profile_image,size:"50x50", fallback: "sky-2076868_1280.jpg",class: "rounded-circle"%>
+            </div>
+            <div>
+               <%= group_listener.listener.name %>
+              <% if group_listener.listener.listener_type == 1  %>
+                <i class="far fa-user-circle " style="color:rgb(063,163,203);"></i>
               <% end %>
-            <% end %>
-            </td>
-            <!--フォロー一覧へ-->
-            <td class="align-middle text-center">
-              <%= link_to listener_followings_path(group_listener.listener_id),class:"text-dark"  do %>
-                <i class="fas fa-listener-check fa-lg mt-3 hover"><%=group_listener.listener.followings.count %></i>
-              <% end %>
-            </td>
-            <!--フォロワー一覧へ-->
-            <td class="align-middle text-center">
-              <%= link_to listener_followers_path(group_listener.listener_id),class:"text-dark"  do %>
-                <i class="fas fa-listener-friends fa-lg mt-3 hover"><%= group_listener.listener.followers.count %></i>
-              <% end %>
-            </td>
-            <!--相互フォローの人はチャットへ-->
-            <td class="align-middle text-center">
-              <% if (current_listener.followings.exists? group_listener.listener_id)  && (group_listener.listener.followings.exists? current_listener.id )%>
-                <%= link_to chat_path(group_listener.listener_id),class: "link" do  %>
-                <div class="btn btn-main"><i class="far fa-envelope">Chat</i></div>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
+            </div>
           <% end %>
-        </tbody>
-      </table>
-      <!--メンバーがいなければ-->
-    <% else %>
-      <h1 class="text-center mt-5 "><i class="fas fa-listeners-slash">No Member</i></h1>
-    <% end %>
-    </div>
+          </td>
+          <!--フォロー・アンフォロー-->
+          <td class="align-middle text-center">
+          <!--自分と一致しない限り-->
+          <% unless current_listener.id == group_listener.listener_id %>
+            <!--自分がフォローをしていればアンフォロー-->
+            <% if current_listener.followings.exists?(group_listener.listener_id) %>
+              <%= link_to listener_relationships_path(group_listener.listener_id), method: :delete ,class: "link" do %>
+              <div class="btn btn-outline-main">Unfollow</div>
+              <% end %>
+            <!--フォローしていなければフォロー-->
+            <% else %>
+              <%= link_to listener_relationships_path(group_listener.listener_id), method: :post,class: "link"   do %>
+              <div class="btn btn-main">Follow</div>
+              <% end %>
+            <% end %>
+          <% end %>
+          </td>
+          <!--フォロー一覧へ-->
+          <td class="align-middle text-center">
+            <%= link_to listener_followings_path(group_listener.listener_id),class:"text-dark"  do %>
+              <i class="fas fa-listener-check fa-lg mt-3 hover"><%=group_listener.listener.followings.count %></i>
+            <% end %>
+          </td>
+          <!--フォロワー一覧へ-->
+          <td class="align-middle text-center">
+            <%= link_to listener_followers_path(group_listener.listener_id),class:"text-dark"  do %>
+              <i class="fas fa-listener-friends fa-lg mt-3 hover"><%= group_listener.listener.followers.count %></i>
+            <% end %>
+          </td>
+          <!--相互フォローの人はチャットへ-->
+          <td class="align-middle text-center">
+            <% if (current_listener.followings.exists? group_listener.listener_id)  && (group_listener.listener.followings.exists? current_listener.id )%>
+              <%= link_to chat_path(group_listener.listener_id),class: "link" do  %>
+              <div class="btn btn-main"><i class="far fa-envelope">Chat</i></div>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <!--メンバーがいなければ-->
+  <% else %>
+    <h1 class="text-center mt-5 "><i class="fas fa-listeners-slash">No Member</i></h1>
+  <% end %>
   </div>
 </div>
 <!--バックボタン-->
 <div class="row mt-5 " id="comment">
-    <div class="col-8 offset-2">
-    <!--前のページへ-->
-    <%= link_to 'javascript:history.back()' do%>
-      <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
-    <% end %>
-  </div>
+  <div class="col-8 offset-2">
+  <!--前のページへ-->
+  <%= link_to 'javascript:history.back()' do%>
+    <button class="btn btn-outline-main"><i class="fas fa-arrow-circle-left"></i> Back</button>
+  <% end %>
+</div>
 </div>
 
 
