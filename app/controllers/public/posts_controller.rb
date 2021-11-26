@@ -5,7 +5,7 @@ class Public::PostsController < ApplicationController
   before_action :fav_rank, only: [:show, :index, :search_tag, :order]
   # 閲覧数ランキング取得用。以下のアクションの際に使用。
   before_action :imp_rank, only: [:index, :search_tag, :order]
-  # 自分以外の人をアクセス不可にするための確認
+  # 本人確認。 自分以外の人をアクセス不可にするための確認
   before_action :ensure_listener, only:[:edit,:update,:destroy]
 
   def new
