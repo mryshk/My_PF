@@ -15,7 +15,7 @@
       <% listeners.each do |listener|  %>
       <tr>
         <td class="align-middle text-center">
-          <%= link_to listener_path(listener) ,class:"text-dark" do %>
+          <%= link_to listener_path(listener) ,class:"link-none" do %>
           <div>
             <%= attachment_image_tag listener, :profile_image,size:"50x50", fallback: "sky-2076868_1280.jpg",class: "rounded-circle"%>
           </div>
