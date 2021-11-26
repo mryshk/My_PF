@@ -47,12 +47,12 @@
         </td>
         <td class="align-middle text-center">
           <%= link_to listener_followings_path(listener),class:"text-dark"  do %>
-            <i class="fas fa-listener-check fa-lg mt-3"><%= listener.followings.count %></i>
+            <i class="fas fa-listener-check fa-lg mt-3 hover"><%= listener.followings.count %></i>
           <% end %>
         </td>
         <td class="align-middle text-center">
           <%= link_to listener_followers_path(listener),class:"text-dark"  do %>
-            <i class="fas fa-listener-friends fa-lg mt-3"><%= listener.followers.count %></i>
+            <i class="fas fa-listener-friends fa-lg mt-3 hover"><%= listener.followers.count %></i>
           <% end %>
         </td>
         <td class="align-middle text-center">
