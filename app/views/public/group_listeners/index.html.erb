@@ -6,12 +6,13 @@
   <% if @group_listeners.exists?  %>
     <table class="table" style="margin-top:100px;">
       <thead>
+        <!--表のタイトル-->
         <tr>
-        <th class="text-center">Name</th>
-        <th class="text-center">Follow&Unfollow</th>
-        <th class="text-center">Follows</th>
-        <th class="text-center">Followers</th>
-        <th class="text-center">Chat</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Follow&Unfollow</th>
+          <th class="text-center">Follows</th>
+          <th class="text-center">Followers</th>
+          <th class="text-center">Chat</th>
         </tr>
       </thead>
       <tbody>
@@ -24,7 +25,8 @@
               <%= attachment_image_tag group_listener.listener, :profile_image,size:"50x50", fallback: "sky-2076868_1280.jpg",class: "rounded-circle"%>
             </div>
             <div>
-               <%= group_listener.listener.name %>
+              <%= group_listener.listener.name %>
+              <!--クリエイタータイプであれば、クリエイターマークがつく。-->
               <% if group_listener.listener.listener_type == 1  %>
                 <i class="far fa-user-circle " style="color:rgb(063,163,203);"></i>
               <% end %>
