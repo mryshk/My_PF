@@ -59,7 +59,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
-       render :edit
+      render :edit
     end
   end
 
