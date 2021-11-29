@@ -19,12 +19,17 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
         post.post_tweet = ""
         is_expected.to eq false
       end
+      it "140文字以下であること：140文字以下はTrue" do
+        post.post_tweet = Faker::Lorem.characters(number: 140)
+        is_expected.to eq true
+      end
     end
     context "post_urlカラム" do
       it "空欄でないこと" do
         post.post_url = ""
         is_expected.to eq false
       end
+
     end
   end
 end
