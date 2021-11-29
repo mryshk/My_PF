@@ -33,7 +33,13 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
         post.post_url = ""
         is_expected.to eq false
       end
-
+    end
+  end
+  describe 'アソシエーションのテスト' do
+    context 'Listenerモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Post.reflect_on_association(:listener).macro).to eq :belongs_to
+      end
     end
   end
 end
