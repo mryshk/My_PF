@@ -20,6 +20,12 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
         is_expected.to eq false
       end
     end
+    context "post_urlカラム" do
+      it "空欄でないこと" do
+        post.post_url = ""
+        is_expected.to eq false
+      end
+    end
   end
 end
 
