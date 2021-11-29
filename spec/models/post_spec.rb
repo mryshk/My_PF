@@ -9,13 +9,15 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
     end
   end
   describe "バリデーションのテスト" do
-    let!(:listener) {create(:listener)}
-    
-    
+    subject { post.valid? }
+
+    let!(:listener) { create(:listener) }
+    let!(:post) { build(:post,listener_id: listener.id) }
+
     context "post_tweetカラム" do
       it "空欄でないこと" do
-        post_tweet = " "
-        is_expected eq false
+        post.post_tweet = ""
+        is_expected.to eq false
       end
     end
   end
