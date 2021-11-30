@@ -25,6 +25,10 @@ RSpec.describe Album, "モデルに関するテスト", type: :model do
         album.caption = Faker::Lorem.characters(number: 140)
         is_expected.to eq true
       end
+      it "140文字以上の場合：140文字以上の場合はfalse" do
+        album.caption = Faker::Lorem.characters(number: 200)
+        is_expected.to eq false
+      end
     end
     context "album_urlの確認" do
       it "空欄でないこと" do
