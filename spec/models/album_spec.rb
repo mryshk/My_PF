@@ -8,10 +8,12 @@ RSpec.describe Album, "モデルに関するテスト", type: :model do
       expect(FactoryBot.build(:album)).to be_valid
     end
   end
-  describe "バリデーションのテスト"do 
+  describe "バリデーションのテスト"do
+    subject { album.valid? }
+
      let!(:listener) { create(:listener) }
      let!(:album) { build(:album, listener_id: listener.id) }
-     
+
     context "nameカラムの確認" do
       it "空欄でないこと" do
         album.name = ""
@@ -19,9 +21,9 @@ RSpec.describe Album, "モデルに関するテスト", type: :model do
       end
     end
     context "captionカラムの確認" do
-      it "空欄でないこと" do
-        album.caption = ""
-        is_expected.to eq false
+      it "140文字以下の場合：140文字以下はTrue" do
+        album.caption = Faker::Lorem.characters(number: 140)
+        is_expected.to eq true
       end
     end
     context "album_urlの確認" do
