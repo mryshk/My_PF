@@ -8,4 +8,27 @@ RSpec.describe Album, "モデルに関するテスト", type: :model do
       expect(FactoryBot.build(:album)).to be_valid
     end
   end
+  describe "バリデーションのテスト"do 
+     let!(:listener) { create(:listener) }
+     let!(:album) { build(:album, listener_id: listener.id) }
+     
+    context "nameカラムの確認" do
+      it "空欄でないこと" do
+        album.name = ""
+        is_expected.to eq false
+      end
+    end
+    context "captionカラムの確認" do
+      it "空欄でないこと" do
+        album.caption = ""
+        is_expected.to eq false
+      end
+    end
+    context "album_urlの確認" do
+      it "空欄でないこと" do
+        album.album_url = ""
+        is_expected.to eq false
+      end
+    end
+  end
 end
