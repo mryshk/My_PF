@@ -4,6 +4,7 @@ class Public::HomesController < ApplicationController
   def top
   end
 
+  # 投稿のタイムライン
   def home_post
     # フォローしている人のみを表示。タイムライン機能。
     @listener = Listener.find(current_listener.id)
@@ -12,15 +13,30 @@ class Public::HomesController < ApplicationController
     @post_impression_rank = Post.all.order(impressions_count: 'DESC').page(params[:page])
   end
 
+  # アルバムのタイムライン
   def home_album
     @albums = Album.where(listener_id: [current_listener, *current_listener.following_ids]).page(params[:page]).includes(:listener).per(2).reverse_order
     @album_impression_rank = Album.all.order(impressions_count: 'DESC').page(params[:page])
     @creaters = Listener.where(listener_type: 1).includes(:followers).sort { |a, b| b.followers.size <=> a.followers.size }
   end
 
+  # ゲストログイン用
+  def guest_signin
+    listener = Listener.find_or_create_by(email: "guest@example.com") do |listener|
+      listener.name = "Guest"
+      listener.password = SecureRandom.alphanumeric(10)
+    end
+    sign_in listener
+    redirect_to home_post_path
+  end
+
+
+
+  private
+
+  # メニュー用
+  # 自分の所属するグループを全て集める。
   def set_menu
-    # メニュー用
-    # 自分の所属するグループを全て集める。
     mygroup_ids = current_listener.group_listeners.pluck(:group_id)
     @mygroups = Group.where(id: mygroup_ids)
   end
