@@ -94,3 +94,4 @@ gem 'activeadmin'
 gem 'cancancan'
 gem 'lightbox2-rails'
 gem 'gon'
+gem "rails-i18n"
