@@ -111,12 +111,6 @@
     <% else %>
     <div class="col-6 offset-3 text-center">
       <p style="font-size:22px;">投稿はありません。</p>
-      <% if @creater.listener == current_listener  %>
-        <!--アルバム新規登録へ-->
-        <%= link_to new_artist_album_path ,class:"link", 'data-turbolinks': false do %>
-          <div class="btn btn-outline-main btn-block"><i class="far fa-envelope fa-lg"> New Album</i></div>
-        <% end %>
-      <% end %>
     </div>
     <% end %>
   </div>
