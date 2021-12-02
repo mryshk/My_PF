@@ -7,18 +7,18 @@
       <%= form_with(model: @album, url: artist_albums_path, method: :post, local: true, id: "form") do |f| %>
       <!--アルバム名-->
       <div class="form-group　mt-3">
-        <%= f.label :アルバム名,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
-        <%= f.text_field :name,class: "form-control-static col-6",placeholder:"Album Name" %>
+        <%= f.label :アルバム名,class:"col-4 mr-2 mt-3  form-label",style: "font-size:14px;" %>
+        <%= f.text_field :name,class: "form-control-static col-6", style: "font-size:14px;",placeholder:"Album Name" %>
       </div>
       <!--アルバム説明-->
       <div class="form-group mt-3">
         <%= f.label :アルバム説明 ,class:"col-4 mr-2 mt-3 form-label" ,style: "font-size:14px;"%>
-        <%= f.text_area :caption,rows:"2", autofocus: true, class: "form-control-static col-6",placeholder:"Caption" %>
+        <%= f.text_area :caption,rows:"3", autofocus: true, class: "form-control-static col-6", style: "font-size:14px;",placeholder:"Caption" %>
       </div>
       <!--アルバムURL-->
       <div class="form-group　mt-3">
         <%= f.label :アルバムURL　,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
-        <%= f.text_field :album_url ,class: "form-control-static col-6",placeholder:"Album URL" %>
+        <%= f.text_field :album_url ,class: "form-control-static col-6", style: "font-size:14px;",placeholder:"Album URL" %>
       </div>
       <!--アルバムURL-->
       <div class="form-group　mt-3">
