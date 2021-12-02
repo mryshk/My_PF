@@ -12,17 +12,17 @@
       </div>
       <!--楽曲URL-->
       <div class="form-group　mt-3">
-        <%= f.label :楽曲URL　,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
-        <%= f.text_field :post_url ,class: "form-control-static col-6",placeholder:"URL" %>
+        <%= f.label :楽曲URL　,class:"col-4 mr-2 mt-3  form-label",style: "font-size:14px;" %>
+        <%= f.text_field :post_url ,class: "form-control-static col-6", style: "font-size:14px;" ,placeholder:"URL" %>
       </div>
       <!--タグ-->
       <div class="form-group　mt-3">
-        <%= f.label :タグ,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
-        <%= f.text_field :tag_name,class: "form-control-static col-6",placeholder:"#Tag" %>
+        <%= f.label :タグ,class:"col-4 mr-2 mt-3  form-label",style: "font-size:14px;" %>
+        <%= f.text_field :tag_name,class: "form-control-static col-6", style: "font-size:14px;" ,placeholder:"#Tag" %>
       </div>
       <!--ジャンル-->
       <div class="form-group　mt-3">
-        <%= f.label :ジャンル,class:"col-4 mr-2 mt-3  form-label",style: "font-size:13px;" %>
+        <%= f.label :ジャンル,class:"col-4 mr-2 mt-3  form-label",style: "font-size:14px;" %>
         <%= f.select :post_genre, Post.post_genres.keys.to_a ,{}, :class =>"custom-select col-6" %>
       </div>
       <!--投稿画像-->
