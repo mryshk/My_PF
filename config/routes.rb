@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get 'home_post' => 'homes#home_post', as: 'home_post'
     # アルバムホーム画面表示
     get 'home_album' => 'homes#home_album', as: 'home_album'
+    # ゲストログイン
+    post "home/guest_signin" => "homes#guest_signin",as: "guest_signin"
 
     # ヘッダー検索機能
     get '/search', to: 'searchs#search'
