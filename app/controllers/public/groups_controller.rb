@@ -43,8 +43,9 @@ class Public::GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  # 以下プライベート
   private
-
+  # グループ作成時のパラメーター
   def group_params
     params.require(:group).permit(:name, :introduction, :image)
   end
