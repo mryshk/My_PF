@@ -13,8 +13,6 @@ class Public::GroupChatsController < ApplicationController
     @chat = GroupChat.new(group_id: @group.id)
   end
 
-  def destroy
-  end
 
   private
 
