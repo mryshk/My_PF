@@ -1,8 +1,12 @@
 class Public::GroupChatsController < ApplicationController
   def create
+    # 操作したユーザーのIDを保存したグループチャットテーブル（インスタンス）を作成。
+    # その作成したインスタンスにパラメーターにて取得したグループIDとメッセージを保存。
     @chat = current_listener.group_chats.new(chat_params)
     @group = Group.find(params[:group_id])
     @chat_n = GroupChat.new(group_id: @group)
+    # 表示するメッセージ
+    # グループチャットテーブルから、同グループのメッセージのみ取得。
     @chats = GroupChat.where(group_id: @group)
     @chat.save
   end
