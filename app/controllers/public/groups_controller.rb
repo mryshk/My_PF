@@ -1,4 +1,7 @@
 class Public::GroupsController < ApplicationController
+  # 共通部分をset_groupアクションにまとめた。
+  before_action :set_group, only:[:show,:edit,:update,:destroy]
+  
   def new
     @group = Group.new
   end
@@ -14,7 +17,6 @@ class Public::GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
   end
 
   def index
@@ -28,23 +30,24 @@ class Public::GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
   end
 
   def update
-    @group = Group.find(params[:id])
     @group.update(group_params)
     redirect_to group_path(@group)
   end
 
   def destroy
-    @group = Group.find(params[:id])
     @group.destroy
     redirect_to groups_path
   end
 
   # 以下プライベート
   private
+  # パラメーターから得たIDのグループを取得。
+  def set_group
+    @group = Group.find(params[:id])
+  end
   # グループ作成時のパラメーター
   def group_params
     params.require(:group).permit(:name, :introduction, :image)
