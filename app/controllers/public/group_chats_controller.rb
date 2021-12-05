@@ -17,9 +17,9 @@ class Public::GroupChatsController < ApplicationController
     @chat = GroupChat.new(group_id: @group.id)
   end
 
-
+  # 以下プライベート
   private
-
+  # メッセージ送信時のパラメーター
   def chat_params
     params.require(:group_chat).permit(:message, :group_id)
   end
