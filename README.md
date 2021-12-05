@@ -53,6 +53,8 @@
 ## ER図
 https://app.diagrams.net/#G1uGJZjChS0OeGnZXeJuZ8YXO1FEiAvOd4
 
+##　詳細設計
+https://docs.google.com/spreadsheets/d/1WTGXGz6QdNSbaMYXsSHt4jF6Re1RGPPSaY_UZhUN6Ls/edit#gid=1031934256
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1jcPegLVuT-Q3KqS4D96l6st2mI7QgAxaKpkZgkH3xTk/edit#gid=566224576
