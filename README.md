@@ -50,6 +50,9 @@
 ### 主な利用シーン
 日常の空き時間・音楽を聞く際（音楽リスナー） / 新しい楽曲をリリースした際（音楽クリエイター）
 
+##　テーブル定義書
+https://docs.google.com/spreadsheets/d/1AdKGBi1FphmyLWOVnwxQRxGI8NVaYjCzn42EawVsvE0/edit#gid=12998440
+
 ## ER図
 https://app.diagrams.net/#G1uGJZjChS0OeGnZXeJuZ8YXO1FEiAvOd4
 
@@ -67,6 +70,6 @@ https://docs.google.com/spreadsheets/d/1jcPegLVuT-Q3KqS4D96l6st2mI7QgAxaKpkZgkH3
 - IDE：Cloud9
 
 ## 使用素材
-- 外部API: Linkpreview API  https://www.linkpreview.net, Twitter API https://developer.twitter.com/en/docs/twitter-api Google API https://console.cloud.google.com/apis/library?hl=ja , Facebook API https://developers.facebook.com/docs/facebook-login/ </br>
-- (FacebookのAPIのみ、URLが「http」のアプリに対し導入不可であったため、本番環境では未導入になっています。)
+- 外部API: Linkpreview API  https://www.linkpreview.net, Twitter API https://developer.twitter.com/en/docs/twitter-api Google API https://console.cloud.google.com/apis/library?hl=ja , Facebook API https://developers.facebook.com/docs/facebook-login/
+
 
