@@ -44,7 +44,7 @@ class Public::GroupsController < ApplicationController
 
   # 以下プライベート
   private
-  # パラメーターから得たIDのグループを取得。
+  # グループ(パラメーターから得たIDから)のレコードを取得。そして、変数@groupへ格納。
   def set_group
     @group = Group.find(params[:id])
   end
