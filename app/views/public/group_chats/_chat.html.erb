@@ -4,9 +4,9 @@
   <% if chats.present?  %>
     <!--チャット一覧-->
     <% chats.each do |chat| %>
-      <!--チャットのIDが自分であれば-->
+       <!--チャットIDが自分であれば(自分のメッセージであれば)-->
       <% if chat.listener_id == current_listener.id  %>
-        <!--右側にメッセージのみ表示-->
+        <!--右側にメッセージ表示-->
         <div class="speech-bubble mt-5">
           <div class="sb-bubble sb-line1 sb-right mt-2">
             <strong><%= chat.message %></strong>
