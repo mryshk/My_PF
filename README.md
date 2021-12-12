@@ -56,7 +56,7 @@ https://docs.google.com/spreadsheets/d/1AdKGBi1FphmyLWOVnwxQRxGI8NVaYjCzn42EawVs
 ## ER図
 https://app.diagrams.net/#G1uGJZjChS0OeGnZXeJuZ8YXO1FEiAvOd4
 
-##　詳細設計
+## 詳細設計
 https://docs.google.com/spreadsheets/d/1WTGXGz6QdNSbaMYXsSHt4jF6Re1RGPPSaY_UZhUN6Ls/edit#gid=1031934256
 
 ## チャレンジ要素一覧
