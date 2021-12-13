@@ -25,7 +25,7 @@
 音楽リスナーは、このSNSの投稿から知らない音楽と出会い、さらに共有することができる。<br>
 また、音楽を介してコミュニティ形成も可能。同じ好みの相手と好きな音楽の話で盛り上がれる。<br>
 音楽クリエイターは自分の音楽を発信しこのSNSを通じて聴いてもらう機会を作ることができる。<br>
-知らないクリエイターをいち早く見つけ、流行りのムーブメントを起こすことができる。
+知らないクリエイターをいち早く見つけ、流行りを起こすことができる。
 
 
 ### テーマを選んだ理由
@@ -56,7 +56,7 @@ https://docs.google.com/spreadsheets/d/1AdKGBi1FphmyLWOVnwxQRxGI8NVaYjCzn42EawVs
 ## ER図
 https://app.diagrams.net/#G1uGJZjChS0OeGnZXeJuZ8YXO1FEiAvOd4
 
-##　詳細設計
+## 詳細設計
 https://docs.google.com/spreadsheets/d/1WTGXGz6QdNSbaMYXsSHt4jF6Re1RGPPSaY_UZhUN6Ls/edit#gid=1031934256
 
 ## チャレンジ要素一覧
