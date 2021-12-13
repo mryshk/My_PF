@@ -54,10 +54,11 @@
           <% end %>
         <% end %>
       </div>
-      <!--編集画面へ-->
+      <!--編集・-->
       <div class="text-right mt-5">
         <% if @group.owner_id == current_listener.id %>
           <div type="button" class="btn ">
+            <!--編集画面へ-->
             <%= link_to edit_group_path(@group),class: "text-info" do%>
               <i class="fas fa-edit hover">Edit</i>
             <% end %>
