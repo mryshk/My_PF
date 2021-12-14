@@ -4,6 +4,7 @@ class Public::GroupChatsController < ApplicationController
     # その作成したインスタンスにパラメーターにて取得したグループIDとメッセージを保存。
     @chat = current_listener.group_chats.new(chat_params)
     @group = Group.find(params[:group_id])
+    # create.jsへ送るチャットインスタンス。
     @chat_n = GroupChat.new(group_id: @group)
     # 表示するメッセージ
     # グループチャットテーブルから、同グループのメッセージのみ取得。
@@ -15,7 +16,7 @@ class Public::GroupChatsController < ApplicationController
     @group = Group.find(params[:group_id])
     # 上記のグループIDを含むチャットのみ抽出し、@chats変数へ格納。
     @chats = @group.group_chats
-    # チャットインスタンスを作成し、その中に上記のグループIDを保存。@chat変数へ格納
+    # チャットインスタンスを作成し、その中に上記のグループIDを保存。@chat変数へ格納。
     @chat = GroupChat.new(group_id: @group.id)
   end
 
