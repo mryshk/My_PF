@@ -48,11 +48,13 @@
           <p class="d-block" style="font-size: 10px;">People</p>
         </td>
       </tr>
+      <!--順位を５番目までにしている-->
       <% break if i== 5 %>
       <% end %>
     </table>
     <!--新グループ作成画面-->
     <div class="text-center" style="margin-top:100px;">
+      <!--グループ作成画面へ-->
       <%= link_to new_group_path ,class:"link" do %>
         <div class="btn btn-outline-main btn-block"><i class="fas fa-users"></i> New Group</div>
       <% end %>
