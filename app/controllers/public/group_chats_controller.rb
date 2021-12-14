@@ -13,6 +13,7 @@ class Public::GroupChatsController < ApplicationController
 
   def index
     @group = Group.find(params[:group_id])
+    # 上記のグループIDを含むチャットのみ抽出し、@chats変数へ
     @chats = @group.group_chats
     @chat = GroupChat.new(group_id: @group.id)
   end
