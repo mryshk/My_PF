@@ -12,7 +12,7 @@
           <p class="d-inline-block" style="font-size:22px;"><%= @group.name %></p>
         </div>
       </div>
-      <!--グループ紹介-->
+      <!--グループ紹介文-->
       <div class="mt-3 text-center">
         <p class="card-text text-center"><%= @group.introduction  %></p>
       </div>
@@ -47,6 +47,7 @@
       <div class="mt-4">
         <!--グループに参加していれば-->
         <% if @group.joined_by?(current_listener)  %>
+          <!--グループチャット画面へ-->
           <%= link_to group_group_chats_path(@group),class: "link" do  %>
             <div class="btn btn-outline-main btn-block">
               <i class="far fa-envelope fa-lg"></i> Group Chat
