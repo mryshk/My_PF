@@ -32,8 +32,10 @@
   <!--チャットを投稿-->
   <div class="posts mb-4" style="margin-top:100px;">
     <div style="width:400px;">
+    <!--メッセージフォーム-->
     <%= form_with( model:[group,chat], local: false) do |f| %>
       <%= f.text_field :message, placeholder: "Message", class: "form-inline form-control", size:"30" %>
+      <!--グループIDを送信-->
       <%= f.hidden_field :group_id, :value => group.id  %>
     </div>
     <!--送信ボタン-->
